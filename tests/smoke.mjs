@@ -51,7 +51,7 @@ assert(css.includes('prefers-reduced-motion:reduce'));
 assert(sw.includes('caches.open'));
 assert(ids.includes('taviMendArc'),'The in-world needle gesture is missing');
 assert((html.match(/class="stride-contact-ground"/g)||[]).length===5,'Five directional poses need ground contact art');
-assert(css.includes('#tavi.walking[data-stride="0"]')&&css.includes('#tavi.walking[data-stride="3"]'),'Four unique gait frames required');
+assert(css.includes('#tavi.walking[data-stride="0"]')&&css.includes('#tavi.walking[data-stride="7"]'),'Eight painted gait frames required');
 assert(game.includes('walkDistance+=travelled')&&game.includes('mendingUntil'),'Movement and Mending must be driven by game state');
 for(const id of ['terraceMaterialStories','terraceDyerSilks','terraceBotanicalRelief','terraceGateEngraving','terraceLightShift']){
  assert(ids.includes(id),'Missing authored dimensional terrace illustration: '+id);
@@ -72,4 +72,16 @@ assert(game.includes('Math.hypot(state.x-oldX,state.y-oldY)>.01'),
  'A map boundary must not trigger fake walking');
 assert(css.includes('#morrow[data-flap="3"]')&&css.includes('#morrowSprite{animation:birdBob'),
  'All flight frames and separate flying body motion required');
+
+const gaitViews=['front','rear','side','quarter-front','quarter-rear'];
+const gaitCels=[...html.matchAll(/class="tavi-walk-cel" data-cel="([0-7])" data-direction="([^"]+)"/g)];
+assert(gaitCels.length===40,'Tavi requires 40 distinct illustrated walk poses');
+for(const view of gaitViews){
+ const cels=gaitCels.filter(x=>x[2]===view).map(x=>x[1]);
+ assert.deepEqual(cels,['0','1','2','3','4','5','6','7'],'Missing direction-specific full shoe artwork for '+view);
+}
+assert((html.match(/class="tavi-atlas-left"/g)||[]).length===40,'Every frame requires a complete illustrated left shin/boot');
+assert((html.match(/class="tavi-atlas-right"/g)||[]).length===40,'Every frame requires a complete illustrated right shin/boot');
+assert(css.includes('#tavi.walking .tavi-foot{display:none!important}'),'The old leg-rotation system must not remain active during walking');
+assert(game.includes('Math.floor(walkDistance/15)%8'),'Gait must advance from actual traveled distance, not an autoplay clock');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

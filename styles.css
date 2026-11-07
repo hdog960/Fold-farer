@@ -538,3 +538,34 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #tavi.walking[data-stride="0"] #taviGroundShadow,#tavi.walking[data-stride="2"] #taviGroundShadow{scale:1.025 .97}
 #tavi.walking[data-stride="1"] #taviGroundShadow,#tavi.walking[data-stride="3"] #taviGroundShadow{scale:.98 1.02}
 @media(prefers-reduced-motion:reduce){#morrowSprite{animation:none!important}#taviGroundShadow{scale:1 1!important}}
+
+/* FIRST FOLD 0.16.0 — 40 source SVG gait cels: 8 genuinely painted leg-pair
+   silhouettes in each of five anatomical facing poses. An indexed atlas is
+   selected by distance traveled, not a leg rotation or free-running timer.
+   Parent world transform and camera scaling stay totally unchanged. */
+#tavi .tavi-walk-cel{display:none}
+#tavi.walking .tavi-foot{display:none!important}
+#tavi.walking .stride-contact-ground{display:none!important}
+#tavi.walking .tavi-atlas-left,#tavi.walking .tavi-atlas-right{
+ transform:none!important;rotate:0deg!important;translate:0 0!important;
+ animation:none!important;transition:none!important
+}
+#tavi.walking[data-stride="0"] .tavi-walk-cel[data-cel="0"]{display:inline}
+#tavi.walking[data-stride="1"] .tavi-walk-cel[data-cel="1"]{display:inline}
+#tavi.walking[data-stride="2"] .tavi-walk-cel[data-cel="2"]{display:inline}
+#tavi.walking[data-stride="3"] .tavi-walk-cel[data-cel="3"]{display:inline}
+#tavi.walking[data-stride="4"] .tavi-walk-cel[data-cel="4"]{display:inline}
+#tavi.walking[data-stride="5"] .tavi-walk-cel[data-cel="5"]{display:inline}
+#tavi.walking[data-stride="6"] .tavi-walk-cel[data-cel="6"]{display:inline}
+#tavi.walking[data-stride="7"] .tavi-walk-cel[data-cel="7"]{display:inline}
+
+#tavi.walking[data-stride="4"] .arm-left,#tavi.walking[data-stride="6"] .arm-right{rotate:-9deg}
+#tavi.walking[data-stride="4"] .arm-right,#tavi.walking[data-stride="6"] .arm-left{rotate:10deg}
+#tavi.walking[data-stride="5"] .arm-left,#tavi.walking[data-stride="7"] .arm-right{rotate:-4deg}
+#tavi.walking[data-stride="5"] .arm-right,#tavi.walking[data-stride="7"] .arm-left{rotate:5deg}
+#tavi.walking[data-stride="4"] .tavi-scarf,#tavi.walking[data-stride="6"] .tavi-scarf{rotate:3deg}
+#tavi.walking[data-stride="5"] .tavi-scarf,#tavi.walking[data-stride="7"] .tavi-scarf{rotate:-3deg}
+@media(prefers-reduced-motion:reduce){
+ #tavi.walking .tavi-walk-cel:not([data-cel="0"]){display:none!important}
+ #tavi.walking .tavi-walk-cel[data-cel="0"]{display:inline!important}
+}

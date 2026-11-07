@@ -70,7 +70,7 @@ click('start');assert(e('portraitUse').attrs.href==='#taviSprite','Tavi dialogue
 const pos=()=>{const match=/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(e('tavi').attrs.transform);assert(match,'Missing transform');return {x:Number(match[1]),y:Number(match[2])};};
 const startY=pos().y;
 key('ArrowUp',true);step(20);
-assert(['0','1','2','3'].includes(e('tavi').dataset.stride),'Movement must select an actual ground contact frame');
+assert(['0','1','2','3','4','5','6','7'].includes(e('tavi').dataset.stride),'Movement must select a frame from the eight-cel walking atlas');
 assert(e('tavi').dataset.stride!=='0','Moving into the scene must advance beyond first stride state');
 key('ArrowUp',false);
 assert(pos().y<startY-35,'Up did not move into the screen');

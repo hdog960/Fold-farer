@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.15.0: original Morrow animation frames, actor ground shadows, and collision-safe walking.
+/* FoldFarer: The Unfinished World. First Fold 0.16.0: 40 drawn Tavi walk cels with physics-keyed step selection.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -575,7 +575,7 @@ function frame(now){
    if(moved){
     const travelled=Math.hypot(state.x-oldX,(state.y-oldY)*1.35);
     walkDistance+=travelled;
-    el.tavi.dataset.stride=String(Math.floor(walkDistance/38)%4);
+    el.tavi.dataset.stride=String(Math.floor(walkDistance/15)%8);
     fieldMotion=true;
     updatePrompt();
     if(now-lastSavedAt>=1100){save();lastSavedAt=now;}

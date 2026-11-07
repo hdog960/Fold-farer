@@ -48,10 +48,14 @@ try {
   if(walkingTransform===initialTransform)throw Error('Ground tap moved no visible character before recruitment');
   if(!await page.locator('#tavi').evaluate(el=>el.classList.contains('walking')))throw Error('Tap movement did not activate character gait');
   const gait=await page.locator('#tavi').getAttribute('data-stride');
-  if(!['0','1','2','3'].includes(gait))throw Error('World movement did not choose a contact gait frame: '+gait);
+  if(!['0','1','2','3','4','5','6','7'].includes(gait))throw Error('World movement did not choose a drawn atlas frame: '+gait);
   if(await page.locator('#tavi .stride-contact-ground').count()!==5)throw Error('A Tavi direction lacks authored foot contact art');
-  const contact=await page.locator('#tavi .tavi-foot.foot-left').first().evaluate(el=>getComputedStyle(el).rotate);
-  if(!contact||contact==='none')throw Error('Foot artwork lacks a weighted contact pose: '+contact);
+  if(await page.locator('#tavi .tavi-walk-cel').count()!==40)throw Error('Original Tavi atlas is missing artwork for a facing direction');
+  const painted=await page.locator('#taviFrontArt .tavi-walk-cel').evaluateAll(els=>els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
+  if(painted.length!==1||painted[0]!==gait)throw Error('Only the active complete painted leg pair may render: '+JSON.stringify(painted));
+  const geometry=await page.locator('#taviFrontArt .tavi-walk-cel[data-cel="'+gait+'"]').evaluate(el=>{const r=el.getBBox();return {width:r.width,height:r.height}});
+  if(geometry.width<48||geometry.height<35)throw Error('Active Tavi walk pose has collapsed or missing boots: '+JSON.stringify(geometry));
+  await page.screenshot({path:'screenshots/25-tavi-eight-frame-front-walk.png',animations:'allow'});
   await page.screenshot({path:'screenshots/14-botanical-walk-cycle.png',animations:'allow'});
   console.log('BOTANICALS:',trees,'trees,',families,'families. GAIT:',gait);
   await page.keyboard.down('ArrowLeft');
@@ -128,6 +132,10 @@ try {
   if(!backClass?.includes('dir-diag-up'))throw Error('Back 3/4 art is not active: '+backClass);
   const backPos=await quarterBackPage.locator('#tavi').getAttribute('transform');
   console.log('THREE QUARTER BACK:',backPos);
+  const backStep=await quarterBackPage.locator('#tavi').getAttribute('data-stride');
+  const backVisible=await quarterBackPage.locator('#taviBackQuarterArt .tavi-walk-cel').evaluateAll(els=>els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
+  if(backVisible.length!==1||backVisible[0]!==backStep)throw Error('Three-quarter rear Tavi lacks a complete walking frame');
+  await quarterBackPage.screenshot({path:'screenshots/26-tavi-eight-frame-rear-quarter-walk.png'});
   await quarterBackPage.screenshot({path:'screenshots/09-tavi-three-quarter.png'});
   await quarterBackPage.keyboard.up('ArrowUp');
   await quarterBackPage.keyboard.up('ArrowRight');
