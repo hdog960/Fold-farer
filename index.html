@@ -38,6 +38,11 @@
         <pattern id="craftWood" width="80" height="31" patternUnits="userSpaceOnUse"><path d="M0 7q14-5 32 0t48-1M0 26q21 4 37 0t43-1" fill="none" stroke="#674c58" stroke-width="2" opacity=".3"/><path d="m15 17 20-2m19 0 19-3" stroke="#ffe6b3" stroke-width="2" opacity=".54"/></pattern>
         <pattern id="craftVeins" width="72" height="67" patternUnits="userSpaceOnUse"><path d="M2 51q29-41 68-38m-44 27-5-22m22 4 8-16m2 12-4 22" stroke="#e4e6be" stroke-width="2" fill="none" opacity=".54"/><path d="m16 55 9-1m42-38 5 2" stroke="#406c61" stroke-width="2" opacity=".34"/></pattern>
         <radialGradient id="craftLamp"><stop stop-color="#fff3bb" stop-opacity=".93"/><stop offset=".4" stop-color="#ffdd8a" stop-opacity=".37"/><stop offset="1" stop-color="#eebb8c" stop-opacity="0"/></radialGradient>
+        <!-- Original dimensional paper finish on Folio roofs, vellum windows, stitched edges. -->
+        <linearGradient id="architectSide" x1="0" y1="0" x2="1" y2=".15"><stop stop-color="#87656b"/><stop offset=".55" stop-color="#ae7f79"/><stop offset="1" stop-color="#685965"/></linearGradient>
+        <linearGradient id="architectInset" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5b8e8b"/><stop offset="1" stop-color="#a3c9ab"/></linearGradient>
+        <linearGradient id="architectPaperEdge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff1ca"/><stop offset=".46" stop-color="#d2a789"/><stop offset="1" stop-color="#906a6b"/></linearGradient>
+        <radialGradient id="architectWindowGlow"><stop stop-color="#ffe8aa" stop-opacity=".72"/><stop offset=".58" stop-color="#f8c695" stop-opacity=".18"/><stop offset="1" stop-color="#f8c695" stop-opacity="0"/></radialGradient>
       </defs>
       <g id="folioScene">
       <rect width="1440" height="810" fill="url(#sky)"/>
@@ -114,6 +119,123 @@
 <ellipse cx="296" cy="439" rx="40" ry="51" fill="url(#craftLamp)" opacity=".72"/><path d="m281 426q15-20 30 0l-9 24h-14Z" fill="#986c67" stroke="#765b63" stroke-width="3"/><circle cx="296" cy="439" r="8" fill="#ffedb4" stroke="#b48b75" stroke-width="2"/><ellipse cx="614" cy="399" rx="40" ry="51" fill="url(#craftLamp)" opacity=".72"/><path d="m599 386q15-20 30 0l-9 24h-14Z" fill="#986c67" stroke="#765b63" stroke-width="3"/><circle cx="614" cy="399" r="8" fill="#ffedb4" stroke="#b48b75" stroke-width="2"/><ellipse cx="1159" cy="362" rx="40" ry="51" fill="url(#craftLamp)" opacity=".72"/><path d="m1144 349q15-20 30 0l-9 24h-14Z" fill="#986c67" stroke="#765b63" stroke-width="3"/><circle cx="1159" cy="362" r="8" fill="#ffedb4" stroke="#b48b75" stroke-width="2"/>
 </g>
 </g>
+
+      <!-- LIVING BOOKSHOP ROOFLINE: all panels have visible card thickness.
+           Built to sit behind signs/NPCs and never intercept the door/controls. -->
+      <g id="dimensionalArchitecture" pointer-events="none">
+        <g id="folioBindingHouse" class="paper-building-detail">
+          <!-- Rooftop cut-card thickness, book binding ribs, folded corner tabs. -->
+          <path d="M54 373 161 261 303 300 334 291 308 306 169 276 63 390Z" fill="url(#architectPaperEdge)" stroke="#785d65" stroke-width="3.4" opacity=".96"/>
+          <path d="m63 386 105-110 139 34" fill="none" stroke="#fff0c9" stroke-width="3" stroke-dasharray="10 13"/>
+          <path d="M292 304 332 292V509l-40 23Z" fill="url(#architectSide)" stroke="#795a66" stroke-width="3" opacity=".64"/>
+          <path d="m301 317 21-6m-20 31 22-6m-22 30 22-7m-21 33 23-7m-23 33 22-6m-22 31 22-6m-23 30 22-6m-22 27 21-7" stroke="#f9cfaa" stroke-width="5" opacity=".75"/>
+          <path d="M308 306v188" stroke="#4b5966" stroke-width="2" stroke-dasharray="6 13" opacity=".64"/>
+          <!-- Top pageleaf window, visible folio binding ornament. -->
+          <path d="M158 304q16-11 29 2l4 39-36 0Z" fill="#785e67" stroke="#ead3a8" stroke-width="5"/>
+          <path d="M166 310q9-8 17 1l1 26-18 0Z" fill="#93b6a3" stroke="#f0d6ae" stroke-width="3"/>
+          <path d="M174 310v27" stroke="#e9e1bd" stroke-width="2"/>
+          <path d="M151 348q20-10 46 0" fill="none" stroke="#b78c7c" stroke-width="5"/>
+          <g fill="#f1d1a1" stroke="#a47d72" stroke-width="3.1">
+            <path d="M90 399h11v77H90Z"/><path d="M151 401h11v76h-11Z"/>
+          </g>
+          <g fill="#7d9b94" stroke="#567474" stroke-width="3.2">
+            <path d="m82 401 18-7 1 73-19 6Z"/><path d="m152 401 21-5-1 74-20-5Z"/>
+          </g>
+          <path d="m86 414 12-5m-12 30 12-5m54-23 14-6m-13 34 13-4" stroke="#d3e1b6" stroke-width="2.5"/>
+          <path d="M96 475q26 7 61-1l3 12-63 0Z" fill="#b4827c" stroke="#875c6c" stroke-width="4"/>
+          <path d="m103 477 9 0m10-1 9-1m10 2 9-2" stroke="#fbdfae" stroke-width="2.5" stroke-dasharray="3 5"/>
+          <g fill="#86ad8f" stroke="#5c807d" stroke-width="2">
+            <path d="M109 475q-12-15-6-25 15 5 12 22m5 4q-1-19 12-22 8 13-6 20Z"/>
+            <path d="M139 475q-4-21 8-25 10 15-4 23Z"/>
+          </g>
+          <!-- Book-spine doorway: inset bands give thickness but preserve passage. -->
+          <path d="M178 527V410q31-32 77-4v124" fill="none" stroke="#f6dcaf" stroke-width="4" opacity=".76"/>
+          <path d="M187 526V422q27-25 57-8v112" fill="none" stroke="#907783" stroke-width="3"/>
+          <path d="M190 421q25-21 50-9" fill="none" stroke="#f7e9c7" stroke-width="2.5" stroke-dasharray="5 8"/>
+          <path d="M184 538 267 536 279 546 174 548Z" fill="#d5b48e" stroke="#906d6d" stroke-width="3.5"/>
+          <path d="M176 550 281 548l-12 9-84 3Z" fill="#927272" stroke="#685a68" stroke-width="3"/>
+          <g fill="#e8c58d" stroke="#927278" stroke-width="2.5"><circle cx="291" cy="333" r="3.6"/><circle cx="291" cy="502" r="3.6"/><circle cx="167" cy="274" r="3.6"/></g>
+        </g>
+        <!-- THREADS SHOP: wool fabric roof lip, inset sewing-alcove and cloth roll. -->
+        <g id="threadsTailorHouse" class="paper-building-detail">
+          <path d="m378 412 81-113 148 58 11-11-10 23-146-56-75 109Z" fill="url(#architectPaperEdge)" stroke="#916d6a" stroke-width="3.2"/>
+          <path d="m387 419 75-108 141 57" fill="none" stroke="#ffe6bd" stroke-width="2.7" stroke-dasharray="7 12"/>
+          <path d="m594 362 22-16-1 178-22 15Z" fill="url(#architectSide)" stroke="#815c68" stroke-width="2.5" opacity=".7"/>
+          <path d="M601 377v133" stroke="#efc4a4" stroke-width="3" stroke-dasharray="11 14"/>
+          <path d="M454 321 475 299l17 36-30-7Z" fill="#f2d6a3" stroke="#8e6b68" stroke-width="3.5"/>
+          <path d="m454 319 23-6" stroke="#fff1c6" stroke-width="3"/>
+          <g fill="#f4dab7" stroke="#a17b70" stroke-width="4">
+            <path d="M414 437q40-32 99-3l-1 15q-49-24-94 1Z"/>
+            <path d="m411 448 104-2-4 16q-50 9-99-2Z" fill="#9e8580"/>
+          </g>
+          <g fill="#7f9c91" stroke="#536f75" stroke-width="3.5">
+            <path d="m417 453 19-4 1 35-22 4Z"/>
+            <path d="m495 452 18 1-1 38-18-5Z"/>
+          </g>
+          <path d="M415 486q48 13 99 0" fill="none" stroke="#f2d2ab" stroke-width="3" stroke-dasharray="5 9"/>
+          <!-- Distinct tailor window: spool awning and visible folded shutters. -->
+          <path d="M515 414q24-18 54-1l6 16-63-3Z" fill="#c7887d" stroke="#855f6c" stroke-width="4"/>
+          <path d="m518 414 8 12m13-16 8 18m13-15 10 14" stroke="#f1d29f" stroke-width="3.5"/>
+          <path d="M510 422h12v59l-16 0Z" fill="#688f88" stroke="#4d7377" stroke-width="3"/>
+          <path d="M566 422h12v62l-15-6Z" fill="#749c90" stroke="#4d7377" stroke-width="3"/>
+          <path d="M518 480 571 477l4 10-58 4Z" fill="#dcb38e" stroke="#946d6c" stroke-width="3"/>
+          <path d="m524 483 43-2" stroke="#ffedbb" stroke-width="2.3" stroke-dasharray="4 8"/>
+          <g stroke="#9c7878" stroke-width="4" fill="none">
+            <path d="M481 372v19m52-22v20"/>
+          </g>
+          <g fill="#f0c999" stroke="#98767a" stroke-width="3">
+            <circle cx="480" cy="393" r="6"/><circle cx="532" cy="389" r="6"/>
+          </g>
+          <path d="M481 395q25 9 51-5" fill="none" stroke="#e7cc9f" stroke-width="2.6" stroke-dasharray="5 7"/>
+          <path d="M426 542h91l15 12-115 1Z" fill="#d9b791" stroke="#956d6a" stroke-width="4"/>
+          <path d="M420 555h109l-11 8H429Z" fill="#9b7975" stroke="#6e5a6b" stroke-width="3"/>
+          <g fill="#eed0a1" stroke="#9a7672" stroke-width="2.5"><circle cx="590" cy="387" r="3.5"/><circle cx="407" cy="418" r="3.5"/></g>
+        </g>
+        <!-- POST OFFICE: deep overhanging roof, mail-slot fascia, sill garden. -->
+        <g id="postboundHouse" class="paper-building-detail">
+          <path d="M886 400 995 260 1134 315 1172 320 1145 335 1007 280 895 414Z" fill="url(#architectPaperEdge)" stroke="#80656a" stroke-width="4"/>
+          <path d="m902 409 107-129 130 53" stroke="#fff2cc" stroke-width="3" stroke-dasharray="8 12" fill="none"/>
+          <path d="m1132 330 39-12v224l-39 17Z" fill="url(#architectSide)" stroke="#8c636d" stroke-width="2" opacity=".67"/>
+          <path d="m1141 348 21-5m-22 31 23-8m-23 36 23-8m-23 34 24-8m-24 34 24-8m-24 34 23-8m-24 33 22-7" stroke="#efd2ab" stroke-width="4" opacity=".68"/>
+          <path d="M991 305q12-29 30-27 21 0 29 33l-5 19-54-6Z" fill="#f3dcb2" stroke="#946e6d" stroke-width="4"/>
+          <path d="M1000 309q21-22 41 0" fill="none" stroke="#74a6a0" stroke-width="7"/>
+          <path d="m998 320 42 2" stroke="#f9e4bc" stroke-width="3"/>
+          <path d="m978 551-2-133q39-33 79 3v134" stroke="#f0dcae" stroke-width="4" fill="none"/>
+          <path d="M980 426q40-27 72 0" stroke="#b9a59a" stroke-width="4" fill="none"/>
+          <!-- Open mailbox canopy with a real underfold. -->
+          <path d="M1042 383q37-24 76-9l-6 20q-40-5-72 9Z" fill="#ce9286" stroke="#8c6373" stroke-width="5"/>
+          <path d="m1046 388 69-6-6 11-68 6Z" fill="#edd2aa" stroke="#9b7771" stroke-width="3"/>
+          <g stroke="#f6e7c7" stroke-width="3" fill="none">
+            <path d="m1060 396 11-1m14-1 12-1"/>
+            <path d="m1065 387 7-3m22 2 10-2"/>
+          </g>
+          <path d="m1053 452 61 0 8 15-74-4Z" fill="#ad7775" stroke="#855b6d" stroke-width="4"/>
+          <path d="m1057 456 59 2" stroke="#fce8c7" stroke-width="2.5" stroke-dasharray="6 8"/>
+          <g fill="#7fa890" stroke="#658a7b" stroke-width="3.5">
+            <path d="m1066 453-8-18q12 1 16 16m3 3q1-23 18-22 2 20-16 23m21-1q-2-21 14-22 8 18-12 22"/>
+          </g>
+          <g fill="#f2d0a0" stroke="#c19a85" stroke-width="2"><circle cx="1069" cy="435" r="4.5"/><circle cx="1095" cy="433" r="5"/></g>
+          <path d="m977 557 81 1 15 12-115-1Z" fill="#dbbb93" stroke="#907274" stroke-width="4"/>
+          <path d="M964 571h109l-13 8H980Z" fill="#987c78" stroke="#775f6a" stroke-width="3"/>
+          <g fill="#f0ce9f" stroke="#9b7271" stroke-width="2.5"><circle cx="1156" cy="333" r="3.5"/><circle cx="1147" cy="526" r="3.5"/></g>
+        </g>
+        <!-- Side building: the pop-up's exposed tabs have a visibly bound spine. -->
+        <g id="edgePaperHouse" class="paper-building-detail">
+          <path d="m1289 372 67-93 116 48-14 15-102-40-57 84Z" fill="url(#architectPaperEdge)" stroke="#936c71" stroke-width="4"/>
+          <path d="M1294 392v145" stroke="#f1d7b2" stroke-width="6" stroke-dasharray="9 12"/>
+          <path d="m1321 344 14-21 7 24m24-36 11 23" stroke="#ffe3b5" stroke-width="3.5" fill="none"/>
+          <g fill="#a77b7c" stroke="#785d66" stroke-width="3.5">
+            <path d="m1304 429 28-3 4 62-29 4Z"/>
+            <path d="m1352 424 28-3 5 64-30-2Z"/>
+          </g>
+          <path d="m1308 435 22-2m26-5 21-2" stroke="#f6e6be" stroke-width="3"/>
+          <path d="M1302 541q84 11 143-3" fill="none" stroke="#f6e4bc" stroke-width="4" stroke-dasharray="10 12"/>
+        </g>
+        <!-- Shared cut/fold construction marks, never in the foreground navigation plane. -->
+        <g fill="none" stroke="#fff3d2" opacity=".68" stroke-width="2.5" stroke-linecap="round">
+          <path d="m72 517 6-6m13 7 6-6m182-1 6-6m105 21 8-7m175-7 6-8m333 10 7-7m11 6 7-7m201-14 8-8"/>
+        </g>
+      </g>
       <!-- Shop signs and paper pennants. -->
       <g filter="url(#softShadow)" class="lettering">
         <path d="M102 355q51 17 110 2l-4 35q-59 10-109-1Z" fill="#fff0d2" stroke="#775b63" stroke-width="4"/>
