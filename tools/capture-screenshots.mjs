@@ -47,8 +47,11 @@ try {
   const walkingTransform=await page.locator('#tavi').getAttribute('transform');
   if(walkingTransform===initialTransform)throw Error('Ground tap moved no visible character before recruitment');
   if(!await page.locator('#tavi').evaluate(el=>el.classList.contains('walking')))throw Error('Tap movement did not activate character gait');
-  const gait=await page.locator('#tavi .tavi-foot.foot-left').first().evaluate(el=>getComputedStyle(el).animationName);
-  if(!gait.includes('farerFootForward'))throw Error('Actual foot artwork did not articulate: '+gait);
+  const gait=await page.locator('#tavi').getAttribute('data-stride');
+  if(!['0','1','2','3'].includes(gait))throw Error('World movement did not choose a contact gait frame: '+gait);
+  if(await page.locator('#tavi .stride-contact-ground').count()!==5)throw Error('A Tavi direction lacks authored foot contact art');
+  const contact=await page.locator('#tavi .tavi-foot.foot-left').first().evaluate(el=>getComputedStyle(el).rotate);
+  if(!contact||contact==='none')throw Error('Foot artwork lacks a weighted contact pose: '+contact);
   await page.screenshot({path:'screenshots/14-botanical-walk-cycle.png',animations:'allow'});
   console.log('BOTANICALS:',trees,'trees,',families,'families. GAIT:',gait);
   await page.keyboard.down('ArrowLeft');

@@ -454,3 +454,64 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #tavi .tavi-eyes-open{opacity:1!important}
  #tavi .tavi-eyes-blink{opacity:0!important}
 }
+
+/* First Fold 0.13: four drawn foot-contact states advanced by physical distance
+   rather than endless out-of-sync limb oscillation. The world-space foot anchor
+   and all five original directional hero illustrations remain unchanged. */
+#tavi.walking,#tavi.walking .tavi-foot,#tavi.walking .tavi-arm,
+#tavi.walking .tavi-coat,#tavi.walking .tavi-scarf,
+#tavi.walking #taviWalkDust{animation:none!important}
+#tavi .tavi-foot,#tavi .tavi-arm{
+  transform-box:fill-box;transform-origin:center 12%;
+  transition:rotate .085s ease-out,translate .085s ease-out;
+}
+#tavi .stride-contact-left,#tavi .stride-contact-right{opacity:0;transition:opacity .075s linear}
+#tavi.walking[data-stride="0"] .foot-left{rotate:-15deg;translate:-2px 0}
+#tavi.walking[data-stride="0"] .foot-right{rotate:19deg;translate:2px -6px}
+#tavi.walking[data-stride="1"] .foot-left{rotate:-5deg;translate:0 -7px}
+#tavi.walking[data-stride="1"] .foot-right{rotate:7deg;translate:0 0}
+#tavi.walking[data-stride="2"] .foot-left{rotate:19deg;translate:2px -6px}
+#tavi.walking[data-stride="2"] .foot-right{rotate:-15deg;translate:-2px 0}
+#tavi.walking[data-stride="3"] .foot-left{rotate:7deg;translate:0 0}
+#tavi.walking[data-stride="3"] .foot-right{rotate:-5deg;translate:0 -7px}
+#tavi.walking[data-stride="0"] .stride-contact-left,
+#tavi.walking[data-stride="3"] .stride-contact-left{opacity:.29}
+#tavi.walking[data-stride="1"] .stride-contact-right,
+#tavi.walking[data-stride="2"] .stride-contact-right{opacity:.29}
+#tavi.walking[data-stride="0"] .arm-left,#tavi.walking[data-stride="2"] .arm-right{rotate:10deg}
+#tavi.walking[data-stride="0"] .arm-right,#tavi.walking[data-stride="2"] .arm-left{rotate:-12deg}
+#tavi.walking[data-stride="1"] .arm-left,#tavi.walking[data-stride="3"] .arm-right{rotate:4deg}
+#tavi.walking[data-stride="1"] .arm-right,#tavi.walking[data-stride="3"] .arm-left{rotate:-5deg}
+#tavi.walking[data-stride="0"] .tavi-coat,#tavi.walking[data-stride="2"] .tavi-coat{rotate:-2deg}
+#tavi.walking[data-stride="1"] .tavi-coat,#tavi.walking[data-stride="3"] .tavi-coat{rotate:2deg}
+#tavi.walking[data-stride="0"] .tavi-scarf,#tavi.walking[data-stride="2"] .tavi-scarf{rotate:-3deg}
+#tavi.walking[data-stride="1"] .tavi-scarf,#tavi.walking[data-stride="3"] .tavi-scarf{rotate:3deg}
+#tavi.walking[data-stride="0"] #taviWalkDust,
+#tavi.walking[data-stride="2"] #taviWalkDust{opacity:.58;translate:0 -1px}
+#tavi.walking[data-stride="1"] #taviWalkDust,
+#tavi.walking[data-stride="3"] #taviWalkDust{opacity:0}
+#taviMendArc{opacity:0;pointer-events:none}
+#tavi.mending #taviMendArc{opacity:1}
+#tavi.mending .mend-needle-shadow,#tavi.mending .mend-needle-metal{
+  transform-box:fill-box;transform-origin:30% 85%;animation:taviMendNeedle .9s ease-in-out 1
+}
+#tavi.mending .mend-thread,#tavi.mending .mend-thread-core{
+  stroke-dasharray:170;stroke-dashoffset:170;
+  animation:taviDrawThread .9s cubic-bezier(.22,.64,.28,1) forwards
+}
+#tavi.mending .mend-spark{animation:taviMendSpark .9s ease-out forwards}
+@keyframes taviMendNeedle{
+  0%{rotate:-16deg;translate:-8px 9px}
+  38%{rotate:13deg;translate:6px -5px}
+  70%{rotate:-7deg;translate:1px 0}
+  100%{rotate:0;translate:0 0}
+}
+@keyframes taviDrawThread{0%{stroke-dashoffset:170;opacity:.2}70%{opacity:1}100%{stroke-dashoffset:0;opacity:.95}}
+@keyframes taviMendSpark{0%,20%{opacity:0;scale:.6}50%{opacity:1;scale:1.05}100%{opacity:0;scale:1.22}}
+@media(prefers-reduced-motion:reduce){
+ #tavi.walking .tavi-foot,#tavi.walking .tavi-arm,#tavi.walking .tavi-scarf,#tavi.walking .tavi-coat{
+  rotate:0deg!important;translate:0 0!important;transition:none!important
+ }
+ #tavi .stride-contact-left,#tavi .stride-contact-right{opacity:0!important}
+ #taviMendArc{display:none!important}
+}

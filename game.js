@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.12.0: uniquely finished North Terrace and depth-aware furnishings.
+/* FoldFarer: The Unfinished World. First Fold 0.13.0: grounded stride contact and onstage Mending.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -69,7 +69,7 @@ function load(){
 let state=load();
 const $=id=>document.getElementById(id);
 const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),taviFlip:$('taviFlip'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
-let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0;
+let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0,walkDistance=0,mendingUntil=0;
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
 const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceRibbonTree:591,
@@ -179,6 +179,10 @@ function sync(){
 function travelTo(area,x,y,direction){
  cancelTap();
  clearHeld();
+ walkDistance=0;mendingUntil=0;
+ el.tavi.dataset.stride='0';
+ el.tavi.classList.remove('walking');
+ el.tavi.classList.remove('mending');
  state.area=area;state.x=x;state.y=y;state.direction=direction;
  lastDepthOrder='';
  companion.ready=false;
@@ -335,7 +339,15 @@ function interact(){
       ['Tavi','The planks still remember where they belong.','✦'],
       ['Morrow','A rare case in which paperwork and reality agree. Fold the loose edge toward the other bank.','✒'],
       ['Tavi','Needle through. Pull the thread... and let it unfold.','✦']
-     ],()=>{state.mended=true;save();sync();});
+     ],()=>{
+       // Saved immediately, including across Home Screen suspension.
+       state.mended=true;save();sync();
+       cancelTap();clearHeld();walkDistance=0;
+       el.tavi.dataset.stride='0';el.tavi.classList.remove('walking');
+       const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+       mendingUntil=performance.now()+(reduced?0:900);
+       if(!reduced)el.tavi.classList.add('mending');
+     });
    }else speak([['Tavi','One clean seam. The bridge has its shape back, but that eastern road is still white.','✦']]);
    break;
  case 'mila':
@@ -520,8 +532,11 @@ el.timingTap.addEventListener('click',strike);
 el.battleDone.addEventListener('click',endBattle);
 function frame(now){
  const dt=Math.min(.05,(now-last)/1000||0);last=now;
+ if(mendingUntil&&now>=mendingUntil){
+   mendingUntil=0;el.tavi.classList.remove('mending');
+ }
  let fieldMotion=false;
- if(modal==='field'){
+ if(modal==='field'&&!mendingUntil){
   let x=(held.right?1:0)-(held.left?1:0);
   let y=(held.down?1:0)-(held.up?1:0);
   let moving=x!==0||y!==0;
@@ -538,17 +553,29 @@ function frame(now){
    if(ay>ax*1.65)state.direction=y<0?'up':'down';
    else if(ax>ay*1.65)state.direction='side';
    else state.direction=y<0?'diag-up':'diag-down';
+   const oldX=state.x,oldY=state.y;
    const moved=moveBy(x/len*225*dt,y/len*165*dt);
    if(!moved&&moveTarget)cancelTap();
    if(moveTarget&&Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25)<8)cancelTap();
    el.tavi.classList.toggle('walking',moved);
    if(moved){
+    const travelled=Math.hypot(state.x-oldX,(state.y-oldY)*1.35);
+    walkDistance+=travelled;
+    el.tavi.dataset.stride=String(Math.floor(walkDistance/38)%4);
     fieldMotion=true;
     updatePrompt();
     if(now-lastSavedAt>=1100){save();lastSavedAt=now;}
+   }else{
+    walkDistance=0;el.tavi.dataset.stride='0';
    }
-  }else{el.tavi.classList.remove('walking');updatePrompt();}
- }else{el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');}
+  }else{
+    walkDistance=0;el.tavi.dataset.stride='0';
+    el.tavi.classList.remove('walking');updatePrompt();
+  }
+ }else{
+  walkDistance=0;el.tavi.dataset.stride='0';
+  el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');
+ }
  updateBackdrop(dt);
  if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}
  else if(modal==='field'&&fieldMotion)updateCharacter();
