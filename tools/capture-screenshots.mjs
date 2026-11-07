@@ -142,6 +142,27 @@ try {
   await tornPage.screenshot({path:'screenshots/12-paper-bridge-torn.png'});
   await tornPage.close();
 
+
+  // Browser acceptance: the real bridge interaction must draw Tavi's needle
+  // inside the playable scene (not a standalone illustration), persist its
+  // repaired checkpoint immediately, then return movement control.
+  const mendPage=await openedAt({started:true,x:625,y:698,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
+  await mendPage.locator('#interact').click();
+  await mendPage.locator('#dialogue').waitFor({state:'visible'});
+  for(let line=0;line<3;line++)await mendPage.locator('#nextLine').click();
+  if(!(await mendPage.locator('#tavi').evaluate(el=>el.classList.contains('mending'))))throw Error('Tavi repair did not animate in the real world');
+  const persist=await mendPage.evaluate(()=>JSON.parse(localStorage.getItem('foldfarer.firstfold.0.1')||'{}'));
+  if(!persist.mended)throw Error('Repair is not saved before animation completes');
+  const gesture=await mendPage.locator('#taviMendArc').evaluate(el=>{
+    const b=el.getBBox();return {width:b.width,height:b.height,opacity:getComputedStyle(el).opacity};
+  });
+  if(gesture.width<45||gesture.height<65||Number(gesture.opacity)<.5)throw Error('Needle and stitch artwork failed to render: '+JSON.stringify(gesture));
+  await mendPage.waitForTimeout(200);
+  await mendPage.screenshot({path:'screenshots/22-live-needle-mending.png',animations:'allow'});
+  await mendPage.waitForTimeout(900);
+  if(await mendPage.locator('#tavi').evaluate(el=>el.classList.contains('mending')))throw Error('Needle flourish did not release control');
+  await mendPage.close();
+
   const bridgePage=await openedAt({started:true,x:625,y:698,facing:1,direction:'down',metMorrow:true,mended:true,letter:false,won:false});
   if(await bridgePage.locator('#bridgeFix').getAttribute('class')!=='bridge-open')throw Error('Mended bridge not visible');
   if(await bridgePage.locator('#riverCutout').count()!==1)throw Error('Layered paper river cutout missing');
