@@ -51,11 +51,16 @@ try {
   if(!['0','1','2','3','4','5','6','7'].includes(gait))throw Error('World movement did not choose a drawn atlas frame: '+gait);
   if(await page.locator('#tavi .stride-contact-ground').count()!==5)throw Error('A Tavi direction lacks authored foot contact art');
   if(await page.locator('#tavi .tavi-walk-cel').count()!==40)throw Error('Original Tavi atlas is missing artwork for a facing direction');
-  const painted=await page.locator('#taviFrontArt .tavi-walk-cel').evaluateAll(els=>els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
-  if(painted.length!==1||painted[0]!==gait)throw Error('Only the active complete painted leg pair may render: '+JSON.stringify(painted));
-  const geometry=await page.locator('#taviFrontArt .tavi-walk-cel[data-cel="'+gait+'"]').evaluate(el=>{const r=el.getBBox();return {width:r.width,height:r.height}});
+  const directionClass=await page.locator('#tavi').getAttribute('class');
+  const activePose=directionClass.includes('dir-diag-down')?'taviFrontQuarterArt':
+    directionClass.includes('dir-diag-up')?'taviBackQuarterArt':
+    directionClass.includes('dir-up')?'taviBackArt':
+    directionClass.includes('dir-side')?'taviSideArt':'taviFrontArt';
+  const painted=await page.locator('#'+activePose+' .tavi-walk-cel').evaluateAll(els=>els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
+  if(painted.length!==1||painted[0]!==gait)throw Error('Only the active complete painted leg pair may render: '+JSON.stringify({activePose,painted,gait}));
+  const geometry=await page.locator('#'+activePose+' .tavi-walk-cel[data-cel="'+gait+'"]').evaluate(el=>{const r=el.getBBox();return {width:r.width,height:r.height}});
   if(geometry.width<48||geometry.height<35)throw Error('Active Tavi walk pose has collapsed or missing boots: '+JSON.stringify(geometry));
-  await page.screenshot({path:'screenshots/25-tavi-eight-frame-front-walk.png',animations:'allow'});
+  await page.screenshot({path:'screenshots/25-tavi-eight-frame-walk.png',animations:'allow'});
   await page.screenshot({path:'screenshots/14-botanical-walk-cycle.png',animations:'allow'});
   console.log('BOTANICALS:',trees,'trees,',families,'families. GAIT:',gait);
   await page.keyboard.down('ArrowLeft');
@@ -125,6 +130,7 @@ try {
   // has correctly depth-sorted notice boards; those should not conceal the
   // character in the art reference capture.
   const quarterBackPage=await openedAt({started:true,area:'folio',x:615,y:711,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
+  await quarterBackPage.emulateMedia({reducedMotion:'no-preference'});
   await quarterBackPage.keyboard.down('ArrowUp');
   await quarterBackPage.keyboard.down('ArrowRight');
   await quarterBackPage.waitForTimeout(380);
@@ -142,6 +148,7 @@ try {
   await quarterBackPage.close();
 
   const quarterFrontPage=await openedAt({started:true,area:'folio',x:607,y:594,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
+  await quarterFrontPage.emulateMedia({reducedMotion:'no-preference'});
   await quarterFrontPage.keyboard.down('ArrowDown');
   await quarterFrontPage.keyboard.down('ArrowRight');
   await quarterFrontPage.waitForTimeout(380);
@@ -152,6 +159,28 @@ try {
   await quarterFrontPage.keyboard.up('ArrowDown');
   await quarterFrontPage.keyboard.up('ArrowRight');
   await quarterFrontPage.close();
+
+
+  // Separate real forward-walking acceptance image: a normal-motion browser
+  // navigates Tavi toward the camera, while the old standstill SVG stays
+  // dormant. No concept art or screenshot compositing is involved.
+  const taviForwardPage=await openedAt({
+    started:true,area:'folio',x:850,y:605,direction:'down',
+    facing:1,metMorrow:true,mended:true,letter:false,won:false
+  });
+  await taviForwardPage.emulateMedia({reducedMotion:'no-preference'});
+  await taviForwardPage.keyboard.down('ArrowDown');
+  await taviForwardPage.waitForTimeout(230);
+  const frontStep=await taviForwardPage.locator('#tavi').getAttribute('data-stride');
+  if(!await taviForwardPage.locator('#tavi').evaluate(el=>el.classList.contains('walking')))
+    throw Error('Forward walking did not activate the authored atlas');
+  const frontPose=await taviForwardPage.locator('#taviFrontArt .tavi-walk-cel').evaluateAll(els=>
+    els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
+  if(frontPose.length!==1||frontPose[0]!==frontStep)
+    throw Error('Forward gait does not display its indexed front boot art: '+JSON.stringify({frontPose,frontStep}));
+  await taviForwardPage.screenshot({path:'screenshots/27-tavi-front-walk-atlas.png',animations:'allow'});
+  await taviForwardPage.keyboard.up('ArrowDown');
+  await taviForwardPage.close();
 
   const tornPage=await openedAt({started:true,x:625,y:698,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
   if(await tornPage.locator('#bridgeFix').getAttribute('class')!=='bridge-closed')throw Error('Unmended physical bridge should be folded away');
