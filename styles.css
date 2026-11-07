@@ -206,3 +206,11 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #tavi.walking.dir-diag-up .tavi-scarf,#tavi.walking.dir-diag-down .tavi-scarf{animation:diagonalScarf 0.35s ease-in-out infinite alternate}
 @keyframes diagonalScarf{from{rotate:-4deg;translate:0 0}to{rotate:5deg;translate:-2px -1px}}
 @media(prefers-reduced-motion:reduce){#tavi.walking.dir-diag-up .tavi-scarf,#tavi.walking.dir-diag-down .tavi-scarf{animation:none!important}}
+
+/* v0.7 true depth-following partner. Morrow is one actor, not a cloned decal. */
+#morrow.following{transform-box:fill-box;transform-origin:center bottom}
+#morrow.following .inkwing-left{animation-duration:.82s}
+#morrow.following .inkwing-right{animation-duration:.94s}
+#morrow.following.talking .inkwing-left{animation-duration:.52s}
+#morrow.following.talking .inkwing-right{animation-duration:.6s}
+@media(prefers-reduced-motion:reduce){#morrow.following .inkwing-left,#morrow.following .inkwing-right{animation:none!important}}

@@ -17,7 +17,7 @@ function element(id){
      toggle:(x,force)=>{if(force===true){classes.add(x);return true;}if(force===false){classes.delete(x);return false;}if(classes.has(x)){classes.delete(x);return false;}classes.add(x);return true;}
    },
    addEventListener:(type,cb)=>listeners.set(type,cb),
-   appendChild(child){this.lastChild=child;return child;},
+   appendChild(child){this.lastChild=child;child.parentNode=this;return child;},
    setAttribute(x,y){this.attrs[x]=y;},
    setPointerCapture(){},
    fire(type='click',event={}){const cb=listeners.get(type);assert(cb,id+' missing '+type+' listener');cb(event);}
@@ -87,11 +87,17 @@ assert(Math.abs(pos().x-355)<7 && Math.abs(pos().y-startY)<7,'Diagonal return dr
 walkRight(32);
 assert(Math.abs(pos().x-475)<16,'Horizontal movement regressed');
 click('interact');drainDialogue();assert(save().metMorrow,'Morrow recruitment failed');
+assert(e('morrow').classList.contains('following'),'Morrow did not become a real following companion');
+const morrowInitial=e('morrow').attrs.transform;
+key('ArrowRight',true);step(6);key('ArrowRight',false);
+assert(e('morrow').attrs.transform!==morrowInitial,'Morrow failed to move in the same world as Tavi');
+key('ArrowLeft',true);step(6);key('ArrowLeft',false);
 key('ArrowUp',true);step(26);key('ArrowUp',false);
 click('interact');
 assert(save().area==='atelier','Walking to the workshop door did not enter the interior');
 drainDialogue();
 assert(e('atelierScene').style.display==='', 'Interior did not render');
+assert(e('morrow').parentNode===e('atelierDepthStage'),'Morrow should follow Tavi into the workshop');
 assert(e('folioScene').style.display==='none', 'Outdoor scene was not hidden');
 const entryY=pos().y;
 key('ArrowUp',true);step(18);key('ArrowUp',false);
@@ -102,6 +108,7 @@ key('ArrowDown',true);step(18);key('ArrowDown',false);
 click('interact');
 assert(save().area==='folio','Workshop exit failed');
 assert(e('folioScene').style.display==='', 'Outdoor scene did not return');
+assert(e('morrow').parentNode===e('depthStage'),'Morrow should follow Tavi back outside');
 walkRight(58);
 walkRight(12);assert(pos().x<=709,'Crossed an unrepaired bridge or river');
 click('interact');drainDialogue();assert(save().mended,'Bridge Mend failed');

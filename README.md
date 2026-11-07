@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.6.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.7.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -44,3 +44,6 @@ Mila and the Paper Scrapper have individually authored papercraft character desi
 
 ### Milestone A direction art — 0.6.0
 The main playable Tavi character now has **five separately authored paper-art poses** (front, back, side, front quarter, back quarter). Horizontal mirroring makes these face both left and right: diagonal movement uses real diagonally authored artwork instead of sliding a flat side view around the scene. Continue using the existing Home Screen icon.
+
+### Living ink-bird companion — v0.7
+After meeting Morrow, the real ink-bird game actor follows Tavi over the 2D field (not a fixed decoration). Morrow trails behind, changes scale with physical depth, sorts in front of and behind scenery, travels into the Threads workshop, and can still be spoken to when nothing else is closer. Its portrait now references stable local artwork even while moving. Older saves resume following immediately.

@@ -96,3 +96,11 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Moved the **new-game-only** default field spawn to X355, away from the left touch D-pad, keeping existing local saves and player progress unchanged.
 - Added automated real browser art captures for both front and back diagonal Tavi poses at visible in-world positions where normal depth occlusion does not hide the character.
 - Corrected boot version display from older 0.5 label and bumped offline cache.
+
+## 0.7.0 — Live depth-following paper companion (Milestone A)
+- Replaced static post-recruitment Morrow with the same ink-bird actor following Tavi in real time in the Folio and workshop; original fixed spot preserved before recruitment.
+- Original Morrow SVG art separated from world transform so portrait remains correct while actor follows. Actor stays depth-sorted relative to props and hero, and scales with walk plane depth.
+- Faster subtle feather movement while flying alongside Tavi. Enters/exits workshop with hero, and old save data with Morrow already recruited resumes following automatically. No extra save keys or cloned characters.
+- Interactions prioritize real objects and NPCs before optional nearby companion conversation to keep quest flow intact.
+- Regression tests assert follower motion, indoor/outdoor scene transfer, real actor portrait, eight-way movement and quest continuity; new Playwright screenshot captures a following ink-bird.
+- Aesthetic gate still NOT MET; creator inspection, production animation sheets and more intricate material art are required.

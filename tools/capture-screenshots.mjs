@@ -91,8 +91,19 @@ try {
   await milaPage.screenshot({path:'screenshots/08-mila-courier-dialogue.png'});
   await milaPage.close();
 
+  const followerPage=await openedAt({started:true,x:628,y:705,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
+  await followerPage.keyboard.down('ArrowUp');await followerPage.keyboard.down('ArrowRight');
+  await followerPage.waitForTimeout(480);
+  await followerPage.keyboard.up('ArrowUp');await followerPage.keyboard.up('ArrowRight');
+  if(!await followerPage.locator('#morrow').evaluate(e=>e.classList.contains('following')))throw Error('Companion not following');
+  const followerPos=await followerPage.locator('#morrow').getAttribute('transform');
+  console.log('MORROW FOLLOWS TAVI:',followerPos);
+  await followerPage.screenshot({path:'screenshots/11-morrow-follows.png'});
+  await followerPage.close();
+
   const atelierPage=await openedAt({started:true,area:'atelier',x:720,y:711,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   if(await atelierPage.locator('#atelierScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('Workshop not visible');
+  if(await atelierPage.locator('#morrow').evaluate(e=>e.parentNode?.id)!=='atelierDepthStage')throw Error('Morrow failed to join the indoor stage');
   await atelierPage.screenshot({path:'screenshots/07-threads-workshop.png'});
   await atelierPage.close();
 
@@ -115,7 +126,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {
