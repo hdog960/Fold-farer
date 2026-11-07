@@ -47,28 +47,42 @@ try {
   const walkingTransform=await page.locator('#tavi').getAttribute('transform');
   if(walkingTransform===initialTransform)throw Error('Ground tap moved no visible character before recruitment');
   if(!await page.locator('#tavi').evaluate(el=>el.classList.contains('walking')))throw Error('Tap movement did not activate character gait');
-  const gait=await page.locator('#tavi').getAttribute('data-stride');
-  if(!['0','1','2','3','4','5','6','7'].includes(gait))throw Error('World movement did not choose a drawn atlas frame: '+gait);
-  if(await page.locator('#tavi .stride-contact-ground').count()!==5)throw Error('A Tavi direction lacks authored foot contact art');
-  if(await page.locator('#tavi .tavi-walk-cel').count()!==40)throw Error('Original Tavi atlas is missing artwork for a facing direction');
-  const directionClass=await page.locator('#tavi').getAttribute('class');
-  const activePose=directionClass.includes('dir-diag-down')?'taviFrontQuarterArt':
-    directionClass.includes('dir-diag-up')?'taviBackQuarterArt':
-    directionClass.includes('dir-up')?'taviBackArt':
-    directionClass.includes('dir-side')?'taviSideArt':'taviFrontArt';
-  const painted=await page.locator('#'+activePose+' .tavi-walk-cel').evaluateAll(els=>els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
-  if(painted.length!==1||painted[0]!==gait)throw Error('Only the active complete painted leg pair may render: '+JSON.stringify({activePose,painted,gait}));
-  const geometry=await page.locator('#'+activePose+' .tavi-walk-cel[data-cel="'+gait+'"]').evaluate(el=>{const r=el.getBBox();return {width:r.width,height:r.height}});
-  if(geometry.width<48||geometry.height<35)throw Error('Active Tavi walk pose has collapsed or missing boots: '+JSON.stringify(geometry));
-
-  const upperFrames=await page.locator('#'+activePose+' .tavi-upper-cel').evaluateAll(els=>
-    els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.upperFrame));
-  if(upperFrames.length!==1||upperFrames[0]!==gait)
-    throw Error('Tavi upper-body frame does not match walking boots: '+JSON.stringify({upperFrames,gait}));
-  const upperArt=await page.locator('#'+activePose+' .tavi-upper-cel[data-upper-frame="'+gait+'"]').evaluate(el=>{
-    const box=el.getBBox();return {w:box.width,h:box.height};
+  // A single renderer instant must determine the pose, both animated
+  // outlines and contact dimensions; multiple waits can race the 60 Hz loop.
+  const walkingPose=await page.locator('#tavi').evaluate(el=>{
+    const directionClass=el.getAttribute('class')||'';
+    const pose=directionClass.includes('dir-diag-down')?'taviFrontQuarterArt':
+      directionClass.includes('dir-diag-up')?'taviBackQuarterArt':
+      directionClass.includes('dir-up')?'taviBackArt':
+      directionClass.includes('dir-side')?'taviSideArt':'taviFrontArt';
+    const view=document.getElementById(pose);
+    const stride=el.dataset.stride;
+    const visible=sel=>[...view.querySelectorAll(sel)]
+      .filter(e=>getComputedStyle(e).display!=='none');
+    const leg=visible('.tavi-walk-cel');
+    const upper=visible('.tavi-upper-cel');
+    const geo=leg.length===1?leg[0].getBBox():null;
+    const body=upper.length===1?upper[0].getBBox():null;
+    return {pose,stride,walking:el.classList.contains('walking'),
+      legs:leg.map(x=>x.dataset.cel),upper:upper.map(x=>x.dataset.upperFrame),
+      geometry:geo&&{w:geo.width,h:geo.height},
+      body:body&&{w:body.width,h:body.height}};
   });
-  if(upperArt.w<65||upperArt.h<120)throw Error('Tavi upper-body frame collapsed or has missing garment art');
+  if(!walkingPose.walking||!['0','1','2','3','4','5','6','7'].includes(walkingPose.stride))
+    throw Error('World movement did not choose an illustrated stride: '+JSON.stringify(walkingPose));
+  if(await page.locator('#tavi .stride-contact-ground').count()!==5)
+    throw Error('Some Tavi directional contact illustrations are missing');
+  if(await page.locator('#tavi .tavi-walk-cel').count()!==40)
+    throw Error('The forty source walking poses are incomplete');
+  if(await page.locator('#tavi .tavi-upper-cel').count()!==40)
+    throw Error('The forty source upper-body poses are incomplete');
+  if(walkingPose.legs.length!==1||walkingPose.legs[0]!==walkingPose.stride)
+    throw Error('Painted leg frame is not synchronous: '+JSON.stringify(walkingPose));
+  if(walkingPose.upper.length!==1||walkingPose.upper[0]!==walkingPose.stride)
+    throw Error('Painted coat frame is not synchronous: '+JSON.stringify(walkingPose));
+  if(!walkingPose.geometry||walkingPose.geometry.w<48||walkingPose.geometry.h<35||
+     !walkingPose.body||walkingPose.body.w<65||walkingPose.body.h<120)
+    throw Error('One or more limbs or coat panels have collapsed: '+JSON.stringify(walkingPose));
   await page.screenshot({path:'screenshots/28-tavi-paper-costume-side-walk.png',animations:'allow'});
   await page.screenshot({path:'screenshots/25-tavi-eight-frame-walk.png',animations:'allow'});
   await page.screenshot({path:'screenshots/14-botanical-walk-cycle.png',animations:'allow'});
@@ -148,23 +162,20 @@ try {
   if(!backClass?.includes('dir-diag-up'))throw Error('Back 3/4 art is not active: '+backClass);
   const backPos=await quarterBackPage.locator('#tavi').getAttribute('transform');
   console.log('THREE QUARTER BACK:',backPos);
-  const backStep=await quarterBackPage.locator('#tavi').getAttribute('data-stride');
-  const backVisible=await quarterBackPage.locator('#taviBackQuarterArt .tavi-walk-cel').evaluateAll(els=>els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
-  if(backVisible.length!==1||backVisible[0]!==backStep){
-    const debug=await quarterBackPage.locator('#tavi').evaluate(el=>({
-      taviClass:el.getAttribute('class'),stride:el.dataset.stride,
-      backArtDisplay:getComputedStyle(document.getElementById('taviBackQuarterArt')).display,
-      atlasDisplay:getComputedStyle(document.querySelector('#taviBackQuarterArt .tavi-walk-atlas')).display,
-      rootChildren:[...document.getElementById('taviBackQuarterArt').children].map(x=>({id:x.id||null,cls:x.getAttribute('class')||null})).slice(-10),
-      allCels:[...document.querySelectorAll('#taviBackQuarterArt .tavi-walk-cel')].map(x=>({frame:x.dataset.cel,style:getComputedStyle(x).display}))
-    }));
-    throw Error('Three-quarter rear Tavi lacks a complete walking frame: '+JSON.stringify({backVisible,backStep,debug}));
-  }
-
-  const backUpper=await quarterBackPage.locator('#taviBackQuarterArt .tavi-upper-cel').evaluateAll(els=>
-    els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.upperFrame));
-  if(backUpper.length!==1||backUpper[0]!==backStep)
-    throw Error('Three-quarter rear Tavi upper body does not match the leg pose: '+JSON.stringify({backUpper,backStep}));
+  // Read active frame and drawn geometries synchronously: with live keyboard
+  // input the world loop may advance between two Playwright await calls.
+  const backPose=await quarterBackPage.locator('#tavi').evaluate(el=>{
+    const stride=el.dataset.stride;
+    const frame=(sel)=>[...el.querySelectorAll(sel)]
+      .filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel??e.dataset.upperFrame);
+    return {stride,walking:el.classList.contains('walking'),
+      legs:frame('#taviBackQuarterArt .tavi-walk-cel'),
+      upper:frame('#taviBackQuarterArt .tavi-upper-cel')};
+  });
+  if(!backPose.walking||backPose.legs.length!==1||backPose.legs[0]!==backPose.stride)
+    throw Error('Three-quarter rear Tavi lacks a synchronized leg frame: '+JSON.stringify(backPose));
+  if(backPose.upper.length!==1||backPose.upper[0]!==backPose.stride)
+    throw Error('Three-quarter rear Tavi lacks synchronized upper-body art: '+JSON.stringify(backPose));
   await quarterBackPage.screenshot({path:'screenshots/30-tavi-paper-costume-rear-quarter-walk.png',animations:'allow'});
   await quarterBackPage.screenshot({path:'screenshots/26-tavi-eight-frame-rear-quarter-walk.png'});
   await quarterBackPage.screenshot({path:'screenshots/09-tavi-three-quarter.png'});
@@ -196,18 +207,19 @@ try {
   await taviForwardPage.emulateMedia({reducedMotion:'no-preference'});
   await taviForwardPage.keyboard.down('ArrowDown');
   await taviForwardPage.waitForTimeout(230);
-  const frontStep=await taviForwardPage.locator('#tavi').getAttribute('data-stride');
-  if(!await taviForwardPage.locator('#tavi').evaluate(el=>el.classList.contains('walking')))
-    throw Error('Forward walking did not activate the authored atlas');
-  const frontPose=await taviForwardPage.locator('#taviFrontArt .tavi-walk-cel').evaluateAll(els=>
-    els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
-  if(frontPose.length!==1||frontPose[0]!==frontStep)
-    throw Error('Forward gait does not display its indexed front boot art: '+JSON.stringify({frontPose,frontStep}));
-
-  const frontUpper=await taviForwardPage.locator('#taviFrontArt .tavi-upper-cel').evaluateAll(els=>
-    els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.upperFrame));
-  if(frontUpper.length!==1||frontUpper[0]!==frontStep)
-    throw Error('Tavi forward-facing upper-body cut-paper art desynchronized from feet: '+JSON.stringify({frontUpper,frontStep}));
+  const frontPose=await taviForwardPage.locator('#tavi').evaluate(el=>{
+    const stride=el.dataset.stride;
+    const frames=selector=>[...el.querySelectorAll(selector)]
+      .filter(e=>getComputedStyle(e).display!=='none')
+      .map(e=>e.dataset.cel??e.dataset.upperFrame);
+    return {stride,walking:el.classList.contains('walking'),
+      legs:frames('#taviFrontArt .tavi-walk-cel'),
+      upper:frames('#taviFrontArt .tavi-upper-cel')};
+  });
+  if(!frontPose.walking||frontPose.legs.length!==1||frontPose.legs[0]!==frontPose.stride)
+    throw Error('Forward gait must render one synchronized painted leg frame: '+JSON.stringify(frontPose));
+  if(frontPose.upper.length!==1||frontPose.upper[0]!==frontPose.stride)
+    throw Error('Forward Tavi must render synchronized upper-body art: '+JSON.stringify(frontPose));
   await taviForwardPage.screenshot({path:'screenshots/29-tavi-paper-costume-front-walk.png',animations:'allow'});
   await taviForwardPage.screenshot({path:'screenshots/27-tavi-front-walk-atlas.png',animations:'allow'});
   await taviForwardPage.keyboard.up('ArrowDown');
