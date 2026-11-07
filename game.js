@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.17.0: eight-frame paper-costume and silhouette acting across five facings.
+/* FoldFarer: The Unfinished World. First Fold 0.18.0: illustrated expression cels and responsive paper-joint pivots.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -69,7 +69,7 @@ function load(){
 let state=load();
 const $=id=>document.getElementById(id);
 const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),terraceLightShift:$('terraceLightShift'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),taviFlip:$('taviFlip'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
-let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0,walkDistance=0,mendingUntil=0;
+let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0,walkDistance=0,mendingUntil=0,pivotStart=0,pivotUntil=0,pivotFacing=state.direction+':'+state.facing;
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
 const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceRibbonTree:591,
@@ -192,6 +192,8 @@ function sync(){
 }
 function travelTo(area,x,y,direction){
  cancelTap();
+ pivotStart=0;pivotUntil=0;el.tavi.classList.remove('pivoting');
+ pivotFacing=direction+':'+state.facing;
  clearHeld();
  walkDistance=0;mendingUntil=0;
  el.tavi.dataset.stride='0';
@@ -219,6 +221,7 @@ function startGame(){
  }
 }
 function speak(lines,done){
+ pivotStart=0;pivotUntil=0;el.tavi.classList.remove('pivoting');
  dialogue=lines.slice();afterDialogue=typeof done==='function'?done:null;modal='dialogue';el.dialog.classList.remove('hidden');nextLine();
 }
 function nextLine(){
@@ -227,6 +230,8 @@ function nextLine(){
    el.dialog.classList.add('hidden');modal='field';
    $('morrow').classList.remove('talking');
    $('mila').classList.remove('talking');
+   el.tavi.classList.remove('speaking');
+   el.tavi.dataset.mood='neutral';el.tavi.dataset.speech='closed';
    const done=afterDialogue;afterDialogue=null;
    if(done)done();
    save();sync();return;
@@ -234,6 +239,15 @@ function nextLine(){
  el.speaker.textContent=line[0];
  el.line.textContent=line[1];
  el.speakerMark.textContent=line[2]||'✦';
+ const isTavi=line[0]==='Tavi';
+ const allowed=['curious','pleased','concerned','determined'];
+ const message=line[1].toLowerCase();
+ const suggested=message.includes('?')?'curious':
+  /removed|erased|missing|danger|wrong|broken/.test(message)?'concerned':
+  /good|bright|saved|wonderful|happy|perfect/.test(message)?'pleased':'determined';
+ el.tavi.classList.toggle('speaking',isTavi);
+ el.tavi.dataset.mood=isTavi?(allowed.includes(line[3])?line[3]:suggested):'neutral';
+ el.tavi.dataset.speech='closed';
  // The speaking portrait is a crop of the *actual in-world character*.
  // This prevents UI portraits drifting away from the playable art direction.
  const portraits={Tavi:['taviSprite',0,0],Morrow:['morrowSprite',0,0],Mila:['mila',1024,643]};
@@ -544,6 +558,29 @@ el.reset.addEventListener('click',()=>{
 el.battleActions.addEventListener('click',e=>{const button=e.target.closest('[data-battle]');if(button)chooseBattle(button.dataset.battle);});
 el.timingTap.addEventListener('click',strike);
 el.battleDone.addEventListener('click',endBattle);
+
+function updateTaviActing(now){
+ const reduced=!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ if(el.tavi.classList.contains('speaking')){
+   el.tavi.dataset.speech=reduced?'closed':Math.floor(now/190)%3===0?'open':'closed';
+ }else el.tavi.dataset.speech='closed';
+ if(modal!=='field'||mendingUntil){
+   pivotUntil=0;el.tavi.classList.remove('pivoting');
+   return;
+ }
+ const facing=state.direction+':'+state.facing;
+ if(facing!==pivotFacing){
+   pivotFacing=facing;
+   pivotStart=now;pivotUntil=reduced?0:now+156;
+   el.tavi.classList.toggle('pivoting',!reduced);
+ }
+ if(pivotUntil&&now>=pivotUntil){
+   pivotUntil=0;el.tavi.classList.remove('pivoting');
+ }else if(pivotUntil){
+   el.tavi.dataset.pivotPhase=String(Math.min(2,Math.floor((now-pivotStart)/52)));
+ }
+}
+
 function frame(now){
  const dt=Math.min(.05,(now-last)/1000||0);last=now;
  if(mendingUntil&&now>=mendingUntil){
@@ -590,6 +627,7 @@ function frame(now){
   walkDistance=0;el.tavi.dataset.stride='0';
   el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');
  }
+ updateTaviActing(now);
  updateBackdrop(dt);
  updateMorrowAnimation(now);
  if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}

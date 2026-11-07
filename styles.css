@@ -595,3 +595,30 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #tavi.walking .tavi-upper-cel:not([data-upper-frame="0"]){display:none!important}
  #tavi.walking .tavi-upper-cel[data-upper-frame="0"]{display:inline!important}
 }
+
+/* First Fold 0.18 — authored expression and paper-hinge turning states.
+   The entire original directional face/portrait remains reusable at rest. */
+#tavi .tavi-face-expression{display:none}
+#tavi.speaking .tavi-eyes-open,
+#tavi.speaking .tavi-eyes-blink,
+#tavi.speaking .tavi-rest-mouth{display:none!important}
+#tavi.speaking[data-mood="curious"] .tavi-face-expression[data-face-mood="curious"],
+#tavi.speaking[data-mood="pleased"] .tavi-face-expression[data-face-mood="pleased"],
+#tavi.speaking[data-mood="concerned"] .tavi-face-expression[data-face-mood="concerned"],
+#tavi.speaking[data-mood="determined"] .tavi-face-expression[data-face-mood="determined"]{display:inline}
+#tavi .tavi-face-lips-open{display:none}
+#tavi.speaking[data-speech="open"] .tavi-face-lips-open{display:inline}
+#tavi.speaking[data-speech="open"] .tavi-face-lips-closed{display:none}
+#tavi .tavi-expression-atlas,#tavi .tavi-expression-atlas *,
+#taviPivotArtwork,#taviPivotArtwork *{pointer-events:none!important}
+#taviPivotArtwork{display:none}
+#tavi .tavi-pivot-cel{display:none}
+#tavi.pivoting #taviPivotArtwork{display:inline}
+#tavi.pivoting[data-pivot-phase="0"] .tavi-pivot-cel[data-pivot-cel="0"],
+#tavi.pivoting[data-pivot-phase="1"] .tavi-pivot-cel[data-pivot-cel="1"],
+#tavi.pivoting[data-pivot-phase="2"] .tavi-pivot-cel[data-pivot-cel="2"]{display:inline}
+@media(prefers-reduced-motion:reduce){
+ #taviPivotArtwork{display:none!important}
+ #tavi .tavi-face-lips-open{display:none!important}
+ #tavi .tavi-face-lips-closed{display:inline!important}
+}
