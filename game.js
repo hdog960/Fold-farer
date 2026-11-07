@@ -66,7 +66,7 @@ function load(){
 }
 let state=load();
 const $=id=>document.getElementById(id);
-const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
+const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),taviFlip:$('taviFlip'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
 let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0;
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
@@ -120,7 +120,11 @@ function updateCharacter(){
  // substantially more between back and front than the Folio street frontage.
  const terrace=state.area==='terrace';
  const z=terrace?clamp(.52+(state.y-400)*.00175,.52,1.17):clamp(.77+(state.y-552)*.0021,.77,1.23);
- el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+(state.facing*z).toFixed(3)+' '+z.toFixed(3)+')');
+ // The playfield actor always has a positive (non-mirrored) spatial transform.
+ // Mirroring is confined to the local paper-sprite group, keeping the
+ // hero's world position, occlusion and UI sprite references independent.
+ el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+z.toFixed(3)+')');
+ el.taviFlip.setAttribute('transform','scale('+state.facing+')');
  for(const dir of ['up','down','side','diag-up','diag-down'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
  const inside=state.area==='atelier';
  const targetStage=inside?el.atelierDepthStage:(terrace?el.terraceDepthStage:el.depthStage);
@@ -145,7 +149,7 @@ function moveBy(dx,dy){
 }
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));}catch(e){console.warn('Could not persist preview progress',e)}}
 function objective(){
- if(state.area==='terrace')return 'Explore the North Terrace: a deeper path through the paper village.';
+ if(state.area==='terrace')return 'Explore the North Terrace.';
  if(state.area==='atelier')return state.threadSample?'Leave the Threads workshop and return to the Folio.':'Explore the workshop and inspect the Mender’s Loom.';
  if(!state.metMorrow)return 'Find the ink-bird with the missing map.';
  if(!state.mended)return 'Mend the broken bridge at the river seam.';
@@ -156,6 +160,7 @@ function objective(){
 function sync(){
  el.folioScene.style.display=state.area==='folio'?'':'none';
  el.terraceScene.style.display=state.area==='terrace'?'':'none';
+ el.prompt.classList.toggle('terrace-prompt',state.area==='terrace');
  el.atelierScene.style.display=state.area==='atelier'?'':'none';
  updateCompanion(0);
  updateCharacter();
@@ -227,7 +232,7 @@ function nearest(){
   {key:'terraceBell',x:719,y:495,r:95,text:'Inspect the archive bell'},
   {key:'terraceKiosk',x:1022,y:655,r:110,text:'Inspect the memory kiosk'},
   {key:'terraceTree',x:1177,y:584,r:105,text:'Inspect the ribbon tree'},
-  {key:'terraceExit',x:720,y:738,r:91,text:'Return to the Wandering Folio'}
+  {key:'terraceExit',x:720,y:738,r:91,text:'Return to the Folio'}
  ]:state.area==='atelier'?[
    {key:'loom',x:724,y:618,r:113,text:state.threadSample?'Inspect the stitch loom':'Examine the stitch loom'},
    {key:'spools',x:430,y:647,r:103,text:'Inspect the colored thread spools'},
