@@ -109,11 +109,11 @@ try {
 
   if(await mobilePage.locator('#morrow').getAttribute('data-flap')!=='0')
     throw Error('Reduced motion must retain the unanimated authored wing frame');
-  const contact=await mobilePage.locator('#taviGroundShadow').evaluate(el=>{
+  const contactShadow=await mobilePage.locator('#taviGroundShadow').evaluate(el=>{
     const b=el.getBBox();return {width:b.width,hit:getComputedStyle(el).pointerEvents};
   });
-  if(contact.width<80||contact.hit!=='none')
-    throw Error('Tavi shadow is absent or blocks touch: '+JSON.stringify(contact));
+  if(contactShadow.width<80||contactShadow.hit!=='none')
+    throw Error('Tavi shadow is absent or blocks touch: '+JSON.stringify(contactShadow));
   await mobilePage.screenshot({path:'screenshots/15-mobile-landscape-emulation.png'});
   await mobilePage.close();
 
