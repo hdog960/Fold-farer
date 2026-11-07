@@ -317,6 +317,58 @@ try {
 
   // North Terrace: actual browser-rendered second outdoor RPG walk plane.
   // The stage is playable at both far and near depths, not a panoramic mockup.
+
+  // The art acceptance images must come directly from a running scene.
+  const actingPage=await openedAt({
+    started:true,area:'terrace',x:719,y:550,facing:1,direction:'down',
+    metMorrow:true,mended:false,threadSample:false,letter:false,won:false
+  });
+  await actingPage.emulateMedia({reducedMotion:'no-preference'});
+  await actingPage.locator('#interact').click();
+  await actingPage.locator('#dialogue').waitFor({state:'visible'});
+  const face=await actingPage.locator('#tavi').evaluate(el=>{
+    const view=document.getElementById('taviFrontArt');
+    const shown=[...view.querySelectorAll('.tavi-face-expression')]
+      .filter(n=>getComputedStyle(n).display!=='none')
+      .map(n=>n.dataset.faceMood);
+    return {talking:el.classList.contains('speaking'),mood:el.dataset.mood,shown};
+  });
+  if(!face.talking||face.mood!=='curious'||face.shown.length!==1||face.shown[0]!=='curious')
+    throw Error('Live terrace dialogue lacks its authored curious expression: '+JSON.stringify(face));
+  await actingPage.screenshot({path:'screenshots/31-tavi-live-curious-dialogue.png',animations:'allow'});
+  await actingPage.locator('#nextLine').click();
+  await actingPage.locator('#nextLine').click();
+  if(await actingPage.locator('#tavi').evaluate(el=>el.classList.contains('speaking')))
+    throw Error('Tavi did not restore idle face when his dialogue ended');
+  await actingPage.close();
+
+  const pivotPage=await openedAt({
+    started:true,area:'folio',x:850,y:678,facing:1,direction:'down',
+    metMorrow:true,mended:true,letter:false,won:false
+  });
+  await pivotPage.emulateMedia({reducedMotion:'no-preference'});
+  await pivotPage.keyboard.down('ArrowRight');
+  await pivotPage.waitForTimeout(190);
+  await pivotPage.keyboard.up('ArrowRight');
+  await pivotPage.keyboard.down('ArrowUp');
+  await pivotPage.waitForTimeout(74);
+  const turn=await pivotPage.locator('#tavi').evaluate(el=>{
+    const art=document.getElementById('taviPivotArtwork');
+    const shown=[...art.querySelectorAll('.tavi-pivot-cel')]
+       .filter(n=>getComputedStyle(n).display!=='none')
+       .map(n=>n.dataset.pivotCel);
+    return {turning:el.classList.contains('pivoting'),phase:el.dataset.pivotPhase,shown,
+      pointer:getComputedStyle(art).pointerEvents};
+  });
+  if(!turn.turning||turn.shown.length!==1||turn.shown[0]!==turn.phase||turn.pointer!=='none')
+    throw Error('Illustrated turn poses did not render on the playable character: '+JSON.stringify(turn));
+  await pivotPage.screenshot({path:'screenshots/32-tavi-paper-pivot-turn.png',animations:'allow'});
+  await pivotPage.waitForTimeout(180);
+  if(await pivotPage.locator('#tavi').evaluate(el=>el.classList.contains('pivoting')))
+    throw Error('Paper pivot continued after its animation ended');
+  await pivotPage.keyboard.up('ArrowUp');
+  await pivotPage.close();
+
   const terraceNear=await openedAt({started:true,area:'terrace',x:720,y:702,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   if(await terraceNear.locator('#terraceScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('North Terrace is hidden after loading its save');
   if(await terraceNear.locator('#folioScene').evaluate(e=>getComputedStyle(e).display)!=='none')throw Error('Folio should hide while terrace loads');
