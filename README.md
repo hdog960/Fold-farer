@@ -65,3 +65,6 @@ The North Terrace is a third playable scene (beside the Folio village and Thread
 
 #### 0.11.1 visual acceptance follow-up
 Reworked the left-facing far Tavi transform to mirror only the locally authored sprite, instead of reversing the entire projected game-world actor. The entrance/exit prompt and objective are shorter and use a terrace-specific layout on landscape iPhone screens. Added real-browser checks for remote hero visibility, 2D tap-to-walk and mobile prompt boundaries. This is still an unfinished artwork milestone.
+
+#### 0.11.2: Character foot-anchor regression fix
+A real screenshot test now ensures Tavi's feet align with the world position when he moves deeply into the North Terrace. The previous perspective CSS placed the far actor outside the scene despite correct saved coordinates. This fix is applied to all locations and has dedicated browser checks.

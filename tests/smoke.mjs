@@ -39,6 +39,7 @@ assert(game.includes("state.area==='terrace'"),'Terrace actor depth sorting and 
 assert(ids.includes('taviFlip'),'Separate hero mirroring group missing');
 assert(game.includes("el.taviFlip.setAttribute('transform'"),'Mirror must affect only local hero art');
 assert(css.includes('prompt.terrace-prompt'),'Terrace-specific HUD position not implemented');
+assert(css.includes('#tavi{transform-box:view-box;transform-origin:0 0}'),'SVG hero scale anchor must remain at actor feet');
 assert(css.includes('prefers-reduced-motion:reduce'));
 assert(sw.includes('caches.open'));
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

@@ -408,3 +408,9 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 @media screen and (max-height:490px) and (orientation:landscape){
   .prompt.terrace-prompt{top:20%;left:auto;right:1.8%;max-width:22%;font-size:10px;line-height:1.15;padding:4px 7px}
 }
+
+/* First Fold 0.11.2 — critical SVG perspective anchor fix:
+   Do not anchor an <g> to "center bottom" of the 1440x810 viewBox. At
+   scale .59 that displaced Tavi by hundreds of pixels and even off-screen.
+   The real foot position is SVG local (0,0), so scale around that origin. */
+#tavi{transform-box:view-box;transform-origin:0 0}

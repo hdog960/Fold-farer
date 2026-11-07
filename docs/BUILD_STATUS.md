@@ -162,3 +162,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Shortened the terrace objective and return prompt; assigned the terrace prompt its own right-side panel, out of the central archway. Restored pointer events on the full-screen terrace background to ensure tapping anywhere walkable reaches the world's touch controller.
 - Added active browser checks: left-facing hero bounding box, foreground bell ordering, tap-to-walk movement, and mobile objective/logo separation.
 - No progress/saves lost; major 90/100 artwork approval gate still NOT MET.
+
+## First Fold 0.11.2 — Visual spatial anchor correction
+- Screenshot-based QA identified why Tavi disappeared at the back of the North Terrace: CSS transform-origin:center bottom incorrectly used the whole SVG viewport as the scaling reference, displacing a .59-scaled actor hundreds of screen pixels from its physical location.
+- Corrected the Tavi actor to use the SVG viewBox origin (0,0), already the authored foot anchor, with mirroring inside a separate local-art group. Scene depth scaling now preserves coordinates for both left/right movement.
+- Added Playwright visual-geometry checks at near and far coordinates using SVG getScreenCTM(). Player's painted feet must remain within measured tolerance of the true physics coordinates, not merely have a positive bounding rectangle.
+- Existing saves, inventory, battles and Home Screen URL remain unchanged. Aesthetic approval remains pending.

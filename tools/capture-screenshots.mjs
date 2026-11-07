@@ -176,6 +176,14 @@ try {
   if(await terraceNear.locator('#morrow').evaluate(e=>e.parentNode?.id)!=='terraceDepthStage')throw Error('Morrow did not accompany Tavi into terrace');
   const depthBox=await terraceNear.locator('#terraceGround').evaluate(e=>{const b=e.getBBox();return {width:b.width,height:b.height}});
   if(depthBox.height<350||depthBox.width<1100)throw Error('Terrace does not span a substantial rendered walk plane '+JSON.stringify(depthBox));
+  const nearFootPoint=await terraceNear.locator('#world').evaluate(svg=>{
+    const p=svg.createSVGPoint();p.x=720;p.y=702;
+    const q=p.matrixTransform(svg.getScreenCTM());return {x:q.x,y:q.y};
+  });
+  const nearHeroBounds=await terraceNear.locator('#tavi').boundingBox();
+  if(!nearHeroBounds||Math.abs(nearHeroBounds.y+nearHeroBounds.height-nearFootPoint.y)>55){
+    throw Error('Near hero detached from actual floor '+JSON.stringify({nearHeroBounds,nearFootPoint}));
+  }
   await terraceNear.screenshot({path:'screenshots/17-north-terrace-near.png'});
   const beforeTap=await terraceNear.locator('#tavi').getAttribute('transform');
   const tapCoords=await terraceNear.locator('#world').evaluate(svg=>{
@@ -201,10 +209,16 @@ try {
   if(!/scale\(0\.[0-9]+\)/.test(farActor))throw Error('Far terrace hero is not smaller and perspective-scaled: '+farActor);
   if(await terraceFar.locator('#taviFlip').getAttribute('transform')!=='scale(-1)')throw Error('Facing left did not mirror the local art');
   const farHeroBox=await terraceFar.locator('#tavi').boundingBox();
-  if(!farHeroBox||farHeroBox.width<16||farHeroBox.height<30||farHeroBox.x<0||farHeroBox.x>1440){
-    throw Error('Far terrace actor is missing or outside the actual view '+JSON.stringify(farHeroBox));
+  const projectedFoot=await terraceFar.locator('#world').evaluate(svg=>{
+    const p=svg.createSVGPoint();p.x=920;p.y=440;
+    const z=p.matrixTransform(svg.getScreenCTM());return {x:z.x,y:z.y};
+  });
+  const actorFoot={x:farHeroBox?.x+farHeroBox?.width/2,y:farHeroBox?.y+farHeroBox?.height};
+  if(!farHeroBox||farHeroBox.width<16||farHeroBox.height<30||
+     Math.abs(actorFoot.x-projectedFoot.x)>65||Math.abs(actorFoot.y-projectedFoot.y)>55){
+    throw Error('Far hero visual position diverged from game physics '+JSON.stringify({farHeroBox,actorFoot,projectedFoot}));
   }
-  console.log('FAR HERO WORLD BOUNDS:',JSON.stringify(farHeroBox));
+  console.log('FAR HERO FOOT ANCHOR:',JSON.stringify({actorFoot,projectedFoot}));
   const zOrder=await terraceFar.locator('#terraceDepthStage').evaluate(stage=>[...stage.children].map(child=>child.id));
   if(zOrder.indexOf('tavi')>=zOrder.indexOf('terraceBell'))throw Error('Terrace near-side bell cannot occlude a hero walking far behind it');
   await terraceFar.screenshot({path:'screenshots/18-north-terrace-distant.png'});
