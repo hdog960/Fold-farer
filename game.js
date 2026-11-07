@@ -1,23 +1,62 @@
-/* FoldFarer: The Unfinished World. First Fold 0.1.0.
+/* FoldFarer: The Unfinished World. First Fold 0.2.0: walkable depth.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
 'use strict';
 const SAVE_KEY='foldfarer.firstfold.0.1';
-const initial=()=>({started:false,x:273,y:654,facing:1,metMorrow:false,mended:false,letter:false,won:false});
+const initial=()=>({started:false,x:273,y:654,facing:1,direction:'down',metMorrow:false,mended:false,letter:false,won:false});
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const solids=[[64,333,548,576],[378,626,548,573],[885,1180,548,579],[1284,1436,548,577]];
+const props=[[336,725,60,21],[573,728,17,13],[1144,735,58,18]];
+function canStand(x,y,mended){
+ if(x<85||x>1360||y<552||y>768)return false;
+ if(x>708&&x<854&&(!mended||y<624||y>675))return false;
+ if(solids.some(r=>x>r[0]&&x<r[1]&&y>r[2]&&y<r[3]))return false;
+ if(props.some(p=>((x-p[0])/p[2])**2+((y-p[1])/p[3])**2<1))return false;
+ return true;
+}
+function restorePosition(d){
+ d.x=clamp(d.x,85,1360);d.y=clamp(d.y,552,768);
+ d.facing=d.facing===-1?-1:1;
+ if(!['up','down','side'].includes(d.direction))d.direction='down';
+ if(!canStand(d.x,d.y,!!d.mended)){
+   if(d.x>708&&d.x<854)d.x=d.x<781?696:864;
+   else d.y=638;
+ }
+ return d;
+}
 function load(){
  try {
    const data=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');
    if(data&&typeof data==='object'&&Number.isFinite(data.x)&&Number.isFinite(data.y)){
-     return {...initial(),...data,x:Math.max(120,Math.min(1330,data.x)),y:654};
+     return restorePosition({...initial(),...data});
    }
  }catch(e){console.warn('Preview save was not readable; starting new.',e)}
  return initial();
 }
 let state=load();
 const $=id=>document.getElementById(id);
-const el={tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
-let held={left:false,right:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={};
+const el={world:$('world'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
+let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0;
+const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
+let lastDepthOrder='';
+function updateCharacter(){
+ const z=clamp(.77+(state.y-552)*.0021,.77,1.23);
+ el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+(state.facing*z).toFixed(3)+' '+z.toFixed(3)+')');
+ for(const dir of ['up','down','side'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
+ const sorted=Object.entries({...actorDepth,tavi:state.y}).sort((a,b)=>a[1]-b[1]).map(v=>v[0]);
+ const signature=sorted.join(':');
+ if(lastDepthOrder!==signature){for(const id of sorted)el.depthStage.appendChild($(id));lastDepthOrder=signature;}
+}
+function cancelTap(){moveTarget=null;el.tapMarker.setAttribute('visibility','hidden');}
+function moveBy(dx,dy){
+ const nextX=clamp(state.x+dx,85,1360),nextY=clamp(state.y+dy,552,768);
+ if(canStand(nextX,nextY,state.mended)){state.x=nextX;state.y=nextY;return true;}
+ let moved=false;
+ if(canStand(nextX,state.y,state.mended)){state.x=nextX;moved=true;}
+ if(canStand(state.x,nextY,state.mended)){state.y=nextY;moved=true;}
+ return moved;
+}
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));}catch(e){console.warn('Could not persist preview progress',e)}}
 function objective(){
  if(!state.metMorrow)return 'Find the ink-bird with the missing map.';
@@ -27,7 +66,7 @@ function objective(){
  return 'First Fold complete — open your journal to review the trail.';
 }
 function sync(){
- el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y+') scale('+state.facing+' 1)');
+ updateCharacter();
  el.bridge.setAttribute('class',state.mended?'bridge-open':'bridge-closed');
  el.broken.style.opacity=state.mended?'0':'1';
  el.seam.style.opacity=state.mended?'.22':'1';
@@ -68,14 +107,15 @@ function nextLine(){
  el.nextLine.textContent=dialogue.length?'Continue ›':'Close ›';
 }
 function nearest(){
- const x=state.x;
  const choices=[
-  {key:'morrow',x:474,r:88,text:'Speak with Morrow'},
-  {key:'seam',x:689,r:90,text:state.mended?'Inspect the repaired seam':'Mend the broken paper bridge'},
-  {key:'mila',x:1024,r:94,text:'Speak with Mila'},
-  {key:'scrapper',x:1244,r:98,text:state.won?'Inspect the quiet road':'Challenge the Paper Scrapper'}
+  {key:'morrow',x:474,y:620,r:105,text:'Speak with Morrow'},
+  {key:'seam',x:696,y:648,r:103,text:state.mended?'Inspect the repaired seam':'Mend the broken paper bridge'},
+  {key:'mila',x:1024,y:643,r:102,text:'Speak with Mila'},
+  {key:'scrapper',x:1244,y:652,r:105,text:state.won?'Inspect the quiet road':'Challenge the Paper Scrapper'},
+  {key:'notice',x:573,y:728,r:62,text:'Read the Folio notice'}
  ];
- return choices.filter(p=>Math.abs(x-p.x)<=p.r).sort((a,b)=>Math.abs(x-a.x)-Math.abs(x-b.x))[0]||null;
+ return choices.map(p=>({...p,dist:Math.hypot(state.x-p.x,(state.y-p.y)*1.15)}))
+  .filter(p=>p.dist<=p.r).sort((a,b)=>a.dist-b.dist)[0]||null;
 }
 function updatePrompt(){
  if(modal!=='field'){el.prompt.classList.add('hidden');return;}
@@ -92,6 +132,9 @@ function interact(){
   speak([['Tavi','Every seam has a story. I should explore a little farther.','✦']]);return;
  }
  switch(target.key){
+ case 'notice':
+   speak([['Folio Notice','Lost: one road, one courier, and an entire Tuesday. Found: unusually persuasive footprints.','✉']]);
+   break;
  case 'morrow':
    if(!state.metMorrow){
      speak([
@@ -230,8 +273,9 @@ function endBattle(){
  ]);
 }
 function keyMove(key,value){
- const left=['ArrowLeft','KeyA'].includes(key),right=['ArrowRight','KeyD'].includes(key);
- if(left||right){held[left?'left':'right']=value;return true;}
+ const dirs={ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right',ArrowUp:'up',KeyW:'up',ArrowDown:'down',KeyS:'down'};
+ const d=dirs[key];
+ if(d){held[d]=value;if(value)cancelTap();return true;}
  return false;
 }
 document.addEventListener('keydown',e=>{
@@ -248,14 +292,27 @@ document.addEventListener('keydown',e=>{
  }
 });
 document.addEventListener('keyup',e=>keyMove(e.code,false));
-window.addEventListener('blur',()=>{held.left=false;held.right=false;save();});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){held.left=false;held.right=false;save();}});
+function clearHeld(){for(const d of Object.keys(held))held[d]=false;}
+window.addEventListener('blur',()=>{clearHeld();cancelTap();save();});
+window.addEventListener('pagehide',save);
+document.addEventListener('visibilitychange',()=>{if(document.hidden){clearHeld();cancelTap();save();}});
 for(const key of document.querySelectorAll('[data-move]')){
  const direction=key.dataset.move;
  const stop=()=>{held[direction]=false;key.classList.remove('active');};
- key.addEventListener('pointerdown',e=>{e.preventDefault();key.setPointerCapture(e.pointerId);held[direction]=true;key.classList.add('active');});
+ key.addEventListener('pointerdown',e=>{e.preventDefault();key.setPointerCapture(e.pointerId);held[direction]=true;cancelTap();key.classList.add('active');});
  key.addEventListener('pointerup',stop);key.addEventListener('pointercancel',stop);key.addEventListener('lostpointercapture',stop);
 }
+el.world.addEventListener('pointerdown',event=>{
+ if(modal!=='field'||!el.world.createSVGPoint||!el.world.getScreenCTM)return;
+ const matrix=el.world.getScreenCTM();if(!matrix)return;
+ const p=el.world.createSVGPoint();p.x=event.clientX;p.y=event.clientY;
+ const loc=p.matrixTransform(matrix.inverse());
+ const x=clamp(loc.x,85,1360),y=clamp(loc.y,552,768);
+ if(!canStand(x,y,state.mended)){cancelTap();return;}
+ moveTarget={x,y};
+ el.tapMarker.setAttribute('transform','translate('+x.toFixed(1)+' '+y.toFixed(1)+')');
+ el.tapMarker.setAttribute('visibility','visible');
+});
 el.start.addEventListener('click',startGame);
 el.interact.addEventListener('click',interact);
 el.nextLine.addEventListener('click',nextLine);
@@ -271,18 +328,29 @@ el.battleDone.addEventListener('click',endBattle);
 function frame(now){
  const dt=Math.min(.05,(now-last)/1000||0);last=now;
  if(modal==='field'){
-   const direction=(held.right?1:0)-(held.left?1:0);
-   if(direction){
-     const prior=state.x;state.facing=direction===1?1:-1;
-     state.x=Math.max(100,Math.min(1350,state.x+direction*225*dt));
-     if(!state.mended){
-       if(prior<=705&&state.x>705)state.x=705;
-       if(prior>=845&&state.x<845)state.x=845;
-     }
-     el.tavi.classList.add('walking');sync();
-   }else{el.tavi.classList.remove('walking');updatePrompt();}
+  let x=(held.right?1:0)-(held.left?1:0);
+  let y=(held.down?1:0)-(held.up?1:0);
+  let moving=x!==0||y!==0;
+  if(!moving&&moveTarget){
+   const dx=moveTarget.x-state.x,dy=moveTarget.y-state.y;
+   if(Math.hypot(dx,dy*1.25)<6)cancelTap();
+   else{x=dx;y=dy;moving=true;}
+  }
+  if(moving){
+   const len=Math.hypot(x,y)||1;
+   if(Math.abs(y)>Math.abs(x)*.78)state.direction=y<0?'up':'down';
+   else if(x!==0){state.direction='side';state.facing=x>0?1:-1;}
+   const moved=moveBy(x/len*225*dt,y/len*165*dt);
+   if(!moved&&moveTarget)cancelTap();
+   if(moveTarget&&Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25)<8)cancelTap();
+   el.tavi.classList.toggle('walking',moved);
+   if(moved){
+    updateCharacter();updatePrompt();
+    if(now-lastSavedAt>=1100){save();lastSavedAt=now;}
+   }
+  }else{el.tavi.classList.remove('walking');updatePrompt();}
  }else{el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');}
- if(modal==='timing'&&timingActive){el.timingMarker.style.left=progressAt(now)+'%';}
+ if(modal==='timing'&&timingActive)el.timingMarker.style.left=progressAt(now)+'%';
  requestAnimationFrame(frame);
 }
 sync();
