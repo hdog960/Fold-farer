@@ -1,0 +1,34 @@
+# FoldFarer — live development status
+
+## Aesthetic review build 0.1.0 (Milestone A, IN PROGRESS)
+
+**GitHub repository:** https://github.com/hdog960/Fold-farer
+**Candidate GitHub Pages URL:** https://hdog960.github.io/Fold-farer/
+
+### Implemented in source
+- Original layered SVG village illustration, near/far scenery, textured material palette, lighting, characters and shop details.
+- Moveable Tavi with walk, scarf and arm animations in the landscape village, arrow controls, keyboard fallback, collision boundary at unrepaired bridge.
+- Dialogue with Morrow and Mila, authored original opening scene, objective tracking.
+- Authored Mend interaction: folded bridge animates, crossing collision changes.
+- Deterministic first Paper Scrapper encounter, timing strike, Morrow Ink Needle, Fold Cover, Guard, retry and victory narrative.
+- One localStorage preview checkpoint, in-world journal, restart confirmation.
+- Manifest, installable static app shell candidate, service worker candidate for offline revisit.
+- Reduced-motion CSS support, landscape orientation prompt.
+
+### Not complete, not claimed
+- This is not the 30–60 minute polished vertical slice in Phase 07.
+- Art is code-drawn prototype artwork, NOT approved character turnaround/production atlas art, and has not passed the 90/100 visual gate.
+- No dedicated finished character sprite atlases, multiple biomes/indoor scenes, extended quest graph, or full miniboss.
+- No IndexedDB/manual save/export/migration, battle simulation test suite, recorded device performance, external licensing review, or Phaser/Vite/TypeScript pipeline.
+- iPhone Safari/Home Screen behavior and accessibility are NOT yet physically verified.
+- Pages URL and published availability must be verified separately, not inferred from a successful commit.
+
+### Review rule
+Milestone B remains LOCKED. The creator must personally assess the aesthetic of a real playable build. Fixes continue within Milestone A until accepted. Never substitute a static concept painting or this source check for actual on-device QA.
+
+### Next checks
+1. Confirm GitHub Pages build reaches the current committed index.html.
+2. Open on real iPhone in landscape; inspect relative scale, texture quality, animation, z-order and text readability.
+3. Play entire preview: Morrow -> seam -> Mila -> Scrapper -> ending; reload once during progress.
+4. Capture real gameplay screenshots, establish device FPS/texture memory, record aesthetic acceptance/rejections.
+5. Continue phases 00–07 to full scope before proposing Milestone B.
