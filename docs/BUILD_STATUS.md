@@ -50,3 +50,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - GitHub Pages Home Screen URL and auto-update mechanism are unchanged; PWA cache bumped for updated scripts.
 - Still NOT the visual acceptance target, and does not yet include interiors, free camera, camera-follow scrolling, polished sprite atlases, or the complete Milestone A vertical slice.
 - Code automated tests and Playwright screenshots should be checked on latest run; physical iPhone testing remains outstanding.
+
+## First Fold 0.3.0 — rooms, not only a corridor
+- Added a separate navigable Threads workshop room, an authentic pop-up paper environment with back/side walls and a receding wood-plank floor.
+- Actual entrance/exit interaction with scene transitions while preserving Tavi's quest and level state.
+- The shared Tavi actor moves between scene layers, with per-room sorted occluders (loom, thread trolley, dye bench).
+- Four-way traversable interior with its own collisions and a small original Mender's Loom discovery and optional collectible.
+- The existing level remains a test scene and full 3D geometry is not used. Future rooms and world-map exploration will be developed during Milestone A. Visual acceptance still pending.

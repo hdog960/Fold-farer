@@ -10,7 +10,7 @@ const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
 assert.equal(new Set(ids).size,ids.length,'Duplicate id attributes');
 for(const id of [...game.matchAll(/\$\('([^']+)'\)/g)].map(x=>x[1]))assert(ids.includes(id),'Referenced HTML id absent: '+id);
 for(const file of ['styles.css','game.js','manifest.webmanifest','icon.svg'])assert(html.includes('./'+file),'HTML missing '+file);
-for(const x of ['bridgeFix','brokenBridge','tavi','taviBackArt','taviSideArt','depthStage','paperPlanter','folioNotice','paperBench','courtyardDepth','tapMarker','morrow','mila','enemy','timing','battle','journal'])assert(ids.includes(x),'Missing interactive element '+x);
+for(const x of ['bridgeFix','brokenBridge','tavi','taviBackArt','taviSideArt','depthStage','paperPlanter','folioNotice','paperBench','courtyardDepth','folioScene','atelierScene','atelierDepthStage','atelierLoom','atelierSpoolCart','atelierDyeBench','tapMarker','morrow','mila','enemy','timing','battle','journal'])assert(ids.includes(x),'Missing interactive element '+x);
 assert.equal(manifest.display,'standalone');
 assert.equal(manifest.start_url,'./');
 for(const direction of ['up','down','left','right'])assert(html.includes('data-move="'+direction+'"'),'Missing '+direction+' touch button');

@@ -50,6 +50,11 @@ try {
   await bridgePage.screenshot({path:'screenshots/04-repaired-bridge.png'});
   await bridgePage.close();
 
+  const atelierPage=await openedAt({started:true,area:'atelier',x:720,y:711,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+  if(await atelierPage.locator('#atelierScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('Workshop not visible');
+  await atelierPage.screenshot({path:'screenshots/07-threads-workshop.png'});
+  await atelierPage.close();
+
   const battlePage=await openedAt({started:true,x:1240,y:654,facing:1,metMorrow:true,mended:true,letter:true,won:false});
   console.log('STATE BEFORE BATTLE:',JSON.stringify(await battlePage.evaluate(()=>({
     save:localStorage.getItem('foldfarer.firstfold.0.1'),
@@ -63,7 +68,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {
