@@ -198,7 +198,7 @@ try {
 
   const terraceFar=await openedAt({started:true,area:'terrace',x:920,y:440,facing:-1,direction:'down',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   const farActor=await terraceFar.locator('#tavi').getAttribute('transform');
-  if(!/scale\\(0\\.[0-9]+\\)/.test(farActor))throw Error('Far terrace hero is not smaller and perspective-scaled: '+farActor);
+  if(!/scale\(0\.[0-9]+\)/.test(farActor))throw Error('Far terrace hero is not smaller and perspective-scaled: '+farActor);
   if(await terraceFar.locator('#taviFlip').getAttribute('transform')!=='scale(-1)')throw Error('Facing left did not mirror the local art');
   const farHeroBox=await terraceFar.locator('#tavi').boundingBox();
   if(!farHeroBox||farHeroBox.width<16||farHeroBox.height<30||farHeroBox.x<0||farHeroBox.x>1440){
