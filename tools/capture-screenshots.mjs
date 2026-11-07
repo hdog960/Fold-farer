@@ -147,6 +147,9 @@ try {
   // inside the playable scene (not a standalone illustration), persist its
   // repaired checkpoint immediately, then return movement control.
   const mendPage=await openedAt({started:true,x:625,y:698,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
+  // All other review captures deliberately prefer reduced motion; this scene
+  // must opt into motion to evaluate the actual sewing performance.
+  await mendPage.emulateMedia({reducedMotion:'no-preference'});
   await mendPage.locator('#interact').click();
   await mendPage.locator('#dialogue').waitFor({state:'visible'});
   for(let line=0;line<3;line++)await mendPage.locator('#nextLine').click();
