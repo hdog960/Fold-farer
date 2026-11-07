@@ -140,3 +140,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Actual Chromium 844×390 screenshot exposed an objective/logo overlap, oversized on-screen D-pad and action button, and a prompt covering character faces. This was an independently observed **visual QA failure** even though game mechanics and the desktop capture passed.
 - Added a height-aware landscape treatment (rather than assuming all iPhones have width below 820 CSS px): hide the chapter chip, move the objective alongside rather than beneath the title mark, reduce the D-pad's visual footprint while keeping 40px touch buttons, tuck ACT into the bottom-right corner, and move interaction prompts above Tavi and Morrow.
 - The automated browser now checks the logo and objective do not overlap, as well as whether all touch targets remain inside the mobile viewport. A fresh 844×390 browser capture is required before claiming success. Physical iPhone testing still outstanding.
+
+## First Fold 0.10.0 — Physical Folio architecture (Milestone A)
+- Added real constructed paper cut edges, roof card thickness, fold tabs, window shutters and hand-bound side faces to all four original buildings in the playable village.
+- Individual details: Folio's spine ribs, loft window and binding steps; Threads' fabric lintel, inset shutters, spool ornaments and entry step; Post's raised roof edge, mailbox awning, window planter and paper arch; fourth building's folded fascia and side binding.
+- Art appears behind actual characters/NPCs and scenery signs, and uses SVG vector graphics with pointer-events disabled; no new collision, movement, quest state, storage key or service dependencies.
+- PWA cache bumped so the existing iPhone Home Screen icon retrieves latest art when reopened online. Browser capture pipeline checks that all four building groups have nonempty rendered bounds and records the full actual village stage.
+- Milestone A approval: **NOT READY.** This is incremental environmental sculpture, not a complete 90/100 visual standard or production-grade animation atlas. Physical iPhone test not performed.
