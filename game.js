@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.6.0: diagonally authored eight-way movement.
+/* FoldFarer: The Unfinished World. First Fold 0.7.0: living two-dimensional partner follower.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -46,18 +46,43 @@ function load(){
 }
 let state=load();
 const $=id=>document.getElementById(id);
-const el={world:$('world'),folioScene:$('folioScene'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
+const el={world:$('world'),folioScene:$('folioScene'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
 let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0;
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
 let lastDepthOrder='';
+const companion={x:474,y:620,area:'folio',ready:false};
+function updateCompanion(dt=0){
+ if(!state.metMorrow){
+   companion.x=474;companion.y=620;companion.area='folio';companion.ready=false;
+   el.morrow.setAttribute('transform','translate(474 610)');
+   el.morrow.classList.remove('following');
+   if(el.morrow.parentNode!==el.depthStage){el.depthStage.appendChild(el.morrow);lastDepthOrder='';}
+   return;
+ }
+ const indoors=state.area==='atelier';
+ const targetX=clamp(state.x-state.facing*67,indoors?175:90,indoors?1270:1350);
+ const targetY=clamp(state.y-26,indoors?462:555,indoors?759:754);
+ if(!companion.ready||companion.area!==state.area){
+   companion.x=targetX;companion.y=targetY;companion.area=state.area;companion.ready=true;
+ }else if(dt>0){
+   const easing=1-Math.exp(-Math.min(dt,.05)*7.1);
+   companion.x+=(targetX-companion.x)*easing;
+   companion.y+=(targetY-companion.y)*easing;
+ }
+ const size=clamp(.72+(companion.y-552)*.00075,.71,.89);
+ el.morrow.setAttribute('transform','translate('+companion.x.toFixed(1)+' '+companion.y.toFixed(1)+') scale('+size.toFixed(3)+')');
+ el.morrow.classList.add('following');
+ const targetStage=indoors?el.atelierDepthStage:el.depthStage;
+ if(el.morrow.parentNode!==targetStage){targetStage.appendChild(el.morrow);lastDepthOrder='';}
+}
 function updateCharacter(){
  const z=clamp(.77+(state.y-552)*.0021,.77,1.23);
  el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+(state.facing*z).toFixed(3)+' '+z.toFixed(3)+')');
  for(const dir of ['up','down','side','diag-up','diag-down'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
  const inside=state.area==='atelier';
  const targetStage=inside?el.atelierDepthStage:el.depthStage;
- const items=inside?atelierDepth:actorDepth;
+ const items=inside?{...atelierDepth,...(state.metMorrow?{morrow:companion.y}:{})}:{...actorDepth,morrow:state.metMorrow?companion.y:620};
  const sorted=Object.entries({...items,tavi:state.y}).sort((a,b)=>a[1]-b[1]).map(v=>v[0]);
  const signature=state.area+':'+sorted.join(':');
  if(el.tavi.parentNode!==targetStage)targetStage.appendChild(el.tavi);
@@ -86,6 +111,7 @@ function objective(){
 function sync(){
  el.folioScene.style.display=state.area==='atelier'?'none':'';
  el.atelierScene.style.display=state.area==='atelier'?'':'none';
+ updateCompanion(0);
  updateCharacter();
  el.bridge.setAttribute('class',state.mended?'bridge-open':'bridge-closed');
  el.broken.style.opacity=state.mended?'0':'1';
@@ -100,6 +126,7 @@ function travelTo(area,x,y,direction){
  clearHeld();
  state.area=area;state.x=x;state.y=y;state.direction=direction;
  lastDepthOrder='';
+ companion.ready=false;
  save();
  sync();
 }
@@ -136,7 +163,7 @@ function nextLine(){
  el.speakerMark.textContent=line[2]||'✦';
  // The speaking portrait is a crop of the *actual in-world character*.
  // This prevents UI portraits drifting away from the playable art direction.
- const portraits={Tavi:['taviSprite',0,0],Morrow:['morrow',474,610],Mila:['mila',1024,643]};
+ const portraits={Tavi:['taviSprite',0,0],Morrow:['morrowSprite',0,0],Mila:['mila',1024,643]};
  const source=portraits[line[0]];
  el.portraitBadge.classList.toggle('portrait-with-art',!!source);
  if(source){
@@ -155,7 +182,7 @@ function nearest(){
    {key:'dyes',x:1084,y:655,r:102,text:'Inspect the dye bottles'},
    {key:'exit',x:720,y:750,r:95,text:'Return outside to the Folio'}
  ]:[
-  {key:'morrow',x:474,y:620,r:105,text:'Speak with Morrow'},
+  {key:'morrow',x:state.metMorrow?companion.x:474,y:state.metMorrow?companion.y:620,r:state.metMorrow?85:105,text:'Speak with Morrow'},
   {key:'seam',x:696,y:648,r:103,text:state.mended?'Inspect the repaired seam':'Mend the broken paper bridge'},
   {key:'mila',x:1024,y:643,r:102,text:'Speak with Mila'},
   {key:'scrapper',x:1244,y:652,r:105,text:state.won?'Inspect the quiet road':'Challenge the Paper Scrapper'},
@@ -163,7 +190,7 @@ function nearest(){
   {key:'notice',x:573,y:728,r:62,text:'Read the Folio notice'}
  ];
  return choices.map(p=>({...p,dist:Math.hypot(state.x-p.x,(state.y-p.y)*1.15)}))
-  .filter(p=>p.dist<=p.r).sort((a,b)=>a.dist-b.dist)[0]||null;
+  .filter(p=>p.dist<=p.r).sort((a,b)=>(a.dist+(a.key==='morrow'&&state.metMorrow?145:0))-(b.dist+(b.key==='morrow'&&state.metMorrow?145:0)))[0]||null;
 }
 function updatePrompt(){
  if(modal!=='field'){el.prompt.classList.add('hidden');return;}
@@ -391,7 +418,7 @@ el.journalButton.addEventListener('click',()=>{if(modal==='journal')closeJournal
 el.resume.addEventListener('click',closeJournal);
 el.reset.addEventListener('click',()=>{
  if(!window.confirm('Restart this aesthetic preview and clear its local progress?'))return;
- localStorage.removeItem(SAVE_KEY);state=initial();eventLocks={};dialogue=[];afterDialogue=null;closeJournal();showIntro();sync();
+ localStorage.removeItem(SAVE_KEY);state=initial();companion.ready=false;eventLocks={};dialogue=[];afterDialogue=null;closeJournal();showIntro();sync();
 });
 el.battleActions.addEventListener('click',e=>{const button=e.target.closest('[data-battle]');if(button)chooseBattle(button.dataset.battle);});
 el.timingTap.addEventListener('click',strike);
@@ -420,11 +447,13 @@ function frame(now){
    if(moveTarget&&Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25)<8)cancelTap();
    el.tavi.classList.toggle('walking',moved);
    if(moved){
-    updateCharacter();updatePrompt();
+    updatePrompt();
     if(now-lastSavedAt>=1100){save();lastSavedAt=now;}
    }
   }else{el.tavi.classList.remove('walking');updatePrompt();}
  }else{el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');}
+ if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}
+ else if(modal==='field'&&((held.left?1:0)+(held.right?1:0)+(held.up?1:0)+(held.down?1:0)>0))updateCharacter();
  if(modal==='timing'&&timingActive)el.timingMarker.style.left=progressAt(now)+'%';
  requestAnimationFrame(frame);
 }
