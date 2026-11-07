@@ -105,6 +105,26 @@
       </g>
       <path d="M0 617Q320 569 671 609L741 628 823 634Q1113 568 1440 600V810H0Z" fill="#dec898" stroke="#a68e7b" stroke-width="12"/>
       <path d="M0 649Q320 601 671 638L739 653 824 660Q1113 599 1440 628" fill="none" stroke="#fff0c4" stroke-width="7" stroke-dasharray="13 19" opacity=".58"/>
+      <!-- Receding stitched flagstone courts: a traversable ground plane, not a flat side-scrolling strip. -->
+      <g id="courtyardDepth" pointer-events="none">
+        <path d="M116 810Q281 692 482 610l98 2Q378 698 366 810Z" fill="#e5d6aa" stroke="#c4ae8a" stroke-width="5" opacity=".63"/>
+        <path d="M902 809q91-116 197-193l97 8q-105 106-140 185Z" fill="#dfd4b1" stroke="#c0a788" stroke-width="6" opacity=".56"/>
+        <path d="M100 790Q303 698 471 649M953 782q84-103 207-145" stroke="#ffeed0" stroke-width="5" stroke-dasharray="11 17" fill="none" opacity=".66"/>
+        <g fill="#e8dbb8" stroke="#a58e7a" stroke-width="3" opacity=".77">
+          <path d="m112 741 57-12 36 14-59 16Z"/><path d="m242 707 67-16 32 13-67 19Z"/><path d="m366 659 50-13 28 9-49 15Z"/>
+          <path d="m171 779 64-20 39 15-72 20Z"/><path d="m310 754 66-18 35 12-65 21Z"/><path d="m457 701 62-17 22 13-58 15Z"/>
+          <path d="m952 719 58-14 34 16-61 19Z"/><path d="m1095 671 54-12 31 11-49 20Z"/><path d="m1006 775 69-19 31 13-70 21Z"/>
+        </g>
+        <g fill="none" stroke="#fff1d2" stroke-width="2" stroke-dasharray="2 10" opacity=".69">
+          <path d="m128 746 53-10m71-23 52-13m66-36 45-11m-230 128 60-17m76-15 55-16m90-28 51-16"/>
+          <path d="m960 724 52-12m97-36 43-10m-144 113 61-18"/>
+        </g>
+        <g fill="#fae5ac" opacity=".46">
+          <ellipse cx="234" cy="601" rx="92" ry="12"/><ellipse cx="567" cy="595" rx="49" ry="9"/>
+          <ellipse cx="1090" cy="597" rx="81" ry="11"/><ellipse cx="1314" cy="612" rx="63" ry="8"/>
+        </g>
+      </g>
+
       <path d="M725 571 842 563 850 810 709 810Z" fill="url(#river)" stroke="#4a8499" stroke-width="6"/>
       <path d="M728 590Q771 615 838 595M732 673q55 30 107 3M726 745q67 28 119-3" fill="none" stroke="#b8e6db" stroke-width="4" opacity=".7"/>
       <path d="M724 575 844 567M711 808 852 808" fill="none" stroke="#e8dfaa" stroke-width="13"/>
@@ -148,7 +168,41 @@
         <g transform="translate(1185 665)" fill="#eecb8d" stroke="#fbe8c0" stroke-width="2"><ellipse rx="11" ry="22"/><ellipse rx="11" ry="22" transform="rotate(60)"/><ellipse rx="11" ry="22" transform="rotate(120)"/><circle r="10" fill="#ce8790"/></g>
         <g transform="translate(1323 668)" fill="#9dbec7" stroke="#fff0d4" stroke-width="2"><ellipse rx="11" ry="21"/><ellipse rx="11" ry="21" transform="rotate(60)"/><ellipse rx="11" ry="21" transform="rotate(120)"/><circle r="8" fill="#f3cb84"/></g>
       </g>
-      <g id="morrow" transform="translate(474 610)" filter="url(#softShadow)" aria-label="Morrow the ink-bird">
+
+      <!-- Pop-up props are depth-sorted against Tavi by their foot position. -->
+      <g id="depthStage">
+        <g id="paperPlanter" transform="translate(336 725)" filter="url(#softShadow)">
+          <ellipse cx="0" cy="6" rx="68" ry="18" fill="#335b54" opacity=".24"/>
+          <path d="M-62-21 10-41 66-18 60 7-9 25-60 7Z" fill="#b97474" stroke="#7d6263" stroke-width="5"/>
+          <path d="M-62-21 10-41 66-18-9 3Z" fill="#efba91" stroke="#8b7269" stroke-width="4"/>
+          <path d="m-47-8 45 10 47-11" fill="none" stroke="#f2d7ac" stroke-dasharray="6 7" stroke-width="3"/>
+          <g stroke="#648267" stroke-width="5" stroke-linecap="round">
+            <path d="M-39-23v-42m35 37v-58m38 57v-48m-6 44 20-40"/>
+          </g>
+          <g fill="#8bb28e" stroke="#658b75" stroke-width="3">
+            <ellipse cx="-44" cy="-64" rx="17" ry="23"/><ellipse cx="-12" cy="-85" rx="21" ry="25"/>
+            <ellipse cx="29" cy="-76" rx="21" ry="22"/><ellipse cx="48" cy="-72" rx="15" ry="20"/>
+          </g>
+          <g fill="#f1b1af" stroke="#fff1d5" stroke-width="3"><circle cx="-15" cy="-93" r="12"/><circle cx="34" cy="-85" r="10"/></g>
+          <g fill="#f3d590"><circle cx="-15" cy="-93" r="5"/><circle cx="34" cy="-85" r="5"/></g>
+        </g>
+        <g id="folioNotice" transform="translate(573 728)" filter="url(#softShadow)">
+          <ellipse cy="7" rx="39" ry="10" fill="#365a53" opacity=".27"/>
+          <path d="M-13 4v-97h26V4" fill="#926e64" stroke="#674e56" stroke-width="5"/>
+          <path d="M-48-103 45-121l16 52-91 17Z" fill="#f7e6c2" stroke="#816a65" stroke-width="6"/>
+          <path d="M-42-96 43-114M-36-61l89-18" stroke="#c99a86" stroke-width="3"/>
+          <text x="6" y="-91" text-anchor="middle" transform="rotate(-11 6 -91)" font-size="13" fill="#47646a" font-weight="bold">FOLIO</text>
+          <path d="m-25-79 32-7 23 1" fill="none" stroke="#a78c81" stroke-width="3" stroke-dasharray="4 6"/>
+          <circle cx="45" cy="-114" r="4" fill="#dfbc79"/>
+        </g>
+        <g id="paperBench" transform="translate(1144 735)" filter="url(#softShadow)">
+          <ellipse cy="11" rx="65" ry="17" fill="#375e59" opacity=".29"/>
+          <path d="m-49-20 15-53 96-9-10 49Z" fill="#9bb1a2" stroke="#688b84" stroke-width="6"/>
+          <path d="m-45-25 88 2 23-18-99-4Z" fill="#eed5a6" stroke="#8d796f" stroke-width="6"/>
+          <path d="m-37-23-10 31m89-29 5 29" stroke="#766e6b" stroke-width="10" stroke-linecap="round"/>
+          <path d="m-19-42 13-4m26 4 15-2" stroke="#fff0c9" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g id="morrow" transform="translate(474 610)" filter="url(#softShadow)" aria-label="Morrow the ink-bird">
         <ellipse cx="0" cy="10" rx="41" ry="10" fill="#41615b" opacity=".26"/>
         <path d="M-28-5Q-76-21-62-64q22 3 42 26l-7-56q36-34 68 0l-7 60Q59-58 65-52q8 35-32 55Z" fill="#24364d" stroke="#101f3b" stroke-width="6"/>
         <path d="M-12-66q18 14 28 0" fill="none" stroke="#6ba8a6" stroke-width="4"/>
@@ -185,6 +239,7 @@
       </g>
       <!-- Player is truly animated and moved by input; not a stationary illustration. -->
       <g id="tavi" transform="translate(273 654)" filter="url(#softShadow)">
+        <g id="taviFrontArt">
         <ellipse id="taviShadow" cy="6" rx="39" ry="9" fill="#435957" opacity=".3"/>
         <g class="tavi-foot foot-left"><path d="M-16-38-22-8" stroke="#5b626e" stroke-width="14" stroke-linecap="round"/><path d="m-23-9-14 5" stroke="#4b4d5a" stroke-width="11" stroke-linecap="round"/></g>
         <g class="tavi-foot foot-right"><path d="M14-38 21-7" stroke="#626678" stroke-width="14" stroke-linecap="round"/><path d="m21-8 14 5" stroke="#454956" stroke-width="11" stroke-linecap="round"/></g>
@@ -201,7 +256,43 @@
         <path d="M40-67q26-18 20-41" stroke="#b18f6c" stroke-width="6" stroke-linecap="round"/>
         <circle cx="61" cy="-108" r="6" fill="#f7d59a" stroke="#897463" stroke-width="3"/>
         <path d="M53-108h16" stroke="#fff2c7" stroke-width="2"/>
-      </g>
+
+        </g><!-- end front facing art -->
+        <g id="taviBackArt" class="alternate-pose">
+          <ellipse cy="6" rx="39" ry="9" fill="#435957" opacity=".3"/>
+          <g class="tavi-foot foot-left"><path d="M-17-38-22-7" stroke="#565d6c" stroke-width="14" stroke-linecap="round"/><path d="m-22-8-12 3" stroke="#444a59" stroke-width="11" stroke-linecap="round"/></g>
+          <g class="tavi-foot foot-right"><path d="M16-38 21-7" stroke="#596373" stroke-width="14" stroke-linecap="round"/><path d="m21-8 12 3" stroke="#444a59" stroke-width="11" stroke-linecap="round"/></g>
+          <path d="M-32-101Q0-116 31-101l11 67-25 1-18-20-14 19-26-1Z" fill="#b96b66" stroke="#715b65" stroke-width="7"/>
+          <path d="M-19-90Q0-79 22-92l-2 53-23-9-14 10Z" fill="#cc7d6b" stroke="#e6af88" stroke-width="4"/>
+          <path d="M-5-87 5-67m-14 38 13-12m12-35 10-18" stroke="#ffe0aa" stroke-dasharray="6 7" stroke-width="4" fill="none"/>
+          <g class="tavi-arm arm-left"><path d="M-29-93q-23 28-13 49" stroke="#b87770" stroke-width="14" stroke-linecap="round"/><circle cx="-42" cy="-44" r="8" fill="#efd0a9"/></g>
+          <g class="tavi-arm arm-right"><path d="M29-92q24 31 13 47" stroke="#a97277" stroke-width="14" stroke-linecap="round"/><circle cx="42" cy="-45" r="8" fill="#efd0a9"/></g>
+          <ellipse cy="-145" rx="35" ry="37" fill="#5f5661" stroke="#58515a" stroke-width="5"/>
+          <path d="M-30-144Q-10-120 12-142l20 2m-63-6q15-47 47-33" fill="none" stroke="#7e6972" stroke-width="7"/>
+          <path d="M-19-168Q-11-194 12-187" fill="none" stroke="#4b505f" stroke-width="11"/>
+          <g class="tavi-scarf"><path d="M-25-110Q2-100 24-114l-5 20-36 5Z" fill="#e7c178" stroke="#967d62" stroke-width="3"/>
+          <path d="m-22-105-22 39 12 8 24-36" fill="#e6bd75" stroke="#967c64" stroke-width="3"/></g>
+          <path d="M45-64q29-17 14-47" stroke="#b38c6a" stroke-width="6" fill="none"/><circle cx="59" cy="-110" r="6" fill="#f7d59a" stroke="#897463" stroke-width="3"/>
+        </g>
+        <g id="taviSideArt" class="alternate-pose">
+          <ellipse cy="6" rx="36" ry="9" fill="#435957" opacity=".3"/>
+          <g class="tavi-foot foot-left"><path d="M-12-39-20-7" stroke="#59606b" stroke-width="13" stroke-linecap="round"/><path d="m-20-8-9 6" stroke="#434b5a" stroke-width="12" stroke-linecap="round"/></g>
+          <g class="tavi-foot foot-right"><path d="M12-39 16-8" stroke="#555f72" stroke-width="13" stroke-linecap="round"/><path d="m16-8 17 6" stroke="#454c5c" stroke-width="11" stroke-linecap="round"/></g>
+          <path d="M-25-101Q0-117 20-100l16 67-25 1-6-21-9 22-28-4Z" fill="#b76a65" stroke="#775d64" stroke-width="6"/>
+          <path d="M-18-94q13 7 23 0l-12 60" fill="none" stroke="#e7ad85" stroke-width="5"/>
+          <g class="tavi-arm arm-left"><path d="M-17-92q-18 25-6 46" stroke="#a97976" stroke-width="12" stroke-linecap="round"/><circle cx="-23" cy="-46" r="7" fill="#f5ccab"/></g>
+          <g class="tavi-arm arm-right"><path d="M17-97q23 23 22 45" stroke="#b77c73" stroke-width="13" stroke-linecap="round"/><circle cx="39" cy="-52" r="8" fill="#f3ceaa"/></g>
+          <path d="M-9-122v24" stroke="#ddb28e" stroke-width="13" stroke-linecap="round"/>
+          <path d="M-16-180Q6-191 26-173q8 19-2 34l-5 21-29-4q-18-15-6-58Z" fill="#f1c9a5" stroke="#9f7d79" stroke-width="5"/>
+          <path d="m10-145 31 8-19 9" fill="#efd0ae" stroke="#a77c79" stroke-width="4"/>
+          <circle cx="14" cy="-151" r="4" fill="#48525a"/>
+          <path d="M-20-155q-17-31 18-35 22-10 32 20l-17-8-13 14-20 10Z" fill="#5c5260" stroke="#4f4c5a" stroke-width="4"/>
+          <g class="tavi-scarf"><path d="M-20-114q21 15 38 1l-5 16-30 2Z" fill="#e6c178" stroke="#99826a" stroke-width="3"/><path d="M-14-108-46-78l7 14 38-27" fill="#e3b66e" stroke="#957e69" stroke-width="3"/></g>
+          <path d="M38-57q25-15 19-46" stroke="#ae8c6b" stroke-width="6" fill="none"/><circle cx="57" cy="-103" r="5" fill="#f7d59a" stroke="#8b7560" stroke-width="3"/>
+        </g>
+      </g><!-- tavi -->
+      </g><!-- depthStage -->
+      <g id="tapMarker" visibility="hidden" pointer-events="none"><circle r="22" fill="#f4de9b" opacity=".23"/><circle r="14" fill="none" stroke="#fff1c9" stroke-width="3" stroke-dasharray="5 5"/><circle r="4" fill="#f9e8c3"/></g>
       <g class="foreground" filter="url(#softShadow)">
         <path d="M0 769Q191 714 386 769T779 773 1109 763 1440 737V810H0Z" fill="#688c70" stroke="#b7c693" stroke-width="9"/>
         <path d="M0 791Q181 755 385 793T782 795 1112 784 1440 758" stroke="#d4daac" stroke-width="2" stroke-dasharray="4 11" fill="none"/>
@@ -215,9 +306,11 @@
     </div>
     <div id="objective" class="objective">Find the ink-bird with the missing map.</div>
     <div id="prompt" class="prompt hidden"><span>✧</span> <span id="promptText"></span></div>
-    <div class="control-left" aria-label="Movement controls">
-      <button class="move-key" data-move="left" aria-label="Move left">◀</button>
-      <button class="move-key" data-move="right" aria-label="Move right">▶</button>
+    <div class="control-left dpad" aria-label="Four-way movement controls">
+      <button class="move-key up" data-move="up" aria-label="Move into the scene">▲</button>
+      <button class="move-key left" data-move="left" aria-label="Move left">◀</button>
+      <button class="move-key down" data-move="down" aria-label="Move toward the camera">▼</button>
+      <button class="move-key right" data-move="right" aria-label="Move right">▶</button>
     </div>
     <div class="control-right">
       <button id="interact" class="action-button" type="button"><span>✧</span> ACT</button>
@@ -260,7 +353,7 @@
       </div>
     </div>
   </div>
-  <div class="below-frame"><span>✧ Illustrative first-fold prototype</span><span>Move: ◀ ▶ / A D · Interact: Space / ACT · Journal: ☰</span></div>
+  <div class="below-frame"><span>✧ Illustrative first-fold prototype</span><span>Roam: ▲ ▼ ◀ ▶ / WASD · Tap ground to walk · ACT to interact · Journal: ☰</span></div>
 </div>
 <script src="./game.js" defer></script>
 </body>
