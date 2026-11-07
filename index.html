@@ -737,6 +737,9 @@
       </g>
       <!-- Player is truly animated and moved by input; not a stationary illustration. -->
       <g id="tavi" transform="translate(273 654)" filter="url(#softShadow)">
+        <!-- Keep the parent translated/scaled positively. Only this inner art
+             is mirrored, so perspective placement never sends a pose offstage. -->
+        <g id="taviFlip" transform="scale(1)">
         <g id="taviSprite" aria-label="Tavi original directional art">
         <g id="taviFrontArt">
         <ellipse id="taviShadow" cy="6" rx="39" ry="9" fill="#435957" opacity=".3"/>
@@ -898,6 +901,7 @@
           <circle cx="62" cy="-104" r="6" fill="#f2cf90" stroke="#8e786d" stroke-width="3"/>
         </g>
         </g><!-- taviSprite: stable local coordinates for reuse -->
+        </g><!-- taviFlip; UI and combat still reuse unmirrored local artwork -->
         <g id="taviWalkDust" pointer-events="none">
           <ellipse cx="-25" cy="4" rx="11" ry="4" fill="#f9e8c1" opacity=".6"/>
           <ellipse cx="18" cy="3" rx="8" ry="3" fill="#d7c7a6" opacity=".56"/>
@@ -1262,7 +1266,7 @@
       <div class="intro-rule">❧ ────── ✦ ────── ❧</div>
       <p class="intro-description">Some stories end. Others have been erased.<br>Follow the seams and find what the world forgot.</p>
       <button id="start" class="primary" type="button">Open the Book <span>➜</span></button>
-      <small class="preview-label">MILESTONE A · PLAYABLE AESTHETIC REVIEW · BUILD 0.10.0</small>
+      <small class="preview-label">MILESTONE A · PLAYABLE AESTHETIC REVIEW · BUILD 0.11.0</small>
     </div>
     <div id="journal" class="sheet hidden" role="dialog" aria-label="Field journal">
       <div class="sheet-edge">THE WANDERING FOLIO · FIELD NOTES</div>
