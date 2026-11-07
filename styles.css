@@ -515,3 +515,8 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #tavi .stride-contact-left,#tavi .stride-contact-right{opacity:0!important}
  #taviMendArc{display:none!important}
 }
+
+/* First Fold 0.14 — individually authored, non-interactive terrace facades. */
+#terraceMaterialStories,#terraceMaterialStories *,#terraceLightShift,#terraceLightShift *{pointer-events:none!important}
+#terraceDyerSilks,#terraceBotanicalRelief,#terraceGateEngraving{filter:drop-shadow(1px 2px 1px #544e5d1f)}
+#terraceLightShift{mix-blend-mode:screen}

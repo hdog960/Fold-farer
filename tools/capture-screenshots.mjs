@@ -201,6 +201,19 @@ try {
   if(await terraceNear.locator('#folioScene').evaluate(e=>getComputedStyle(e).display)!=='none')throw Error('Folio should hide while terrace loads');
   if(await terraceNear.locator('#tavi').evaluate(e=>e.parentNode?.id)!=='terraceDepthStage')throw Error('Tavi is not in a real depth-sorted terrace scene');
   if(await terraceNear.locator('#morrow').evaluate(e=>e.parentNode?.id)!=='terraceDepthStage')throw Error('Morrow did not accompany Tavi into terrace');
+
+  // This is a screenshot of the working scene with new painted materials,
+  // not an exported concept still. Require each group to render in-browser.
+  for(const id of ['terraceDyerSilks','terraceBotanicalRelief','terraceGateEngraving','terraceLightShift']){
+    const result=await terraceNear.locator('#'+id).evaluate(el=>{
+      const b=el.getBBox(),st=getComputedStyle(el);
+      return {w:b.width,h:b.height,display:st.display,pointer:st.pointerEvents};
+    });
+    if(result.w<85||result.h<55||result.display==='none'||result.pointer!=='none'){
+      throw Error('Terrace art layer failed rendering/non-blocking check: '+id+' '+JSON.stringify(result));
+    }
+  }
+  await terraceNear.screenshot({path:'screenshots/23-terrace-material-light.png'});
   const depthBox=await terraceNear.locator('#terraceGround').evaluate(e=>{const b=e.getBBox();return {width:b.width,height:b.height}});
   if(depthBox.height<350||depthBox.width<1100)throw Error('Terrace does not span a substantial rendered walk plane '+JSON.stringify(depthBox));
   const nearFootPoint=await terraceNear.locator('#world').evaluate(svg=>{

@@ -21,6 +21,11 @@
   <div class="world-frame">
     <svg id="world" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A richly layered paper-and-fabric village at golden hour, with houses, flowers, stitched hills and a damaged bridge">
       <defs>
+        <linearGradient id="terraceDyeSilk" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#e9d6ad"/><stop offset=".35" stop-color="#87b9b4"/><stop offset=".67" stop-color="#537f89"/><stop offset="1" stop-color="#c08d9d"/></linearGradient>
+        <linearGradient id="terraceGlassPaper" x1="0%" x2="100%" y1="0%" y2="35%"><stop stop-color="#faf0d7" stop-opacity=".04"/><stop offset=".43" stop-color="#fff3d0" stop-opacity=".49"/><stop offset=".68" stop-color="#f9ecd3" stop-opacity=".04"/><stop offset="1" stop-color="#f1dbb0" stop-opacity=".29"/></linearGradient>
+        <radialGradient id="terraceWarmBounce"><stop stop-color="#fff6ce" stop-opacity=".52"/><stop offset=".48" stop-color="#f8d9ad" stop-opacity=".16"/><stop offset="1" stop-color="#f9d3aa" stop-opacity="0"/></radialGradient>
+        <linearGradient id="terraceArchUnderside" x1="0%" x2="25%" y1="0%" y2="100%"><stop stop-color="#f8d6ae" stop-opacity=".33"/><stop offset=".8" stop-color="#5d596d" stop-opacity=".25"/><stop offset="1" stop-color="#4a6170" stop-opacity=".15"/></linearGradient>
+
         <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#559eaf"/><stop offset=".54" stop-color="#b5d9c7"/><stop offset="1" stop-color="#ffe5ac"/></linearGradient>
         <linearGradient id="paperHill" x2="0" y2="1"><stop stop-color="#75a888"/><stop offset="1" stop-color="#426f65"/></linearGradient>
         <linearGradient id="frontLand" x2="0" y2="1"><stop stop-color="#a7bc74"/><stop offset="1" stop-color="#6a845e"/></linearGradient>
@@ -1172,6 +1177,72 @@
             <path d="m1094 717 327-12" stroke="#fff0cb" stroke-width="3" stroke-dasharray="7 10"/>
             <path d="m1114 719 11 12m49-17 12 13m52-18 13 13m55-18 11 12" stroke="#886d72" stroke-width="3"/>
           </g>
+        </g>
+
+        <!-- Authored, asymmetrical wall-bound paper sculpture. All strokes,
+             glass glints and pennants are decorative: they add zero collision. -->
+        <g id="terraceMaterialStories" pointer-events="none">
+          <g id="terraceDyerSilks" aria-label="Dyer's handmade folded-silk awning and hanging pigment samples">
+            <path d="M9 352 180 371 308 492l-12 25L167 401 9 379Z" fill="#665467" opacity=".25"/>
+            <path d="M12 350 169 368 292 497l-24-2L160 395 12 375Z" fill="#e5ba9e" stroke="#8c6874" stroke-width="5"/>
+            <path d="M13 353 166 374l103 115-19-2L153 386 14 367Z" fill="url(#terraceDyeSilk)" opacity=".87"/>
+            <path d="m19 370 130 16 108 100" stroke="#fff1cb" stroke-width="2.8" fill="none" stroke-dasharray="5 10"/>
+            <path d="m45 370-4 10m42-7-3 11m47-5-3 13m46 1-2 14m44 24-6 13" stroke="#a6787c" stroke-width="3" fill="none"/>
+            <!-- The three samples have different hems, silhouettes and pigment. -->
+            <path d="M230 482q23 8 42 24l7 90-12 14-17-8-13 9-8-101Z" fill="#537e8b" stroke="#775f70" stroke-width="5"/>
+            <path d="m235 505 25 12 7 83m-19-76 12 6" stroke="#b9d8bc" stroke-width="3.2" fill="none"/>
+            <path d="M283 526q17 6 27 17l-1 52-14 13-17-8Z" fill="#d99a91" stroke="#9b7478" stroke-width="4"/>
+            <path d="m288 548 14 9m-14 30 12 8" stroke="#fbe6c3" stroke-width="2.6" fill="none"/>
+            <path d="M203 458q12 3 22 14l-4 43-8 8-14-8Z" fill="#e2c38e" stroke="#957578" stroke-width="3.5"/>
+            <path d="m208 474 11 4m-9 18 8 3" stroke="#fff2d5" stroke-width="2.4" fill="none"/>
+            <g fill="#e9d4a8" stroke="#917079" stroke-width="2"><circle cx="231" cy="486" r="4"/><circle cx="283" cy="530" r="4"/><circle cx="203" cy="462" r="3.5"/></g>
+            <!-- Wall rack of individually colored bobbins, not a repeated sprite. -->
+            <path d="M18 665 158 655l-4 15-132 12Z" fill="#b68d80" stroke="#805e6b" stroke-width="4"/>
+            <ellipse cx="49" cy="662" rx="16" ry="9" fill="#e0c393" stroke="#977378" stroke-width="3"/>
+            <ellipse cx="91" cy="659" rx="11" ry="7" fill="#b5cfbc" stroke="#7f8e85" stroke-width="3"/>
+            <ellipse cx="126" cy="658" rx="13" ry="8" fill="#d8a3a0" stroke="#9c7578" stroke-width="3"/>
+            <circle cx="49" cy="662" r="4" fill="#776a76"/><circle cx="91" cy="659" r="3" fill="#748b88"/><circle cx="126" cy="658" r="3.5" fill="#957579"/>
+          </g>
+          <g id="terraceBotanicalRelief" aria-label="Vellum greenhouse relief, pressed flowers and handmade specimen shelf">
+            <path d="M1290 424h80v126h-80Z" fill="url(#terraceGlassPaper)" opacity=".74"/>
+            <path d="m1297 431 28-5-27 92-8 7m57-96 12-3-25 91-8 7" stroke="#fff5d5" stroke-width="4" opacity=".54" fill="none"/>
+            <g fill="#618f80" stroke="#476e70" stroke-width="2.7">
+              <path d="m1309 542-4-62q-24-8-19-28 29 2 27 29m-7 26q19-25 35-24-5 24-35 30Z"/>
+              <path d="m1347 543-5-39q-16-12-10-31 22 4 21 27m-8 22q18-31 29-23-2 23-28 28Z"/>
+            </g>
+            <path d="m1306 508 16-26m19 18 10-20m-49 12-10-24" stroke="#d4dcb0" stroke-width="3" fill="none"/>
+            <g fill="#e0b19e" stroke="#fbe7c7" stroke-width="2.2"><path d="m1307 471 9-9 10 13-11 9Z"/><path d="m1353 502 13-8 8 13-13 7Z"/></g>
+            <path d="m1283 625 145-18 10 14-155 24Z" fill="#ae8478" stroke="#735c69" stroke-width="5"/>
+            <path d="m1289 626 129-15 10 9-136 17Z" fill="#f0d4a9" stroke="#a07b71" stroke-width="3"/>
+            <path d="m1295 637-5 13m124-20 6 9" stroke="#896e73" stroke-width="5"/>
+            <path d="m1308 618-15-35q22 4 23 28m0 0q10-37 25-30 0 29-27 38Z" fill="#7fae8f" stroke="#557c79" stroke-width="3"/>
+            <path d="m1350 613-10-39q23 5 22 32m0 1q15-31 30-20-5 25-29 32Z" fill="#8eae86" stroke="#64786f" stroke-width="3"/>
+            <path d="m1319 600 9-18m36 14 10-17" stroke="#e6e6bd" stroke-width="2.5" fill="none"/>
+            <path d="m1320 581 12-9 10 11-11 8Z" fill="#e6b89a" stroke="#f8ebc9" stroke-width="2.5"/>
+            <path d="m1371 583 9-9 11 10-11 10Z" fill="#c9a4aa" stroke="#f8ebc9" stroke-width="2.5"/>
+            <path d="m1284 643 144-19" stroke="#fff0c7" stroke-width="2.5" stroke-dasharray="5 10"/>
+          </g>
+          <g id="terraceGateEngraving" aria-label="Brass-bound arch relief with folded underside">
+            <path d="M558 415 604 408l-27 41-61 13Z" fill="#6c6471" opacity=".24"/>
+            <path d="M812 405 874 405l51 50-65-10Z" fill="#6c6471" opacity=".23"/>
+            <path d="M617 268Q719 188 816 267" fill="none" stroke="#765f70" stroke-width="11" opacity=".24"/>
+            <path d="M617 265Q719 186 816 264" fill="none" stroke="#fff0c6" stroke-width="3.4" stroke-dasharray="4 16"/>
+            <g fill="#ddb990" stroke="#8b6e71" stroke-width="2">
+              <path d="m612 282 12-8 12 13-13 9Z"/><path d="m686 221 16-7 9 15-18 8Z"/>
+              <path d="m757 216 14 8-7 17-15-9Z"/><path d="m802 262 11 11-12 13-12-13Z"/>
+            </g>
+            <path d="M681 397q36 9 80 0l35 26q-74 15-145 2Z" fill="url(#terraceArchUnderside)" opacity=".8"/>
+            <path d="m669 413q50 8 99 1" stroke="#fff0c7" stroke-width="3" stroke-dasharray="7 12" opacity=".65" fill="none"/>
+            <path d="m597 447 72-6m109-3 87 9" stroke="#6d7773" stroke-width="4" opacity=".3" fill="none" stroke-linecap="round"/>
+          </g>
+        </g>
+        <!-- The ambient light reacts to the depth camera by a few units;
+             architecture and gameplay collision remain fully stationary. -->
+        <g id="terraceLightShift" pointer-events="none">
+          <ellipse cx="1018" cy="363" rx="540" ry="350" fill="url(#terraceWarmBounce)" opacity=".52"/>
+          <ellipse cx="476" cy="531" rx="275" ry="180" fill="url(#terraceWarmBounce)" opacity=".27"/>
+          <path d="M1075 277q-162 151-293 205l-21 84q178-73 382-271Z" fill="#ffe9b3" opacity=".05"/>
+          <path d="M1111 285q-111 132-187 186l32 40q119-93 209-194Z" fill="#fff4d0" opacity=".07"/>
         </g>
         <!-- Ambient handmade pennants and bridge rail clips. -->
         <g id="terraceHangingPaper" pointer-events="none">
