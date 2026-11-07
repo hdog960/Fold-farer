@@ -374,6 +374,7 @@
       </g>
       <!-- Player is truly animated and moved by input; not a stationary illustration. -->
       <g id="tavi" transform="translate(273 654)" filter="url(#softShadow)">
+        <g id="taviSprite" aria-label="Tavi original directional art">
         <g id="taviFrontArt">
         <ellipse id="taviShadow" cy="6" rx="39" ry="9" fill="#435957" opacity=".3"/>
         <g class="tavi-foot foot-left"><path d="M-16-38-22-8" stroke="#5b626e" stroke-width="14" stroke-linecap="round"/><path d="m-23-9-14 5" stroke="#4b4d5a" stroke-width="11" stroke-linecap="round"/></g>
@@ -433,6 +434,7 @@
           <g class="tavi-scarf"><path d="M-20-114q21 15 38 1l-5 16-30 2Z" fill="#e6c178" stroke="#99826a" stroke-width="3"/><path d="M-14-108-46-78l7 14 38-27" fill="#e3b66e" stroke="#957e69" stroke-width="3"/></g>
           <path d="M38-57q25-15 19-46" stroke="#ae8c6b" stroke-width="6" fill="none"/><circle cx="57" cy="-103" r="5" fill="#f7d59a" stroke="#8b7560" stroke-width="3"/>
         </g>
+        </g><!-- taviSprite: stable local coordinates for reuse -->
       </g><!-- tavi -->
       </g><!-- depthStage -->
       <g class="foreground" filter="url(#softShadow)">
@@ -598,7 +600,7 @@
       <button id="interact" class="action-button" type="button"><span>✧</span> ACT</button>
     </div>
     <div id="dialogue" class="dialogue hidden" role="dialog" aria-label="Character dialogue">
-      <div class="portrait-badge" id="portraitBadge"><svg id="portraitSvg" viewBox="-80 -193 160 210" aria-hidden="true"><use id="portraitUse" href="#tavi" transform="translate(-273 -654)"/></svg><span id="speakerMark" class="portrait-symbol">✦</span></div>
+      <div class="portrait-badge" id="portraitBadge"><svg id="portraitSvg" viewBox="-80 -193 160 210" aria-hidden="true"><use id="portraitUse" href="#taviSprite"/></svg><span id="speakerMark" class="portrait-symbol">✦</span></div>
       <div class="dialogue-copy"><b id="speaker"></b><p id="line"></p></div>
       <button id="nextLine" class="continue-button" type="button">Continue <span>›</span></button>
     </div>
@@ -622,7 +624,70 @@
     <div id="battle" class="battle hidden" role="dialog" aria-label="Turn based battle">
       <div class="battle-heading"><span>THE FOLDLINE</span><strong id="battleTitle">Paper Scrapper</strong><small id="battleIntent">Intent: Paper Swipe · 5 damage</small></div>
       <div class="battle-stage">
-        <div class="combatant hero-combat"><svg id="battleTaviArt" class="battle-sprite" viewBox="-80 -204 160 225" aria-label="Tavi in battle"><use href="#tavi" transform="translate(-273 -654)"/></svg><span>TAVI</span></div>
+        <!-- Original in-engine Foldline battle diorama. A pop-up stage with real card edges,
+             perspective-correct seams, hinged banners and distinct backdrop layers. -->
+        <svg id="battleDiorama" class="battle-diorama" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" aria-label="Layered paper-card arena">
+          <defs>
+            <linearGradient id="bdSky" x2="0" y2="1"><stop stop-color="#2a5362"/><stop offset=".6" stop-color="#6b9994"/><stop offset="1" stop-color="#a3b597"/></linearGradient>
+            <linearGradient id="bdBoard" x2="0" y2="1"><stop stop-color="#ddc5a0"/><stop offset=".6" stop-color="#ac967f"/><stop offset="1" stop-color="#706b70"/></linearGradient>
+            <pattern id="bdGrain" width="38" height="27" patternUnits="userSpaceOnUse">
+              <path d="m4 10 12-3m9 14 9-2" stroke="#fff6d6" stroke-width="1.4" opacity=".43"/>
+              <path d="m13 3 8 4M3 24l9-4" stroke="#5c6f70" stroke-width=".9" opacity=".36"/>
+            </pattern>
+            <radialGradient id="bdGlow"><stop stop-color="#ffe6b6" stop-opacity=".6"/><stop offset="1" stop-color="#ffe6b6" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect width="1440" height="360" fill="url(#bdSky)"/>
+          <path d="M0 112 134 48l89 54 133-89 114 90 115-77 119 72 126-67 115 72 115-54 129 73 134-78 137 79v116H0Z" fill="#658b88" stroke="#bed0af" stroke-width="8"/>
+          <path d="M0 158q165-74 314-33t289 2q187-66 379-4t458-7v114H0Z" fill="#88a89a" stroke="#d6d8b2" stroke-width="8"/>
+          <path d="M0 175q168-60 314-24t289 2q187-66 379-4t458-7" fill="none" stroke="#f7dfb6" stroke-width="3" stroke-dasharray="5 13"/>
+          <path d="M0 193Q344 166 585 202T997 193 1440 169v191H0Z" fill="#c3b698" stroke="#eee0b9" stroke-width="10"/>
+          <path d="M0 202Q344 175 585 211T997 202 1440 178v182H0Z" fill="url(#bdBoard)" stroke="#806d72" stroke-width="5"/>
+          <path d="M0 202Q344 175 585 211T997 202 1440 178v182H0Z" fill="url(#bdGrain)" opacity=".46"/>
+          <g fill="none" stroke="#f4deb5" stroke-width="5" opacity=".61">
+            <path d="M0 252q359-43 685-6t755-21"/>
+            <path d="M0 324q359-45 685-9t755-18"/>
+            <path d="M296 184 141 360M503 192l-66 168M706 201v159M909 195l81 165M1129 184l189 176"/>
+          </g>
+          <g stroke="#655b66" fill="none" stroke-width="2" stroke-dasharray="4 11" opacity=".45">
+            <path d="M291 190 150 360M507 199l-61 161M710 204v156M906 204l75 156M1130 195l176 165"/>
+          </g>
+          <path d="M-16 201q379-61 734 3t738-38" fill="none" stroke="#d4b193" stroke-width="12"/>
+          <path d="M-16 199q379-61 734 3t738-38" fill="none" stroke="#fff0ca" stroke-width="4" stroke-dasharray="7 14"/>
+          <!-- Pop-out framing cards, physically thick edge layers. -->
+          <g filter="url(#softShadow)">
+            <path d="m12 22 121-14 33 38-122 16Z" fill="#e6cba3" stroke="#9f8077" stroke-width="5"/>
+            <path d="m17 24 113-14 21 19-113 15Z" fill="#f5e2b6" stroke="#9f8077" stroke-width="2"/>
+            <path d="m22 30 108-13" fill="none" stroke="#c9a48b" stroke-width="3" stroke-dasharray="5 7"/>
+            <path d="m1270 17 134 19-35 42-139-22Z" fill="#d8b8a3" stroke="#8d7275" stroke-width="6"/>
+            <path d="m1283 23 107 15-24 25-113-13Z" fill="#f1d6b2" stroke="#b38a80" stroke-width="3"/>
+            <path d="m1287 34 92 14" fill="none" stroke="#fff0c9" stroke-width="3" stroke-dasharray="7 10"/>
+          </g>
+          <!-- Lanterns and anchored physical stitched game space. -->
+          <g>
+            <path d="M45 0v102M1377 0v113" stroke="#ead1a3" stroke-width="5"/>
+            <g fill="#ab8477" stroke="#ead4ab" stroke-width="5"><path d="M22 99q25-31 46 0l-7 37H29Z"/><path d="M1351 105q28-31 51 0l-8 40h-37Z"/></g>
+            <ellipse cx="45" cy="130" rx="100" ry="90" fill="url(#bdGlow)"/>
+            <ellipse cx="1378" cy="138" rx="100" ry="90" fill="url(#bdGlow)"/>
+            <circle cx="45" cy="107" r="13" fill="#f8dfac"/>
+            <circle cx="1378" cy="115" r="13" fill="#ffe0ab"/>
+          </g>
+          <g fill="#e9d4a8" stroke="#8d7970" stroke-width="3">
+            <path d="m163 291 28-9 19 12-29 12Z"/><path d="m1023 295 30-7 18 12-26 14Z"/>
+            <path d="m1288 264 35-11 18 17-34 12Z"/><path d="m416 282 24-7 19 10-24 11Z"/>
+          </g>
+          <g fill="#a2b49c" stroke="#dae0bd" stroke-width="3">
+            <path d="m75 307-7-31 17 18m-6 12 18-26 8 20Z"/>
+            <path d="m1344 314-8-26 17 13m-4 11 18-23 9 21Z"/>
+          </g>
+          <g>
+            <ellipse cx="363" cy="266" rx="165" ry="38" fill="url(#bdGlow)"/>
+            <ellipse cx="1132" cy="254" rx="164" ry="40" fill="url(#bdGlow)"/>
+          </g>
+          <path d="M0 353q362-56 701-12t739-15" fill="none" stroke="#6d6970" stroke-width="19"/>
+          <path d="M0 349q362-56 701-12t739-15" fill="none" stroke="#e7d2ab" stroke-width="7"/>
+        </svg>
+
+        <div class="combatant hero-combat"><svg id="battleTaviArt" class="battle-sprite" viewBox="-80 -204 160 225" aria-label="Tavi in battle"><use href="#taviSprite"/></svg><span>TAVI</span></div>
         <div id="foldNode" class="fold-node"><b>♢</b><small>Fold Cover</small></div>
         <div class="combatant enemy-combat"><svg id="battleScrapperArt" class="battle-sprite" viewBox="-85 -180 210 205" aria-label="Paper Scrapper in battle"><use href="#enemy" transform="translate(-1244 -652)"/></svg><span>PAPER SCRAPPER</span></div>
       </div>
