@@ -102,26 +102,26 @@ try {
   const quarterBackPage=await openedAt({started:true,area:'folio',x:615,y:711,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
   await quarterBackPage.keyboard.down('ArrowUp');
   await quarterBackPage.keyboard.down('ArrowRight');
-  await quarterBackPage.waitForTimeout(480);
-  await quarterBackPage.keyboard.up('ArrowUp');
-  await quarterBackPage.keyboard.up('ArrowRight');
+  await quarterBackPage.waitForTimeout(380);
   const backClass=await quarterBackPage.locator('#tavi').getAttribute('class');
   if(!backClass?.includes('dir-diag-up'))throw Error('Back 3/4 art is not active: '+backClass);
   const backPos=await quarterBackPage.locator('#tavi').getAttribute('transform');
   console.log('THREE QUARTER BACK:',backPos);
   await quarterBackPage.screenshot({path:'screenshots/09-tavi-three-quarter.png'});
+  await quarterBackPage.keyboard.up('ArrowUp');
+  await quarterBackPage.keyboard.up('ArrowRight');
   await quarterBackPage.close();
 
   const quarterFrontPage=await openedAt({started:true,area:'folio',x:607,y:594,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
   await quarterFrontPage.keyboard.down('ArrowDown');
   await quarterFrontPage.keyboard.down('ArrowRight');
-  await quarterFrontPage.waitForTimeout(480);
-  await quarterFrontPage.keyboard.up('ArrowDown');
-  await quarterFrontPage.keyboard.up('ArrowRight');
+  await quarterFrontPage.waitForTimeout(380);
   const frontClass=await quarterFrontPage.locator('#tavi').getAttribute('class');
   if(!frontClass?.includes('dir-diag-down'))throw Error('Front 3/4 art is not active: '+frontClass);
   console.log('THREE QUARTER FRONT:',await quarterFrontPage.locator('#tavi').getAttribute('transform'));
   await quarterFrontPage.screenshot({path:'screenshots/10-tavi-front-three-quarter.png'});
+  await quarterFrontPage.keyboard.up('ArrowDown');
+  await quarterFrontPage.keyboard.up('ArrowRight');
   await quarterFrontPage.close();
 
   const tornPage=await openedAt({started:true,x:625,y:698,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
