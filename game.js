@@ -310,7 +310,7 @@ function interact(){
  case 'terraceExit':
    travelTo('folio',661,642,'down');break;
  case 'terraceBell':
-   speak([['Tavi','An archive bell made from folded sheet brass. A different seam is engraved into each petal.','✦'],
+   speak([['Tavi','An archive bell made from folded sheet brass. A different seam is engraved into each petal.','✦','curious'],
           ['Morrow','It rings for stories kept, not pages erased. The sound deserves a better library.','✒']]);break;
  case 'terraceKiosk':
    speak([['Tavi','Every pamphlet tells a different version of the same day. The ink is still damp.','✦'],

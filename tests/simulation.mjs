@@ -65,11 +65,19 @@ function drainDialogue(){
 }
 const save=()=>JSON.parse(storage.get('foldfarer.firstfold.0.1')||'null');
 assert(e('intro').classList.contains('hidden')===false,'Intro missing');
-click('start');assert(e('portraitUse').attrs.href==='#taviSprite','Tavi dialogue sprite must not depend on field position');drainDialogue();
+click('start');assert(e('portraitUse').attrs.href==='#taviSprite','Tavi dialogue sprite must not depend on field position');
+assert(e('tavi').classList.contains('speaking'),'The live hero must animate facial acting during his lines');
+assert(e('tavi').dataset.mood==='determined','Opening line must use original determined expression artwork');
+step(18);assert(['open','closed'].includes(e('tavi').dataset.speech),'Dialogue mouth must have an actual state');
+click('nextLine');assert(!e('tavi').classList.contains('speaking'),'The actor must stop speaking when Morrow takes a turn');
+drainDialogue();assert(!e('tavi').classList.contains('speaking'),'Dialogue must restore neutral face');
 // Verify actual into-the-world movement, separate rear artwork, and retreat.
 const pos=()=>{const match=/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(e('tavi').attrs.transform);assert(match,'Missing transform');return {x:Number(match[1]),y:Number(match[2])};};
 const startY=pos().y;
-key('ArrowUp',true);step(20);
+key('ArrowUp',true);step(3);
+assert(e('tavi').classList.contains('pivoting'),'An authentic orientation change needs an illustrated paper-joint turn');
+assert(['0','1','2'].includes(e('tavi').dataset.pivotPhase),'Pivoting must choose one authored art phase');
+step(17);assert(!e('tavi').classList.contains('pivoting'),'Turn flourish must end while movement continues');
 assert(['0','1','2','3','4','5','6','7'].includes(e('tavi').dataset.stride),'Movement must select a frame from the eight-cel walking atlas');
 assert(e('tavi').dataset.stride!=='0','Moving into the scene must advance beyond first stride state');
 key('ArrowUp',false);

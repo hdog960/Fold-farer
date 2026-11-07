@@ -99,4 +99,14 @@ assert((html.match(/class="tavi-upper-scarf"/g)||[]).length===40,'Scarf tails mu
 assert((html.match(/class="tavi-upper-hair-details"/g)||[]).length===40,'Hair outlines require alternative artwork');
 assert(css.includes('#tavi.walking .tavi-rest-torso')&&css.includes('#tavi.walking[data-stride="7"] .tavi-upper-cel'),
  'Remove static torso from walk and select the correct drawn upper-body frame');
+const moods=[...html.matchAll(/class="tavi-face-expression" data-face-mood="([^"]+)"/g)].map(m=>m[1]);
+assert(moods.length===12,'Expected four original facial expressions in three directional viewpoints');
+for(const mood of ['curious','pleased','concerned','determined'])
+ assert(moods.filter(x=>x===mood).length===3,'Missing directional expression: '+mood);
+assert((html.match(/class="tavi-pivot-cel"/g)||[]).length===3,'Three hand-drawn pivot poses required');
+assert(ids.includes('taviPivotArtwork'),'The actor must own the illustrated pivot');
+assert(game.includes('function updateTaviActing(now)')&&game.includes('pivotUntil'),
+ 'Live gameplay must own all speaking/pivot time state');
+assert(css.includes('#tavi.speaking[data-mood="curious"]')&&css.includes('#tavi.pivoting[data-pivot-phase="2"]'),
+ 'Expressions and pivots must be connected to the visible source art');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
