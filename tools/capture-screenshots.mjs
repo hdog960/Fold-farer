@@ -264,7 +264,7 @@ try {
   };
   await testVerticalFoot(502,610,true,'dyer bench');
   await testVerticalFoot(954,600,true,'lost-letter cabinet');
-  await testVerticalFoot(417,610,false,'dyer bench bypass');
+  await testVerticalFoot(425,610,false,'dyer bench bypass');
 
   const terraceMobile=await browser.newPage({
     viewport:{width:844,height:390},screen:{width:844,height:390},deviceScaleFactor:2,
