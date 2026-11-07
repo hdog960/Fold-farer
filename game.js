@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.14.0: handcrafted terrace materials and depth-aware sunlight.
+/* FoldFarer: The Unfinished World. First Fold 0.15.0: original Morrow animation frames, actor ground shadows, and collision-safe walking.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -95,6 +95,14 @@ function updateBackdrop(dt){
  el.terraceLightShift.setAttribute('transform','translate('+(backdrop.terraceX*.28).toFixed(2)+' '+(backdrop.terraceY*.24).toFixed(2)+')');
 }
 const companion={x:474,y:620,area:'folio',ready:false};
+const morrowWingCycle=[0,1,2,3,2,1];
+function updateMorrowAnimation(now){
+ const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ if(reduced){el.morrow.dataset.flap='0';return;}
+ const interval=el.morrow.classList.contains('talking')?105:
+   el.morrow.classList.contains('following')?145:240;
+ el.morrow.dataset.flap=String(morrowWingCycle[Math.floor(now/interval)%morrowWingCycle.length]);
+}
 function updateCompanion(dt=0){
  if(!state.metMorrow){
    companion.x=474;companion.y=620;companion.area='folio';companion.ready=false;
@@ -144,14 +152,17 @@ function updateCharacter(){
 }
 function cancelTap(){moveTarget=null;el.tapMarker.setAttribute('visibility','hidden');}
 function moveBy(dx,dy){
+ const oldX=state.x,oldY=state.y;
  const [left,right,back,front]=boundsFor(state.area);
  const nextX=clamp(state.x+dx,left,right);
  const nextY=clamp(state.y+dy,back,front);
- if(canStand(nextX,nextY,state.mended,state.area)){state.x=nextX;state.y=nextY;return true;}
- let moved=false;
- if(canStand(nextX,state.y,state.mended,state.area)){state.x=nextX;moved=true;}
- if(canStand(state.x,nextY,state.mended,state.area)){state.y=nextY;moved=true;}
- return moved;
+ if(canStand(nextX,nextY,state.mended,state.area)){
+   state.x=nextX;state.y=nextY;
+ }else{
+   if(canStand(nextX,state.y,state.mended,state.area))state.x=nextX;
+   if(canStand(state.x,nextY,state.mended,state.area))state.y=nextY;
+ }
+ return Math.hypot(state.x-oldX,state.y-oldY)>.01;
 }
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));}catch(e){console.warn('Could not persist preview progress',e)}}
 function objective(){
@@ -580,6 +591,7 @@ function frame(now){
   el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');
  }
  updateBackdrop(dt);
+ updateMorrowAnimation(now);
  if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}
  else if(modal==='field'&&fieldMotion)updateCharacter();
  if(modal==='timing'&&timingActive)el.timingMarker.style.left=progressAt(now)+'%';

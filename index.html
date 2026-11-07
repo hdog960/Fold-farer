@@ -21,6 +21,7 @@
   <div class="world-frame">
     <svg id="world" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A richly layered paper-and-fabric village at golden hour, with houses, flowers, stitched hills and a damaged bridge">
       <defs>
+        <radialGradient id="actorGroundInk"><stop stop-color="#1f404e" stop-opacity=".7"/><stop offset=".5" stop-color="#355c62" stop-opacity=".35"/><stop offset="1" stop-color="#355c62" stop-opacity="0"/></radialGradient>
         <linearGradient id="terraceDyeSilk" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#e9d6ad"/><stop offset=".35" stop-color="#87b9b4"/><stop offset=".67" stop-color="#537f89"/><stop offset="1" stop-color="#c08d9d"/></linearGradient>
         <linearGradient id="terraceGlassPaper" x1="0%" x2="100%" y1="0%" y2="35%"><stop stop-color="#faf0d7" stop-opacity=".04"/><stop offset=".43" stop-color="#fff3d0" stop-opacity=".49"/><stop offset=".68" stop-color="#f9ecd3" stop-opacity=".04"/><stop offset="1" stop-color="#f1dbb0" stop-opacity=".29"/></linearGradient>
         <radialGradient id="terraceWarmBounce"><stop stop-color="#fff6ce" stop-opacity=".52"/><stop offset=".48" stop-color="#f8d9ad" stop-opacity=".16"/><stop offset="1" stop-color="#f9d3aa" stop-opacity="0"/></radialGradient>
@@ -605,6 +606,7 @@
         </g>
         <!-- Morrow: original ink-crow archivist, shaped from layered physical paper feathers, not an ear-tipped mascot. -->
       <g id="morrow" transform="translate(474 610)" filter="url(#softShadow)" aria-label="Morrow, the ink-bird archivist">
+        <g id="morrowGroundShadow" pointer-events="none"><ellipse cx="-7" cy="13" rx="58" ry="15" fill="url(#actorGroundInk)" opacity=".5"/><ellipse cx="-8" cy="13" rx="27" ry="4.8" fill="#395e64" opacity=".12"/></g>
         <g id="morrowSprite" aria-label="Morrow original ink-bird papercraft artwork">
         <ellipse cx="0" cy="9" rx="42" ry="10" fill="#3b5a58" opacity=".24"/>
         <g fill="none" stroke="#263b4c" stroke-width="7" stroke-linecap="round">
@@ -616,6 +618,7 @@
         <path d="M-34-37Q-49-68-35-97q11-37 42-36 34-8 42 30 15 39-7 76Q11-12-25-20Z" fill="#233c55" stroke="#142e43" stroke-width="7"/>
         <path d="M-26-73q-13-25 0-45 16-25 43-10 24 17 24 48Q19-93-26-73Z" fill="#344c62" stroke="#244256" stroke-width="3"/>
         <path d="M-18-119Q-30-136-21-153q18 17 21 26m7 0 11-33q12 19 2 34" fill="#25394e" stroke="#162e41" stroke-width="5" stroke-linejoin="round"/>
+        <g class="morrow-wing-frame" data-wing-frame="0">
         <g class="inkwing-left">
           <path d="M-32-81Q-63-90-81-61l22 4-19 13 25 6-13 15 29-2Q-16-42-18-64Z" fill="#2a4560" stroke="#182e47" stroke-width="6" stroke-linejoin="round"/>
           <path d="m-59-57 29-4m-27 19 32-7m-21 19 23-12" stroke="#6aa5a5" stroke-width="3.8" fill="none" stroke-linecap="round"/>
@@ -625,6 +628,19 @@
           <path d="M32-80Q52-95 69-75l-9 12 19 3-16 12 15 6-30 16Q21-28 21-66Z" fill="#2d5068" stroke="#1d354e" stroke-width="6" stroke-linejoin="round"/>
           <path d="m44-63 22-8m-19 18 21-7m-22 19 20-9" stroke="#78aca6" stroke-width="3.5" fill="none" stroke-linecap="round"/>
           <path d="m58-68 11-8m-5 19 14-5" stroke="#e5d5aa" stroke-width="2" stroke-dasharray="4 6"/>
+        </g>
+        </g>
+        <g class="morrow-wing-frame" data-wing-frame="1">
+          <g class="inkwing-left"><path d="M-32-79Q-66-116-87-114l9 20-16 1 25 22-12 9 34-3Q-18-43-18-65Z" fill="#2c4863" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-31-74-35-27m34 33-38-18m39 24-30-7" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-73-105 10 10m-26 4 13 7m-5 21 16-2" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-right"><path d="M31-81Q54-119 84-111l-12 21 18 1-23 20 14 10-35-4Q20-40 20-66Z" fill="#2d5069" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m31-72 38-26m-37 32 41-19m-41 25 31-8" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m70-103-7 10m23 3-12 8m10 20-15-1" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+        </g>
+        <g class="morrow-wing-frame" data-wing-frame="2">
+          <g class="inkwing-left"><path d="M-33-80Q-70-100-100-77l17 11-20 9 25 14-18 13 42-8Q-18-39-18-63Z" fill="#31516c" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-32-69-49-6m49 13-49 2m48 8-34 13" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-87-76 16 5m-27 13 18 3m-12 25 18-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-right"><path d="M30-80Q69-101 100-79l-17 12 20 9-25 15 17 13-43-8Q19-38 19-62Z" fill="#33556d" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-69 50-8m-49 15 49 1m-47 10 35 12" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m87-78-16 6m28 14-18 3m12 25-17-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+        </g>
+        <g class="morrow-wing-frame" data-wing-frame="3">
+          <g class="inkwing-left"><path d="M-32-75Q-69-62-74-27l19-12-8 30 23-18-4 26 20-27Q-15-46-20-64Z" fill="#2a4965" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-30-64-29 24m32-16-27 35m34-27-18 37" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-68-29 15-11m-8 29 15-15m4 21 14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-right"><path d="M31-75Q67-61 74-28L55-40l8 31-23-18 4 26-21-28Q15-47 20-64Z" fill="#2f5069" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-64 29 24m-32-17 27 36m-34-28 18 38" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m68-29-15-11m8 29-15-15m-4 21-14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
         </g>
         <path d="M-33-89Q-36-125-6-131q35-10 48 29L31-79Q0-92-33-89Z" fill="#536c77" stroke="#29485c" stroke-width="5"/>
         <path d="M-29-99q14-12 31-10 18-7 30 10" stroke="#9ec5b9" stroke-width="3.3" fill="none"/>
@@ -744,6 +760,7 @@
       <g id="tavi" transform="translate(273 654)" filter="url(#softShadow)">
         <!-- Keep the parent translated/scaled positively. Only this inner art
              is mirrored, so perspective placement never sends a pose offstage. -->
+        <g id="taviGroundShadow" pointer-events="none"><ellipse cx="-8" cy="8" rx="64" ry="19" fill="url(#actorGroundInk)" opacity=".82"/><ellipse cx="-7" cy="8" rx="28" ry="5" fill="#3c656a" opacity=".16"/></g>
         <g id="taviFlip" transform="scale(1)">
         <g id="taviSprite" aria-label="Tavi original directional art">
         <g id="taviFrontArt">

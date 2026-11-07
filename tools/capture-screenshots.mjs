@@ -106,6 +106,14 @@ try {
       throw Error('Landscape touch target clipped in 844×390 browser emulation: '+selector+' '+JSON.stringify(box));
     }
   }
+
+  if(await mobilePage.locator('#morrow').getAttribute('data-flap')!=='0')
+    throw Error('Reduced motion must retain the unanimated authored wing frame');
+  const contact=await mobilePage.locator('#taviGroundShadow').evaluate(el=>{
+    const b=el.getBBox();return {width:b.width,hit:getComputedStyle(el).pointerEvents};
+  });
+  if(contact.width<80||contact.hit!=='none')
+    throw Error('Tavi shadow is absent or blocks touch: '+JSON.stringify(contact));
   await mobilePage.screenshot({path:'screenshots/15-mobile-landscape-emulation.png'});
   await mobilePage.close();
 
@@ -188,6 +196,25 @@ try {
   await followerPage.waitForTimeout(480);
   await followerPage.keyboard.up('ArrowUp');await followerPage.keyboard.up('ArrowRight');
   if(!await followerPage.locator('#morrow').evaluate(e=>e.classList.contains('following')))throw Error('Companion not following');
+
+  await followerPage.emulateMedia({reducedMotion:'no-preference'});
+  if(await followerPage.locator('#morrow .morrow-wing-frame').count()!==4)
+    throw Error('Morrow lacks four authored wing frames');
+  await followerPage.waitForFunction(
+    ()=>document.getElementById('morrow')?.dataset.flap==='2',null,{timeout:3500}
+  );
+  const wingState=await followerPage.locator('#morrow').evaluate(el=>{
+    const visible=[...el.querySelectorAll('.morrow-wing-frame')]
+      .filter(w=>getComputedStyle(w).display!=='none');
+    return {state:el.dataset.flap,frames:visible.map(w=>w.getAttribute('data-wing-frame'))};
+  });
+  if(wingState.frames.length!==1||wingState.state!==wingState.frames[0])
+    throw Error('Wing images are overlapping or missing: '+JSON.stringify(wingState));
+  const shadow=await followerPage.locator('#morrowGroundShadow').evaluate(el=>{
+    const b=el.getBBox();return {width:b.width,height:b.height};
+  });
+  if(shadow.width<80||shadow.height<15)throw Error('Morrow lacks an anchored ground shadow');
+  await followerPage.screenshot({path:'screenshots/24-morrow-illustrated-wing-flight.png',animations:'allow'});
   const followerPos=await followerPage.locator('#morrow').getAttribute('transform');
   console.log('MORROW FOLLOWS TAVI:',followerPos);
   await followerPage.screenshot({path:'screenshots/11-morrow-follows.png'});

@@ -520,3 +520,21 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #terraceMaterialStories,#terraceMaterialStories *,#terraceLightShift,#terraceLightShift *{pointer-events:none!important}
 #terraceDyerSilks,#terraceBotanicalRelief,#terraceGateEngraving{filter:drop-shadow(1px 2px 1px #544e5d1f)}
 #terraceLightShift{mix-blend-mode:screen}
+
+/* First Fold 0.15: original ink-bird sprite-frame silhouettes, rather than
+   CSS tilting of a single wing texture. One full pair is painted per beat. */
+#morrow .morrow-wing-frame{display:none}
+#morrow:not([data-flap]) .morrow-wing-frame[data-wing-frame="0"],
+#morrow[data-flap="0"] .morrow-wing-frame[data-wing-frame="0"],
+#morrow[data-flap="1"] .morrow-wing-frame[data-wing-frame="1"],
+#morrow[data-flap="2"] .morrow-wing-frame[data-wing-frame="2"],
+#morrow[data-flap="3"] .morrow-wing-frame[data-wing-frame="3"]{display:inline}
+#morrow .morrow-wing-frame .inkwing-left,#morrow .morrow-wing-frame .inkwing-right{animation:none!important;transform:none!important}
+#morrow{animation:none!important}
+#morrowSprite{animation:birdBob 2.3s ease-in-out infinite}
+#morrowSprite>ellipse:first-child{opacity:0}
+#morrowGroundShadow,#taviGroundShadow{pointer-events:none}
+#taviGroundShadow{transform-box:fill-box;transform-origin:center}
+#tavi.walking[data-stride="0"] #taviGroundShadow,#tavi.walking[data-stride="2"] #taviGroundShadow{scale:1.025 .97}
+#tavi.walking[data-stride="1"] #taviGroundShadow,#tavi.walking[data-stride="3"] #taviGroundShadow{scale:.98 1.02}
+@media(prefers-reduced-motion:reduce){#morrowSprite{animation:none!important}#taviGroundShadow{scale:1 1!important}}
