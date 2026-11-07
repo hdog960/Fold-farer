@@ -120,6 +120,12 @@ click('interact');
 assert(save().area==='terrace','North Terrace gateway did not open a connected world');
 drainDialogue();
 assert(e('terraceScene').style.display==='', 'North Terrace is not visible');
+for(const id of ['terraceMaterialStories','terraceDyerSilks','terraceBotanicalRelief','terraceGateEngraving','terraceLightShift']){
+ assert(e(id),'Missing real stage art: '+id);
+}
+step(4);
+assert(e('terraceLightShift').attrs.transform?.startsWith('translate('),
+ 'Sunlight must receive its own small parallax without moving collision geometry');
 // These two fully drawn objects have the same footprints in SVG, physics and
 // painter ordering; they cannot become pass-through props or invisible walls.
 // The preview script intentionally keeps its pure collision function private.

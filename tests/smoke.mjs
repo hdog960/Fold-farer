@@ -53,4 +53,13 @@ assert(ids.includes('taviMendArc'),'The in-world needle gesture is missing');
 assert((html.match(/class="stride-contact-ground"/g)||[]).length===5,'Five directional poses need ground contact art');
 assert(css.includes('#tavi.walking[data-stride="0"]')&&css.includes('#tavi.walking[data-stride="3"]'),'Four unique gait frames required');
 assert(game.includes('walkDistance+=travelled')&&game.includes('mendingUntil'),'Movement and Mending must be driven by game state');
+for(const id of ['terraceMaterialStories','terraceDyerSilks','terraceBotanicalRelief','terraceGateEngraving','terraceLightShift']){
+ assert(ids.includes(id),'Missing authored dimensional terrace illustration: '+id);
+}
+for(const gradient of ['terraceDyeSilk','terraceGlassPaper','terraceWarmBounce','terraceArchUnderside']){
+ assert(html.includes('id="'+gradient+'"'),'Missing transparent material treatment: '+gradient);
+}
+assert(css.includes('#terraceMaterialStories *')&&css.includes('pointer-events:none!important'),
+ 'Decorative material overlays must not capture iPhone taps');
+assert(game.includes('el.terraceLightShift.setAttribute('),'Light parallax must remain separate from physical stage');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

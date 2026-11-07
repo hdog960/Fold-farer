@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.13.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.14.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -76,3 +76,8 @@ The terrace is no longer two blank paper-walled buildings around a staircase. Th
 All five original directional Tavi illustrations now use four discrete illustrated sole-contact states. Strides advance from actual distance rather than independent time-based leg swinging, reducing sliding when collisions stop the actor. Arms, scarf, coat and ground impressions follow the moving pose. The mended river bridge now receives Tavi's on-stage needle-and-thread flourish, with progress saved before animation ends. The real-browser screenshot pipeline verifies a live Mending frame, completed gesture and save integrity. Same Home Screen icon, same old preview save key, no cost or new app.
 
 **Visual acceptance:** Still in progress; not the approved production sprite atlas or the final Milestone A standard. Physical iPhone inspection is outstanding.
+
+### First Fold 0.14.0 — The lived-in North Terrace (Milestone A illustration pass)
+The actual playable North Terrace receives an original dimensional art pass: the Ink Dyer's Nook has a three-layer folded awning, three differently shaped hand-dyed silk samples and an individual bobbin shelf; the Vellum Conservatory gains pressed-flower glazing, plant silhouettes, glasspaper reflections and a botanical specimen ledge; and the far arch carries custom brass page-bolts, underside shading and carved edging. Warm, transparent afternoon bounce light responds slightly to stage parallax without moving collision or character positions. Every component is original SVG integrated into the real game, not an independent concept image. Automated real-browser captures are stored in screenshots/23-terrace-material-light.png. The iPhone Home Screen URL and original localStorage save key stay unchanged.
+
+**Aesthetic verdict remains NOT APPROVED.** This gives the physical scene more material character but does not replace the eventual production-quality animated character atlas or the full Milestone A 90/100 acceptance check. Physical-device testing remains pending.
