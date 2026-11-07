@@ -32,6 +32,12 @@
         <filter id="paperShadow" x="-40%" y="-40%" width="200%" height="200%"><feDropShadow dx="5" dy="10" stdDeviation="6" flood-color="#294f56" flood-opacity=".35"/></filter>
         <filter id="softShadow" x="-40%" y="-40%" width="200%" height="200%"><feDropShadow dx="1" dy="5" stdDeviation="3" flood-color="#263f46" flood-opacity=".36"/></filter>
         <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+        <pattern id="craftFibers" width="73" height="62" patternUnits="userSpaceOnUse"><path d="m3 18 21 2m28 9 11-4M21 51l10-3m17-39 14 5" stroke="#946b65" stroke-width="1.4" opacity=".28"/><path d="m13 11 8 4m27 33 19-2m-60 7 8 2" stroke="#fff4d5" stroke-width="1.8" opacity=".58"/><circle cx="38" cy="24" r="1.4" fill="#af8a75"/></pattern>
+        <pattern id="craftRoof" width="53" height="31" patternUnits="userSpaceOnUse"><path d="M-4 6Q12 21 28 7T59 7M0 28Q15 13 27 28T54 28" stroke="#744a61" stroke-width="3" fill="none" opacity=".49"/><path d="M-3 3Q14 18 28 4M0 25q14-15 27 1" stroke="#ffdec0" stroke-width="2.3" fill="none" opacity=".62"/><circle cx="37" cy="13" r="1.7" fill="#eacaa5"/></pattern>
+        <pattern id="craftWeave" width="26" height="24" patternUnits="userSpaceOnUse"><path d="M0 5H26M0 17H26M5 0V24M18 0V24" stroke="#fff1c7" opacity=".31" stroke-width=".8"/><path d="m10 12 7-2" stroke="#795e6c" opacity=".26"/></pattern>
+        <pattern id="craftWood" width="80" height="31" patternUnits="userSpaceOnUse"><path d="M0 7q14-5 32 0t48-1M0 26q21 4 37 0t43-1" fill="none" stroke="#674c58" stroke-width="2" opacity=".3"/><path d="m15 17 20-2m19 0 19-3" stroke="#ffe6b3" stroke-width="2" opacity=".54"/></pattern>
+        <pattern id="craftVeins" width="72" height="67" patternUnits="userSpaceOnUse"><path d="M2 51q29-41 68-38m-44 27-5-22m22 4 8-16m2 12-4 22" stroke="#e4e6be" stroke-width="2" fill="none" opacity=".54"/><path d="m16 55 9-1m42-38 5 2" stroke="#406c61" stroke-width="2" opacity=".34"/></pattern>
+        <radialGradient id="craftLamp"><stop stop-color="#fff3bb" stop-opacity=".93"/><stop offset=".4" stop-color="#ffdd8a" stop-opacity=".37"/><stop offset="1" stop-color="#eebb8c" stop-opacity="0"/></radialGradient>
       </defs>
       <g id="folioScene">
       <rect width="1440" height="810" fill="url(#sky)"/>
@@ -46,6 +52,16 @@
       <circle cx="1128" cy="194" r="91" fill="#fff3c0" opacity=".23" filter="url(#glow)"/>
       <circle cx="1128" cy="194" r="58" fill="#fff0b0" opacity=".63"/>
       <circle cx="1128" cy="194" r="44" fill="#fff8d8" opacity=".8"/>
+      <g id="paintedPaperRidges" pointer-events="none">
+        <path d="M-25 358 109 287l83 54 102-90 72 65 79-42 111 76 101-58 91 59 95-59 93 41 74-65 92 70 93-43 93 45 89-62 127 70v80H-25Z" fill="#a6c5a7" stroke="#e5dfb7" stroke-width="8" opacity=".72"/>
+        <path d="M-20 410 111 349l105 42 75-50 103 55 102-48 96 36 115-56 111 63 92-37 112 35 105-46 94 49 90-48 159 54v57H-20Z" fill="#81ad98" stroke="#dbddac" stroke-width="6" opacity=".82"/>
+        <path d="m269 286 25-31 24 22m641 9 34-18 34 28m298 11 26-25 30 28" fill="none" stroke="#fff3cc" stroke-width="4" opacity=".65"/>
+        <path d="M-8 405q137-52 298-15t285-1q200-64 396 10t474-1" fill="none" stroke="#f7e9c5" stroke-width="3" stroke-dasharray="4 14" opacity=".58"/>
+        <g fill="#607e78" stroke="#ddd6ad" stroke-width="2.7" opacity=".74"><path d="M522 380v-43l17-18 19 17v43Z"/><path d="M763 387v-27l24-23 27 21v32Z"/><path d="M1346 385v-35l26-25 25 26v35Z"/></g>
+        <g fill="#c99591" stroke="#f5dfb2" stroke-width="2.3" opacity=".8"><path d="m514 337 24-28 27 27Z"/><path d="m755 358 31-30 37 30Z"/><path d="m1338 350 34-33 33 33Z"/></g>
+        <g stroke="#779a82" stroke-width="5" stroke-linecap="round" opacity=".68"><path d="M466 396v-57m25 65v-32m366 37v-44m-30 32v-26m402 16v-51m32 47v-34"/></g>
+        <g fill="#a0b99a" stroke="#c3d6a9" stroke-width="3"><path d="m440 352 24-50 27 49Z"/><path d="m472 382 20-41 25 43Z"/><path d="m835 369 19-52 25 52Z"/><path d="m1205 357 23-56 28 55Z"/><path d="m1240 374 20-45 24 45Z"/></g>
+      </g>
       <path d="M0 397Q162 287 345 356T720 355 1120 329 1440 353V579H0Z" fill="#84aa9b" stroke="#c4ddbc" stroke-width="10"/>
       <path d="M0 446Q190 399 322 440T630 415 1019 421 1440 387V627H0Z" fill="url(#paperHill)" stroke="#a7c6a2" stroke-width="8"/>
       <path d="M0 470Q320 424 570 477T1014 467 1440 424" fill="none" stroke="#365e58" stroke-width="2" stroke-dasharray="2 13" opacity=".58"/>
@@ -56,6 +72,7 @@
           <circle cx="1128" cy="328" r="64"/><circle cx="1208" cy="361" r="53"/><circle cx="1338" cy="327" r="65"/>
         </g>
       </g>
+<g id="handPaintedCanopies" pointer-events="none"><g transform="translate(72 369)"><path d="M-48 -5Q-56 -42 -11 -47Q44 -65 48 -10Q61 32 2 47Q-44 51 -48 -5Z" fill="#73a08d" stroke="#4b766f" stroke-width="5"/><path d="M-48 -5Q-56 -42 -11 -47Q44 -65 48 -10Q61 32 2 47Q-44 51 -48 -5Z" fill="url(#craftVeins)" opacity=".7"/><path d="m-27 6 21-25 27-9m-27 9 10 24m17-33 13 20" fill="none" stroke="#d5ddad" stroke-width="2.6"/><path d="M-18 24q20 13 41 1" fill="none" stroke="#e9ddbb" stroke-width="2.5" stroke-dasharray="3 8"/></g><g transform="translate(363 348)"><path d="M-49 -5Q-57 -43 -11 -48Q45 -66 49 -10Q62 33 2 48Q-45 52 -49 -5Z" fill="#60947c" stroke="#4b766f" stroke-width="5"/><path d="M-49 -5Q-57 -43 -11 -48Q45 -66 49 -10Q62 33 2 48Q-45 52 -49 -5Z" fill="url(#craftVeins)" opacity=".7"/><path d="m-27 6 21-25 27-9m-27 9 10 24m17-33 13 20" fill="none" stroke="#d5ddad" stroke-width="2.6"/><path d="M-18 25q20 13 41 1" fill="none" stroke="#e9ddbb" stroke-width="2.5" stroke-dasharray="3 8"/></g><g transform="translate(1131 332)"><path d="M-56 -5Q-64 -50 -11 -55Q52 -73 56 -10Q69 40 2 55Q-52 59 -56 -5Z" fill="#78a18c" stroke="#4b766f" stroke-width="5"/><path d="M-56 -5Q-64 -50 -11 -55Q52 -73 56 -10Q69 40 2 55Q-52 59 -56 -5Z" fill="url(#craftVeins)" opacity=".7"/><path d="m-27 6 21-25 27-9m-27 9 10 24m17-33 13 20" fill="none" stroke="#d5ddad" stroke-width="2.6"/><path d="M-18 26q20 13 41 1" fill="none" stroke="#e9ddbb" stroke-width="2.5" stroke-dasharray="3 8"/></g><g transform="translate(1350 326)"><path d="M-58 -5Q-66 -45 -11 -50Q54 -68 58 -10Q71 35 2 50Q-54 54 -58 -5Z" fill="#639580" stroke="#4b766f" stroke-width="5"/><path d="M-58 -5Q-66 -45 -11 -50Q54 -68 58 -10Q71 35 2 50Q-54 54 -58 -5Z" fill="url(#craftVeins)" opacity=".7"/><path d="m-27 6 21-25 27-9m-27 9 10 24m17-33 13 20" fill="none" stroke="#d5ddad" stroke-width="2.6"/><path d="M-18 27q20 13 41 1" fill="none" stroke="#e9ddbb" stroke-width="2.5" stroke-dasharray="3 8"/></g></g>
       <path d="M0 517Q204 475 422 512T825 502 1440 485V810H0Z" fill="url(#frontLand)" stroke="#d0ce94" stroke-width="10"/>
       <path d="M0 517Q204 475 422 512T825 502 1440 485V810H0Z" fill="url(#grain)"/>
       <!-- Honeyed wood-and-card village architecture, each element has a real side thickness. -->
@@ -84,6 +101,19 @@
         <path d="M1292 372 1354 296l104 36v229h-166Z" fill="#eacda6" stroke="#776169" stroke-width="7"/>
         <path d="M1279 381 1353 282 1457 320" fill="#aa6d79" stroke="#f0ac9f" stroke-width="28" stroke-linejoin="round"/>
       </g>
+<g id="craftArchitecture" pointer-events="none"><defs><clipPath id="roofV0"><path d="M45 373 159 245 300 290 332 290 187 244 152 225Z"/></clipPath><clipPath id="roofV1"><path d="M368 411 451 299 595 356 616 346 458 279Z"/></clipPath><clipPath id="roofV2"><path d="M879 402 995 264 1137 315 1170 319 1007 244Z"/></clipPath><clipPath id="roofV3"><path d="M1279 381 1353 282 1457 320l3 55-119-45-62 83Z"/></clipPath></defs><rect x="34" y="222" width="302" height="165" fill="url(#craftRoof)" clip-path="url(#roofV0)" opacity=".75"/><rect x="355" y="274" width="275" height="155" fill="url(#craftRoof)" clip-path="url(#roofV1)" opacity=".75"/><rect x="865" y="238" width="320" height="178" fill="url(#craftRoof)" clip-path="url(#roofV2)" opacity=".75"/><rect x="1270" y="275" width="191" height="154" fill="url(#craftRoof)" clip-path="url(#roofV3)" opacity=".75"/><g opacity=".58">
+<path d="M63 375 158 272 290 303V536H63Z" fill="url(#craftFibers)"/><path d="M382 406 454 319 594 361V538H382Z" fill="url(#craftFibers)"/><path d="M897 401 1004 291 1131 331V554H897Z" fill="url(#craftFibers)"/><path d="M1294 375 1355 293 1443 333v225H1294Z" fill="url(#craftFibers)"/></g>
+<g fill="none" stroke="#f3e5bd" stroke-width="3.8" opacity=".9"><path d="m64 378 92-96 123 29M385 413l72-86 128 45M905 410l99-111 117 42M1302 382l52-74 75 34"/></g>
+<g fill="none" stroke="#8e716d" stroke-width="2" opacity=".6"><path d="M77 393v121m10-113v91m183-171v176M391 421v101m9-110v102m184-155v141M910 412v125m11-137v124m195-187v193M1307 397v145"/></g>
+<g fill="#dcb98b" stroke="#956f6e" stroke-width="2.5"><circle cx="77" cy="398" r="3.5"/><circle cx="280" cy="321" r="3.5"/><circle cx="392" cy="416" r="3.5"/><circle cx="581" cy="375" r="3.5"/><circle cx="905" cy="405" r="3.5"/><circle cx="1126" cy="336" r="3.5"/></g>
+<g fill="#d9b18b" stroke="#8f6d6c" stroke-width="5"><path d="M85 396h14v73H85ZM151 392h13v74h-13Z"/><path d="M506 416h12v65h-12ZM565 413h11v65h-11Z"/><path d="M1043 388h15v69h-15ZM1115 383h13v69h-13Z"/></g>
+<g stroke="#fff2c9" stroke-width="2.2"><path d="M88 410h9m-9 21h9m-9 22h9m55-45h11m-11 24h11m-11 20h11M507 434h11m-11 22h11m47-22h11m-11 22h11M1046 404h10m-10 22h10m58-25h11m-11 23h11"/></g>
+<g fill="none" stroke="#f7edc9" stroke-width="3" opacity=".81"><path d="M59 542q117 18 239-7M397 536q104 15 207-6M910 553q116 22 251-4"/></g>
+<g filter="url(#softShadow)">
+<path d="M296 412v24m318-66v27m545-62v27" stroke="#766368" stroke-width="4"/>
+<ellipse cx="296" cy="439" rx="40" ry="51" fill="url(#craftLamp)" opacity=".72"/><path d="m281 426q15-20 30 0l-9 24h-14Z" fill="#986c67" stroke="#765b63" stroke-width="3"/><circle cx="296" cy="439" r="8" fill="#ffedb4" stroke="#b48b75" stroke-width="2"/><ellipse cx="614" cy="399" rx="40" ry="51" fill="url(#craftLamp)" opacity=".72"/><path d="m599 386q15-20 30 0l-9 24h-14Z" fill="#986c67" stroke="#765b63" stroke-width="3"/><circle cx="614" cy="399" r="8" fill="#ffedb4" stroke="#b48b75" stroke-width="2"/><ellipse cx="1159" cy="362" rx="40" ry="51" fill="url(#craftLamp)" opacity=".72"/><path d="m1144 349q15-20 30 0l-9 24h-14Z" fill="#986c67" stroke="#765b63" stroke-width="3"/><circle cx="1159" cy="362" r="8" fill="#ffedb4" stroke="#b48b75" stroke-width="2"/>
+</g>
+</g>
       <!-- Shop signs and paper pennants. -->
       <g filter="url(#softShadow)" class="lettering">
         <path d="M102 355q51 17 110 2l-4 35q-59 10-109-1Z" fill="#fff0d2" stroke="#775b63" stroke-width="4"/>
@@ -171,6 +201,10 @@
       </g>
 
       <!-- Pop-up props are depth-sorted against Tavi by their foot position. -->
+<g id="craftGround" pointer-events="none" opacity=".8"><path d="M0 588q227-37 420 5t242-2m190 0q277-43 585-8" fill="none" stroke="#c7af8d" stroke-width="5"/><path d="M0 585q227-37 420 5t242-2m190 0q277-43 585-8" fill="none" stroke="#fff4d0" stroke-width="2" stroke-dasharray="7 14"/>
+<path d="m196 663 22-8 18 10-22 12Z" fill="#e6cfaa" stroke="#a99e87" stroke-width="2"/><path d="m205 664 15-3" stroke="#fff2cd" stroke-width="2"/><path d="m470 736 22-8 18 10-22 12Z" fill="#d5c3a4" stroke="#a99e87" stroke-width="2"/><path d="m479 737 15-3" stroke="#fff2cd" stroke-width="2"/><path d="m959 731 22-8 18 10-22 12Z" fill="#e6cfaa" stroke="#a99e87" stroke-width="2"/><path d="m968 732 15-3" stroke="#fff2cd" stroke-width="2"/><path d="m1294 691 22-8 18 10-22 12Z" fill="#d5c3a4" stroke="#a99e87" stroke-width="2"/><path d="m1303 692 15-3" stroke="#fff2cd" stroke-width="2"/><path d="m105 741 22-8 18 10-22 12Z" fill="#e6cfaa" stroke="#a99e87" stroke-width="2"/><path d="m114 742 15-3" stroke="#fff2cd" stroke-width="2"/>
+<g fill="#88a47d" stroke="#d6d8a8" stroke-width="2"><path d="M151 609q-19-18-23-33 18 3 25 28m-2 5q7-26 25-24-1 24-25 28Z"/></g><g fill="#88a47d" stroke="#d6d8a8" stroke-width="2"><path d="M642 601q-19-18-23-33 18 3 25 28m-2 5q7-26 25-24-1 24-25 28Z"/></g><g fill="#88a47d" stroke="#d6d8a8" stroke-width="2"><path d="M1010 591q-19-18-23-33 18 3 25 28m-2 5q7-26 25-24-1 24-25 28Z"/></g><g fill="#88a47d" stroke="#d6d8a8" stroke-width="2"><path d="M1332 592q-19-18-23-33 18 3 25 28m-2 5q7-26 25-24-1 24-25 28Z"/></g>
+<path d="M-5 713q250-74 490 11m397 6q280-93 567-56" fill="none" stroke="#f4e6bd" stroke-width="2.3" stroke-dasharray="5 16"/></g>
       <g id="depthStage">
         <g id="paperPlanter" transform="translate(336 725)" filter="url(#softShadow)">
           <ellipse cx="0" cy="6" rx="68" ry="18" fill="#335b54" opacity=".24"/>
@@ -298,6 +332,7 @@
         <path d="M0 791Q181 755 385 793T782 795 1112 784 1440 758" stroke="#d4daac" stroke-width="2" stroke-dasharray="4 11" fill="none"/>
       </g>
       <rect x="0" y="0" width="1440" height="810" fill="url(#grain)" opacity=".28" pointer-events="none"/>
+<g id="craftMotes" pointer-events="none"><g class="craft-petal cp1" transform="translate(402 501)"><path d="M-9-3q16-12 20-1Q3 12-9-3Z" fill="#fff0bd" stroke="#e3b397" stroke-width="2"/></g><g class="craft-petal cp2" transform="translate(938 479)"><path d="M-9-3q16-12 20-1Q3 12-9-3Z" fill="#f4b6b9" stroke="#e3b397" stroke-width="2"/></g><g class="craft-petal cp3" transform="translate(1216 510)"><path d="M-9-3q16-12 20-1Q3 12-9-3Z" fill="#fff0bd" stroke="#e3b397" stroke-width="2"/></g><g class="craft-petal cp4" transform="translate(144 568)"><path d="M-9-3q16-12 20-1Q3 12-9-3Z" fill="#f4b6b9" stroke="#e3b397" stroke-width="2"/></g><g class="craft-petal cp5" transform="translate(709 461)"><path d="M-9-3q16-12 20-1Q3 12-9-3Z" fill="#fff0bd" stroke="#e3b397" stroke-width="2"/></g><g class="craft-petal cp6" transform="translate(1334 452)"><path d="M-9-3q16-12 20-1Q3 12-9-3Z" fill="#f4b6b9" stroke="#e3b397" stroke-width="2"/></g><circle class="craft-glint cg0" cx="478" cy="446" r="2" fill="#fff4bd"/><circle class="craft-glint cg1" cx="870" cy="487" r="3" fill="#fff4bd"/><circle class="craft-glint cg2" cx="1299" cy="475" r="2" fill="#fff4bd"/><circle class="craft-glint cg3" cx="678" cy="568" r="3" fill="#fff4bd"/></g>
       </g><!-- folioScene -->
       <g id="atelierScene" style="display:none" aria-label="Explorable Mender's Threads workshop">
         <rect width="1440" height="810" fill="#56736f"/>
