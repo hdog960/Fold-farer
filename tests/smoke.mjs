@@ -15,6 +15,8 @@ assert.equal(manifest.display,'standalone');
 assert.equal(manifest.start_url,'./');
 for(const direction of ['up','down','left','right'])assert(html.includes('data-move="'+direction+'"'),'Missing '+direction+' touch button');
 assert(game.includes('canStand')&&game.includes('ArrowUp')&&game.includes('sync'), 'Missing depth traversal plumbing');
+for(const id of ['paintedPaperRidges','handPaintedCanopies','craftArchitecture','craftGround','craftMotes','atelierArtFinishing'])assert(html.includes('id="'+id+'"'),'Missing art element '+id);
+for(const id of ['craftFibers','craftRoof','craftVeins','craftWeave','craftWood'])assert(html.includes('id="'+id+'"'),'Missing vector paper pattern '+id);
 assert(css.includes('prefers-reduced-motion:reduce'));
 assert(sw.includes('caches.open'));
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

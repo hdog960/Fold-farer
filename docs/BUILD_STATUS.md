@@ -57,3 +57,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - The shared Tavi actor moves between scene layers, with per-room sorted occluders (loom, thread trolley, dye bench).
 - Four-way traversable interior with its own collisions and a small original Mender's Loom discovery and optional collectible.
 - The existing level remains a test scene and full 3D geometry is not used. Future rooms and world-map exploration will be developed during Milestone A. Visual acceptance still pending.
+
+## First Fold 0.4.0 — original papercraft art pass
+- Scalable hand-authored patterns for paper fibers, roof scales, leaf veins, cloth weave and wood grain applied to actual game geometry; no static concept art substituted.
+- More layered distant ridges, varied canopy cutouts, house shutters, stitched roof edging and warm hanging lanterns; courtyard etchings, stones, tiny leaves and drifting motes.
+- Improved the Threads workshop with hanging fabric, textile floor, painted lantern glows and a relocated sign; added Tavi coat/satchel details.
+- No changes to game saves, original quest or movement; previous Home Screen icon URL maintained and service worker cache bumped.
+- ART GATE NOT MET: character atlases, environment richness and animation remain significantly below the envisioned final visual standard; not approved for Milestone B.
