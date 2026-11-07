@@ -64,3 +64,8 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Improved the Threads workshop with hanging fabric, textile floor, painted lantern glows and a relocated sign; added Tavi coat/satchel details.
 - No changes to game saves, original quest or movement; previous Home Screen icon URL maintained and service worker cache bumped.
 - ART GATE NOT MET: character atlases, environment richness and animation remain significantly below the envisioned final visual standard; not approved for Milestone B.
+
+## First Fold 0.4.1 — Morrow silhouette correction
+- Replaced earlier ear-shaped blue creature with distinct original dark-ink feathered archivist bird: quill-like feather crest, beak, layered wings, stitched feather contours, feet, brass clasp and scroll.
+- Separate subtle wing motions with reduced-motion support; retains Morrow actor ID, story, interaction zone and depth sorting.
+- New versioned PWA cache, old save key unchanged. Artwork is still prototype quality; visual approval gate not met.
