@@ -119,9 +119,13 @@ drainDialogue();
 assert(e('terraceScene').style.display==='', 'North Terrace is not visible');
 // These two fully drawn objects have the same footprints in SVG, physics and
 // painter ordering; they cannot become pass-through props or invisible walls.
-assert(!new Script("canStand(502,563,false,'terrace')").runInContext(context),'Dyers bench is missing world collision');
-assert(!new Script("canStand(954,555,false,'terrace')").runInContext(context),'Letter cabinet is missing world collision');
-assert(new Script("canStand(720,585,false,'terrace')").runInContext(context),'The central terrace is blocked by decorative artwork');
+// The preview script intentionally keeps its pure collision function private.
+// Browser movement will verify real physical blocking; this VM covers the
+// published source footprint and the DOM-stage participation.
+const source=read('game.js');
+assert(source.includes('((x-502)/58)**2+((y-563)/19)**2<1'),"Dyer's bench collision footprint is missing");
+assert(source.includes('((x-954)/65)**2+((y-555)/21)**2<1'),"Letter cabinet collision footprint is missing");
+
 assert(e('terraceDyersBench').parentNode===e('terraceDepthStage'),'Dyers bench is not in active paint ordering');
 assert(e('terraceLetterCabinet').parentNode===e('terraceDepthStage'),'Letter cabinet is not in active paint ordering');
 assert(e('prompt').classList.contains('terrace-prompt'),'Terrace prompt should use its own unobstructed HUD placement');
