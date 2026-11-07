@@ -22,6 +22,16 @@ try {
   for(let i=0;i<4;i++)await page.locator('#nextLine').click();
   await page.locator('#dialogue').waitFor({state:'hidden'});
   await page.screenshot({path:'screenshots/03-folio-village.png'});
+  const before=await page.locator('#tavi').getAttribute('transform');
+  await page.keyboard.down('ArrowUp');
+  await page.waitForTimeout(450);
+  await page.keyboard.up('ArrowUp');
+  const after=await page.locator('#tavi').getAttribute('transform');
+  if(before===after || !(await page.locator('#tavi').getAttribute('class')).includes('dir-up')){
+    throw Error('2.5D depth movement or back-facing artwork not active');
+  }
+  await page.screenshot({path:'screenshots/06-depth-exploration.png'});
+  console.log('DEPTH TEST:',before,'->',after);
 
   // Load a separate real browser page for each saved scene; simply writing
   // localStorage before reload is undone by the game's pagehide autosave.
@@ -53,7 +63,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {

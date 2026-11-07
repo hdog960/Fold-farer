@@ -38,3 +38,15 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Network-first service worker bypasses HTTP cache when online and keeps an offline fallback. Browser checks for worker updates when launched/resumed.
 - iOS will load new published files when the app is next opened online; no reinstall is required. Background update while closed/offline is not guaranteed.
 - iPhone on-device installation and actual cache/update behavior still need physical verification.
+
+## First Fold 0.2.0 — walkable depth phase (Milestone A)
+
+- Replaced left/right-only travel with an 8-way combined axis movement model, four-button iPhone D-pad, keyboard arrows/WASD, and tap-to-walk.
+- Added a real 2D traversable ground footprint, house/propped garden collision, bridge-only crossing, diagonal normalization and directional animation poses.
+- Authored original front, back, side Tavi SVG art. No more backwards moonwalking as the character moves away from camera.
+- Player scale adjusts by distance to the camera; NPCs and paper props dynamically sort by projected foot depth, producing foreground occlusion.
+- Added receding stitched flagstone courtyards, pop-up planter, notice board and bench to make paper scenery feel dimensional; the notice has optional interaction.
+- Previous 0.1 local save key intentionally retained. Existing progress migrates the directional field and retains X/Y.
+- GitHub Pages Home Screen URL and auto-update mechanism are unchanged; PWA cache bumped for updated scripts.
+- Still NOT the visual acceptance target, and does not yet include interiors, free camera, camera-follow scrolling, polished sprite atlases, or the complete Milestone A vertical slice.
+- Code automated tests and Playwright screenshots should be checked on latest run; physical iPhone testing remains outstanding.

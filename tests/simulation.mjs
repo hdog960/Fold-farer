@@ -17,20 +17,20 @@ function element(id){
      toggle:(x,force)=>{if(force===true){classes.add(x);return true;}if(force===false){classes.delete(x);return false;}if(classes.has(x)){classes.delete(x);return false;}classes.add(x);return true;}
    },
    addEventListener:(type,cb)=>listeners.set(type,cb),
+   appendChild(child){this.lastChild=child;return child;},
    setAttribute(x,y){this.attrs[x]=y;},
    setPointerCapture(){},
    fire(type='click',event={}){const cb=listeners.get(type);assert(cb,id+' missing '+type+' listener');cb(event);}
  };
 }
 for(const id of ids)elements.set(id,element(id));
-const moveLeft=element('move-left'),moveRight=element('move-right');
-moveLeft.dataset.move='left';moveRight.dataset.move='right';
+const moveButtons=Object.fromEntries(['left','right','up','down'].map(d=>{const button=element('move-'+d);button.dataset.move=d;return [d,button];}));
 const docEvents=new Map(),winEvents=new Map(),storage=new Map();
 let now=0,raf=null,timers=[];
 const document={
  hidden:false,
  getElementById:id=>{assert(elements.has(id),'unknown element '+id);return elements.get(id);},
- querySelectorAll:sel=>sel==='[data-move]'?[moveLeft,moveRight]:[],
+ querySelectorAll:sel=>sel==='[data-move]'?Object.values(moveButtons):[],
  addEventListener:(name,cb)=>docEvents.set(name,cb)
 };
 const win={addEventListener:(name,cb)=>winEvents.set(name,cb),confirm:()=>true};
@@ -66,9 +66,21 @@ function drainDialogue(){
 const save=()=>JSON.parse(storage.get('foldfarer.firstfold.0.1')||'null');
 assert(e('intro').classList.contains('hidden')===false,'Intro missing');
 click('start');drainDialogue();
-walkRight(54);assert(Math.abs(save()?.x-273)<5,'Walk location is expected to save only at checkpoint');
+// Verify actual into-the-world movement, separate rear artwork, and retreat.
+const pos=()=>{const match=/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(e('tavi').attrs.transform);assert(match,'Missing transform');return {x:Number(match[1]),y:Number(match[2])};};
+const startY=pos().y;
+key('ArrowUp',true);step(20);key('ArrowUp',false);
+assert(pos().y<startY-35,'Up did not move into the screen');
+assert(e('tavi').classList.contains('dir-up'),'Up did not display original back pose');
+key('ArrowDown',true);step(20);key('ArrowDown',false);
+assert(pos().y>startY-6,'Down failed to return toward the camera');
+assert(e('tavi').classList.contains('dir-down'),'Down did not display front pose');
+walkRight(54);
+assert(Math.abs(pos().x-475)<16,'Horizontal movement regressed');
 click('interact');drainDialogue();assert(save().metMorrow,'Morrow recruitment failed');
-walkRight(58);click('interact');drainDialogue();assert(save().mended,'Bridge Mend failed');
+walkRight(58);
+walkRight(12);assert(pos().x<=709,'Crossed an unrepaired bridge or river');
+click('interact');drainDialogue();assert(save().mended,'Bridge Mend failed');
 assert(e('bridgeFix').attrs.class==='bridge-open','Bridge artwork not opened');
 walkRight(85);click('interact');drainDialogue();assert(save().letter,'Mila letter not received');
 walkRight(55);click('interact');
@@ -86,4 +98,4 @@ assert(save().won,'Victory checkpoint missing');
 click('journalButton');assert(e('journalText').innerHTML.includes('preview is complete'),'Journal summary missing');
 click('resume');
 assert(e('battle').classList.contains('hidden')&&e('journal').classList.contains('hidden'),'Modals not closed');
-console.log('Gameplay simulation passed: intro -> Morrow -> Mend -> Mila -> timed battle -> victory -> journal/save.');
+console.log('Gameplay simulation passed: 2D movement, depth poses, river collision, Morrow -> Mend -> Mila -> timed battle -> victory -> journal/save.');
