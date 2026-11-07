@@ -44,8 +44,18 @@ try {
   });
   await page.reload({waitUntil:'networkidle'});
   await page.locator('#start').click();
+  console.log('STATE BEFORE BATTLE:',JSON.stringify(await page.evaluate(()=>({
+    save:localStorage.getItem('foldfarer.firstfold.0.1'),
+    prompt:document.querySelector('#promptText').textContent,
+    dialogueHidden:document.querySelector('#dialogue').classList.contains('hidden')
+  }))));
   await page.locator('#interact').click();
-  await page.locator('#battle').waitFor({state:'visible'});
+  console.log('STATE AFTER BATTLE CLICK:',JSON.stringify(await page.evaluate(()=>({
+    prompt:document.querySelector('#promptText').textContent,
+    dialogueHidden:document.querySelector('#dialogue').classList.contains('hidden'),
+    dialogue:document.querySelector('#line').textContent,
+    battleHidden:document.querySelector('#battle').classList.contains('hidden')
+  }))));
   await page.screenshot({path:'screenshots/05-foldline-combat.png'});
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
