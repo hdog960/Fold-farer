@@ -136,7 +136,7 @@ function nextLine(){
  el.speakerMark.textContent=line[2]||'✦';
  // The speaking portrait is a crop of the *actual in-world character*.
  // This prevents UI portraits drifting away from the playable art direction.
- const portraits={Tavi:['tavi',273,654],Morrow:['morrow',474,610],Mila:['mila',1024,643]};
+ const portraits={Tavi:['taviSprite',0,0],Morrow:['morrow',474,610],Mila:['mila',1024,643]};
  const source=portraits[line[0]];
  el.portraitBadge.classList.toggle('portrait-with-art',!!source);
  if(source){

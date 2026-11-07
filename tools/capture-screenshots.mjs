@@ -20,6 +20,7 @@ try {
   await page.locator('#dialogue').waitFor({state:'visible'});
   const firstPortrait=await page.locator('#portraitBadge').getAttribute('class');
   if(!firstPortrait?.includes('portrait-with-art'))throw Error('Real actor portrait did not attach to dialogue');
+  if(await page.locator('#portraitUse').getAttribute('href')!=='#taviSprite')throw Error('Tavi portrait still uses a moving world transform');
   await page.screenshot({path:'screenshots/02-dialogue-opening.png'});
   for(let i=0;i<4;i++)await page.locator('#nextLine').click();
   await page.locator('#dialogue').waitFor({state:'hidden'});
@@ -77,6 +78,10 @@ try {
   console.log('BATTLE SHOWN: Paper Scrapper, actual game UI');
   const gameActors=await battlePage.locator('.battle-sprite use').count();
   if(gameActors!==2)throw Error('Real in-world art was not used for both combatants');
+  if(await battlePage.locator('#battleTaviArt use').getAttribute('href')!=='#taviSprite')throw Error('Combat Tavi should use a stable local-coordinate sprite');
+  const actualPortraitBounds=await battlePage.locator('#battleTaviArt use').evaluate(el=>{const r=el.getBBox();return {x:r.x,y:r.y,width:r.width,height:r.height}});
+  if(actualPortraitBounds.x>120||actualPortraitBounds.x< -150||actualPortraitBounds.width<20)throw Error('Tavi actual combat art is outside its viewBox '+JSON.stringify(actualPortraitBounds));
+  console.log('BATTLE LOCAL SPRITE BOUNDS:',JSON.stringify(actualPortraitBounds));
   await battlePage.screenshot({path:'screenshots/05-foldline-combat.png'});
   await battlePage.close();
 
