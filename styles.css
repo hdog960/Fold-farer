@@ -377,3 +377,26 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #dimensionalArchitecture,#dimensionalArchitecture .paper-building-detail{pointer-events:none}
 #dimensionalArchitecture .paper-building-detail{filter:drop-shadow(1px 2px 1px #65595b1a)}
 @media(max-width:820px){#dimensionalArchitecture .paper-building-detail{filter:none}}
+
+/* First Fold 0.11.0 — genuinely deep 2.5D North Terrace in the playable RPG.
+   Its gate, building wings and ground share world coordinates with Tavi.
+   Distant scenery moves only fractionally, not at walk-plane speed. */
+#terraceScene{pointer-events:none}
+#terraceScene #terraceDistantCards,#terraceScene #terraceGround,
+#terraceScene #terraceHangingPaper,#terraceScene #terraceSideWalls,
+#terraceScene #terraceNearEdge{pointer-events:none}
+#terraceScene #terraceGateBack{filter:drop-shadow(4px 12px 4px #35596066)}
+#terraceRibbonTree .terrace-leaf-sway{
+  transform-box:fill-box;transform-origin:bottom center;
+  animation:terraceLeaves 7.8s ease-in-out infinite alternate;
+}
+#terraceScene #terraceHangingPaper{animation:terraceBunting 9s ease-in-out infinite alternate;transform-origin:50% 10%}
+#terraceScene #terraceBell{filter:drop-shadow(4px 7px 3px #35596055)}
+#terraceScene #terraceKiosk{filter:drop-shadow(4px 7px 4px #35596055)}
+#terraceScene #terraceLantern{filter:drop-shadow(3px 9px 4px #35596055)}
+@keyframes terraceLeaves{from{rotate:-1.5deg;translate:-2px 0}to{rotate:1.7deg;translate:2px -1px}}
+@keyframes terraceBunting{from{rotate:-.25deg}to{rotate:.35deg}}
+@media(prefers-reduced-motion:reduce){
+ #terraceRibbonTree .terrace-leaf-sway,
+ #terraceScene #terraceHangingPaper{animation:none!important}
+}

@@ -31,6 +31,11 @@ for(const id of ['riverCutout','riverHighlights','brokenBridge','bridgeFix','sea
 for(const id of ['dimensionalArchitecture','folioBindingHouse','threadsTailorHouse','postboundHouse','edgePaperHouse','architectSide','architectPaperEdge']){
  assert(ids.includes(id),'Missing built paper house art: '+id);
 }
+for(const id of ['folioNorthGate','terraceScene','terraceDistantCards','terraceGateBack','terraceGround','terraceSideWalls','terraceDepthStage','terraceBell','terraceLantern','terraceKiosk','terraceRibbonTree','terraceNearEdge']){
+ assert(ids.includes(id),'Connected 2.5D terrace asset missing '+id);
+}
+assert(game.includes("terrace:[155,1280,400,770]"),'Terrace must have a distinct deep walkable footprint');
+assert(game.includes("state.area==='terrace'"),'Terrace actor depth sorting and scene switching are missing');
 assert(css.includes('prefers-reduced-motion:reduce'));
 assert(sw.includes('caches.open'));
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

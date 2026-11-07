@@ -147,3 +147,11 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Art appears behind actual characters/NPCs and scenery signs, and uses SVG vector graphics with pointer-events disabled; no new collision, movement, quest state, storage key or service dependencies.
 - PWA cache bumped so the existing iPhone Home Screen icon retrieves latest art when reopened online. Browser capture pipeline checks that all four building groups have nonempty rendered bounds and records the full actual village stage.
 - Milestone A approval: **NOT READY.** This is incremental environmental sculpture, not a complete 90/100 visual standard or production-grade animation atlas. Physical iPhone test not performed.
+
+## First Fold 0.11.0 — A genuinely deeper walkable RPG scene (Milestone A)
+- Added a connected third stage, the North Terrace, with a physical entrance in the Folio village; exits descend back and maintain original position/state when returning.
+- New original 2.5D pop-up scene: three depth-separated mountain cards, a high arched gate with roof paper edges, two visibly three-dimensional side-house facades, floor tiles and steps converging into the distance, clipped stitched ground, hanging pennants, lantern, archive bell, memory kiosk, ribbon tree, and near-edge paper silhouette.
+- Unlike the former shallow 216-unit Folio foreground, the North Terrace navigates a 370-unit deep footprint with real X/Y collision and authored elliptical prop footprints. Tavi and Morrow projectively scale and dynamically sort against four handcrafted props; the distant ridge card uses slower parallax and there are no invisible blockers.
+- Optional Tavi/Morrow dialogues at the bell, kiosk, tree, and exit. No additional quest progress gates, combat or currencies; main prologue remains unchanged.
+- Added save compatibility for the new area (existing saved data defaults safely to Folio), multiroom companion follow, tap-to-walk bounds and automated journey/scale regression checks.
+- Milestone B remains locked. The art still awaits creator inspection and production-quality sprite/animation upgrades, so visual acceptance is NOT YET READY.
