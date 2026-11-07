@@ -83,7 +83,7 @@ const afterQuarter=pos();
 key('ArrowDown',true);key('ArrowLeft',true);step(20);
 assert(e('tavi').classList.contains('dir-diag-down'),'SE/SW travel did not select original 3/4 front art');
 key('ArrowDown',false);key('ArrowLeft',false);
-assert(Math.abs(pos().x-startY*0+273)<7 && Math.abs(pos().y-startY)<7,'Diagonal return drift');
+assert(Math.abs(pos().x-273)<7 && Math.abs(pos().y-startY)<7,'Diagonal return drift');
 walkRight(54);
 assert(Math.abs(pos().x-475)<16,'Horizontal movement regressed');
 click('interact');drainDialogue();assert(save().metMorrow,'Morrow recruitment failed');
