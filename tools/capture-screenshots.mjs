@@ -246,6 +246,26 @@ try {
   await terraceOcclusion.screenshot({path:'screenshots/21-terrace-foreground-occlusion.png'});
   await terraceOcclusion.close();
 
+  // Prove physical collision in the actual browser, not merely via a source
+  // string. Tavi must stop at the visible furniture feet and be free to pass
+  // around them on an adjacent walkable corridor.
+  const testVerticalFoot=async(x,y,expectedBlocked,label)=>{
+    const p=await openedAt({started:true,area:'terrace',x,y,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+    await p.keyboard.down('ArrowUp');
+    await p.waitForTimeout(680);
+    await p.keyboard.up('ArrowUp');
+    const raw=await p.locator('#tavi').getAttribute('transform');
+    const val=Number(/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(raw)?.[2]);
+    if(!Number.isFinite(val))throw Error('Could not read true rendered foot position for '+label);
+    if(expectedBlocked&&val<574)throw Error('Tavi walked through physical '+label+' at y='+val);
+    if(!expectedBlocked&&val>545)throw Error('Invisible collision blocked a clear lane around '+label+' at y='+val);
+    console.log('TERRACE COLLISION:',label,'start',y,'end',val,'blocked',expectedBlocked);
+    await p.close();
+  };
+  await testVerticalFoot(502,610,true,'dyer bench');
+  await testVerticalFoot(954,600,true,'lost-letter cabinet');
+  await testVerticalFoot(417,610,false,'dyer bench bypass');
+
   const terraceMobile=await browser.newPage({
     viewport:{width:844,height:390},screen:{width:844,height:390},deviceScaleFactor:2,
     isMobile:true,hasTouch:true,reducedMotion:'reduce'
