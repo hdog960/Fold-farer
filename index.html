@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#203c4e">
+  <meta name="description" content="FoldFarer: The Unfinished World — an original storybook RPG, first playable aesthetic review.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <title>FoldFarer — The Unfinished World</title>
+</head>
+<body>
+<div id="app">
+  <div class="world-frame">
+    <svg id="world" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A richly layered paper-and-fabric village at golden hour, with houses, flowers, stitched hills and a damaged bridge">
+      <defs>
+        <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#559eaf"/><stop offset=".54" stop-color="#b5d9c7"/><stop offset="1" stop-color="#ffe5ac"/></linearGradient>
+        <linearGradient id="paperHill" x2="0" y2="1"><stop stop-color="#75a888"/><stop offset="1" stop-color="#426f65"/></linearGradient>
+        <linearGradient id="frontLand" x2="0" y2="1"><stop stop-color="#a7bc74"/><stop offset="1" stop-color="#6a845e"/></linearGradient>
+        <linearGradient id="river" x2="0" y2="1"><stop stop-color="#70bac2"/><stop offset="1" stop-color="#2c8fa5"/></linearGradient>
+        <linearGradient id="copper" x2="0" y2="1"><stop stop-color="#edb98b"/><stop offset="1" stop-color="#b56e61"/></linearGradient>
+        <linearGradient id="flower" x2="0" y2="1"><stop stop-color="#efb6b5"/><stop offset="1" stop-color="#be687a"/></linearGradient>
+        <pattern id="grain" width="11" height="11" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".75" fill="#fff0d8" opacity=".18"/><circle cx="8" cy="9" r=".8" fill="#314f4b" opacity=".12"/></pattern>
+        <pattern id="seams" width="46" height="20" patternUnits="userSpaceOnUse"><path d="M0 20H46" stroke="#eef0ca" stroke-dasharray="4 7" opacity=".25"/></pattern>
+        <filter id="paperShadow" x="-40%" y="-40%" width="200%" height="200%"><feDropShadow dx="5" dy="10" stdDeviation="6" flood-color="#294f56" flood-opacity=".35"/></filter>
+        <filter id="softShadow" x="-40%" y="-40%" width="200%" height="200%"><feDropShadow dx="1" dy="5" stdDeviation="3" flood-color="#263f46" flood-opacity=".36"/></filter>
+        <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+      </defs>
+      <rect width="1440" height="810" fill="url(#sky)"/>
+      <g class="sky-cloud clouds-a" fill="#f6f1d8" stroke="#bcd3bc" stroke-width="3" opacity=".82">
+        <path d="M-50 123q29-48 80-29 26-58 85-36 42-20 74 15 76-6 89 51z" filter="url(#softShadow)"/>
+        <path d="M740 145q32-40 88-30 40-63 108-34 42-30 83 17 63-10 91 47z"/>
+        <path d="M1160 85q28-40 64-22 20-40 66-27 29-14 61 20 58-11 83 29z"/>
+      </g>
+      <g class="sky-cloud clouds-b" fill="none" stroke="#fff2c7" stroke-width="3" stroke-dasharray="3 15" opacity=".8">
+        <path d="M123 170q220 26 432-16M875 220q189-46 414 10"/>
+      </g>
+      <circle cx="1128" cy="194" r="91" fill="#fff3c0" opacity=".23" filter="url(#glow)"/>
+      <circle cx="1128" cy="194" r="58" fill="#fff0b0" opacity=".63"/>
+      <circle cx="1128" cy="194" r="44" fill="#fff8d8" opacity=".8"/>
+      <path d="M0 397Q162 287 345 356T720 355 1120 329 1440 353V579H0Z" fill="#84aa9b" stroke="#c4ddbc" stroke-width="10"/>
+      <path d="M0 446Q190 399 322 440T630 415 1019 421 1440 387V627H0Z" fill="url(#paperHill)" stroke="#a7c6a2" stroke-width="8"/>
+      <path d="M0 470Q320 424 570 477T1014 467 1440 424" fill="none" stroke="#365e58" stroke-width="2" stroke-dasharray="2 13" opacity=".58"/>
+      <g class="far-foliage" opacity=".78">
+        <path d="M70 494v-116m45 112v-90m248 81V365m76 102V378m686 82V334m65 143V363m139 87V332" stroke="#425f59" stroke-width="12" stroke-linecap="round"/>
+        <g fill="#568476" stroke="#9abf91" stroke-width="5">
+          <circle cx="69" cy="362" r="61"/><circle cx="116" cy="386" r="45"/><circle cx="358" cy="357" r="55"/><circle cx="438" cy="376" r="51"/>
+          <circle cx="1128" cy="328" r="64"/><circle cx="1208" cy="361" r="53"/><circle cx="1338" cy="327" r="65"/>
+        </g>
+      </g>
+      <path d="M0 517Q204 475 422 512T825 502 1440 485V810H0Z" fill="url(#frontLand)" stroke="#d0ce94" stroke-width="10"/>
+      <path d="M0 517Q204 475 422 512T825 502 1440 485V810H0Z" fill="url(#grain)"/>
+      <!-- Honeyed wood-and-card village architecture, each element has a real side thickness. -->
+      <g class="architecture" filter="url(#paperShadow)">
+        <path d="M60 362 158 274 291 303 291 532 63 545Z" fill="#e7bb8e" stroke="#815c5d" stroke-width="7"/>
+        <path d="M291 303 332 290V512L291 532Z" fill="#a46c6b" stroke="#80565d" stroke-width="5"/>
+        <path d="M45 373 159 245 300 290 332 290 187 244 152 225Z" fill="#a95f70" stroke="#653c59" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M45 373 159 245 300 290" fill="none" stroke="#e8ac97" stroke-width="6"/>
+        <path d="M184 536v-131q46-28 77 7v123" fill="#5e6672" stroke="#6b4f52" stroke-width="8"/>
+        <path d="M204 531V426q20-16 38-3v110" fill="#a77c68"/><circle cx="233" cy="476" r="5" fill="#f9d18a"/>
+        <path d="M101 406h47v51h-47z" fill="#83b4a6" stroke="#f8e8bd" stroke-width="9"/>
+        <path d="M125 406v52m-24-27h47" stroke="#f8e8bd" stroke-width="4"/>
+        <path d="M58 539q106-34 250-11" stroke="#f1dfad" stroke-width="7" fill="none"/>
+        <path d="M380 407 455 318 594 359V537H386Z" fill="#f3d7a0" stroke="#856564" stroke-width="7"/>
+        <path d="M594 359 616 346V526L594 537Z" fill="#b18470"/>
+        <path d="M368 411 451 299 595 356 616 346 458 279Z" fill="#d78d72" stroke="#81565e" stroke-width="8"/>
+        <path d="M431 537V435q29-24 65 0v101" fill="#759b91" stroke="#e7e1b9" stroke-width="8"/>
+        <path d="M516 421h47v54h-47Z" fill="#98b4a2" stroke="#f4e6be" stroke-width="8"/>
+        <path d="M540 421v54m-24-26h47" stroke="#f4e6be" stroke-width="4"/>
+        <path d="M897 399 1005 291 1131 330v228H898Z" fill="#edd1a3" stroke="#805d61" stroke-width="8"/>
+        <path d="M1131 330 1169 319v225l-38 14Z" fill="#b68173"/>
+        <path d="M879 402 995 264 1137 315 1170 319 1007 244Z" fill="#c16e7c" stroke="#7a4e62" stroke-width="9"/>
+        <path d="M978 553V421q41-30 74 1v131" fill="#7b8d87" stroke="#6d6261" stroke-width="9"/>
+        <path d="M1061 390h47v59h-47Z" fill="#90bbaf" stroke="#f5e5be" stroke-width="8"/>
+        <path d="M1085 390v59m-24-30h47" stroke="#f5e5be" stroke-width="4"/>
+        <path d="M1292 372 1354 296l104 36v229h-166Z" fill="#eacda6" stroke="#776169" stroke-width="7"/>
+        <path d="M1279 381 1353 282 1457 320" fill="#aa6d79" stroke="#f0ac9f" stroke-width="28" stroke-linejoin="round"/>
+      </g>
+      <!-- Shop signs and paper pennants. -->
+      <g filter="url(#softShadow)" class="lettering">
+        <path d="M102 355q51 17 110 2l-4 35q-59 10-109-1Z" fill="#fff0d2" stroke="#775b63" stroke-width="4"/>
+        <text x="154" y="379" text-anchor="middle" fill="#465e61" font-size="20" font-weight="bold" letter-spacing="2">FOLIO</text>
+        <path d="M428 392q74 10 127 0l-1 31q-60 11-125 0Z" fill="#f4e6c6" stroke="#826c64" stroke-width="4"/>
+        <text x="490" y="412" text-anchor="middle" fill="#53635d" font-size="16" font-weight="bold" letter-spacing="2">THREADS</text>
+        <path d="M877 349q43-23 89-9l-10 35q-38-6-78 6Z" fill="#f4e9d2" stroke="#745d67" stroke-width="3"/>
+        <text x="917" y="362" fill="#6f625e" font-size="14" font-weight="bold">POST</text>
+      </g>
+      <g class="bunting" fill="none" stroke="#795d60" stroke-width="3">
+        <path d="M198 220Q521 276 790 221T1350 217"/>
+      </g>
+      <g class="bunting" stroke="#fff3d2" stroke-width="2">
+        <path d="M259 235l35 7-18 41Z" fill="#e89b9d"/><path d="M340 253l35 6-18 34Z" fill="#e9c66f"/>
+        <path d="M422 265l36 3-19 34Z" fill="#8cc7af"/><path d="M500 262l37-8-13 39Z" fill="#e4a0a4"/>
+        <path d="M586 252l36-8-11 38Z" fill="#e9c66f"/><path d="M667 238l34-11-9 37Z" fill="#7fc1ba"/>
+        <path d="M802 223l34-10-5 37Z" fill="#edbda2"/><path d="M887 210l38-3-16 38Z" fill="#e7c772"/>
+        <path d="M975 205l36 2-22 37Z" fill="#a6cfa1"/><path d="M1057 213l33 6-23 36Z" fill="#e5a0a1"/>
+        <path d="M1142 230l35 7-18 35Z" fill="#f0c96f"/><path d="M1237 231l33-6-8 36Z" fill="#7fb8a4"/>
+      </g>
+      <path d="M0 617Q320 569 671 609L741 628 823 634Q1113 568 1440 600V810H0Z" fill="#dec898" stroke="#a68e7b" stroke-width="12"/>
+      <path d="M0 649Q320 601 671 638L739 653 824 660Q1113 599 1440 628" fill="none" stroke="#fff0c4" stroke-width="7" stroke-dasharray="13 19" opacity=".58"/>
+      <path d="M725 571 842 563 850 810 709 810Z" fill="url(#river)" stroke="#4a8499" stroke-width="6"/>
+      <path d="M728 590Q771 615 838 595M732 673q55 30 107 3M726 745q67 28 119-3" fill="none" stroke="#b8e6db" stroke-width="4" opacity=".7"/>
+      <path d="M724 575 844 567M711 808 852 808" fill="none" stroke="#e8dfaa" stroke-width="13"/>
+      <g id="brokenBridge" filter="url(#softShadow)">
+        <path d="M691 637 732 632 744 652 697 668Z" fill="#a17368" stroke="#765e62" stroke-width="6"/>
+        <path d="M812 651 854 634l14 25-50 26Z" fill="#a17368" stroke="#765e62" stroke-width="6"/>
+        <path d="M725 632q-4 16 8 29m81-11q6 17-2 27" fill="none" stroke="#f9dba7" stroke-dasharray="5 6" stroke-width="4"/>
+        <path d="M741 642q21 3 35 26l25-17" stroke="#d9999c" fill="none" stroke-width="5" stroke-dasharray="4 11"/>
+      </g>
+      <g id="bridgeFix" class="bridge-closed" filter="url(#paperShadow)">
+        <path d="M707 642Q760 624 842 638l8 23q-76 3-141 8Z" fill="#edcf94" stroke="#8c7771" stroke-width="7"/>
+        <path d="M721 646q59 10 112-3" fill="none" stroke="#fff1ca" stroke-width="4"/>
+        <path d="M740 630v32m25-34v34m25-36v38m26-32v28" stroke="#b68a70" stroke-width="4" stroke-dasharray="2 7"/>
+        <path d="M705 628q62-40 141-4" fill="none" stroke="#d38a8b" stroke-width="7"/>
+        <path d="M706 628q62-40 141-4" fill="none" stroke="#ffe2b3" stroke-width="2" stroke-dasharray="6 10"/>
+      </g>
+      <g id="seamLight" transform="translate(765 640)">
+        <ellipse rx="62" ry="17" fill="#f9f0c0" opacity=".33" filter="url(#glow)"/>
+        <path d="m-26-25 15 10 16-22 20 17 15-12" fill="none" stroke="#fff5ce" stroke-width="4" stroke-dasharray="4 11"/>
+      </g>
+      <g class="garden-back" stroke="#557b5b" stroke-width="5" stroke-linecap="round">
+        <path d="M18 648V564m35 36v-67m301 49v-75m-39 88v-51M608 601v-64m45 59v-49m238 58v-66m44 62v-73m270 65v-80m78 91v-68"/>
+      </g>
+      <g fill="#a6b974" stroke="#5e8c67" stroke-width="5">
+        <ellipse cx="18" cy="555" rx="40" ry="33"/><ellipse cx="52" cy="528" rx="37" ry="28"/>
+        <ellipse cx="354" cy="507" rx="42" ry="33"/><ellipse cx="311" cy="544" rx="36" ry="30"/>
+        <ellipse cx="612" cy="536" rx="39" ry="34"/><ellipse cx="651" cy="546" rx="29" ry="26"/>
+        <ellipse cx="888" cy="541" rx="37" ry="29"/><ellipse cx="934" cy="529" rx="39" ry="37"/>
+        <ellipse cx="1208" cy="516" rx="49" ry="36"/><ellipse cx="1280" cy="538" rx="38" ry="28"/>
+      </g>
+      <g class="garden-flowers" stroke="#6a9569" stroke-width="3" stroke-linecap="round">
+        <path d="M54 716v-53m28 38v-39m309 34v-38m25 59v-48m225 63v-49m269 34v-50m275 49v-50m138 53v-50"/>
+      </g>
+      <g class="garden-flowers" filter="url(#softShadow)">
+        <g transform="translate(54 663)" fill="#edaca7" stroke="#fff0c6" stroke-width="2"><ellipse rx="11" ry="24"/><ellipse rx="11" ry="24" transform="rotate(60)"/><ellipse rx="11" ry="24" transform="rotate(120)"/><circle r="10" fill="#f2c96f"/></g>
+        <g transform="translate(82 662)" fill="#f5dfac" stroke="#fff6d5" stroke-width="2"><ellipse rx="9" ry="17"/><ellipse rx="9" ry="17" transform="rotate(60)"/><ellipse rx="9" ry="17" transform="rotate(120)"/><circle r="7" fill="#cc8b80"/></g>
+        <g transform="translate(389 657)" fill="#a6c5da" stroke="#f9e9cd" stroke-width="2"><ellipse rx="12" ry="21"/><ellipse rx="12" ry="21" transform="rotate(60)"/><ellipse rx="12" ry="21" transform="rotate(120)"/><circle r="8" fill="#efc46f"/></g>
+        <g transform="translate(417 668)" fill="#edacb3" stroke="#f8e3bc" stroke-width="2"><ellipse rx="9" ry="19"/><ellipse rx="9" ry="19" transform="rotate(60)"/><ellipse rx="9" ry="19" transform="rotate(120)"/><circle r="9" fill="#eacb75"/></g>
+        <g transform="translate(641 685)" fill="#f1d3a1" stroke="#f9e9ca" stroke-width="2"><ellipse rx="11" ry="19"/><ellipse rx="11" ry="19" transform="rotate(60)"/><ellipse rx="11" ry="19" transform="rotate(120)"/><circle r="8" fill="#b47b80"/></g>
+        <g transform="translate(910 670)" fill="#e6a3b3" stroke="#fce4cb" stroke-width="2"><ellipse rx="12" ry="22"/><ellipse rx="12" ry="22" transform="rotate(60)"/><ellipse rx="12" ry="22" transform="rotate(120)"/><circle r="8" fill="#ebc66d"/></g>
+        <g transform="translate(1185 665)" fill="#eecb8d" stroke="#fbe8c0" stroke-width="2"><ellipse rx="11" ry="22"/><ellipse rx="11" ry="22" transform="rotate(60)"/><ellipse rx="11" ry="22" transform="rotate(120)"/><circle r="10" fill="#ce8790"/></g>
+        <g transform="translate(1323 668)" fill="#9dbec7" stroke="#fff0d4" stroke-width="2"><ellipse rx="11" ry="21"/><ellipse rx="11" ry="21" transform="rotate(60)"/><ellipse rx="11" ry="21" transform="rotate(120)"/><circle r="8" fill="#f3cb84"/></g>
+      </g>
+      <g id="morrow" transform="translate(474 610)" filter="url(#softShadow)" aria-label="Morrow the ink-bird">
+        <ellipse cx="0" cy="10" rx="41" ry="10" fill="#41615b" opacity=".26"/>
+        <path d="M-28-5Q-76-21-62-64q22 3 42 26l-7-56q36-34 68 0l-7 60Q59-58 65-52q8 35-32 55Z" fill="#24364d" stroke="#101f3b" stroke-width="6"/>
+        <path d="M-12-66q18 14 28 0" fill="none" stroke="#6ba8a6" stroke-width="4"/>
+        <path d="M-34-90q-12-28-1-46l23 26m29 0 25-28q11 29-3 47" fill="#344963" stroke="#172c43" stroke-width="5"/>
+        <ellipse cx="-13" cy="-73" rx="12" ry="15" fill="#fff2d9"/><ellipse cx="23" cy="-73" rx="12" ry="15" fill="#fff2d9"/>
+        <circle cx="-9" cy="-70" r="5.5" fill="#183448"/><circle cx="19" cy="-70" r="5.5" fill="#183448"/>
+        <path d="M-30-93l25 7m16 1 26-11" stroke="#162b3d" stroke-width="8" stroke-linecap="round"/>
+        <path d="m-1-61 14-5-9 15Z" fill="#d6b678" stroke="#b0876b" stroke-width="2"/>
+        <path d="M-20-32q14 19 44 1" fill="none" stroke="#4f6b83" stroke-width="6"/>
+        <path d="M20-20Q53 4 66-33" fill="none" stroke="#75b7b4" stroke-width="7"/>
+      </g>
+      <g id="mila" transform="translate(1024 643)" filter="url(#softShadow)">
+        <ellipse cy="6" rx="35" ry="9" fill="#425f5d" opacity=".25"/>
+        <path d="M-15-23-19-3M13-23 17-3" stroke="#675965" stroke-width="13" stroke-linecap="round"/>
+        <path d="M-32-71q32-27 64 0L29-25H-24Z" fill="#a87376" stroke="#765667" stroke-width="5"/>
+        <path d="M-21-80q-27-35 3-53 27-18 45 8 17 27-6 48" fill="#6e535a" stroke="#644b57" stroke-width="5"/>
+        <ellipse cx="0" cy="-99" rx="24" ry="30" fill="#f3cfa8"/>
+        <path d="M-26-104q-8-30 20-35 28-12 34 30l-18-13-27 14Z" fill="#6a555b"/>
+        <circle cx="-8" cy="-97" r="3" fill="#655e5b"/><circle cx="11" cy="-97" r="3" fill="#655e5b"/>
+        <path d="M-6-85q10 7 17-1" stroke="#b17773" fill="none" stroke-width="3"/>
+        <path d="M17-75q29-4 24 23l-28 11Z" fill="#dfbb84" stroke="#8e6e63" stroke-width="5"/>
+        <path d="M18-55 37-51l-14 18" fill="none" stroke="#f9e6c3" stroke-width="3"/>
+      </g>
+      <g id="enemy" transform="translate(1244 652)" filter="url(#softShadow)">
+        <ellipse cy="9" rx="38" ry="9" fill="#49665e" opacity=".33"/>
+        <path d="M-31-60 22-83l26 65-61 4Z" fill="#ede1ba" stroke="#87716c" stroke-width="7"/>
+        <path d="M-31-60 13-46 22-83" fill="#c89385" stroke="#98716e" stroke-width="4"/>
+        <path d="M-15-28-22 2m39-29L25 2" stroke="#675c66" stroke-width="10" stroke-linecap="round"/>
+        <path d="M-18-42l19 6m5-10 19-5" stroke="#465f65" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="-9" cy="-60" r="5" fill="#39495c"/><circle cx="13" cy="-66" r="5" fill="#39495c"/>
+        <path d="M-14-91 10-101" stroke="#c38d7c" stroke-width="8" stroke-linecap="round"/>
+        <path d="m23-40 40-18" stroke="#6b7776" stroke-width="8" stroke-linecap="round"/>
+        <path d="m53-64 15 16-27 13" fill="#d4d9c1" stroke="#7a8f8d" stroke-width="3"/>
+      </g>
+      <!-- Player is truly animated and moved by input; not a stationary illustration. -->
+      <g id="tavi" transform="translate(273 654)" filter="url(#softShadow)">
+        <ellipse id="taviShadow" cy="6" rx="39" ry="9" fill="#435957" opacity=".3"/>
+        <g class="tavi-foot foot-left"><path d="M-16-38-22-8" stroke="#5b626e" stroke-width="14" stroke-linecap="round"/><path d="m-23-9-14 5" stroke="#4b4d5a" stroke-width="11" stroke-linecap="round"/></g>
+        <g class="tavi-foot foot-right"><path d="M14-38 21-7" stroke="#626678" stroke-width="14" stroke-linecap="round"/><path d="m21-8 14 5" stroke="#454956" stroke-width="11" stroke-linecap="round"/></g>
+        <g class="tavi-coat"><path d="M-31-101Q-7-116 24-101l17 66-24 3-13-21-12 20-31-2Z" fill="#b86b63" stroke="#775a62" stroke-width="6"/><path d="m-4-105-9 68" stroke="#ebba8f" stroke-width="6"/><path d="M8-96 19-46" stroke="#d98e79" stroke-width="4"/><path d="M-30-64q30 7 64 0" fill="none" stroke="#805766" stroke-width="6"/><circle cx="8" cy="-78" r="3" fill="#f5cf88"/></g>
+        <g class="tavi-arm arm-left"><path d="M-29-93Q-53-60-44-45" stroke="#c78677" stroke-width="15" stroke-linecap="round"/><circle cx="-43" cy="-45" r="8" fill="#f3d1ac"/></g>
+        <g class="tavi-arm arm-right"><path d="M30-92Q49-71 44-47" stroke="#9d6874" stroke-width="14" stroke-linecap="round"/><circle cx="43" cy="-46" r="8" fill="#f3d1ac"/></g>
+        <path class="tavi-scarf" d="M-21-107q27 12 46-2l-8 16-33 3zm37 7 25 38-15 4-23-35" fill="#dfc078" stroke="#9a7d62" stroke-width="3"/>
+        <path d="M-12-121v21M14-121v21" stroke="#d3a17d" stroke-width="12" stroke-linecap="round"/>
+        <ellipse cy="-145" rx="35" ry="37" fill="#f1c9a5" stroke="#a87f78" stroke-width="4"/>
+        <path d="M-36-150Q-42-182-16-188q26-19 54 14l-2 28-13-25-22 4-21-3Z" fill="#5c505e" stroke="#4d4f60" stroke-width="5"/>
+        <circle cx="-12" cy="-145" r="4" fill="#4a525b"/><circle cx="14" cy="-145" r="4" fill="#4a525b"/>
+        <path d="M-7-127q12 7 21-2" fill="none" stroke="#ac7371" stroke-width="3"/>
+        <path d="M-33-177q22-35 58-5" fill="none" stroke="#66575f" stroke-width="5"/>
+        <path d="M40-67q26-18 20-41" stroke="#b18f6c" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="61" cy="-108" r="6" fill="#f7d59a" stroke="#897463" stroke-width="3"/>
+        <path d="M53-108h16" stroke="#fff2c7" stroke-width="2"/>
+      </g>
+      <g class="foreground" filter="url(#softShadow)">
+        <path d="M0 769Q191 714 386 769T779 773 1109 763 1440 737V810H0Z" fill="#688c70" stroke="#b7c693" stroke-width="9"/>
+        <path d="M0 791Q181 755 385 793T782 795 1112 784 1440 758" stroke="#d4daac" stroke-width="2" stroke-dasharray="4 11" fill="none"/>
+      </g>
+      <rect x="0" y="0" width="1440" height="810" fill="url(#grain)" opacity=".28" pointer-events="none"/>
+    </svg>
+    <div class="top-panel">
+      <div class="logo-mini"><span class="seal">✦</span><div><strong>FOLDFARER</strong><small>The Unfinished World</small></div></div>
+      <div class="chapter-chip">PROLOGUE <span>·</span> THE TOWN THAT WALKED AWAY</div>
+      <button class="icon-button" id="journalButton" type="button" aria-label="Open journal">☰</button>
+    </div>
+    <div id="objective" class="objective">Find the ink-bird with the missing map.</div>
+    <div id="prompt" class="prompt hidden"><span>✧</span> <span id="promptText"></span></div>
+    <div class="control-left" aria-label="Movement controls">
+      <button class="move-key" data-move="left" aria-label="Move left">◀</button>
+      <button class="move-key" data-move="right" aria-label="Move right">▶</button>
+    </div>
+    <div class="control-right">
+      <button id="interact" class="action-button" type="button"><span>✧</span> ACT</button>
+    </div>
+    <div id="dialogue" class="dialogue hidden" role="dialog" aria-label="Character dialogue">
+      <div class="portrait-badge" id="speakerMark">✦</div>
+      <div class="dialogue-copy"><b id="speaker"></b><p id="line"></p></div>
+      <button id="nextLine" class="continue-button" type="button">Continue <span>›</span></button>
+    </div>
+    <div id="intro" class="intro">
+      <div class="intro-ornament">✧  ✦  ✧</div>
+      <div class="intro-kicker">AN ORIGINAL LIVING STORYBOOK ADVENTURE</div>
+      <h1>Fold<span>Farer</span></h1>
+      <p class="intro-sub">The Unfinished World</p>
+      <div class="intro-rule">❧ ────── ✦ ────── ❧</div>
+      <p class="intro-description">Some stories end. Others have been erased.<br>Follow the seams and find what the world forgot.</p>
+      <button id="start" class="primary" type="button">Open the Book <span>➜</span></button>
+      <small class="preview-label">MILESTONE A · PLAYABLE AESTHETIC REVIEW · BUILD 0.1.0</small>
+    </div>
+    <div id="journal" class="sheet hidden" role="dialog" aria-label="Field journal">
+      <div class="sheet-edge">THE WANDERING FOLIO · FIELD NOTES</div>
+      <h2>A Mender’s Journal</h2>
+      <p id="journalText"></p>
+      <div class="sheet-buttons"><button id="resume" class="primary" type="button">Return to World</button><button id="reset" type="button">Restart Preview</button></div>
+      <div class="sheet-footnote">This is an early playable aesthetic prototype, not a finished chapter. Your preview progress is saved on this device only.</div>
+    </div>
+    <div id="battle" class="battle hidden" role="dialog" aria-label="Turn based battle">
+      <div class="battle-heading"><span>THE FOLDLINE</span><strong id="battleTitle">Paper Scrapper</strong><small id="battleIntent">Intent: Paper Swipe · 5 damage</small></div>
+      <div class="battle-stage">
+        <div class="combatant hero-combat"><div class="combat-hat">✦</div><div class="combat-face">T</div><span>TAVI</span></div>
+        <div id="foldNode" class="fold-node"><b>♢</b><small>Fold Cover</small></div>
+        <div class="combatant enemy-combat"><div class="paper-enemy"><div class="eye e1"></div><div class="eye e2"></div><div class="crease"></div></div><span>PAPER SCRAPPER</span></div>
+      </div>
+      <div class="battle-bottom">
+        <div class="battle-vitals"><div>TAVI <b id="heroHp">24 / 24</b><i class="meter"><i id="heroBar"></i></i></div><div>MORROW <b>18 / 18</b><i class="meter cyan"><i></i></i></div><div>ENEMY <b id="enemyHp">26 / 26</b><i class="meter enemybar"><i id="enemyBar"></i></i></div></div>
+        <p class="battle-log" id="battleLog">A Paper Scrapper blocks the road. Its blade is raised.</p>
+        <div class="battle-actions" id="battleActions"><button type="button" data-battle="attack">Needle Strike</button><button type="button" data-battle="morrow">Morrow · Ink Needle</button><button type="button" data-battle="fold">Fold Cover</button><button type="button" data-battle="guard">Guard</button></div>
+        <div id="timing" class="timing hidden"><span>Stop the moving marker inside the golden seam.</span><div id="timingTrack" class="timing-track"><div class="timing-zone"></div><div class="timing-perfect"></div><div id="timingMarker" class="timing-marker"></div></div><button id="timingTap" class="primary" type="button">✦ STRIKE NOW</button></div>
+        <button id="battleDone" class="primary hidden" type="button">Return to the Folio</button>
+      </div>
+    </div>
+  </div>
+  <div class="below-frame"><span>✧ Illustrative first-fold prototype</span><span>Move: ◀ ▶ / A D · Interact: Space / ACT · Journal: ☰</span></div>
+</div>
+<script src="./game.js" defer></script>
+</body>
+</html>
