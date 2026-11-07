@@ -124,7 +124,7 @@ function updateCharacter(){
  // Mirroring is confined to the local paper-sprite group, keeping the
  // hero's world position, occlusion and UI sprite references independent.
  el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+z.toFixed(3)+')');
- el.taviFlip.setAttribute('transform','scale('+state.facing+')');
+ el.taviFlip.setAttribute('transform','scale('+state.facing+' 1)');
  for(const dir of ['up','down','side','diag-up','diag-down'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
  const inside=state.area==='atelier';
  const targetStage=inside?el.atelierDepthStage:(terrace?el.terraceDepthStage:el.depthStage);

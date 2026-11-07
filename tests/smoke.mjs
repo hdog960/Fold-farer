@@ -38,6 +38,7 @@ assert(game.includes("terrace:[155,1280,400,770]"),'Terrace must have a distinct
 assert(game.includes("state.area==='terrace'"),'Terrace actor depth sorting and scene switching are missing');
 assert(ids.includes('taviFlip'),'Separate hero mirroring group missing');
 assert(game.includes("el.taviFlip.setAttribute('transform'"),'Mirror must affect only local hero art');
+assert(game.includes("state.facing+' 1)'"),'Hero mirroring must be horizontal only, never invert Y');
 assert(css.includes('prompt.terrace-prompt'),'Terrace-specific HUD position not implemented');
 assert(css.includes('#tavi{transform-box:view-box;transform-origin:0 0}'),'SVG hero scale anchor must remain at actor feet');
 assert(css.includes('prefers-reduced-motion:reduce'));

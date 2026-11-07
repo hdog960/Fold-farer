@@ -168,3 +168,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Corrected the Tavi actor to use the SVG viewBox origin (0,0), already the authored foot anchor, with mirroring inside a separate local-art group. Scene depth scaling now preserves coordinates for both left/right movement.
 - Added Playwright visual-geometry checks at near and far coordinates using SVG getScreenCTM(). Player's painted feet must remain within measured tolerance of the true physics coordinates, not merely have a positive bounding rectangle.
 - Existing saves, inventory, battles and Home Screen URL remain unchanged. Aesthetic approval remains pending.
+
+## First Fold 0.11.3 — No vertically inverted characters
+- The new screen-space foot-anchor test exposed an additional SVG bug: using a one-argument `scale(-1)` inverted both X and Y, so a left-facing actor's paper art extended downward, appearing outside the playable scene.
+- Switched to `scale(-1 1)`: horizontal character mirroring only, with a positive parent perspective transform at the true foot anchor.
+- The automated screenshot must now validate horizontal alignment, vertical foot alignment, and original character visibility at deep distance. This fixes a **rendering defect**, not just a changed screenshot threshold.
+- All quest/save systems remain unmodified. Artwork is still not at the user-approved finish target.
