@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.4.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.5.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -38,3 +38,6 @@ See [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) for implemented, unverified, an
 
 ### Art standard remains locked
 Build 0.4 adds original paper-fiber materials, roof shingles, layered hills, hand-veneered tree canopies, stitched village decoration, gentle petal animation, richer Threads workshop fabrics and Tavi coat embroidery. These are actual gameplay graphics. The production-quality character atlas and final visual rubric are not yet approved; Milestone B remains locked.
+
+### Milestone A art integration — v0.5.0
+Mila and the Paper Scrapper have individually authored papercraft character designs with animated details. The battle uses the same actor artwork as the traversable village, and dialogue speaker portraits use real game sprites. There are no isolated concept images or separate generic battle placeholders. **This is still an art prototype, not the approved release standard.**

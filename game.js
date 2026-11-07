@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.3.0: 2.5D two-room exploration.
+/* FoldFarer: The Unfinished World. First Fold 0.5.0: character identity and expressive paper motion.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -46,7 +46,7 @@ function load(){
 }
 let state=load();
 const $=id=>document.getElementById(id);
-const el={world:$('world'),folioScene:$('folioScene'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
+const el={world:$('world'),folioScene:$('folioScene'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
 let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0;
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
@@ -125,6 +125,8 @@ function nextLine(){
  const line=dialogue.shift();
  if(!line){
    el.dialog.classList.add('hidden');modal='field';
+   $('morrow').classList.remove('talking');
+   $('mila').classList.remove('talking');
    const done=afterDialogue;afterDialogue=null;
    if(done)done();
    save();sync();return;
@@ -132,6 +134,18 @@ function nextLine(){
  el.speaker.textContent=line[0];
  el.line.textContent=line[1];
  el.speakerMark.textContent=line[2]||'✦';
+ // The speaking portrait is a crop of the *actual in-world character*.
+ // This prevents UI portraits drifting away from the playable art direction.
+ const portraits={Tavi:['tavi',273,654],Morrow:['morrow',474,610],Mila:['mila',1024,643]};
+ const source=portraits[line[0]];
+ el.portraitBadge.classList.toggle('portrait-with-art',!!source);
+ if(source){
+   el.portraitUse.setAttribute('href','#'+source[0]);
+   el.portraitUse.setAttribute('transform','translate(-'+source[1]+' -'+source[2]+')');
+ }
+ for(const person of ['morrow','mila']){
+   $(person).classList.toggle('talking',line[0].toLowerCase()===person);
+ }
  el.nextLine.textContent=dialogue.length?'Continue ›':'Close ›';
 }
 function nearest(){

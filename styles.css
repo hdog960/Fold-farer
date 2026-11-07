@@ -160,3 +160,29 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #morrow .inkwing-right{transform-box:fill-box;transform-origin:left center;animation:inkwingBreath 3.4s ease-in-out infinite alternate-reverse}
 @keyframes inkwingBreath{from{rotate:-3deg}to{rotate:6deg}}
 @media(prefers-reduced-motion:reduce){#morrow .inkwing-left,#morrow .inkwing-right{animation:none!important}}
+
+/* Milestone A | character-identity + authentic art reuse (0.5.0) */
+.portrait-badge{position:relative;overflow:hidden;background:radial-gradient(circle at 52% 35%,#f5e4bb,#648d84 65%,#2a505d);border-color:#d0a578;box-shadow:inset 0 0 0 4px #fff2d79c,0 4px 13px #685e6670}
+.portrait-badge .portrait-symbol{display:grid;place-items:center;width:100%;height:100%}
+#portraitSvg{display:none;position:absolute;inset:-5%;width:110%;height:110%;overflow:visible;filter:drop-shadow(2px 4px 3px #273f4a7f)}
+.portrait-badge.portrait-with-art{background:radial-gradient(circle at 51% 58%,#dce5be 0,#779e99 45%,#2b5267 100%)}
+.portrait-badge.portrait-with-art #portraitSvg{display:block}
+.portrait-badge.portrait-with-art .portrait-symbol{display:none}
+.battle-sprite{display:block;width:clamp(80px,12vw,174px);height:clamp(100px,17vw,245px);max-height:96%;overflow:visible;filter:drop-shadow(5px 9px 4px #172a387f)}
+.hero-combat .battle-sprite{animation:battleHeroHover 2.4s ease-in-out infinite alternate}
+.enemy-combat .battle-sprite{width:clamp(95px,14vw,194px);animation:battleEnemyHover 2s ease-in-out infinite alternate-reverse}
+@keyframes battleHeroHover{from{translate:0 0}to{translate:0 -6px}}
+@keyframes battleEnemyHover{from{translate:0 0;rotate:0deg}to{translate:0 -4px;rotate:1deg}}
+#mila .mila-letter-hand{transform-box:fill-box;transform-origin:left bottom;animation:milaLetterWave 3.7s ease-in-out infinite alternate}
+#mila .mila-blink{animation:milaEyeClose 6.6s steps(1,end) infinite}
+@keyframes milaLetterWave{0%,65%{rotate:0deg}100%{rotate:-6deg}}
+@keyframes milaEyeClose{0%,90%,94%,100%{opacity:0}91%,93%{opacity:1}}
+#mila.talking .mila-letter-hand{animation-duration:.9s}
+#enemy .scrapper-sword-arm{transform-box:fill-box;transform-origin:left bottom;animation:scrapperArmBreath 3.3s ease-in-out infinite alternate}
+@keyframes scrapperArmBreath{0%{rotate:-3deg}100%{rotate:9deg}}
+#tavi.walking{animation:paperStepBounce .24s ease-in-out infinite alternate}
+@keyframes paperStepBounce{from{translate:0 0}to{translate:0 -4px}}
+#morrow.talking .inkwing-left{animation-duration:.65s}
+#morrow.talking .inkwing-right{animation-duration:.8s}
+@media(prefers-reduced-motion:reduce){#mila .mila-letter-hand,#mila .mila-blink,#enemy .scrapper-sword-arm,#tavi.walking,.battle-sprite{animation:none!important}}
+@media(max-width:820px){.battle-sprite{height:clamp(70px,14vw,155px)}.enemy-combat .battle-sprite{width:clamp(80px,13vw,140px)}}

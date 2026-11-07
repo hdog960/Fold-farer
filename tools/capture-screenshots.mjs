@@ -18,6 +18,8 @@ try {
   
   await page.locator('#start').click();
   await page.locator('#dialogue').waitFor({state:'visible'});
+  const firstPortrait=await page.locator('#portraitBadge').getAttribute('class');
+  if(!firstPortrait?.includes('portrait-with-art'))throw Error('Real actor portrait did not attach to dialogue');
   await page.screenshot({path:'screenshots/02-dialogue-opening.png'});
   for(let i=0;i<4;i++)await page.locator('#nextLine').click();
   await page.locator('#dialogue').waitFor({state:'hidden'});
@@ -50,6 +52,15 @@ try {
   await bridgePage.screenshot({path:'screenshots/04-repaired-bridge.png'});
   await bridgePage.close();
 
+  const milaPage=await openedAt({started:true,x:1024,y:643,facing:1,metMorrow:true,mended:true,letter:false,won:false});
+  await milaPage.locator('#interact').click();
+  await milaPage.locator('#dialogue').waitFor({state:'visible'});
+  const milaPortraitSource=await milaPage.locator('#portraitUse').getAttribute('href');
+  // The first line is Mila, whose face must come from the world sprite.
+  if(milaPortraitSource!=='#mila')throw Error('Mila dialogue portrait not linked to actor artwork');
+  await milaPage.screenshot({path:'screenshots/08-mila-courier-dialogue.png'});
+  await milaPage.close();
+
   const atelierPage=await openedAt({started:true,area:'atelier',x:720,y:711,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   if(await atelierPage.locator('#atelierScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('Workshop not visible');
   await atelierPage.screenshot({path:'screenshots/07-threads-workshop.png'});
@@ -64,11 +75,13 @@ try {
   await battlePage.locator('#interact').click();
   await battlePage.locator('#battle').waitFor({state:'visible',timeout:5000});
   console.log('BATTLE SHOWN: Paper Scrapper, actual game UI');
+  const gameActors=await battlePage.locator('.battle-sprite use').count();
+  if(gameActors!==2)throw Error('Real in-world art was not used for both combatants');
   await battlePage.screenshot({path:'screenshots/05-foldline-combat.png'});
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {
