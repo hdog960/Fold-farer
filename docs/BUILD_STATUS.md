@@ -196,3 +196,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Sunlight reacts only modestly to the already smooth distant-card parallax. Its transform is independent of the physical actor and obstacle footprints. No browser-only default widgets or external media are introduced.
 - Structural and simulation tests assert illustration IDs, non-blocking CSS, material definitions and light transform. A browser screenshot check verifies nonempty rendered bounds and captures the real stage. Platform/iPhone frame measurements are not yet available.
 - **Art acceptance NOT MET:** More detailed character acting, hand-drawn animation atlas, unified light/contact shadows, polished town inhabitants and creator's 90/100 visual approval still required. Milestone B remains locked.
+
+## First Fold 0.15.0 — Character motion and physical-world ground contact (Milestone A)
+- Replaced the old single wing shape rotating back and forth with four complete, hand-authored Morrow wing-pair silhouettes and individually drawn feather marks. The running animation loop selects exactly one pair at a time, with a quicker cadence while following or talking. Reduced-motion freezes the original resting pose.
+- The airborne body bob is now separate from its grounded shadow. Tavi gained a dedicated world-space, unmirrored shadow anchored under the foot position across all scene perspective scales.
+- Corrected map-edge movement reporting to require a genuine XY displacement before a walking stride can continue. Existing collision footprints remain untouched.
+- Expanded structural and behavior tests plus an in-browser live flight-pose capture. Same save schema, story state, battle, and GitHub Pages Home Screen URL. PWA cache version incremented.
+- Artwork still below the acceptance gate: production-quality hero atlas, environment art and lighting coherence, expressive acting and physical iPhone performance review remain required. Milestone B stays locked until creator approval.

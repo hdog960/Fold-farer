@@ -62,4 +62,14 @@ for(const gradient of ['terraceDyeSilk','terraceGlassPaper','terraceWarmBounce',
 assert(css.includes('#terraceMaterialStories *')&&css.includes('pointer-events:none!important'),
  'Decorative material overlays must not capture iPhone taps');
 assert(game.includes('el.terraceLightShift.setAttribute('),'Light parallax must remain separate from physical stage');
+const wingFrameIDs=[...html.matchAll(/class="morrow-wing-frame" data-wing-frame="([0-3])"/g)].map(m=>m[1]);
+assert.deepEqual(wingFrameIDs,['0','1','2','3'],'Four alternate original bird wing drawings required');
+for(const id of ['morrowGroundShadow','taviGroundShadow','actorGroundInk'])
+ assert(ids.includes(id),'Missing grounded actor rendering: '+id);
+assert(game.includes('function updateMorrowAnimation(now)')&&game.includes('morrowWingCycle'),
+ 'Wing animation must use the running world loop');
+assert(game.includes('Math.hypot(state.x-oldX,state.y-oldY)>.01'),
+ 'A map boundary must not trigger fake walking');
+assert(css.includes('#morrow[data-flap="3"]')&&css.includes('#morrowSprite{animation:birdBob'),
+ 'All flight frames and separate flying body motion required');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
