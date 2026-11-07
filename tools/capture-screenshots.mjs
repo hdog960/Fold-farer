@@ -24,7 +24,32 @@ try {
   await page.screenshot({path:'screenshots/02-dialogue-opening.png'});
   for(let i=0;i<4;i++)await page.locator('#nextLine').click();
   await page.locator('#dialogue').waitFor({state:'hidden'});
+  const trees=await page.locator('#paperBotanicalGarden > .paper-canopy').count();
+  if(trees!==11)throw Error('Expected eleven authored garden trees, found '+trees);
+  const families=await page.locator('#paperBotanicalGarden > .paper-canopy').evaluateAll(els=>new Set(els.map(e=>[...e.classList].find(x=>x.startsWith('tree-family-')))).size);
+  if(families!==5)throw Error('Expected five distinct botanical silhouettes, found '+families);
   await page.screenshot({path:'screenshots/03-folio-village.png'});
+  // Verify live character rendering before Morrow joins, not merely save state.
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  const initialTransform=await page.locator('#tavi').getAttribute('transform');
+  const gardenTarget=await page.locator('#world').evaluate(svg=>{
+    const point=svg.createSVGPoint();point.x=462;point.y=706;
+    const screen=point.matrixTransform(svg.getScreenCTM());
+    return {x:screen.x,y:screen.y};
+  });
+  await page.mouse.click(gardenTarget.x,gardenTarget.y);
+  await page.waitForTimeout(210);
+  const walkingTransform=await page.locator('#tavi').getAttribute('transform');
+  if(walkingTransform===initialTransform)throw Error('Ground tap moved no visible character before recruitment');
+  if(!await page.locator('#tavi').evaluate(el=>el.classList.contains('walking')))throw Error('Tap movement did not activate character gait');
+  const gait=await page.locator('#tavi .tavi-foot.foot-left').first().evaluate(el=>getComputedStyle(el).animationName);
+  if(!gait.includes('farerFootForward'))throw Error('Actual foot artwork did not articulate: '+gait);
+  await page.screenshot({path:'screenshots/14-botanical-walk-cycle.png',animations:'allow'});
+  console.log('BOTANICALS:',trees,'trees,',families,'families. GAIT:',gait);
+  await page.keyboard.down('ArrowLeft');
+  await page.waitForTimeout(230);
+  await page.keyboard.up('ArrowLeft');
+  await page.emulateMedia({reducedMotion:'reduce'});
   const before=await page.locator('#tavi').getAttribute('transform');
   await page.keyboard.down('ArrowUp');
   await page.waitForTimeout(450);
@@ -48,6 +73,28 @@ try {
     return p;
   };
 
+
+  // Landscape iPhone-sized Chromium emulation, not a physical Apple device.
+  const mobilePage=await browser.newPage({
+    viewport:{width:844,height:390},screen:{width:844,height:390},
+    deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce'
+  });
+  mobilePage.on('pageerror',err=>errors.push('mobile: '+err.message));
+  await mobilePage.addInitScript(()=>localStorage.setItem('foldfarer.firstfold.0.1',JSON.stringify({
+    started:true,x:356,y:654,facing:1,direction:'down',area:'folio',
+    metMorrow:true,mended:false,threadSample:false,letter:false,won:false
+  })));
+  await mobilePage.goto('http://127.0.0.1:8000/',{waitUntil:'networkidle'});
+  await mobilePage.locator('#start').click();
+  await mobilePage.locator('#intro').waitFor({state:'hidden'});
+  for(const selector of ['#move-left','#move-right','#move-up','#move-down','#interact']){
+    const box=await mobilePage.locator(selector).boundingBox();
+    if(!box||box.x<0||box.y<0||box.x+box.width>844||box.y+box.height>390){
+      throw Error('Landscape touch target clipped in 844×390 browser emulation: '+selector+' '+JSON.stringify(box));
+    }
+  }
+  await mobilePage.screenshot({path:'screenshots/15-mobile-landscape-emulation.png'});
+  await mobilePage.close();
 
   // Render both diagonal costumes from unobstructed locations. The main scene
   // has correctly depth-sorted notice boards; those should not conceal the
@@ -146,7 +193,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png','14-botanical-walk-cycle.png','15-mobile-landscape-emulation.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {
