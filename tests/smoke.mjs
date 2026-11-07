@@ -14,7 +14,7 @@ for(const x of ['bridgeFix','brokenBridge','tavi','taviBackArt','taviSideArt','d
 for(const id of ['portraitBadge','portraitSvg','portraitUse','battleTaviArt','battleScrapperArt','taviSprite','battleDiorama'])assert(ids.includes(id),'Missing game-sourced battle/portrait art '+id);
 for(const id of ['mila-letter-hand','scrapper-sword-arm'])assert(html.includes(id),'Missing animated actor detail '+id);
 assert(html.includes('<use href="#taviSprite"/>'),'Battle Tavi art must be in local actor coordinates');
-assert(game.includes("Tavi:['taviSprite',0,0]"),'Tavi's portrait must not use moving world coordinates');
+assert(game.includes("Tavi:['taviSprite',0,0]"),"Tavi's portrait must not use moving world coordinates");
 assert.equal(manifest.display,'standalone');
 assert.equal(manifest.start_url,'./');
 for(const direction of ['up','down','left','right'])assert(html.includes('data-move="'+direction+'"'),'Missing '+direction+' touch button');
