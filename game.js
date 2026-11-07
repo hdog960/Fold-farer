@@ -289,6 +289,17 @@ sync();
 if(state.started){el.start.firstChild.textContent='Continue Adventure ';}else{el.start.firstChild.textContent='Open the Book ';}
 requestAnimationFrame(frame);
 if('serviceWorker' in navigator && location.protocol==='https:'){
- window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Offline caching unavailable',err)));
+  window.addEventListener('load',async()=>{
+    try{
+      // Same installed Home Screen icon, always the same address. Updates are
+      // downloaded when the app opens or resumes with an internet connection.
+      const registration=await navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'});
+      const checkUpdates=()=>registration.update().catch(err=>console.warn('Version check unavailable',err));
+      checkUpdates();
+      window.addEventListener('pageshow',checkUpdates);
+      document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdates();});
+      setInterval(checkUpdates,15*60*1000);
+    }catch(err){console.warn('Offline caching unavailable',err);}
+  });
 }
 })();

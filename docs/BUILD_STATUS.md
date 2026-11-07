@@ -32,3 +32,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 3. Play entire preview: Morrow -> seam -> Mila -> Scrapper -> ending; reload once during progress.
 4. Capture real gameplay screenshots, establish device FPS/texture memory, record aesthetic acceptance/rejections.
 5. Continue phases 00–07 to full scope before proposing Milestone B.
+
+## Home Screen installation/update support
+- Apple web-app metadata, PNG icon generation workflow, manifest icon sizes, and one stable Pages URL.
+- Network-first service worker bypasses HTTP cache when online and keeps an offline fallback. Browser checks for worker updates when launched/resumed.
+- iOS will load new published files when the app is next opened online; no reinstall is required. Background update while closed/offline is not guaranteed.
+- iPhone on-device installation and actual cache/update behavior still need physical verification.

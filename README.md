@@ -2,6 +2,14 @@
 
 An original, iPhone-first papercraft storybook RPG in development.
 
+## Install on iPhone — permanent Home Screen shortcut
+
+1. Open **https://hdog960.github.io/Fold-farer/** in **Safari**.
+2. Tap **Share** (square with upward arrow) → **Add to Home Screen** → **Add**. If prompted, leave **Open as Web App** enabled.
+3. Tap the new **FoldFarer** icon on your Home Screen and rotate to **landscape**.
+
+**Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
+
 **Current playable review:** [Open First Fold 0.1.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
