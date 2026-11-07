@@ -16,6 +16,11 @@ for(const id of ['mila-letter-hand','scrapper-sword-arm'])assert(html.includes(i
 assert(html.includes('<use href="#taviSprite"/>'),'Battle Tavi art must be in local actor coordinates');
 assert(game.includes("Tavi:['taviSprite',0,0]"),"Tavi's portrait must not use moving world coordinates");
 for(const id of ['battleEffects','needleSlash','inkNeedle','foldShield','guardGlyph','enemyImpact','enemyPaperBurst'])assert(ids.includes(id),'Foldline action art missing '+id);
+assert(html.includes('id="paperBotanicalGarden"'),'Missing cut-paper garden');
+assert([...html.matchAll(/id="tree-[0-9]+"/g)].length===11,'Botanical count changed');
+for(let type=0;type<5;type++)assert(html.includes('tree-family-'+type),'Missing cut-paper silhouette family '+type);
+assert(css.includes('farerFootForward')&&css.includes('farerShoulder'),'Missing real gait motion');
+assert(game.includes('else if(modal===\'field\'&&fieldMotion)updateCharacter()'),'Tap-to-walk art must advance without a companion');
 assert.equal(manifest.display,'standalone');
 assert.equal(manifest.start_url,'./');
 for(const direction of ['up','down','left','right'])assert(html.includes('data-move="'+direction+'"'),'Missing '+direction+' touch button');

@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.8.1](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.9.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -53,3 +53,6 @@ The river is a layered paper cutout with animated ink reflections, torn leaflet 
 
 ### Foldline animation 0.8.1
 Needle Strike, Morrow's Ink Needle, Fold Cover, Guard, incoming hits and the Scrapper's paper-burst defeat now produce authored paper-diorama effects in battle. Perfect timed hits create a stronger glint. Reduced-motion settings suppress active animation without changing gameplay.
+
+### Botanical material & walking animation pass — v0.9
+The old repeated green-circle trees have been removed from the Folio's backdrop. There are now **eleven individually authored cut-paper trees across five distinct silhouette families**: layered maple, drooping willow, stepped ink pine, stitched blossom, and fruit-bearing broadleaf. Each has local material/leaf variants, split trunk and a subtly hinged paper crown; the garden remains decorative and does not add hidden collision. Tavi's walking cycle now alternates legs and shoulders, moves cloth hems, and releases faint paper dust. Ground taps animate Tavi correctly even before Morrow has joined the party. The art is still undergoing Milestone A approval.

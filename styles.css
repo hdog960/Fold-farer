@@ -260,3 +260,77 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  .battle.fx-attack #needleSlash,.battle.fx-attack #enemyImpact,.battle.fx-ink #inkNeedle,.battle.fx-fold #foldShield,.battle.fx-guard #guardGlyph,.battle.fx-recoil #enemyImpact,.battle.fx-victory #enemyPaperBurst{animation:none!important;opacity:.35}
  .battle .hero-combat,.battle .enemy-combat{animation:none!important}
 }
+
+/* First Fold 0.9.0 — original botanical paper set and articulated character gait.
+   Decorative garden trees do not change the gameplay collision footprint. */
+#paperBotanicalGarden{pointer-events:none}
+#paperBotanicalGarden .paper-canopy{filter:drop-shadow(3px 5px 2px #345c5838)}
+#paperBotanicalGarden .paper-canopy-sway{
+  transform-box:fill-box;transform-origin:center bottom;
+  animation:botanicalPaperSway 7.2s ease-in-out infinite alternate
+}
+#paperBotanicalGarden .paper-canopy:nth-child(3n+1) .paper-canopy-sway{
+  animation-duration:8.8s;animation-delay:-2.1s
+}
+#paperBotanicalGarden .paper-canopy:nth-child(3n+2) .paper-canopy-sway{
+  animation-duration:6.3s;animation-delay:-3.8s
+}
+#paperBotanicalGarden .paper-canopy:nth-child(5n) .paper-canopy-sway{
+  animation-duration:9.5s;animation-delay:-5.2s
+}
+@keyframes botanicalPaperSway{
+  0%{rotate:-1.15deg;translate:-1px 0}
+  50%{rotate:.2deg;translate:0 -1px}
+  100%{rotate:1.35deg;translate:1px 0}
+}
+/* Alternating foot contact and the opposite shoulder motion replace whole-body sliding.
+   Only the active SVG pose participates; battle portraits reuse the idle group. */
+#tavi .tavi-foot,#tavi .tavi-arm{transform-box:fill-box;transform-origin:50% 8%}
+#tavi.walking .tavi-foot.foot-left{
+  animation:farerFootForward .36s ease-in-out infinite alternate
+}
+#tavi.walking .tavi-foot.foot-right{
+  animation:farerFootForward .36s ease-in-out infinite alternate-reverse
+}
+#tavi.walking .tavi-arm.arm-left{
+  animation:farerShoulder .36s ease-in-out infinite alternate-reverse
+}
+#tavi.walking .tavi-arm.arm-right{
+  animation:farerShoulder .36s ease-in-out infinite alternate
+}
+#tavi.walking .tavi-coat{
+  transform-box:fill-box;transform-origin:center top;
+  animation:farerFabricHem .36s ease-in-out infinite alternate
+}
+#taviWalkDust{opacity:0;transform-box:fill-box;transform-origin:center}
+#tavi.walking #taviWalkDust{animation:farerFootDust .36s ease-out infinite}
+#tavi.walking{animation:farerBodyStride .36s ease-in-out infinite alternate}
+@keyframes farerFootForward{
+  0%{rotate:-16deg;translate:0 -1px}
+  50%{rotate:0deg;translate:0 2px}
+  100%{rotate:18deg;translate:0 -3px}
+}
+@keyframes farerShoulder{
+  0%{rotate:-9deg}
+  50%{rotate:0deg}
+  100%{rotate:12deg}
+}
+@keyframes farerFabricHem{
+  0%{rotate:-1.7deg}
+  100%{rotate:2.7deg}
+}
+@keyframes farerBodyStride{from{translate:0 0}to{translate:0 -3.4px}}
+@keyframes farerFootDust{
+  0%{opacity:0;scale:.68;translate:0 4px}
+  33%{opacity:.66;scale:1;translate:0 0}
+  100%{opacity:0;scale:1.32;translate:3px -7px}
+}
+@media(prefers-reduced-motion:reduce){
+ #paperBotanicalGarden .paper-canopy-sway,
+ #tavi.walking .tavi-foot,
+ #tavi.walking .tavi-arm,
+ #tavi.walking .tavi-coat,
+ #tavi.walking #taviWalkDust,
+ #tavi.walking{animation:none!important}
+ #taviWalkDust{opacity:0!important}
+}

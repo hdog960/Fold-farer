@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.8.0: paper bridge + layered depth.
+/* FoldFarer: The Unfinished World. First Fold 0.9.0: hand-cut botanical depth and walking cycle.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -447,6 +447,7 @@ el.timingTap.addEventListener('click',strike);
 el.battleDone.addEventListener('click',endBattle);
 function frame(now){
  const dt=Math.min(.05,(now-last)/1000||0);last=now;
+ let fieldMotion=false;
  if(modal==='field'){
   let x=(held.right?1:0)-(held.left?1:0);
   let y=(held.down?1:0)-(held.up?1:0);
@@ -469,6 +470,7 @@ function frame(now){
    if(moveTarget&&Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25)<8)cancelTap();
    el.tavi.classList.toggle('walking',moved);
    if(moved){
+    fieldMotion=true;
     updatePrompt();
     if(now-lastSavedAt>=1100){save();lastSavedAt=now;}
    }
@@ -476,7 +478,7 @@ function frame(now){
  }else{el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');}
  updateBackdrop(dt);
  if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}
- else if(modal==='field'&&((held.left?1:0)+(held.right?1:0)+(held.up?1:0)+(held.down?1:0)>0))updateCharacter();
+ else if(modal==='field'&&fieldMotion)updateCharacter();
  if(modal==='timing'&&timingActive)el.timingMarker.style.left=progressAt(now)+'%';
  requestAnimationFrame(frame);
 }
