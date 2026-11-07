@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.9.0: hand-cut botanical depth and walking cycle.
+/* FoldFarer: The Unfinished World. First Fold 0.11.0: layered north terrace exploration.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -8,7 +8,25 @@ const initial=()=>({started:false,x:355,y:654,facing:1,direction:'down',area:'fo
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const solids=[[64,333,548,576],[378,626,548,573],[885,1180,548,579],[1284,1436,548,577]];
 const props=[[336,725,60,21],[573,728,17,13],[1144,735,58,18]];
+// All scene bounds describe a genuine walkable foot plane, not the SVG backdrop.
+// This single source is shared by movement, tap-to-walk and save migration.
+const areaBounds={
+ folio:[85,1360,552,768],
+ atelier:[170,1280,456,772],
+ terrace:[155,1280,400,770]
+};
+const boundsFor=area=>areaBounds[area]||areaBounds.folio;
 function canStand(x,y,mended,area='folio'){
+ if(area==='terrace'){
+   const [left,right,back,front]=boundsFor('terrace');
+   if(x<left||x>right||y<back||y>front)return false;
+   // Props have physical *footprints*, not invisible full-height rectangles.
+   if(((x-719)/57)**2+((y-483)/20)**2<1)return false; // bell dais
+   if(((x-371)/51)**2+((y-615)/17)**2<1)return false; // lantern base
+   if(((x-1022)/105)**2+((y-660)/24)**2<1)return false; // memory kiosk
+   if(((x-1177)/55)**2+((y-591)/23)**2<1)return false; // ribbon tree
+   return true;
+ }
  if(area==='atelier'){
    if(x<170||x>1280||y<456||y>772)return false;
    if(x>594&&x<852&&y>558&&y<655)return false; // Loom structure
@@ -23,13 +41,15 @@ function canStand(x,y,mended,area='folio'){
  return true;
 }
 function restorePosition(d){
- if(!['folio','atelier'].includes(d.area))d.area='folio';
- d.x=clamp(d.x,d.area==='atelier'?170:85,d.area==='atelier'?1280:1360);
- d.y=clamp(d.y,d.area==='atelier'?456:552,d.area==='atelier'?772:768);
+ if(!areaBounds[d.area])d.area='folio';
+ const [left,right,back,front]=boundsFor(d.area);
+ d.x=clamp(d.x,left,right);
+ d.y=clamp(d.y,back,front);
  d.facing=d.facing===-1?-1:1;
  if(!['up','down','side','diag-up','diag-down'].includes(d.direction))d.direction='down';
  if(!canStand(d.x,d.y,!!d.mended,d.area)){
    if(d.area==='atelier'){d.x=720;d.y=711;}
+   else if(d.area==='terrace'){d.x=720;d.y=700;}
    else if(d.x>708&&d.x<854)d.x=d.x<781?696:864;
    else d.y=638;
  }
@@ -46,10 +66,11 @@ function load(){
 }
 let state=load();
 const $=id=>document.getElementById(id);
-const el={world:$('world'),farRidges:$('paintedPaperRidges'),folioScene:$('folioScene'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
+const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
 let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0;
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
+const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceRibbonTree:591};
 let lastDepthOrder='';
 const backdrop={x:0,y:0};
 function updateBackdrop(dt){
@@ -61,6 +82,11 @@ function updateBackdrop(dt){
  backdrop.x+=(tx-backdrop.x)*alpha;
  backdrop.y+=(ty-backdrop.y)*alpha;
  el.farRidges.setAttribute('transform','translate('+backdrop.x.toFixed(2)+' '+backdrop.y.toFixed(2)+')');
+ const dx=state.area==='terrace'?clamp((720-state.x)*.043,-21,21):0;
+ const dy=state.area==='terrace'?clamp((580-state.y)*.038,-10,10):0;
+ backdrop.terraceX=(backdrop.terraceX||0)+(dx-(backdrop.terraceX||0))*alpha;
+ backdrop.terraceY=(backdrop.terraceY||0)+(dy-(backdrop.terraceY||0))*alpha;
+ el.terraceRidges.setAttribute('transform','translate('+backdrop.terraceX.toFixed(2)+' '+backdrop.terraceY.toFixed(2)+')');
 }
 const companion={x:474,y:620,area:'folio',ready:false};
 function updateCompanion(dt=0){
@@ -72,8 +98,10 @@ function updateCompanion(dt=0){
    return;
  }
  const indoors=state.area==='atelier';
- const targetX=clamp(state.x-state.facing*67,indoors?175:90,indoors?1270:1350);
- const targetY=clamp(state.y-26,indoors?462:555,indoors?759:754);
+ const terrace=state.area==='terrace';
+ const [left,right,back,front]=boundsFor(state.area);
+ const targetX=clamp(state.x-state.facing*67,left+6,right-6);
+ const targetY=clamp(state.y-26,back+6,front-12);
  if(!companion.ready||companion.area!==state.area){
    companion.x=targetX;companion.y=targetY;companion.area=state.area;companion.ready=true;
  }else if(dt>0){
@@ -81,19 +109,24 @@ function updateCompanion(dt=0){
    companion.x+=(targetX-companion.x)*easing;
    companion.y+=(targetY-companion.y)*easing;
  }
- const size=clamp(.72+(companion.y-552)*.00075,.71,.89);
+ const size=terrace?clamp(.61+(companion.y-400)*.00106,.61,1.01):clamp(.72+(companion.y-552)*.00075,.71,.89);
  el.morrow.setAttribute('transform','translate('+companion.x.toFixed(1)+' '+companion.y.toFixed(1)+') scale('+size.toFixed(3)+')');
  el.morrow.classList.add('following');
- const targetStage=indoors?el.atelierDepthStage:el.depthStage;
+ const targetStage=indoors?el.atelierDepthStage:(terrace?el.terraceDepthStage:el.depthStage);
  if(el.morrow.parentNode!==targetStage){targetStage.appendChild(el.morrow);lastDepthOrder='';}
 }
 function updateCharacter(){
- const z=clamp(.77+(state.y-552)*.0021,.77,1.23);
+ // Terrace covers over 350 walkable vertical units, so its perspective scales
+ // substantially more between back and front than the Folio street frontage.
+ const terrace=state.area==='terrace';
+ const z=terrace?clamp(.52+(state.y-400)*.00175,.52,1.17):clamp(.77+(state.y-552)*.0021,.77,1.23);
  el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+(state.facing*z).toFixed(3)+' '+z.toFixed(3)+')');
  for(const dir of ['up','down','side','diag-up','diag-down'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
  const inside=state.area==='atelier';
- const targetStage=inside?el.atelierDepthStage:el.depthStage;
- const items=inside?{...atelierDepth,...(state.metMorrow?{morrow:companion.y}:{})}:{...actorDepth,morrow:state.metMorrow?companion.y:620};
+ const targetStage=inside?el.atelierDepthStage:(terrace?el.terraceDepthStage:el.depthStage);
+ const items=inside?{...atelierDepth,...(state.metMorrow?{morrow:companion.y}:{})}:
+   terrace?{...terraceDepth,...(state.metMorrow?{morrow:companion.y}:{})}:
+   {...actorDepth,morrow:state.metMorrow?companion.y:620};
  const sorted=Object.entries({...items,tavi:state.y}).sort((a,b)=>a[1]-b[1]).map(v=>v[0]);
  const signature=state.area+':'+sorted.join(':');
  if(el.tavi.parentNode!==targetStage)targetStage.appendChild(el.tavi);
@@ -101,9 +134,9 @@ function updateCharacter(){
 }
 function cancelTap(){moveTarget=null;el.tapMarker.setAttribute('visibility','hidden');}
 function moveBy(dx,dy){
- const indoors=state.area==='atelier';
- const nextX=clamp(state.x+dx,indoors?170:85,indoors?1280:1360);
- const nextY=clamp(state.y+dy,indoors?456:552,indoors?772:768);
+ const [left,right,back,front]=boundsFor(state.area);
+ const nextX=clamp(state.x+dx,left,right);
+ const nextY=clamp(state.y+dy,back,front);
  if(canStand(nextX,nextY,state.mended,state.area)){state.x=nextX;state.y=nextY;return true;}
  let moved=false;
  if(canStand(nextX,state.y,state.mended,state.area)){state.x=nextX;moved=true;}
@@ -112,6 +145,7 @@ function moveBy(dx,dy){
 }
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));}catch(e){console.warn('Could not persist preview progress',e)}}
 function objective(){
+ if(state.area==='terrace')return 'Explore the North Terrace: a deeper path through the paper village.';
  if(state.area==='atelier')return state.threadSample?'Leave the Threads workshop and return to the Folio.':'Explore the workshop and inspect the Mender’s Loom.';
  if(!state.metMorrow)return 'Find the ink-bird with the missing map.';
  if(!state.mended)return 'Mend the broken bridge at the river seam.';
@@ -120,7 +154,8 @@ function objective(){
  return 'First Fold complete — open your journal to review the trail.';
 }
 function sync(){
- el.folioScene.style.display=state.area==='atelier'?'none':'';
+ el.folioScene.style.display=state.area==='folio'?'':'none';
+ el.terraceScene.style.display=state.area==='terrace'?'':'none';
  el.atelierScene.style.display=state.area==='atelier'?'':'none';
  updateCompanion(0);
  updateCharacter();
@@ -188,7 +223,12 @@ function nextLine(){
  el.nextLine.textContent=dialogue.length?'Continue ›':'Close ›';
 }
 function nearest(){
- const choices=state.area==='atelier'?[
+ const choices=state.area==='terrace'?[
+  {key:'terraceBell',x:719,y:495,r:95,text:'Inspect the archive bell'},
+  {key:'terraceKiosk',x:1022,y:655,r:110,text:'Inspect the memory kiosk'},
+  {key:'terraceTree',x:1177,y:584,r:105,text:'Inspect the ribbon tree'},
+  {key:'terraceExit',x:720,y:738,r:91,text:'Return to the Wandering Folio'}
+ ]:state.area==='atelier'?[
    {key:'loom',x:724,y:618,r:113,text:state.threadSample?'Inspect the stitch loom':'Examine the stitch loom'},
    {key:'spools',x:430,y:647,r:103,text:'Inspect the colored thread spools'},
    {key:'dyes',x:1084,y:655,r:102,text:'Inspect the dye bottles'},
@@ -198,6 +238,7 @@ function nearest(){
   {key:'seam',x:696,y:648,r:103,text:state.mended?'Inspect the repaired seam':'Mend the broken paper bridge'},
   {key:'mila',x:1024,y:643,r:102,text:'Speak with Mila'},
   {key:'scrapper',x:1244,y:652,r:105,text:state.won?'Inspect the quiet road':'Challenge the Paper Scrapper'},
+  {key:'northGate',x:661,y:600,r:69,text:'Walk into the North Terrace'},
   {key:'door',x:467,y:576,r:55,text:'Enter the Threads workshop'},
   {key:'notice',x:573,y:728,r:62,text:'Read the Folio notice'}
  ];
@@ -219,6 +260,21 @@ function interact(){
   speak([['Tavi','Every seam has a story. I should explore a little farther.','✦']]);return;
  }
  switch(target.key){
+ case 'northGate':
+   travelTo('terrace',720,702,'up');
+   speak([['Tavi','The street unfolds uphill. I could never see this terrace from the flat village map.','✦'],
+          ['Morrow','A whole other page of the Folio. The roads have depth here, and every fold was made by hand.','✒']]);
+   break;
+ case 'terraceExit':
+   travelTo('folio',661,642,'down');break;
+ case 'terraceBell':
+   speak([['Tavi','An archive bell made from folded sheet brass. A different seam is engraved into each petal.','✦'],
+          ['Morrow','It rings for stories kept, not pages erased. The sound deserves a better library.','✒']]);break;
+ case 'terraceKiosk':
+   speak([['Tavi','Every pamphlet tells a different version of the same day. The ink is still damp.','✦'],
+          ['Morrow','Proof that one town can remember in more than one way. Keep the kiosk exactly like this.','✒']]);break;
+ case 'terraceTree':
+   speak([['Tavi','Someone sewed these paper blossoms on with real ribbon. There are dozens of different stitches.','✦']]);break;
  case 'door':
    travelTo('atelier',720,711,'up');
    speak([['Tavi','The Threads workshop smells like old paper and freshly dyed ribbon. There is room to walk around the loom.','✦']]);
@@ -427,7 +483,8 @@ el.world.addEventListener('pointerdown',event=>{
  const matrix=el.world.getScreenCTM();if(!matrix)return;
  const p=el.world.createSVGPoint();p.x=event.clientX;p.y=event.clientY;
  const loc=p.matrixTransform(matrix.inverse());
- const x=clamp(loc.x,85,1360),y=clamp(loc.y,552,768);
+ const [left,right,back,front]=boundsFor(state.area);
+ const x=clamp(loc.x,left,right),y=clamp(loc.y,back,front);
  if(!canStand(x,y,state.mended,state.area)){cancelTap();return;}
  moveTarget={x,y};
  el.tapMarker.setAttribute('transform','translate('+x.toFixed(1)+' '+y.toFixed(1)+')');
