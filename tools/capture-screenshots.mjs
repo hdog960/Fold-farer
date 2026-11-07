@@ -166,6 +166,50 @@ try {
   await followerPage.screenshot({path:'screenshots/11-morrow-follows.png'});
   await followerPage.close();
 
+
+  // North Terrace: actual browser-rendered second outdoor RPG walk plane.
+  // The stage is playable at both far and near depths, not a panoramic mockup.
+  const terraceNear=await openedAt({started:true,area:'terrace',x:720,y:702,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+  if(await terraceNear.locator('#terraceScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('North Terrace is hidden after loading its save');
+  if(await terraceNear.locator('#folioScene').evaluate(e=>getComputedStyle(e).display)!=='none')throw Error('Folio should hide while terrace loads');
+  if(await terraceNear.locator('#tavi').evaluate(e=>e.parentNode?.id)!=='terraceDepthStage')throw Error('Tavi is not in a real depth-sorted terrace scene');
+  if(await terraceNear.locator('#morrow').evaluate(e=>e.parentNode?.id)!=='terraceDepthStage')throw Error('Morrow did not accompany Tavi into terrace');
+  const depthBox=await terraceNear.locator('#terraceGround').evaluate(e=>{const b=e.getBBox();return {width:b.width,height:b.height}});
+  if(depthBox.height<350||depthBox.width<1100)throw Error('Terrace does not span a substantial rendered walk plane '+JSON.stringify(depthBox));
+  await terraceNear.screenshot({path:'screenshots/17-north-terrace-near.png'});
+  const initialTerracePose=await terraceNear.locator('#tavi').getAttribute('transform');
+  await terraceNear.keyboard.down('ArrowUp');
+  await terraceNear.waitForTimeout(490);
+  await terraceNear.keyboard.up('ArrowUp');
+  const walkedTerracePose=await terraceNear.locator('#tavi').getAttribute('transform');
+  if(initialTerracePose===walkedTerracePose)throw Error('Terrace was not traversable toward the distant gate');
+  console.log('TERRACE TWO-AXIS MOVEMENT:',initialTerracePose,'to',walkedTerracePose);
+  await terraceNear.close();
+
+  const terraceFar=await openedAt({started:true,area:'terrace',x:920,y:440,facing:-1,direction:'down',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+  const farActor=await terraceFar.locator('#tavi').getAttribute('transform');
+  if(!farActor?.includes('scale(-0.'))throw Error('Far terrace hero is not smaller and perspective-scaled: '+farActor);
+  const zOrder=await terraceFar.locator('#terraceDepthStage').evaluate(stage=>[...stage.children].map(child=>child.id));
+  if(zOrder.indexOf('tavi')>=zOrder.indexOf('terraceBell'))throw Error('Terrace near-side bell cannot occlude a hero walking far behind it');
+  await terraceFar.screenshot({path:'screenshots/18-north-terrace-distant.png'});
+  await terraceFar.close();
+
+  const terraceMobile=await browser.newPage({
+    viewport:{width:844,height:390},screen:{width:844,height:390},deviceScaleFactor:2,
+    isMobile:true,hasTouch:true,reducedMotion:'reduce'
+  });
+  terraceMobile.on('pageerror',error=>errors.push('terrace mobile: '+error.message));
+  await terraceMobile.addInitScript(()=>localStorage.setItem('foldfarer.firstfold.0.1',JSON.stringify({
+    started:true,x:720,y:700,area:'terrace',facing:1,direction:'down',
+    metMorrow:true,mended:false,threadSample:false,letter:false,won:false
+  })));
+  await terraceMobile.goto('http://127.0.0.1:8000/',{waitUntil:'networkidle'});
+  await terraceMobile.locator('#start').click();
+  await terraceMobile.locator('#intro').waitFor({state:'hidden'});
+  if(await terraceMobile.locator('#terraceScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('North Terrace failed iPhone-size browser render');
+  await terraceMobile.screenshot({path:'screenshots/19-north-terrace-mobile.png'});
+  await terraceMobile.close();
+
   const atelierPage=await openedAt({started:true,area:'atelier',x:720,y:711,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   if(await atelierPage.locator('#atelierScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('Workshop not visible');
   if(await atelierPage.locator('#morrow').evaluate(e=>e.parentNode?.id)!=='atelierDepthStage')throw Error('Morrow failed to join the indoor stage');
@@ -203,7 +247,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png','14-botanical-walk-cycle.png','15-mobile-landscape-emulation.png','16-dimensional-folio-buildings.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png','14-botanical-walk-cycle.png','15-mobile-landscape-emulation.png','16-dimensional-folio-buildings.png','17-north-terrace-near.png','18-north-terrace-distant.png','19-north-terrace-mobile.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {
