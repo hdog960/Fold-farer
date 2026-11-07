@@ -62,3 +62,6 @@ The **real playable Folio** now includes four individually hand-authored dimensi
 
 ### First Fold 0.11.0 — A real second outdoor exploration level
 The North Terrace is a third playable scene (beside the Folio village and Threads workshop). Access the visible **NORTH** paper arch between Threads and the river. It has a deep walkable 2D footprint from Y400 to Y770, an original layered paper skyline, folded side buildings, a physical archive bell, lantern, memory kiosk, and ribbon tree; the hero and Morrow scale and occlude by foot depth. Interact with the bell, kiosk, tree, or descend back to the Folio. Existing save progress works, the area is stored in the same save format, and the game remains free on GitHub Pages. This is Milestone A visual exploration, not a Milestone B release.
+
+#### 0.11.1 visual acceptance follow-up
+Reworked the left-facing far Tavi transform to mirror only the locally authored sprite, instead of reversing the entire projected game-world actor. The entrance/exit prompt and objective are shorter and use a terrace-specific layout on landscape iPhone screens. Added real-browser checks for remote hero visibility, 2D tap-to-walk and mobile prompt boundaries. This is still an unfinished artwork milestone.

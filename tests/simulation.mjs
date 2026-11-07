@@ -117,6 +117,7 @@ click('interact');
 assert(save().area==='terrace','North Terrace gateway did not open a connected world');
 drainDialogue();
 assert(e('terraceScene').style.display==='', 'North Terrace is not visible');
+assert(e('prompt').classList.contains('terrace-prompt'),'Terrace prompt should use its own unobstructed HUD placement');
 assert(e('folioScene').style.display==='none', 'Folio should hide while exploring terrace');
 assert(e('morrow').parentNode===e('terraceDepthStage'),'Morrow did not follow into the upper courtyard');
 const nearTerraceY=pos().y;
@@ -128,6 +129,7 @@ assert(farTerraceScale<nearTerraceScale-.12,'Deep walk-plane perspective does no
 key('ArrowDown',true);step(45);key('ArrowDown',false);
 click('interact');
 assert(save().area==='folio','Terrace descent back to the Folio failed');
+assert(!e('prompt').classList.contains('terrace-prompt'),'Terrace HUD placement must reset when returning to Folio');
 assert(e('morrow').parentNode===e('depthStage'),'Morrow did not descend with Tavi');
 walkRight(58);
 walkRight(12);assert(pos().x<=709,'Crossed an unrepaired bridge or river');

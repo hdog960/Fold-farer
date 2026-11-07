@@ -155,3 +155,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Optional Tavi/Morrow dialogues at the bell, kiosk, tree, and exit. No additional quest progress gates, combat or currencies; main prologue remains unchanged.
 - Added save compatibility for the new area (existing saved data defaults safely to Folio), multiroom companion follow, tap-to-walk bounds and automated journey/scale regression checks.
 - Milestone B remains locked. The art still awaits creator inspection and production-quality sprite/animation upgrades, so visual acceptance is NOT YET READY.
+
+## First Fold 0.11.1 — Terrace screenshot correction
+- Reviewed actual near, far and 844×390 mobile-browser terrace screenshots. The near view has strong visible depth, but the far-left-facing actor was absent from a capture and objective/prompt bubbles covered the gateway.
+- Split local art mirroring from Tavi's positive parent translate/scale; battle and dialogue reference the same unmirrored sprite, and both right- and left-facing forms remain grounded to the same foot anchor.
+- Shortened the terrace objective and return prompt; assigned the terrace prompt its own right-side panel, out of the central archway. Restored pointer events on the full-screen terrace background to ensure tapping anywhere walkable reaches the world's touch controller.
+- Added active browser checks: left-facing hero bounding box, foreground bell ordering, tap-to-walk movement, and mobile objective/logo separation.
+- No progress/saves lost; major 90/100 artwork approval gate still NOT MET.

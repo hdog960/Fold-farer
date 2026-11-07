@@ -36,6 +36,9 @@ for(const id of ['folioNorthGate','terraceScene','terraceDistantCards','terraceG
 }
 assert(game.includes("terrace:[155,1280,400,770]"),'Terrace must have a distinct deep walkable footprint');
 assert(game.includes("state.area==='terrace'"),'Terrace actor depth sorting and scene switching are missing');
+assert(ids.includes('taviFlip'),'Separate hero mirroring group missing');
+assert(game.includes("el.taviFlip.setAttribute('transform'"),'Mirror must affect only local hero art');
+assert(css.includes('prompt.terrace-prompt'),'Terrace-specific HUD position not implemented');
 assert(css.includes('prefers-reduced-motion:reduce'));
 assert(sw.includes('caches.open'));
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

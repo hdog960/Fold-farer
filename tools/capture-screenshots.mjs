@@ -177,6 +177,16 @@ try {
   const depthBox=await terraceNear.locator('#terraceGround').evaluate(e=>{const b=e.getBBox();return {width:b.width,height:b.height}});
   if(depthBox.height<350||depthBox.width<1100)throw Error('Terrace does not span a substantial rendered walk plane '+JSON.stringify(depthBox));
   await terraceNear.screenshot({path:'screenshots/17-north-terrace-near.png'});
+  const beforeTap=await terraceNear.locator('#tavi').getAttribute('transform');
+  const tapCoords=await terraceNear.locator('#world').evaluate(svg=>{
+    const point=svg.createSVGPoint();point.x=872;point.y=704;
+    const screen=point.matrixTransform(svg.getScreenCTM());return {x:screen.x,y:screen.y};
+  });
+  await terraceNear.mouse.click(tapCoords.x,tapCoords.y);
+  await terraceNear.waitForTimeout(225);
+  if(await terraceNear.locator('#tavi').getAttribute('transform')===beforeTap){
+    throw Error('Tap-to-walk not activating in the new 2D terrace scene');
+  }
   const initialTerracePose=await terraceNear.locator('#tavi').getAttribute('transform');
   await terraceNear.keyboard.down('ArrowUp');
   await terraceNear.waitForTimeout(490);
@@ -188,7 +198,13 @@ try {
 
   const terraceFar=await openedAt({started:true,area:'terrace',x:920,y:440,facing:-1,direction:'down',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   const farActor=await terraceFar.locator('#tavi').getAttribute('transform');
-  if(!farActor?.includes('scale(-0.'))throw Error('Far terrace hero is not smaller and perspective-scaled: '+farActor);
+  if(!/scale\\(0\\.[0-9]+\\)/.test(farActor))throw Error('Far terrace hero is not smaller and perspective-scaled: '+farActor);
+  if(await terraceFar.locator('#taviFlip').getAttribute('transform')!=='scale(-1)')throw Error('Facing left did not mirror the local art');
+  const farHeroBox=await terraceFar.locator('#tavi').boundingBox();
+  if(!farHeroBox||farHeroBox.width<16||farHeroBox.height<30||farHeroBox.x<0||farHeroBox.x>1440){
+    throw Error('Far terrace actor is missing or outside the actual view '+JSON.stringify(farHeroBox));
+  }
+  console.log('FAR HERO WORLD BOUNDS:',JSON.stringify(farHeroBox));
   const zOrder=await terraceFar.locator('#terraceDepthStage').evaluate(stage=>[...stage.children].map(child=>child.id));
   if(zOrder.indexOf('tavi')>=zOrder.indexOf('terraceBell'))throw Error('Terrace near-side bell cannot occlude a hero walking far behind it');
   await terraceFar.screenshot({path:'screenshots/18-north-terrace-distant.png'});
@@ -207,6 +223,10 @@ try {
   await terraceMobile.locator('#start').click();
   await terraceMobile.locator('#intro').waitFor({state:'hidden'});
   if(await terraceMobile.locator('#terraceScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('North Terrace failed iPhone-size browser render');
+  if(!await terraceMobile.locator('#prompt').evaluate(e=>e.classList.contains('terrace-prompt')))throw Error('North Terrace HUD did not switch to mobile-safe position');
+  const mobileGoal=await terraceMobile.locator('.objective').boundingBox();
+  const mobileLogo=await terraceMobile.locator('.logo-mini').boundingBox();
+  if(!mobileGoal||!mobileLogo||mobileLogo.x+mobileLogo.width>=mobileGoal.x)throw Error('Terrace mobile objective overlaps game logo');
   await terraceMobile.screenshot({path:'screenshots/19-north-terrace-mobile.png'});
   await terraceMobile.close();
 

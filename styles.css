@@ -400,3 +400,11 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #terraceRibbonTree .terrace-leaf-sway,
  #terraceScene #terraceHangingPaper{animation:none!important}
 }
+
+/* First Fold 0.11.1: the new terrace shares all normal tap-to-walk input.
+   Its stage background receives events; decorative layers never steal them. */
+#terraceScene{pointer-events:auto}
+.prompt.terrace-prompt{top:19%;left:auto;right:2.4%;max-width:22%;transform:none;min-width:0;text-align:center}
+@media screen and (max-height:490px) and (orientation:landscape){
+  .prompt.terrace-prompt{top:20%;left:auto;right:1.8%;max-width:22%;font-size:10px;line-height:1.15;padding:4px 7px}
+}
