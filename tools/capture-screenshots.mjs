@@ -181,6 +181,20 @@ try {
   await quarterBackPage.screenshot({path:'screenshots/09-tavi-three-quarter.png'});
   await quarterBackPage.keyboard.up('ArrowUp');
   await quarterBackPage.keyboard.up('ArrowRight');
+  await quarterBackPage.waitForTimeout(110);
+  const idleCostume=await quarterBackPage.locator('#tavi').evaluate(el=>{
+    const pose=document.getElementById('taviBackQuarterArt');
+    return {
+      walking:el.classList.contains('walking'),
+      animated:[...pose.querySelectorAll('.tavi-upper-cel')].filter(x=>getComputedStyle(x).display!=='none').length,
+      idle:getComputedStyle(pose.querySelector('.tavi-rest-torso')).display,
+      idleScarf:getComputedStyle(pose.querySelector('.tavi-rest-scarf')).display,
+      feet:getComputedStyle(pose.querySelector('.tavi-foot')).display
+    };
+  });
+  if(idleCostume.walking||idleCostume.animated||idleCostume.idle==='none'||
+     idleCostume.idleScarf==='none'||idleCostume.feet==='none')
+    throw Error('Standing Tavi failed to recover original source art after walking: '+JSON.stringify(idleCostume));
   await quarterBackPage.close();
 
   const quarterFrontPage=await openedAt({started:true,area:'folio',x:607,y:594,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});

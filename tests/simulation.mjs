@@ -194,4 +194,5 @@ key('ArrowRight',true);step(110);key('ArrowRight',false);step(1);
 assert(pos().x<=1360,'Hero exceeded authored scene bounds');
 assert(!e('tavi').classList.contains('walking'),'Hero must not moonwalk against a map edge');
 assert(e('tavi').dataset.stride==='0','Feet must rest at contact after hitting a wall');
+assert(e('tavi').classList.contains('walking')===false,'Idle Tavi must clear walking state for base costume and portrait');
 console.log('Gameplay simulation passed: 2D movement, depth poses, river collision, Morrow -> Mend -> Mila -> timed battle -> victory -> journal/save.');
