@@ -4,7 +4,7 @@
   "private": true,
   "description": "FoldFarer static iPhone aesthetic review build; full TypeScript game architecture not yet introduced.",
   "scripts": {
-    "test": "node --check game.js && node --check sw.js && node tests/smoke.mjs",
+    "test": "node --check game.js && node --check sw.js && node tests/smoke.mjs && node tests/simulation.mjs",
     "start": "npx --yes http-server . -p 8080 -c-1"
   },
   "license": "UNLICENSED"
