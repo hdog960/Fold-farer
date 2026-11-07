@@ -69,7 +69,10 @@ click('start');assert(e('portraitUse').attrs.href==='#taviSprite','Tavi dialogue
 // Verify actual into-the-world movement, separate rear artwork, and retreat.
 const pos=()=>{const match=/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(e('tavi').attrs.transform);assert(match,'Missing transform');return {x:Number(match[1]),y:Number(match[2])};};
 const startY=pos().y;
-key('ArrowUp',true);step(20);key('ArrowUp',false);
+key('ArrowUp',true);step(20);
+assert(['0','1','2','3'].includes(e('tavi').dataset.stride),'Movement must select an actual ground contact frame');
+assert(e('tavi').dataset.stride!=='0','Moving into the scene must advance beyond first stride state');
+key('ArrowUp',false);
 assert(pos().y<startY-35,'Up did not move into the screen');
 assert(e('tavi').classList.contains('dir-up'),'Up did not display original back pose');
 assert(e('paintedPaperRidges').attrs.transform?.startsWith('translate('),'Distant paper cards did not receive depth-responsive parallax');
@@ -145,6 +148,9 @@ assert(e('morrow').parentNode===e('depthStage'),'Morrow did not descend with Tav
 walkRight(58);
 walkRight(12);assert(pos().x<=709,'Crossed an unrepaired bridge or river');
 click('interact');drainDialogue();assert(save().mended,'Bridge Mend failed');
+assert(e('tavi').classList.contains('mending'),'Bridge repair must show the hero needle gesture');
+step(70);
+assert(!e('tavi').classList.contains('mending'),'Needle flourish must finish and unblock the player');
 assert(e('bridgeFix').attrs.class==='bridge-open','Bridge artwork not opened');
 assert(e('seamLight').classList.contains('hidden-seam'),'Mended seam effect should recede');
 // The visual crossing and the collision model must describe the same bridge.

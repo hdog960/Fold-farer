@@ -49,4 +49,8 @@ assert(css.includes('farerClosedEyes')&&css.includes('terraceLanternFlicker'),'C
 assert(game.includes('terraceDyersBench:563,terraceLetterCabinet:555'),'New physical props must be ordered by foot depth');
 assert(css.includes('prefers-reduced-motion:reduce'));
 assert(sw.includes('caches.open'));
+assert(ids.includes('taviMendArc'),'The in-world needle gesture is missing');
+assert((html.match(/class="stride-contact-ground"/g)||[]).length===5,'Five directional poses need ground contact art');
+assert(css.includes('#tavi.walking[data-stride="0"]')&&css.includes('#tavi.walking[data-stride="3"]'),'Four unique gait frames required');
+assert(game.includes('walkDistance+=travelled')&&game.includes('mendingUntil'),'Movement and Mending must be driven by game state');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

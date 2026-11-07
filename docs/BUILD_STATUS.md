@@ -182,3 +182,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Tavi now has discrete closed-eyelid SVG artwork for front/side/three-quarter-forward poses, timed blinking separately from his walking gait; the paper lantern gets independent warm light flutter, both disabled in reduced motion.
 - Automated gameplay tests verify new prop collision and open central navigation. Real browser checks verify all major SVG groups have rendered bounds, near hero draws in front of nearby props, far hero behind them, and create distinct original gameplay art captures. No claim of physical iPhone testing.
 - **Art approval remains LOCKED** until the creator inspects a production-quality 90/100 in-game scene; Milestone B must not begin.
+
+## First Fold 0.13.0 — Grounded stride/contact and real needle Mending animation (Milestone A)
+- Added four discrete, illustrated contact/weight-transfer states to all five existing directional Tavi poses. Actual player displacement selects each step; blocked movement, stops and dialogue cannot trigger autonomous foot sliding.
+- Separate hand-drawn left/right sole impressions, coat/shoulder/arm response and dust are coupled to this distance-driven gait. No character art or actor is cloned, and the physics foot-anchor remains unchanged at all scene depths.
+- Bridge Mending now animates Tavi's needle and thread in the same live world actor, synchronized to the bridge's unfolding. Quest state saves at the beginning of the flourish, so an iPhone suspend/reopen cannot roll it back. Reduced-motion players get the same state without moving effects.
+- Added simulation assertions for illustrated walk frames and gesture completion, plus structural art checks and a real-browser gait check. PWA cache advanced without changing save key, area geometry, combat or progress.
+- **Artwork approval not yet earned:** the full production-quality animation atlas, richer environmental illustration, lighting and real-device iPhone validation remain outstanding. Milestone B remains LOCKED.
