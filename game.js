@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.11.0: layered north terrace exploration.
+/* FoldFarer: The Unfinished World. First Fold 0.12.0: uniquely finished North Terrace and depth-aware furnishings.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -25,6 +25,8 @@ function canStand(x,y,mended,area='folio'){
    if(((x-371)/51)**2+((y-615)/17)**2<1)return false; // lantern base
    if(((x-1022)/105)**2+((y-660)/24)**2<1)return false; // memory kiosk
    if(((x-1177)/55)**2+((y-591)/23)**2<1)return false; // ribbon tree
+   if(((x-502)/58)**2+((y-563)/19)**2<1)return false; // dyer's bench
+   if(((x-954)/65)**2+((y-555)/21)**2<1)return false; // lost-letter cabinet
    return true;
  }
  if(area==='atelier'){
@@ -70,7 +72,8 @@ const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('te
 let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0;
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
-const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceRibbonTree:591};
+const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceRibbonTree:591,
+ terraceDyersBench:563,terraceLetterCabinet:555};
 let lastDepthOrder='';
 const backdrop={x:0,y:0};
 function updateBackdrop(dt){
@@ -232,6 +235,8 @@ function nearest(){
   {key:'terraceBell',x:719,y:495,r:95,text:'Inspect the archive bell'},
   {key:'terraceKiosk',x:1022,y:655,r:110,text:'Inspect the memory kiosk'},
   {key:'terraceTree',x:1177,y:584,r:105,text:'Inspect the ribbon tree'},
+  {key:'terraceDyersBench',x:502,y:557,r:97,text:"Inspect the dyer's bench"},
+  {key:'terraceLetterCabinet',x:954,y:551,r:98,text:'Read the lost-letter cabinet'},
   {key:'terraceExit',x:720,y:738,r:91,text:'Return to the Folio'}
  ]:state.area==='atelier'?[
    {key:'loom',x:724,y:618,r:113,text:state.threadSample?'Inspect the stitch loom':'Examine the stitch loom'},
@@ -280,6 +285,12 @@ function interact(){
           ['Morrow','Proof that one town can remember in more than one way. Keep the kiosk exactly like this.','✒']]);break;
  case 'terraceTree':
    speak([['Tavi','Someone sewed these paper blossoms on with real ribbon. There are dozens of different stitches.','✦']]);break;
+ case 'terraceDyersBench':
+   speak([['Tavi',"Three shades of sea-glass ink, and a cushion stitched from old book covers. The dyer was proud of this bench.",'✦'],
+          ['Morrow','The town kept the seat even when the shop closed. Some things are useful as memories.','✒']]);break;
+ case 'terraceLetterCabinet':
+   speak([['Tavi','Letters returned from places that vanished off the map. None have been opened.','✦'],
+          ['Morrow','Good. A lost address is not permission to read a private letter. We should restore the road first.','✒']]);break;
  case 'door':
    travelTo('atelier',720,711,'up');
    speak([['Tavi','The Threads workshop smells like old paper and freshly dyed ribbon. There is room to walk around the loom.','✦']]);
