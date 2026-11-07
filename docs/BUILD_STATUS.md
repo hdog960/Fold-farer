@@ -91,3 +91,8 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Added automated tests for opposite-direction diagonal movement, combined-axis return, and screenshot capture of the real diagonal art in action.
 - GitHub Pages Home Screen URL stays the same; PWA shell cache bumped. No Save Key changes; original progress retained.
 - Art gate NOT YET READY: more illustrated camera layers, individual frame atlases, expressive battle animation and visual acceptance review are still required.
+
+### 0.6.0 screenshot and spawn audit
+- Moved the **new-game-only** default field spawn to X355, away from the left touch D-pad, keeping existing local saves and player progress unchanged.
+- Added automated real browser art captures for both front and back diagonal Tavi poses at visible in-world positions where normal depth occlusion does not hide the character.
+- Corrected boot version display from older 0.5 label and bumped offline cache.

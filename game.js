@@ -4,7 +4,7 @@
 (function(){
 'use strict';
 const SAVE_KEY='foldfarer.firstfold.0.1';
-const initial=()=>({started:false,x:273,y:654,facing:1,direction:'down',area:'folio',threadSample:false,metMorrow:false,mended:false,letter:false,won:false});
+const initial=()=>({started:false,x:355,y:654,facing:1,direction:'down',area:'folio',threadSample:false,metMorrow:false,mended:false,letter:false,won:false});
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const solids=[[64,333,548,576],[378,626,548,573],[885,1180,548,579],[1284,1436,548,577]];
 const props=[[336,725,60,21],[573,728,17,13],[1144,735,58,18]];
