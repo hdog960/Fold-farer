@@ -34,6 +34,18 @@ try {
     throw Error('2.5D depth movement or back-facing artwork not active');
   }
   await page.screenshot({path:'screenshots/06-depth-exploration.png'});
+  await page.keyboard.down('ArrowRight');
+  await page.waitForTimeout(400);
+  await page.keyboard.up('ArrowRight');
+  await page.keyboard.down('ArrowUp');
+  await page.keyboard.down('ArrowRight');
+  await page.waitForTimeout(400);
+  await page.keyboard.up('ArrowUp');
+  await page.keyboard.up('ArrowRight');
+  const diagonalPose=await page.locator('#tavi').getAttribute('class');
+  if(!diagonalPose?.includes('dir-diag-up'))throw Error('Diagonal facing did not activate authored 3/4 sprite: '+diagonalPose);
+  await page.screenshot({path:'screenshots/09-tavi-three-quarter.png'});
+  console.log('DIAGONAL SCREENSHOT PASS:',diagonalPose);
   console.log('DEPTH TEST:',before,'->',after);
 
   // Load a separate real browser page for each saved scene; simply writing
@@ -86,7 +98,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {

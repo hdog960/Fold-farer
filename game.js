@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.5.0: character identity and expressive paper motion.
+/* FoldFarer: The Unfinished World. First Fold 0.6.0: diagonally authored eight-way movement.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -27,7 +27,7 @@ function restorePosition(d){
  d.x=clamp(d.x,d.area==='atelier'?170:85,d.area==='atelier'?1280:1360);
  d.y=clamp(d.y,d.area==='atelier'?456:552,d.area==='atelier'?772:768);
  d.facing=d.facing===-1?-1:1;
- if(!['up','down','side'].includes(d.direction))d.direction='down';
+ if(!['up','down','side','diag-up','diag-down'].includes(d.direction))d.direction='down';
  if(!canStand(d.x,d.y,!!d.mended,d.area)){
    if(d.area==='atelier'){d.x=720;d.y=711;}
    else if(d.x>708&&d.x<854)d.x=d.x<781?696:864;
@@ -54,7 +54,7 @@ let lastDepthOrder='';
 function updateCharacter(){
  const z=clamp(.77+(state.y-552)*.0021,.77,1.23);
  el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+(state.facing*z).toFixed(3)+' '+z.toFixed(3)+')');
- for(const dir of ['up','down','side'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
+ for(const dir of ['up','down','side','diag-up','diag-down'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
  const inside=state.area==='atelier';
  const targetStage=inside?el.atelierDepthStage:el.depthStage;
  const items=inside?atelierDepth:actorDepth;
@@ -409,8 +409,12 @@ function frame(now){
   }
   if(moving){
    const len=Math.hypot(x,y)||1;
-   if(Math.abs(y)>Math.abs(x)*.78)state.direction=y<0?'up':'down';
-   else if(x!==0){state.direction='side';state.facing=x>0?1:-1;}
+   // Eight-way visual language: custom diagonal facing rather than moonwalked side art.
+   const ax=Math.abs(x),ay=Math.abs(y);
+   if(x!==0)state.facing=x>0?1:-1;
+   if(ay>ax*1.65)state.direction=y<0?'up':'down';
+   else if(ax>ay*1.65)state.direction='side';
+   else state.direction=y<0?'diag-up':'diag-down';
    const moved=moveBy(x/len*225*dt,y/len*165*dt);
    if(!moved&&moveTarget)cancelTap();
    if(moveTarget&&Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25)<8)cancelTap();

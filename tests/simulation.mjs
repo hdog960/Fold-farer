@@ -75,6 +75,15 @@ assert(e('tavi').classList.contains('dir-up'),'Up did not display original back 
 key('ArrowDown',true);step(20);key('ArrowDown',false);
 assert(pos().y>startY-6,'Down failed to return toward the camera');
 assert(e('tavi').classList.contains('dir-down'),'Down did not display front pose');
+// Walking northwest and southeast must show authored three-quarter art, not a flipped back walk.
+key('ArrowUp',true);key('ArrowRight',true);step(20);
+assert(e('tavi').classList.contains('dir-diag-up'),'NW/NE travel did not select original 3/4 back art');
+key('ArrowUp',false);key('ArrowRight',false);
+const afterQuarter=pos();
+key('ArrowDown',true);key('ArrowLeft',true);step(20);
+assert(e('tavi').classList.contains('dir-diag-down'),'SE/SW travel did not select original 3/4 front art');
+key('ArrowDown',false);key('ArrowLeft',false);
+assert(Math.abs(pos().x-startY*0+273)<7 && Math.abs(pos().y-startY)<7,'Diagonal return drift');
 walkRight(54);
 assert(Math.abs(pos().x-475)<16,'Horizontal movement regressed');
 click('interact');drainDialogue();assert(save().metMorrow,'Morrow recruitment failed');

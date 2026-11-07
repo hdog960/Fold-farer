@@ -196,3 +196,13 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 .battle-stage .fold-node{position:relative;z-index:3;background:#304e5e91;border-color:#f2d9a6;color:#fff1c9;backdrop-filter:blur(1.5px)}
 .battle-sprite{max-width:100%;filter:drop-shadow(5px 12px 4px #213e4ca8)}
 #battleTaviArt use,#battleScrapperArt use{pointer-events:none}
+
+/* v0.6 authored three-quarter poses for diagonals, clean silhouette switch. */
+#tavi.dir-diag-down #taviFrontArt,#tavi.dir-diag-up #taviFrontArt{display:none}
+#tavi.dir-diag-down #taviFrontQuarterArt,#tavi.dir-diag-up #taviBackQuarterArt{display:block}
+#tavi.dir-diag-down #taviBackArt,#tavi.dir-diag-up #taviBackArt{display:none}
+#tavi.walking .tavi-foot{transform-box:fill-box}
+#tavi.dir-diag-up .tavi-scarf,#tavi.dir-diag-down .tavi-scarf{transform-box:fill-box;transform-origin:center center}
+#tavi.walking.dir-diag-up .tavi-scarf,#tavi.walking.dir-diag-down .tavi-scarf{animation:diagonalScarf 0.35s ease-in-out infinite alternate}
+@keyframes diagonalScarf{from{rotate:-4deg;translate:0 0}to{rotate:5deg;translate:-2px -1px}}
+@media(prefers-reduced-motion:reduce){#tavi.walking.dir-diag-up .tavi-scarf,#tavi.walking.dir-diag-down .tavi-scarf{animation:none!important}}
