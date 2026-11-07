@@ -1,0 +1,19 @@
+{
+  "name": "FoldFarer: The Unfinished World",
+  "short_name": "FoldFarer",
+  "description": "A living storybook RPG — First Fold aesthetic review.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#19394a",
+  "theme_color": "#284758",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
