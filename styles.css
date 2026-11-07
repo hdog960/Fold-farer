@@ -371,3 +371,9 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   .logo-mini small{display:none}
   .prompt{top:27%}
 }
+
+/* FoldFarer 0.10: physically folded bookshop and village house facades.
+   Scenery remains non-interactive, crisp, and cheap to render on mobile. */
+#dimensionalArchitecture,#dimensionalArchitecture .paper-building-detail{pointer-events:none}
+#dimensionalArchitecture .paper-building-detail{filter:drop-shadow(1px 2px 1px #65595b1a)}
+@media(max-width:820px){#dimensionalArchitecture .paper-building-detail{filter:none}}

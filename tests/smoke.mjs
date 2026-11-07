@@ -28,6 +28,9 @@ assert(game.includes('canStand')&&game.includes('ArrowUp')&&game.includes('sync'
 for(const id of ['paintedPaperRidges','handPaintedCanopies','craftArchitecture','craftGround','craftMotes','atelierArtFinishing'])assert(html.includes('id="'+id+'"'),'Missing art element '+id);
 for(const id of ['craftFibers','craftRoof','craftVeins','craftWeave','craftWood'])assert(html.includes('id="'+id+'"'),'Missing vector paper pattern '+id);
 for(const id of ['riverCutout','riverHighlights','brokenBridge','bridgeFix','seamLight'])assert(ids.includes(id),'Foldline paper river art missing '+id);
+for(const id of ['dimensionalArchitecture','folioBindingHouse','threadsTailorHouse','postboundHouse','edgePaperHouse','architectSide','architectPaperEdge']){
+ assert(ids.includes(id),'Missing built paper house art: '+id);
+}
 assert(css.includes('prefers-reduced-motion:reduce'));
 assert(sw.includes('caches.open'));
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

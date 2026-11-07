@@ -28,7 +28,12 @@ try {
   if(trees!==11)throw Error('Expected eleven authored garden trees, found '+trees);
   const families=await page.locator('#paperBotanicalGarden > .paper-canopy').evaluateAll(els=>new Set(els.map(e=>[...e.classList].find(x=>x.startsWith('tree-family-')))).size);
   if(families!==5)throw Error('Expected five distinct botanical silhouettes, found '+families);
+  for(const id of ['folioBindingHouse','threadsTailorHouse','postboundHouse','edgePaperHouse']){
+    const box=await page.locator('#'+id).evaluate(el=>{const b=el.getBBox();return {width:b.width,height:b.height}});
+    if(box.width<55||box.height<50)throw Error('Physical paper building failed render check: '+id+' '+JSON.stringify(box));
+  }
   await page.screenshot({path:'screenshots/03-folio-village.png'});
+  await page.locator('#world').screenshot({path:'screenshots/16-dimensional-folio-buildings.png'});
   // Verify live character rendering before Morrow joins, not merely save state.
   await page.emulateMedia({reducedMotion:'no-preference'});
   const initialTransform=await page.locator('#tavi').getAttribute('transform');
@@ -198,7 +203,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png','14-botanical-walk-cycle.png','15-mobile-landscape-emulation.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png','14-botanical-walk-cycle.png','15-mobile-landscape-emulation.png','16-dimensional-folio-buildings.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {
