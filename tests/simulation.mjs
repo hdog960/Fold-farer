@@ -57,7 +57,7 @@ function key(code,down){
  const fn=docEvents.get(down?'keydown':'keyup');
  assert(fn,'missing keyboard handler');fn(ev);
 }
-function moveRight(n){key('ArrowRight',true);step(n);key('ArrowRight',false);step(1);}
+function walkRight(n){key('ArrowRight',true);step(n);key('ArrowRight',false);step(1);}
 function drainDialogue(){
  assert(!e('dialogue').classList.contains('hidden'),'Expected dialogue');
  for(let i=0;i<20;i++){click('nextLine');if(e('dialogue').classList.contains('hidden'))return;}
@@ -66,12 +66,12 @@ function drainDialogue(){
 const save=()=>JSON.parse(storage.get('foldfarer.firstfold.0.1')||'null');
 assert(e('intro').classList.contains('hidden')===false,'Intro missing');
 click('start');drainDialogue();
-moveRight(54);assert(Math.abs(save()?.x-273)<5,'Walk location is expected to save only at checkpoint');
+walkRight(54);assert(Math.abs(save()?.x-273)<5,'Walk location is expected to save only at checkpoint');
 click('interact');drainDialogue();assert(save().metMorrow,'Morrow recruitment failed');
-moveRight(58);click('interact');drainDialogue();assert(save().mended,'Bridge Mend failed');
+walkRight(58);click('interact');drainDialogue();assert(save().mended,'Bridge Mend failed');
 assert(e('bridgeFix').attrs.class==='bridge-open','Bridge artwork not opened');
-moveRight(85);click('interact');drainDialogue();assert(save().letter,'Mila letter not received');
-moveRight(55);click('interact');
+walkRight(85);click('interact');drainDialogue();assert(save().letter,'Mila letter not received');
+walkRight(55);click('interact');
 assert(!e('battle').classList.contains('hidden'),'Battle did not start');
 function battleChoose(name){e('battleActions').fire('click',{target:{closest:()=>({dataset:{battle:name}})}});}
 battleChoose('attack');assert(!e('timing').classList.contains('hidden'),'Timing command not shown');
