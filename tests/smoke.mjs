@@ -84,4 +84,19 @@ assert((html.match(/class="tavi-atlas-left"/g)||[]).length===40,'Every frame req
 assert((html.match(/class="tavi-atlas-right"/g)||[]).length===40,'Every frame requires a complete illustrated right shin/boot');
 assert(css.includes('#tavi.walking .tavi-foot{display:none!important}'),'The old leg-rotation system must not remain active during walking');
 assert(game.includes('Math.floor(walkDistance/15)%8'),'Gait must advance from actual traveled distance, not an autoplay clock');
+const bodyPoseNames=['front','rear','side','quarter-front','quarter-rear'];
+const upperFrames=[...html.matchAll(/class="tavi-upper-cel" data-upper-frame="([0-7])" data-upper-view="([^"]+)"/g)];
+assert(upperFrames.length===40,'The hero needs forty separate upper-body illustration frames');
+for(const view of bodyPoseNames){
+ const cells=upperFrames.filter(x=>x[2]===view).map(x=>x[1]);
+ assert.deepEqual(cells,['0','1','2','3','4','5','6','7'],'Missing authored upper-body frames for '+view);
+}
+assert((html.match(/class="tavi-rest-torso"/g)||[]).length===5,'Original costume artwork must remain for standing and portrait');
+assert((html.match(/class="tavi-upper-coat"/g)||[]).length===40,'Every cel requires its own paper-cut coat outline');
+assert((html.match(/class="tavi-upper-arm tavi-upper-left"/g)||[]).length===40,'Left sleeve and hand must be redrawn on every beat');
+assert((html.match(/class="tavi-upper-arm tavi-upper-right"/g)||[]).length===40,'Right sleeve and hand must be redrawn on every beat');
+assert((html.match(/class="tavi-upper-scarf"/g)||[]).length===40,'Scarf tails must be fully illustrated on every beat');
+assert((html.match(/class="tavi-upper-hair-details"/g)||[]).length===40,'Hair outlines require alternative artwork');
+assert(css.includes('#tavi.walking .tavi-rest-torso')&&css.includes('#tavi.walking[data-stride="7"] .tavi-upper-cel'),
+ 'Remove static torso from walk and select the correct drawn upper-body frame');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

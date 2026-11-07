@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.16.0: 40 drawn Tavi walk cels with physics-keyed step selection.
+/* FoldFarer: The Unfinished World. First Fold 0.17.0: eight-frame paper-costume and silhouette acting across five facings.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){

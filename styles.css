@@ -569,3 +569,29 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #tavi.walking .tavi-walk-cel:not([data-cel="0"]){display:none!important}
  #tavi.walking .tavi-walk-cel[data-cel="0"]{display:inline!important}
 }
+
+/* First Fold 0.17 — upper-body hand-illustrated eight-frame cut-paper atlas.
+   Hairline, coat fold, sleeves, hanging cloth and satchel now have real,
+   discrete alternate geometry per source pose. No body scaling / rotating.
+   The static portrait/idle art is retained in its own rest group. */
+#tavi .tavi-upper-cel{display:none}
+#tavi.walking .tavi-rest-torso,
+#tavi.walking .tavi-rest-scarf,
+#tavi.walking #taviFrontArt .tavi-stitched-kit{display:none!important}
+#tavi .tavi-upper-atlas,#tavi .tavi-upper-atlas *{
+ pointer-events:none!important;animation:none!important;
+ transition:none!important;transform:none!important;
+}
+#tavi.walking[data-stride="0"] .tavi-upper-cel[data-upper-frame="0"]{display:inline}
+#tavi.walking[data-stride="1"] .tavi-upper-cel[data-upper-frame="1"]{display:inline}
+#tavi.walking[data-stride="2"] .tavi-upper-cel[data-upper-frame="2"]{display:inline}
+#tavi.walking[data-stride="3"] .tavi-upper-cel[data-upper-frame="3"]{display:inline}
+#tavi.walking[data-stride="4"] .tavi-upper-cel[data-upper-frame="4"]{display:inline}
+#tavi.walking[data-stride="5"] .tavi-upper-cel[data-upper-frame="5"]{display:inline}
+#tavi.walking[data-stride="6"] .tavi-upper-cel[data-upper-frame="6"]{display:inline}
+#tavi.walking[data-stride="7"] .tavi-upper-cel[data-upper-frame="7"]{display:inline}
+
+@media(prefers-reduced-motion:reduce){
+ #tavi.walking .tavi-upper-cel:not([data-upper-frame="0"]){display:none!important}
+ #tavi.walking .tavi-upper-cel[data-upper-frame="0"]{display:inline!important}
+}
