@@ -86,7 +86,7 @@ try {
   await page.screenshot({path:'screenshots/28-tavi-paper-costume-side-walk.png',animations:'allow'});
   await page.screenshot({path:'screenshots/25-tavi-eight-frame-walk.png',animations:'allow'});
   await page.screenshot({path:'screenshots/14-botanical-walk-cycle.png',animations:'allow'});
-  console.log('BOTANICALS:',trees,'trees,',families,'families. GAIT:',gait);
+  console.log('BOTANICALS:',trees,'trees,',families,'families. GAIT:',walkingPose.stride);
   await page.keyboard.down('ArrowLeft');
   await page.waitForTimeout(230);
   await page.keyboard.up('ArrowLeft');
