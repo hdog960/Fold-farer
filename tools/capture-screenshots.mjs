@@ -131,10 +131,22 @@ try {
   if(actualPortraitBounds.x>120||actualPortraitBounds.x< -150||actualPortraitBounds.width<20)throw Error('Tavi actual combat art is outside its viewBox '+JSON.stringify(actualPortraitBounds));
   console.log('BATTLE LOCAL SPRITE BOUNDS:',JSON.stringify(actualPortraitBounds));
   await battlePage.screenshot({path:'screenshots/05-foldline-combat.png'});
+  // Switch only this art audit to normal motion so the rendered game effect is
+  // visible mid-sweep; all other screenshots use reduced motion for stability.
+  await battlePage.emulateMedia({reducedMotion:'no-preference'});
+  await battlePage.locator('[data-battle="attack"]').click();
+  await battlePage.waitForTimeout(425);
+  await battlePage.locator('#timingTap').click();
+  if(!await battlePage.locator('#battle').evaluate(e=>e.classList.contains('fx-attack')))throw Error('Needle Strike did not set the animated in-world VFX');
+  const actualAnimation=await battlePage.locator('#needleSlash').evaluate(e=>getComputedStyle(e).animationName);
+  if(!actualAnimation.includes('paperNeedleSweep'))throw Error('Needle Strike physical sweep was not animated: '+actualAnimation);
+  await battlePage.waitForTimeout(160);
+  await battlePage.screenshot({path:'screenshots/13-foldline-strike-animation.png',animations:'allow'});
+  console.log('FOLDLINE VISUAL CHECK:',actualAnimation);
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {
