@@ -414,3 +414,43 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
    scale .59 that displaced Tavi by hundreds of pixels and even off-screen.
    The real foot position is SVG local (0,0), so scale around that origin. */
 #tavi{transform-box:view-box;transform-origin:0 0}
+
+/* First Fold 0.12.0 — hand-composed North Terrace material language.
+   Each original paper sculpture is geometrically grounded in the walk plane.
+   Light animation is modest, always optional via reduced motion. */
+#terracePavingInlay,#terraceFacadeFinish,#terraceFacadeFinish g{
+  pointer-events:none;
+}
+#terraceFacadeFinish{filter:drop-shadow(1px 2px 1px #4e55551c)}
+#terraceDyersBench,#terraceLetterCabinet{transform-box:view-box}
+#terraceLantern .terrace-lantern-glow{
+  transform-box:fill-box;
+  transform-origin:center center;
+  animation:terraceLanternFlicker 5.5s ease-in-out infinite;
+}
+@keyframes terraceLanternFlicker{
+  0%,100%{opacity:.50;scale:.96}
+  25%{opacity:.77;scale:1.07}
+  51%{opacity:.60;scale:1}
+  73%{opacity:.86;scale:1.1}
+  77%{opacity:.58;scale:.99}
+}
+/* Character facial expression exists in actual walk sprite for forward,
+   side and diagonal poses; not just a static dialogue icon or CSS bob. */
+#tavi .tavi-eyes-open{opacity:1;animation:farerOpenEyes 6.8s steps(1,end) infinite}
+#tavi .tavi-eyes-blink{opacity:0;animation:farerClosedEyes 6.8s steps(1,end) infinite}
+@keyframes farerOpenEyes{
+  0%,91%,95%,98%,100%{opacity:1}
+  92%,94%,97%{opacity:0}
+}
+@keyframes farerClosedEyes{
+  0%,91%,95%,98%,100%{opacity:0}
+  92%,94%,97%{opacity:1}
+}
+@media(prefers-reduced-motion:reduce){
+ #tavi .tavi-eyes-open,#tavi .tavi-eyes-blink,#terraceLantern .terrace-lantern-glow{
+   animation:none!important;
+ }
+ #tavi .tavi-eyes-open{opacity:1!important}
+ #tavi .tavi-eyes-blink{opacity:0!important}
+}

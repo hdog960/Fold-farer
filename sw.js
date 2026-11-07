@@ -1,7 +1,7 @@
 /* FoldFarer offline-first shell: use the latest deployed app when online.
    An installed iPhone Home Screen icon always launches the same URL.
    This worker refreshes files over the network and keeps a working offline fallback. */
-const CACHE = 'foldfarer-shell-0.21';
+const CACHE = 'foldfarer-shell-0.22';
 const SHELL = ['./', './index.html', './styles.css', './game.js', './icon.svg', './manifest.webmanifest'];
 
 self.addEventListener('install', event => {

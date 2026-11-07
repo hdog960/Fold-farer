@@ -117,6 +117,13 @@ click('interact');
 assert(save().area==='terrace','North Terrace gateway did not open a connected world');
 drainDialogue();
 assert(e('terraceScene').style.display==='', 'North Terrace is not visible');
+// These two fully drawn objects have the same footprints in SVG, physics and
+// painter ordering; they cannot become pass-through props or invisible walls.
+assert(!new Script("canStand(502,563,false,'terrace')").runInContext(context),'Dyers bench is missing world collision');
+assert(!new Script("canStand(954,555,false,'terrace')").runInContext(context),'Letter cabinet is missing world collision');
+assert(new Script("canStand(720,585,false,'terrace')").runInContext(context),'The central terrace is blocked by decorative artwork');
+assert(e('terraceDyersBench').parentNode===e('terraceDepthStage'),'Dyers bench is not in active paint ordering');
+assert(e('terraceLetterCabinet').parentNode===e('terraceDepthStage'),'Letter cabinet is not in active paint ordering');
 assert(e('prompt').classList.contains('terrace-prompt'),'Terrace prompt should use its own unobstructed HUD placement');
 assert(e('folioScene').style.display==='none', 'Folio should hide while exploring terrace');
 assert(e('morrow').parentNode===e('terraceDepthStage'),'Morrow did not follow into the upper courtyard');

@@ -174,3 +174,11 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Switched to `scale(-1 1)`: horizontal character mirroring only, with a positive parent perspective transform at the true foot anchor.
 - The automated screenshot must now validate horizontal alignment, vertical foot alignment, and original character visibility at deep distance. This fixes a **rendering defect**, not just a changed screenshot threshold.
 - All quest/save systems remain unmodified. Artwork is still not at the user-approved finish target.
+
+## First Fold 0.12.0 — Art-polished North Terrace (still Milestone A)
+- Authored two distinctive, asymmetrical building elevations: dyer's fabric-looms, rolled bolt stacks and painted trim to the left; layered vellum greenhouse glazing, paper-bound herbarium, decorative trellis and herb window garden to the right.
+- New original carved page-stone paths and embroidered tile motifs respect the existing receding ground perspective; entirely decorative, no extra navigation blockers.
+- Added two physical world props with proper elliptical collisions, Y-sort occlusion and original optional story dialogue: Ink Dyer's bench and Lost-Letter cabinet. Existing Morrow/quest loop preserved, with no new save flags.
+- Tavi now has discrete closed-eyelid SVG artwork for front/side/three-quarter-forward poses, timed blinking separately from his walking gait; the paper lantern gets independent warm light flutter, both disabled in reduced motion.
+- Automated gameplay tests verify new prop collision and open central navigation. Real browser checks verify all major SVG groups have rendered bounds, near hero draws in front of nearby props, far hero behind them, and create distinct original gameplay art captures. No claim of physical iPhone testing.
+- **Art approval remains LOCKED** until the creator inspects a production-quality 90/100 in-game scene; Milestone B must not begin.

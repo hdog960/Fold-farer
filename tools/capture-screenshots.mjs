@@ -184,7 +184,20 @@ try {
   if(!nearHeroBounds||Math.abs(nearHeroBounds.y+nearHeroBounds.height-nearFootPoint.y)>55){
     throw Error('Near hero detached from actual floor '+JSON.stringify({nearHeroBounds,nearFootPoint}));
   }
+  const details=['terracePavingInlay','terraceFacadeFinish','inkDyersNook','vellumConservatory','terraceDyersBench','terraceLetterCabinet'];
+  for(const id of details){
+    const bbox=await terraceNear.locator('#'+id).evaluate(el=>{const b=el.getBBox();return {width:b.width,height:b.height}});
+    if(bbox.width<36||bbox.height<24)throw Error('North Terrace original paper sculpture did not render: '+id+' '+JSON.stringify(bbox));
+  }
+  const ordered=await terraceNear.locator('#terraceDepthStage').evaluate(el=>[...el.children].map(c=>c.id));
+  if(!ordered.includes('terraceDyersBench')||!ordered.includes('terraceLetterCabinet')){
+    throw Error('New terrace props do not participate in actor occlusion');
+  }
+  if(ordered.indexOf('tavi')<ordered.indexOf('terraceDyersBench')||ordered.indexOf('tavi')<ordered.indexOf('terraceLetterCabinet')){
+    throw Error('Near hero should render in front of far paper furnishings');
+  }
   await terraceNear.screenshot({path:'screenshots/17-north-terrace-near.png'});
+  await terraceNear.locator('#world').screenshot({path:'screenshots/20-terrace-facade-art.png'});
   const beforeTap=await terraceNear.locator('#tavi').getAttribute('transform');
   const tapCoords=await terraceNear.locator('#world').evaluate(svg=>{
     const point=svg.createSVGPoint();point.x=872;point.y=704;
@@ -223,6 +236,15 @@ try {
   if(zOrder.indexOf('tavi')>=zOrder.indexOf('terraceBell'))throw Error('Terrace near-side bell cannot occlude a hero walking far behind it');
   await terraceFar.screenshot({path:'screenshots/18-north-terrace-distant.png'});
   await terraceFar.close();
+
+
+  const terraceOcclusion=await openedAt({started:true,area:'terrace',x:956,y:513,facing:1,direction:'down',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+  const rearOrder=await terraceOcclusion.locator('#terraceDepthStage').evaluate(el=>[...el.children].map(c=>c.id));
+  if(rearOrder.indexOf('tavi')>rearOrder.indexOf('terraceLetterCabinet'))throw Error('Distant hero should walk BEHIND letter cabinet');
+  const cabinetBounds=await terraceOcclusion.locator('#terraceLetterCabinet').boundingBox();
+  if(!cabinetBounds||cabinetBounds.width<40)throw Error('Letter cabinet world actor is invisible');
+  await terraceOcclusion.screenshot({path:'screenshots/21-terrace-foreground-occlusion.png'});
+  await terraceOcclusion.close();
 
   const terraceMobile=await browser.newPage({
     viewport:{width:844,height:390},screen:{width:844,height:390},deviceScaleFactor:2,
@@ -281,7 +303,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png','14-botanical-walk-cycle.png','15-mobile-landscape-emulation.png','16-dimensional-folio-buildings.png','17-north-terrace-near.png','18-north-terrace-distant.png','19-north-terrace-mobile.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png','13-foldline-strike-animation.png','14-botanical-walk-cycle.png','15-mobile-landscape-emulation.png','16-dimensional-folio-buildings.png','17-north-terrace-near.png','18-north-terrace-distant.png','19-north-terrace-mobile.png','20-terrace-facade-art.png','21-terrace-foreground-occlusion.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {

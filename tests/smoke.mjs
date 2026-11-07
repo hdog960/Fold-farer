@@ -41,6 +41,12 @@ assert(game.includes("el.taviFlip.setAttribute('transform'"),'Mirror must affect
 assert(game.includes("state.facing+' 1)'"),'Hero mirroring must be horizontal only, never invert Y');
 assert(css.includes('prompt.terrace-prompt'),'Terrace-specific HUD position not implemented');
 assert(css.includes('#tavi{transform-box:view-box;transform-origin:0 0}'),'SVG hero scale anchor must remain at actor feet');
+for(const id of ['terracePavingInlay','terraceFacadeFinish','inkDyersNook','vellumConservatory','terraceDyersBench','terraceLetterCabinet']){
+ assert(ids.includes(id),'Terrace sculptural material missing: '+id);
+}
+assert((html.match(/class="tavi-eyes-blink"/g)||[]).length===3,'Front, side and 3/4 forward need eyelid sprites');
+assert(css.includes('farerClosedEyes')&&css.includes('terraceLanternFlicker'),'Character or lantern living art missing');
+assert(game.includes('terraceDyersBench:563,terraceLetterCabinet:555'),'New physical props must be ordered by foot depth');
 assert(css.includes('prefers-reduced-motion:reduce'));
 assert(sw.includes('caches.open'));
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

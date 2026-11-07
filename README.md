@@ -68,3 +68,6 @@ Reworked the left-facing far Tavi transform to mirror only the locally authored 
 
 #### 0.11.2: Character foot-anchor regression fix
 A real screenshot test now ensures Tavi's feet align with the world position when he moves deeply into the North Terrace. The previous perspective CSS placed the far actor outside the scene despite correct saved coordinates. This fix is applied to all locations and has dedicated browser checks.
+
+### 0.12.0 — North Terrace handmade art finish
+The terrace is no longer two blank paper-walled buildings around a staircase. The **Ink Dyer's Nook** now has handmade fabric rolls, paper seams, dye-board signs and material trim; the **Vellum Conservatory** has layered vellum window glass, shutters, raised binding edges, plants, and an asymmetrical herbarium box. Perspective paving has individual carved emblems, paper tile nicks and planted corners rather than a generic repeating checker. Two original physical furnishings—the dyer's work bench and a cabinet of returned letters—are painted and placed on the real actor depth stage; they block only their base footprints and can be inspected without changing quest progress. Tavi blinks in actual walking poses, and the terrace lantern glows subtly. Reduced-motion accessibility remains supported, with no changed saves or Home Screen address.
