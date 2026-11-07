@@ -214,3 +214,19 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #morrow.following.talking .inkwing-left{animation-duration:.52s}
 #morrow.following.talking .inkwing-right{animation-duration:.6s}
 @media(prefers-reduced-motion:reduce){#morrow.following .inkwing-left,#morrow.following .inkwing-right{animation:none!important}}
+
+/* FoldFarer 0.8: a fully built physical Mending object, not a flat river stripe. */
+#riverCutout{pointer-events:none}
+#riverHighlights{animation:riverShimmer 5.8s ease-in-out infinite alternate}
+@keyframes riverShimmer{0%{opacity:.31;translate:-2px 0}100%{opacity:.82;translate:3px 0}}
+#brokenBridge{transition:opacity .9s ease,filter .7s ease}
+#bridgeFix{transition:opacity .9s ease,transform 1.15s cubic-bezier(.22,.75,.27,1.05)}
+#bridgeFix.bridge-closed{opacity:0;transform:scale(.16,.37) rotate(-8deg)}
+#bridgeFix.bridge-open{opacity:1;transform:scale(1) rotate(0)}
+#seamLight{animation:repairSeamGlow 2.7s ease-in-out infinite alternate}
+#seamLight.hidden-seam{opacity:.12;animation:none}
+@keyframes repairSeamGlow{to{opacity:.38;filter:brightness(1.14)}}
+@media(prefers-reduced-motion:reduce){
+ #riverHighlights,#seamLight{animation:none!important}
+ #brokenBridge,#bridgeFix{transition:none!important}
+}

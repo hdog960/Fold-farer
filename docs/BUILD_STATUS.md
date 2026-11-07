@@ -104,3 +104,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Interactions prioritize real objects and NPCs before optional nearby companion conversation to keep quest flow intact.
 - Regression tests assert follower motion, indoor/outdoor scene transfer, real actor portrait, eight-way movement and quest continuity; new Playwright screenshot captures a following ink-bird.
 - Aesthetic gate still NOT MET; creator inspection, production animation sheets and more intricate material art are required.
+
+## 0.8.0 — Physically constructed Foldline bridge and paper-water art (Milestone A)
+- Replaced primitive blue rectangular river/bridge visuals with multiple paper side faces, inked water layers, stitched bank edges, moving reflected ink, hand-cut scrap pieces and a six-panel 3D-looking bridge with rails, paper hinges, nailheads and patterned deck.
+- The repaired bridge still respects the original narrative and deterministic collision: before mending Tavi cannot cross; afterward only the actual deck band permits traversing the river. Fade-and-unfold animation activates when mending; reduced-motion support is preserved.
+- The existing iPhone Home Screen URL, checkpoint save schema, story and combat remain untouched; service worker cache bumped.
+- ART STANDARD: Not approved. This is a real game-scene art improvement; finished character sprite animation and 90/100 visual rubric remain incomplete.

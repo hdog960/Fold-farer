@@ -156,25 +156,78 @@
         </g>
       </g>
 
-      <path d="M725 571 842 563 850 810 709 810Z" fill="url(#river)" stroke="#4a8499" stroke-width="6"/>
-      <path d="M728 590Q771 615 838 595M732 673q55 30 107 3M726 745q67 28 119-3" fill="none" stroke="#b8e6db" stroke-width="4" opacity=".7"/>
-      <path d="M724 575 844 567M711 808 852 808" fill="none" stroke="#e8dfaa" stroke-width="13"/>
-      <g id="brokenBridge" filter="url(#softShadow)">
-        <path d="M691 637 732 632 744 652 697 668Z" fill="#a17368" stroke="#765e62" stroke-width="6"/>
-        <path d="M812 651 854 634l14 25-50 26Z" fill="#a17368" stroke="#765e62" stroke-width="6"/>
-        <path d="M725 632q-4 16 8 29m81-11q6 17-2 27" fill="none" stroke="#f9dba7" stroke-dasharray="5 6" stroke-width="4"/>
-        <path d="M741 642q21 3 35 26l25-17" stroke="#d9999c" fill="none" stroke-width="5" stroke-dasharray="4 11"/>
+      <!-- A folded paper river: separate paper bank edges, moving ink and transparent overlays. -->
+      <g id="riverCutout" pointer-events="none">
+        <path d="M725 571 842 563 850 810 709 810Z" fill="#4e8390" stroke="#a8a993" stroke-width="12"/>
+        <path d="M733 570 837 566 842 807 717 807Z" fill="url(#river)" stroke="#356f87" stroke-width="6"/>
+        <path d="M724 577 843 570 841 580 728 590Z" fill="#d1b58e" stroke="#7d7770" stroke-width="3"/>
+        <path d="M713 799 851 799v11H712Z" fill="#e7c996" stroke="#9e8b73" stroke-width="3"/>
+        <path d="M730 597Q770 615 837 594M732 684q49 24 107-2M727 757q55 26 117-5" fill="none" stroke="#d0efda" stroke-width="4" opacity=".71"/>
+        <path d="M729 623q37 21 111 3m-111 91q42 20 116 0m-112 63q55 17 105-3" fill="none" stroke="#83d3ce" stroke-width="3.8" stroke-dasharray="17 13" opacity=".62"/>
+        <path d="M726 573Q714 677 713 808M840 563q8 113 10 247" stroke="#f7dfa8" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M726 575Q716 672 712 808M840 563q7 115 9 246" stroke="#90746b" stroke-width="2.7" stroke-dasharray="7 13" fill="none"/>
+        <g id="riverHighlights" stroke="#f0f7d4" opacity=".61" fill="none" stroke-width="3" stroke-linecap="round">
+          <path d="m734 606 22 8m52-14 25-8m-91 106 30 12m35-5 20-9m-93 69 26 10m51 4 25-7"/>
+        </g>
+        <g fill="#ffedbd" stroke="#7fb2ab" stroke-width="2" opacity=".65">
+          <path d="m742 750 11 4-5 4-12-6Z"/><path d="m811 708 12-4-7 7-13 2Z"/><path d="m779 794 12-3-6 8-11 0Z"/>
+        </g>
       </g>
+      <!-- Exposed fractured pop-up leaflets while the route is torn. -->
+      <g id="brokenBridge" filter="url(#softShadow)">
+        <path d="M680 644 720 628 741 643 728 672 686 677Z" fill="#af7772" stroke="#735960" stroke-width="5.5"/>
+        <path d="m682 646 44-10 11 9-43 15Z" fill="#efd1a1" stroke="#8a6b69" stroke-width="4"/>
+        <path d="m684 648 41-12 8 6-39 13Z" fill="url(#craftWood)" opacity=".62"/>
+        <path d="m700 657 33-7m-20 17 10-3" stroke="#fff1c6" stroke-width="3" stroke-dasharray="4 5" fill="none"/>
+        <path d="M813 642 856 625l24 30-12 26-42-6Z" fill="#b78375" stroke="#7f6468" stroke-width="5.5"/>
+        <path d="m820 639 34-7 13 20-45 6Z" fill="#efd6a8" stroke="#90736f" stroke-width="4"/>
+        <path d="m820 641 36-8 10 17-42 7Z" fill="url(#craftWood)" opacity=".5"/>
+        <path d="m830 662 28-7" stroke="#fff0c9" stroke-width="3" stroke-dasharray="4 6"/>
+        <path d="M731 630q25 9 30 30m49-33q-24 7-36 33" stroke="#dba7a4" fill="none" stroke-width="4" stroke-dasharray="5 11"/>
+        <path d="m740 645 16 8 12-12 14 16 19-14" stroke="#fff0c8" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="2 12" fill="none"/>
+        <g fill="#f1d5a6" stroke="#ac7d79" stroke-width="2.6">
+          <path d="m751 620 7-11 8 5-5 13Z"/><path d="m793 661 11-7 7 7-10 10Z"/>
+          <path d="m766 681 12-6 6 11-12 5Z"/>
+        </g>
+      </g>
+      <!-- Mended physical bridge with visible paper thickness, deck, folded rails, seam stitching. -->
       <g id="bridgeFix" class="bridge-closed" filter="url(#paperShadow)">
-        <path d="M707 642Q760 624 842 638l8 23q-76 3-141 8Z" fill="#edcf94" stroke="#8c7771" stroke-width="7"/>
-        <path d="M721 646q59 10 112-3" fill="none" stroke="#fff1ca" stroke-width="4"/>
-        <path d="M740 630v32m25-34v34m25-36v38m26-32v28" stroke="#b68a70" stroke-width="4" stroke-dasharray="2 7"/>
-        <path d="M705 628q62-40 141-4" fill="none" stroke="#d38a8b" stroke-width="7"/>
-        <path d="M706 628q62-40 141-4" fill="none" stroke="#ffe2b3" stroke-width="2" stroke-dasharray="6 10"/>
+        <!-- The underside is an actual side face; the beige deck casts its own paper edge. -->
+        <path d="M691 636Q764 619 858 633l8 37q-83 12-174 13Z" fill="#8c6d69" stroke="#70555f" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M696 631Q770 612 854 628l8 34q-87 4-165 10Z" fill="#edc99a" stroke="#956f6d" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M699 632Q770 614 852 629l7 30q-88 6-161 10Z" fill="url(#craftWood)" opacity=".7"/>
+        <!-- Six authored folded leaflets with different seam wear, impossible to confuse with a flat stripe. -->
+        <g fill="#f3d8aa" stroke="#a17d71" stroke-width="3.5" stroke-linejoin="round">
+          <path d="m704 632 25-6 3 36-26 7Z"/>
+          <path d="m731 625 25-5 2 40-26 2Z" fill="#e6be94"/>
+          <path d="m760 621 25-1 1 40-27 1Z"/>
+          <path d="m788 621 25 2-2 38-25 0Z" fill="#e4c49d"/>
+          <path d="m815 625 21 4-1 34-24-2Z"/>
+          <path d="m838 629 15 2 6 29-23 3Z" fill="#eacda2"/>
+        </g>
+        <g fill="none" stroke="#fff1cb" stroke-width="2.5" stroke-dasharray="5 8" opacity=".88">
+          <path d="m707 635 20-4m9-1 17-4m11-2 18 0m10 1 17 1m10 4 15 3"/>
+          <path d="m708 661 20-5m8-1 20-2m6 2 22-1m6-1 18 1m9 1 15 1"/>
+        </g>
+        <path d="M688 636q78-40 172-14" stroke="#8e6670" stroke-width="11" fill="none" stroke-linecap="round"/>
+        <path d="M689 633q79-41 171-13" stroke="#f3dfac" stroke-width="4" fill="none" stroke-dasharray="9 9"/>
+        <path d="M692 676q81-7 171-14" stroke="#966d71" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M694 671q82-6 166-14" stroke="#fae6bd" stroke-width="3" fill="none" stroke-dasharray="7 10"/>
+        <g fill="#f1d79d" stroke="#9d7473" stroke-width="3">
+          <circle cx="709" cy="631" r="4.5"/><circle cx="756" cy="620" r="4.5"/><circle cx="813" cy="622" r="4.5"/><circle cx="854" cy="628" r="4.5"/>
+          <circle cx="710" cy="666" r="4"/><circle cx="758" cy="658" r="4"/><circle cx="813" cy="657" r="4"/><circle cx="855" cy="657" r="4"/>
+        </g>
+        <path d="M696 651q47-7 92-2t70 1" stroke="#d99d8e" stroke-width="4" fill="none" stroke-dasharray="3 9"/>
+        <path d="M699 654q41-8 90-3t68 3" stroke="#fff6dc" stroke-width="2" fill="none" stroke-dasharray="4 10"/>
+        <!-- Paper hinges make the object feel constructed and give the mending action substance. -->
+        <path d="m696 632-10-13 16-13 12 21m133 1 12-13 15 12-9 15" fill="#e6bc8e" stroke="#886c6c" stroke-width="4"/>
+        <path d="m695 623 8-13m146 14 8-10" stroke="#fff1c8" stroke-width="2"/>
       </g>
       <g id="seamLight" transform="translate(765 640)">
-        <ellipse rx="62" ry="17" fill="#f9f0c0" opacity=".33" filter="url(#glow)"/>
-        <path d="m-26-25 15 10 16-22 20 17 15-12" fill="none" stroke="#fff5ce" stroke-width="4" stroke-dasharray="4 11"/>
+        <ellipse rx="71" ry="22" fill="#fff7c7" opacity=".27" filter="url(#glow)"/>
+        <path d="m-49-18 16-14 19 13 17-21 16 16 18-9 18 17" fill="none" stroke="#fff5ce" stroke-width="4.5" stroke-dasharray="3 9"/>
+        <path d="m-50-2 20 8 16-13 17 12 16-10 18 11" fill="none" stroke="#dfaaa0" stroke-width="4" stroke-dasharray="2 11"/>
+        <g fill="#fff5c9" opacity=".85"><circle cx="-48" cy="-32" r="3"/><circle cx="15" cy="-38" r="3.5"/><circle cx="51" cy="-18" r="3"/></g>
       </g>
       <g class="garden-back" stroke="#557b5b" stroke-width="5" stroke-linecap="round">
         <path d="M18 648V564m35 36v-67m301 49v-75m-39 88v-51M608 601v-64m45 59v-49m238 58v-66m44 62v-73m270 65v-80m78 91v-68"/>
