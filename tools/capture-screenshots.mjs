@@ -150,7 +150,16 @@ try {
   console.log('THREE QUARTER BACK:',backPos);
   const backStep=await quarterBackPage.locator('#tavi').getAttribute('data-stride');
   const backVisible=await quarterBackPage.locator('#taviBackQuarterArt .tavi-walk-cel').evaluateAll(els=>els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.cel));
-  if(backVisible.length!==1||backVisible[0]!==backStep)throw Error('Three-quarter rear Tavi lacks a complete walking frame');
+  if(backVisible.length!==1||backVisible[0]!==backStep){
+    const debug=await quarterBackPage.locator('#tavi').evaluate(el=>({
+      taviClass:el.getAttribute('class'),stride:el.dataset.stride,
+      backArtDisplay:getComputedStyle(document.getElementById('taviBackQuarterArt')).display,
+      atlasDisplay:getComputedStyle(document.querySelector('#taviBackQuarterArt .tavi-walk-atlas')).display,
+      rootChildren:[...document.getElementById('taviBackQuarterArt').children].map(x=>({id:x.id||null,cls:x.getAttribute('class')||null})).slice(-10),
+      allCels:[...document.querySelectorAll('#taviBackQuarterArt .tavi-walk-cel')].map(x=>({frame:x.dataset.cel,style:getComputedStyle(x).display}))
+    }));
+    throw Error('Three-quarter rear Tavi lacks a complete walking frame: '+JSON.stringify({backVisible,backStep,debug}));
+  }
 
   const backUpper=await quarterBackPage.locator('#taviBackQuarterArt .tavi-upper-cel').evaluateAll(els=>
     els.filter(e=>getComputedStyle(e).display!=='none').map(e=>e.dataset.upperFrame));
