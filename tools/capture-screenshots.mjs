@@ -87,7 +87,7 @@ try {
   await mobilePage.goto('http://127.0.0.1:8000/',{waitUntil:'networkidle'});
   await mobilePage.locator('#start').click();
   await mobilePage.locator('#intro').waitFor({state:'hidden'});
-  for(const selector of ['#move-left','#move-right','#move-up','#move-down','#interact']){
+  for(const selector of ['[data-move="left"]','[data-move="right"]','[data-move="up"]','[data-move="down"]','#interact']){
     const box=await mobilePage.locator(selector).boundingBox();
     if(!box||box.x<0||box.y<0||box.x+box.width>844||box.y+box.height>390){
       throw Error('Landscape touch target clipped in 844×390 browser emulation: '+selector+' '+JSON.stringify(box));
