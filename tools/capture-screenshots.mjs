@@ -77,8 +77,16 @@ try {
   await quarterFrontPage.screenshot({path:'screenshots/10-tavi-front-three-quarter.png'});
   await quarterFrontPage.close();
 
-  const bridgePage=await openedAt({started:true,x:785,y:654,facing:1,metMorrow:true,mended:true,letter:false,won:false});
+  const tornPage=await openedAt({started:true,x:625,y:698,facing:1,direction:'down',metMorrow:true,mended:false,letter:false,won:false});
+  if(await tornPage.locator('#bridgeFix').getAttribute('class')!=='bridge-closed')throw Error('Unmended physical bridge should be folded away');
+  await tornPage.screenshot({path:'screenshots/12-paper-bridge-torn.png'});
+  await tornPage.close();
+
+  const bridgePage=await openedAt({started:true,x:625,y:698,facing:1,direction:'down',metMorrow:true,mended:true,letter:false,won:false});
   if(await bridgePage.locator('#bridgeFix').getAttribute('class')!=='bridge-open')throw Error('Mended bridge not visible');
+  if(await bridgePage.locator('#riverCutout').count()!==1)throw Error('Layered paper river cutout missing');
+  if(await bridgePage.locator('#seamLight').evaluate(e=>e.classList.contains('hidden-seam'))!==true)throw Error('Bridge repair did not dim the open seam');
+  await bridgePage.waitForTimeout(1350);
   await bridgePage.screenshot({path:'screenshots/04-repaired-bridge.png'});
   await bridgePage.close();
 
@@ -126,7 +134,7 @@ try {
   await battlePage.close();
 
   if(errors.length)throw Error('Browser JS errors: '+errors.join(' | '));
-  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png']){
+  for(const file of ['01-title-screen.png','02-dialogue-opening.png','03-folio-village.png','04-repaired-bridge.png','05-foldline-combat.png','06-depth-exploration.png','07-threads-workshop.png','08-mila-courier-dialogue.png','09-tavi-three-quarter.png','10-tavi-front-three-quarter.png','11-morrow-follows.png','12-paper-bridge-torn.png']){
     console.log('CAPTURED',file,statSync('screenshots/'+file).size,'bytes');
   }
 } finally {

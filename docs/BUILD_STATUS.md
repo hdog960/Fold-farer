@@ -110,3 +110,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - The repaired bridge still respects the original narrative and deterministic collision: before mending Tavi cannot cross; afterward only the actual deck band permits traversing the river. Fade-and-unfold animation activates when mending; reduced-motion support is preserved.
 - The existing iPhone Home Screen URL, checkpoint save schema, story and combat remain untouched; service worker cache bumped.
 - ART STANDARD: Not approved. This is a real game-scene art improvement; finished character sprite animation and 90/100 visual rubric remain incomplete.
+
+### 0.8.0 — Walk-plane parallax and bridge correctness checks
+- Introduced interpolated parallax on distant folded hill cards tied to Tavi's horizontal/vertical position without dislodging foreground props or changing collision footprints.
+- On Mending, the open seam's light pulse fades; the illustrated bridge and gameplay crossing share the same saved state.
+- Simulation verifies Tavi cannot cross before repair, can cross after repair at the deck height, and that the seam pulse recedes. Screenshot automation captures both actual torn and repaired game states.
+- Browser screenshot tests, not concept art, support the visual audit; physical iPhone QA remains necessary.

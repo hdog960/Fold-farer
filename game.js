@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.7.0: living two-dimensional partner follower.
+/* FoldFarer: The Unfinished World. First Fold 0.8.0: paper bridge + layered depth.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -46,11 +46,22 @@ function load(){
 }
 let state=load();
 const $=id=>document.getElementById(id);
-const el={world:$('world'),folioScene:$('folioScene'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
+const el={world:$('world'),farRidges:$('paintedPaperRidges'),folioScene:$('folioScene'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
 let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0;
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
 let lastDepthOrder='';
+const backdrop={x:0,y:0};
+function updateBackdrop(dt){
+ // Distant paper cards move more slowly than the physical walkable surface;
+ // foreground props remain attached to their collision geometry.
+ const tx=state.area==='folio'?clamp((720-state.x)*.014,-9,9):0;
+ const ty=state.area==='folio'?clamp((654-state.y)*.018,-4,4):0;
+ const alpha=1-Math.exp(-Math.min(Math.max(dt,0),.05)*3.5);
+ backdrop.x+=(tx-backdrop.x)*alpha;
+ backdrop.y+=(ty-backdrop.y)*alpha;
+ el.farRidges.setAttribute('transform','translate('+backdrop.x.toFixed(2)+' '+backdrop.y.toFixed(2)+')');
+}
 const companion={x:474,y:620,area:'folio',ready:false};
 function updateCompanion(dt=0){
  if(!state.metMorrow){
@@ -116,6 +127,7 @@ function sync(){
  el.bridge.setAttribute('class',state.mended?'bridge-open':'bridge-closed');
  el.broken.style.opacity=state.mended?'0':'1';
  el.seam.style.opacity=state.mended?'.22':'1';
+ el.seam.classList.toggle('hidden-seam',!!state.mended);
  el.enemy.style.display=state.won?'none':'';
  el.objective.textContent=objective();
  el.start.firstChild.textContent=state.started?'Continue Adventure ':'Open the Book ';
@@ -452,6 +464,7 @@ function frame(now){
    }
   }else{el.tavi.classList.remove('walking');updatePrompt();}
  }else{el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');}
+ updateBackdrop(dt);
  if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}
  else if(modal==='field'&&((held.left?1:0)+(held.right?1:0)+(held.up?1:0)+(held.down?1:0)>0))updateCharacter();
  if(modal==='timing'&&timingActive)el.timingMarker.style.left=progressAt(now)+'%';

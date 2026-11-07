@@ -72,6 +72,7 @@ const startY=pos().y;
 key('ArrowUp',true);step(20);key('ArrowUp',false);
 assert(pos().y<startY-35,'Up did not move into the screen');
 assert(e('tavi').classList.contains('dir-up'),'Up did not display original back pose');
+assert(e('paintedPaperRidges').attrs.transform?.startsWith('translate('),'Distant paper cards did not receive depth-responsive parallax');
 key('ArrowDown',true);step(20);key('ArrowDown',false);
 assert(pos().y>startY-6,'Down failed to return toward the camera');
 assert(e('tavi').classList.contains('dir-down'),'Down did not display front pose');
@@ -113,7 +114,11 @@ walkRight(58);
 walkRight(12);assert(pos().x<=709,'Crossed an unrepaired bridge or river');
 click('interact');drainDialogue();assert(save().mended,'Bridge Mend failed');
 assert(e('bridgeFix').attrs.class==='bridge-open','Bridge artwork not opened');
-walkRight(85);click('interact');drainDialogue();assert(save().letter,'Mila letter not received');
+assert(e('seamLight').classList.contains('hidden-seam'),'Mended seam effect should recede');
+// The visual crossing and the collision model must describe the same bridge.
+walkRight(42);
+assert(pos().x>854,'Tavi cannot cross the physically mended paper bridge');
+walkRight(43);click('interact');drainDialogue();assert(save().letter,'Mila letter not received');
 walkRight(55);click('interact');
 assert(!e('battle').classList.contains('hidden'),'Battle did not start');
 function battleChoose(name){e('battleActions').fire('click',{target:{closest:()=>({dataset:{battle:name}})}});}
