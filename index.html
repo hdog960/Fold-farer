@@ -33,6 +33,7 @@
         <filter id="softShadow" x="-40%" y="-40%" width="200%" height="200%"><feDropShadow dx="1" dy="5" stdDeviation="3" flood-color="#263f46" flood-opacity=".36"/></filter>
         <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
       </defs>
+      <g id="folioScene">
       <rect width="1440" height="810" fill="url(#sky)"/>
       <g class="sky-cloud clouds-a" fill="#f6f1d8" stroke="#bcd3bc" stroke-width="3" opacity=".82">
         <path d="M-50 123q29-48 80-29 26-58 85-36 42-20 74 15 76-6 89 51z" filter="url(#softShadow)"/>
@@ -292,12 +293,121 @@
         </g>
       </g><!-- tavi -->
       </g><!-- depthStage -->
-      <g id="tapMarker" visibility="hidden" pointer-events="none"><circle r="22" fill="#f4de9b" opacity=".23"/><circle r="14" fill="none" stroke="#fff1c9" stroke-width="3" stroke-dasharray="5 5"/><circle r="4" fill="#f9e8c3"/></g>
       <g class="foreground" filter="url(#softShadow)">
         <path d="M0 769Q191 714 386 769T779 773 1109 763 1440 737V810H0Z" fill="#688c70" stroke="#b7c693" stroke-width="9"/>
         <path d="M0 791Q181 755 385 793T782 795 1112 784 1440 758" stroke="#d4daac" stroke-width="2" stroke-dasharray="4 11" fill="none"/>
       </g>
       <rect x="0" y="0" width="1440" height="810" fill="url(#grain)" opacity=".28" pointer-events="none"/>
+      </g><!-- folioScene -->
+      <g id="atelierScene" style="display:none" aria-label="Explorable Mender's Threads workshop">
+        <rect width="1440" height="810" fill="#56736f"/>
+        <rect width="1440" height="810" fill="url(#grain)" opacity=".21"/>
+        <!-- A built papercraft room: back wall, left/right physical side walls, deep plank floor. -->
+        <path d="M100 65 1340 65l-12 374-1210 0Z" fill="#ecd6aa" stroke="#9c7c70" stroke-width="16"/>
+        <path d="M102 69 117 440 0 698V0Z" fill="#ab7774" stroke="#744f5b" stroke-width="10"/>
+        <path d="M1340 67 1322 444 1440 708V0Z" fill="#ac8981" stroke="#806367" stroke-width="10"/>
+        <path d="M120 439 1320 439 1440 810H0Z" fill="#b98c76" stroke="#815e60" stroke-width="12"/>
+        <path d="M120 439 1320 439 1440 810H0Z" fill="url(#grain)"/>
+        <path d="M120 439 1320 439" stroke="#f3deb4" stroke-width="12" fill="none"/>
+        <g fill="none" stroke="#ecd1a4" stroke-width="5" opacity=".74">
+          <path d="M228 445 105 810M458 444 399 810M688 444 689 810M927 444 990 810M1192 444 1338 810"/>
+          <path d="M88 559Q721 541 1351 567M47 692Q727 669 1394 692"/>
+        </g>
+        <g fill="none" stroke="#856d64" stroke-width="2" stroke-dasharray="6 11" opacity=".54">
+          <path d="M232 450 132 799M464 447 419 789M692 448 696 796M922 448 979 789M1191 446 1314 795"/>
+        </g>
+        <g filter="url(#paperShadow)">
+          <path d="M239 70 280 18 1160 18 1203 70Z" fill="#c38d77" stroke="#745968" stroke-width="10"/>
+          <path d="M279 16H1160V72H280Z" fill="#f3d0a1" stroke="#946c64" stroke-width="7"/>
+          <path d="M85 166h1247" stroke="#846a66" stroke-width="24"/>
+          <path d="M85 184h1247" stroke="#f8dfb5" stroke-width="6"/>
+          <g fill="#d6ae88" stroke="#856967" stroke-width="8">
+            <path d="M176 141h218v263H176Z"/><path d="M1037 141h226v263h-226Z"/>
+          </g>
+          <g fill="#8b6d6a" stroke="#e6ba93" stroke-width="8">
+            <path d="M205 162h164v208H205Z"/><path d="M1066 163h168v206h-168Z"/>
+          </g>
+          <g stroke="#f3dcaf" stroke-width="11"><path d="M196 237h185M196 302h185M1054 237h192M1054 302h192"/></g>
+          <g>
+            <path d="M596 399v-190q120-86 246 0v190Z" fill="#73968e" stroke="#aa7b76" stroke-width="18"/>
+            <path d="M638 393V235q83-61 162 0v158Z" fill="#a8c7ac" stroke="#f0d8b5" stroke-width="8"/>
+            <path d="M718 205v189" stroke="#f0d8b5" stroke-width="7"/>
+            <circle cx="779" cy="312" r="8" fill="#f6d78a"/>
+            <path d="M600 399h234" stroke="#806469" stroke-width="13"/>
+          </g>
+          <path d="M537 91q182-20 361 0l-21 68q-160-12-319 0Z" fill="#e8bc85" stroke="#956d67" stroke-width="7"/>
+          <text x="717" y="132" font-family="Georgia,serif" font-size="47" font-weight="bold" fill="#526f71" letter-spacing="7" text-anchor="middle">THREADS &amp; MENDS</text>
+          <path d="M286 190l6 193m95-193-3 192m775-192-5 187m-110-187 5 192" stroke="#e9cba1" stroke-width="5" stroke-dasharray="5 10" opacity=".67"/>
+        </g>
+        <!-- Woven racks, physical fabric rolls and dye jars. -->
+        <g stroke="#8d7b73" stroke-width="4">
+          <path d="M217 212v-62m46 62v-67m44 67v-73m45 73v-72" stroke="#d7bd98" stroke-width="8"/>
+          <g fill="#e1b09b"><rect x="207" y="201" width="21" height="39" rx="10"/><rect x="261" y="201" width="21" height="39" rx="10"/></g>
+          <g fill="#96b4a0"><rect x="300" y="201" width="24" height="39" rx="10"/><rect x="342" y="201" width="24" height="39" rx="10"/></g>
+          <g fill="#e9c777"><rect x="220" y="250" width="34" height="48" rx="4"/><rect x="270" y="250" width="36" height="48" rx="4"/></g>
+          <g fill="#ab8aaa"><rect x="318" y="250" width="32" height="48" rx="4"/></g>
+          <g fill="#8ebcc0"><rect x="1071" y="256" width="31" height="45" rx="7"/><rect x="1138" y="256" width="31" height="45" rx="7"/></g>
+          <g fill="#dda995"><rect x="1101" y="256" width="34" height="45" rx="7"/><rect x="1180" y="256" width="34" height="45" rx="7"/></g>
+        </g>
+        <g class="bunting" stroke="#7b626a" stroke-width="3" fill="none"><path d="M140 65Q726 161 1325 63"/></g>
+        <g class="bunting" stroke="#f7e3bb" stroke-width="2">
+          <path d="m239 83 37 11-24 39Z" fill="#e7a19e"/><path d="m340 101 37 10-25 39Z" fill="#94b9aa"/><path d="m456 115 38 5-25 41Z" fill="#ebc880"/>
+          <path d="m570 132 35 6-21 38Z" fill="#bb9abd"/><path d="m800 137 36-3-18 36Z" fill="#ebbb8e"/>
+          <path d="m922 124 38-6-16 40Z" fill="#96b6b2"/><path d="m1050 111 39-11-17 41Z" fill="#d68f8e"/>
+          <path d="m1172 94 39-13-18 43Z" fill="#e5c37d"/>
+        </g>
+        <g fill="#fff0c7" filter="url(#softShadow)">
+          <circle cx="486" cy="185" r="11"/><circle cx="953" cy="185" r="11"/>
+          <path d="M486 184v-51m467 51v-51" stroke="#9c8174" stroke-width="5"/>
+        </g>
+        <!-- Work floor with an approach lane and a distinct exit at the near edge. -->
+        <path d="M618 735q92 19 203 0l49 75H564Z" fill="#e5c49c" stroke="#846b65" stroke-width="9"/>
+        <path d="M656 768h128" stroke="#fff2d2" stroke-width="4" stroke-dasharray="7 9"/>
+        <text x="720" y="792" text-anchor="middle" font-size="21" fill="#6c6264" letter-spacing="4" font-weight="bold">TO THE FOLIO</text>
+        <path d="M605 463q120-38 234 0l18 39q-142 22-270 0Z" fill="#d1b17f" stroke="#977762" stroke-width="5"/>
+        <path d="M640 486h165" fill="none" stroke="#f3d5a5" stroke-width="4" stroke-dasharray="5 9"/>
+        <g id="atelierDepthStage">
+          <g id="atelierSpoolCart" transform="translate(427 656)" filter="url(#paperShadow)">
+            <ellipse cy="14" rx="95" ry="18" fill="#4c6462" opacity=".35"/>
+            <path d="M-95-55 65-79l44 28-155 29Z" fill="#e7c99d" stroke="#92716c" stroke-width="7"/>
+            <path d="M-46-22 110-50l-11 47-150 22Z" fill="#ab7774" stroke="#805d65" stroke-width="7"/>
+            <path d="m-39 12-6 26m116-41 6 30" stroke="#7a6869" stroke-width="12" stroke-linecap="round"/>
+            <g stroke="#826d72" stroke-width="5">
+              <path d="M-49-74v-37m43 32v-40m43 31v-37m42 37v-40" stroke="#d6b08e" stroke-width="13"/>
+            </g>
+            <g fill="#9fc0b4"><ellipse cx="-49" cy="-111" rx="19" ry="13"/><ellipse cx="37" cy="-126" rx="18" ry="12"/></g>
+            <g fill="#e2a5a0"><ellipse cx="-6" cy="-119" rx="19" ry="14"/><ellipse cx="78" cy="-128" rx="18" ry="12"/></g>
+            <path d="m-45-90-3 28m40-38-2 28m46-39-4 27m45-32-1 28" stroke="#f7deb2" stroke-width="3" stroke-dasharray="5 5"/>
+          </g>
+          <g id="atelierLoom" transform="translate(725 631)" filter="url(#paperShadow)">
+            <ellipse cy="16" rx="134" ry="24" fill="#3f625d" opacity=".34"/>
+            <path d="M-111-103V9m223-125V11" stroke="#876869" stroke-width="16" stroke-linecap="round"/>
+            <path d="M-128-124 120-143 132-114-117-94Z" fill="#edc88e" stroke="#806766" stroke-width="7"/>
+            <path d="m-107-79 223-22v51L-105-27Z" fill="#8ab7a6" stroke="#d7b99d" stroke-width="8"/>
+            <path d="m-90-75 0 44m27-48 0 47m27-50 0 47m28-52 0 49m29-54 0 50m28-54 0 50m28-57 0 51" stroke="#e7d5aa" stroke-width="5"/>
+            <path d="M-130-34 131-58l18 27-260 36Z" fill="#dca78a" stroke="#8f7371" stroke-width="8"/>
+            <path d="M-102-5 141-37" stroke="#fff0c1" stroke-width="3" stroke-dasharray="9 8"/>
+            <path d="M-94 3v47m186-48v45" stroke="#7e6468" stroke-width="13" stroke-linecap="round"/>
+            <path d="M-129-126q86-52 249-20" stroke="#f2e7c1" stroke-width="4" fill="none" stroke-dasharray="8 12"/>
+            <circle cx="-111" cy="-103" r="9" fill="#f0d2a0"/><circle cx="112" cy="-114" r="9" fill="#f0d2a0"/>
+          </g>
+          <g id="atelierDyeBench" transform="translate(1085 664)" filter="url(#paperShadow)">
+            <ellipse cy="15" rx="97" ry="19" fill="#3e615f" opacity=".35"/>
+            <path d="M-88-45 68-65 103-26-63-9Z" fill="#ecd3a6" stroke="#8d766d" stroke-width="7"/>
+            <path d="M-63-9 102-26l-7 32-154 17Z" fill="#b47c7a" stroke="#866366" stroke-width="7"/>
+            <path d="M-55 20-59 43M70 8 75 38" stroke="#7e626a" stroke-width="12" stroke-linecap="round"/>
+            <g stroke="#eee0ba" stroke-width="5">
+              <path d="M-62-68q0-29 21-30 19 10 18 29v19h-40Z" fill="#83b3b0"/>
+              <path d="M-13-77q0-31 23-31 20 12 17 31v20H-12Z" fill="#d9a1a3"/>
+              <path d="M32-81q0-26 20-26 20 12 18 26v22H32Z" fill="#dcc57d"/>
+            </g>
+            <path d="M-72-47q85 7 144-16" stroke="#fff4d4" stroke-width="4" fill="none"/>
+          </g>
+        </g>
+        <path d="M0 792q340-34 570 17h306q326-44 564-8" fill="none" stroke="#f6d8ae" stroke-width="16" opacity=".64"/>
+        <rect width="1440" height="810" fill="url(#grain)" opacity=".29" pointer-events="none"/>
+      </g><!-- atelierScene -->
+      <g id="tapMarker" visibility="hidden" pointer-events="none"><circle r="22" fill="#f4de9b" opacity=".23"/><circle r="14" fill="none" stroke="#fff1c9" stroke-width="3" stroke-dasharray="5 5"/><circle r="4" fill="#f9e8c3"/></g>
     </svg>
     <div class="top-panel">
       <div class="logo-mini"><span class="seal">✦</span><div><strong>FOLDFARER</strong><small>The Unfinished World</small></div></div>
