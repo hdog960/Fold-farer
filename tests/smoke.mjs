@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {Script} from 'node:vm';
+const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
+const html=read('index.html'),game=read('game.js'),css=read('styles.css'),sw=read('sw.js');
+const manifest=JSON.parse(read('manifest.webmanifest'));
+new Script(game,{filename:'game.js'});
+new Script(sw,{filename:'sw.js'});
+const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
+assert.equal(new Set(ids).size,ids.length,'Duplicate id attributes');
+for(const id of [...game.matchAll(/\$\('([^']+)'\)/g)].map(x=>x[1]))assert(ids.includes(id),'Referenced HTML id absent: '+id);
+for(const file of ['styles.css','game.js','manifest.webmanifest','icon.svg'])assert(html.includes('./'+file),'HTML missing '+file);
+for(const x of ['bridgeFix','brokenBridge','tavi','morrow','mila','enemy','timing','battle','journal'])assert(ids.includes(x),'Missing interactive element '+x);
+assert.equal(manifest.display,'standalone');
+assert.equal(manifest.start_url,'./');
+assert(css.includes('prefers-reduced-motion:reduce'));
+assert(sw.includes('caches.open'));
+console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
