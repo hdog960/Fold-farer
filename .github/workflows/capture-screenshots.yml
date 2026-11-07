@@ -5,6 +5,9 @@ on:
     paths-ignore:
       - "screenshots/**"
   workflow_dispatch:
+concurrency:
+  group: foldfarer-screenshots-main
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -29,8 +32,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Never publish stale captures over newer development commits.
+          git fetch origin main
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            echo "Skipping stale capture: source branch advanced during rendering."
+            exit 0
+          fi
           git add screenshots/*.png apple-touch-icon.png icon-192.png icon-512.png
           if ! git diff --cached --quiet; then
             git commit -m "docs: capture actual First Fold in-engine screenshots [skip ci]"
-            git push
+            if ! git push; then
+              echo "Source branch advanced while publishing; a newer run will capture it."
+            fi
           fi
