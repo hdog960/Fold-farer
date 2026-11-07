@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.8.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.8.1](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -50,3 +50,6 @@ After meeting Morrow, the real ink-bird game actor follows Tavi over the 2D fiel
 
 ### Art checkpoint 0.8 — The stitched Foldline bridge
 The river is a layered paper cutout with animated ink reflections, torn leaflet pieces, stitching and a multi-piece collapsible Mending bridge that unfolds into a solid 3D-looking paper footbridge. Repair it in the real playable scene; the logic and artwork share one saved Mending state. Milestone B remains locked pending creator visual inspection.
+
+### Foldline animation 0.8.1
+Needle Strike, Morrow's Ink Needle, Fold Cover, Guard, incoming hits and the Scrapper's paper-burst defeat now produce authored paper-diorama effects in battle. Perfect timed hits create a stronger glint. Reduced-motion settings suppress active animation without changing gameplay.

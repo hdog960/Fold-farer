@@ -310,9 +310,16 @@ function updateBattle(){
  el.foldNode.classList.toggle('raised',battle.fold>0);
  el.battleIntent.textContent=battle.finished?'Encounter finished':battle.morrowWeak?'Intent: Ink-blotted Swipe · 3 damage':'Intent: Paper Swipe · 5 damage';
 }
+const battleEffectNames=['attack','ink','fold','guard','recoil','victory'];
+function showBattleEffect(action,perfect=false){
+ for(const key of battleEffectNames)el.battle.classList.remove('fx-'+key);
+ el.battle.classList.remove('fx-perfect');
+ if(perfect)el.battle.classList.add('fx-perfect');
+ if(action)el.battle.classList.add('fx-'+action);
+}
 function openBattle(){
  battle={hero:24,enemy:26,round:1,fold:0,morrowWeak:false,guard:false,busy:false,finished:false};
- modal='battle';el.battle.classList.remove('hidden');
+ modal='battle';el.battle.classList.remove('hidden');showBattleEffect(null);
  el.battleDone.classList.add('hidden');el.battleActions.classList.remove('hidden');el.timing.classList.add('hidden');
  el.battleLog.textContent='A Paper Scrapper unfolds its blade. The arena remembers the broken bridge.';
  updateBattle();
@@ -329,6 +336,7 @@ function afterHeroAction(text){
    if(battle.morrowWeak){damage-=2;battle.morrowWeak=false;}
    if(battle.guard){damage-=4;battle.guard=false;}
    damage=Math.max(0,damage);
+   showBattleEffect('recoil');
    battle.hero=Math.max(0,battle.hero-damage);
    if(battle.hero===0){el.battleLog.textContent='Tavi’s thread frays. The party must try again.';finishBattle(false);return;}
    battle.round++;
@@ -343,9 +351,9 @@ function chooseBattle(kind){
    modal='timing';timingActive=true;timingStart=performance.now();
    el.battleActions.classList.add('hidden');el.timing.classList.remove('hidden');return;
  }
- if(kind==='morrow'){battle.enemy=Math.max(0,battle.enemy-6);battle.morrowWeak=true;afterHeroAction('Morrow’s ink needle marks the Scrapper for 6 damage and blots its next attack.');}
- if(kind==='fold'){battle.fold=1;afterHeroAction('Tavi folds a hanging paper panel into protective cover.');}
- if(kind==='guard'){battle.guard=true;afterHeroAction('Tavi braces the Mender’s Needle and waits for the swipe.');}
+ if(kind==='morrow'){showBattleEffect('ink');battle.enemy=Math.max(0,battle.enemy-6);battle.morrowWeak=true;afterHeroAction('Morrow’s ink needle marks the Scrapper for 6 damage and blots its next attack.');}
+ if(kind==='fold'){showBattleEffect('fold');battle.fold=1;afterHeroAction('Tavi folds a hanging paper panel into protective cover.');}
+ if(kind==='guard'){showBattleEffect('guard');battle.guard=true;afterHeroAction('Tavi braces the Mender’s Needle and waits for the swipe.');}
 }
 function progressAt(time){const t=((time-timingStart)%1700)/1700;return t<.5?t*200:(1-t)*200;}
 function strike(){
@@ -356,6 +364,7 @@ function strike(){
  timingActive=false;modal='battle';
  el.timing.classList.add('hidden');el.battleActions.classList.remove('hidden');
  battle.enemy=Math.max(0,battle.enemy-damage);
+ showBattleEffect('attack',perfect);
  afterHeroAction('Needle Strike — '+(perfect?'PERFECT STITCH!':success?'Clean stitch!':'Glancing stitch.')+' '+damage+' damage.');
 }
 function finishBattle(win){
@@ -363,6 +372,7 @@ function finishBattle(win){
  battle.finished=true;battle.busy=true;timingActive=false;modal='battle';
  el.timing.classList.add('hidden');el.battleActions.classList.add('hidden');el.battleDone.classList.remove('hidden');
  if(win){
+   showBattleEffect('victory');
    state.won=true;save();el.battleLog.textContent='The Paper Scrapper collapses into harmless scraps. The eastern road still shines white.';
    el.battleDone.textContent='Return to the Folio';
  }else el.battleDone.textContent='Retry the Encounter';

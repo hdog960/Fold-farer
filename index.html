@@ -842,6 +842,72 @@
           <path d="M0 349q362-56 701-12t739-15" fill="none" stroke="#e7d2ab" stroke-width="7"/>
         </svg>
 
+        <!-- Live combat action art: separate translucent cut-paper layers, not UI text only. -->
+        <svg id="battleEffects" class="battle-effects" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <linearGradient id="needleGlint" x1="0" y1="0" x2="1" y2="0">
+              <stop stop-color="#fff7dc" stop-opacity="0"/>
+              <stop offset=".35" stop-color="#fff2c8"/>
+              <stop offset=".72" stop-color="#d9f2dd"/>
+              <stop offset="1" stop-color="#fff7dc" stop-opacity="0"/>
+            </linearGradient>
+            <radialGradient id="impactGlow"><stop stop-color="#fff5cb" stop-opacity=".86"/><stop offset=".6" stop-color="#f4bc9b" stop-opacity=".53"/><stop offset="1" stop-color="#ed8d87" stop-opacity="0"/></radialGradient>
+          </defs>
+          <g id="needleSlash" class="battle-vfx">
+            <path d="M485 231Q779 50 1113 181" stroke="#294a54" stroke-width="28" fill="none" opacity=".5" stroke-linecap="round"/>
+            <path d="M487 218Q781 41 1125 179" stroke="url(#needleGlint)" stroke-width="14" fill="none" stroke-linecap="round"/>
+            <path d="M499 205Q806 63 1113 155" stroke="#fff9df" stroke-width="4" fill="none" stroke-dasharray="10 18" stroke-linecap="round"/>
+            <path d="M1049 166l79 12-48-59" fill="none" stroke="#f9e8bd" stroke-width="12" stroke-linejoin="round"/>
+            <g fill="#f2e5c4" stroke="#d59c89" stroke-width="2.5">
+              <path d="m856 111 17-15 11 24-22 7Z"/><path d="m995 149 21-17 17 29-20 13Z"/>
+              <path d="m743 121 16-16 9 22-19 8Z"/>
+            </g>
+          </g>
+          <g id="inkNeedle" class="battle-vfx">
+            <path d="M425 192Q671 78 1040 156" stroke="#1d4057" stroke-width="16" fill="none" stroke-dasharray="16 19" stroke-linecap="round"/>
+            <path d="M425 189Q699 69 1048 148" stroke="#7cc4b8" stroke-width="5" fill="none" stroke-dasharray="8 14" stroke-linecap="round"/>
+            <g fill="#254e60" stroke="#a0d4c1" stroke-width="4">
+              <path d="M549 140Q559 114 577 142q8 26-17 30t-11-32Z"/>
+              <path d="M751 115q18-27 33 2 8 27-20 28t-13-30Z"/>
+              <path d="M974 135q23-31 38 1 8 29-20 33t-18-34Z"/>
+            </g>
+            <path d="M1036 154l51-9-24 45" stroke="#fff0cc" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </g>
+          <g id="foldShield" class="battle-vfx">
+            <path d="M510 192q147-102 274-74l27 123-304 37Z" fill="#f2d9a9" stroke="#936e73" stroke-width="12" stroke-linejoin="round"/>
+            <path d="M512 189q153-88 264-68l-28 125-237 24Z" fill="#c1b8a4" stroke="#a07878" stroke-width="6"/>
+            <path d="M512 189q141-93 263-68l-72 57-193 91Z" fill="#e5c99c" stroke="#846d70" stroke-width="6"/>
+            <path d="m511 187 199 1m67-65-76 66m-183 79 199-18" fill="none" stroke="#fff2cd" stroke-width="4" stroke-dasharray="7 13"/>
+            <path d="M510 188q117 79 241 67" fill="none" stroke="#cc8d8a" stroke-width="5" stroke-dasharray="5 10"/>
+            <g fill="#fff0c5" stroke="#9a7670" stroke-width="3"><circle cx="515" cy="190" r="7"/><circle cx="700" cy="186" r="7"/><circle cx="749" cy="254" r="7"/></g>
+          </g>
+          <g id="guardGlyph" class="battle-vfx">
+            <path d="M288 185q73-89 144 0l-13 76-119 0Z" fill="#a7c6b0" stroke="#f0dca9" stroke-width="12" opacity=".8"/>
+            <path d="M326 195l28 25 42-55" fill="none" stroke="#fff5c9" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="359" cy="209" r="76" fill="none" stroke="#ffebbb" stroke-width="3" stroke-dasharray="6 13"/>
+          </g>
+          <g id="enemyImpact" class="battle-vfx">
+            <ellipse cx="1082" cy="166" rx="118" ry="92" fill="url(#impactGlow)"/>
+            <g stroke="#ffe7b9" stroke-width="7" stroke-linecap="round">
+              <path d="M1082 69v36M980 104l29 22m-48 68 42-13m75 79v-38m111-67-41 12m-13-87-29 33"/>
+            </g>
+            <g fill="#f8dba5" stroke="#c99983" stroke-width="3">
+              <path d="m1013 118 19-19 18 29-22 18Z"/><path d="m1168 182 20-14 11 28-25 11Z"/>
+              <path d="m1110 222 15-16 18 16-15 17Z"/>
+            </g>
+          </g>
+          <g id="enemyPaperBurst" class="battle-vfx">
+            <g fill="#f1d5ad" stroke="#a77d77" stroke-width="4">
+              <path d="m1025 123 31-21 37 25-32 30Z"/>
+              <path d="m1121 148 43-31 28 32-38 27Z"/>
+              <path d="m1041 216 37-21 28 28-31 22Z"/>
+              <path d="m1167 217 30-18 15 29-34 20Z"/>
+              <path d="m1116 89 18-26 26 17-19 30Z"/>
+            </g>
+            <path d="m1048 127 24 17m82-8 16 20m-113 63 23 12" stroke="#fff3d5" stroke-width="4" stroke-dasharray="5 8" fill="none"/>
+          </g>
+        </svg>
+
         <div class="combatant hero-combat"><svg id="battleTaviArt" class="battle-sprite" viewBox="-80 -204 160 225" aria-label="Tavi in battle"><use href="#taviSprite"/></svg><span>TAVI</span></div>
         <div id="foldNode" class="fold-node"><b>♢</b><small>Fold Cover</small></div>
         <div class="combatant enemy-combat"><svg id="battleScrapperArt" class="battle-sprite" viewBox="-85 -180 210 205" aria-label="Paper Scrapper in battle"><use href="#enemy" transform="translate(-1244 -652)"/></svg><span>PAPER SCRAPPER</span></div>

@@ -116,3 +116,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - On Mending, the open seam's light pulse fades; the illustrated bridge and gameplay crossing share the same saved state.
 - Simulation verifies Tavi cannot cross before repair, can cross after repair at the deck height, and that the seam pulse recedes. Screenshot automation captures both actual torn and repaired game states.
 - Browser screenshot tests, not concept art, support the visual audit; physical iPhone QA remains necessary.
+
+## 0.8.1 — Foldline action art, actual gameplay (Milestone A)
+- Added original SVG strike arcs, inky feather projectiles, hinged paper cover, guard crest, impact glints and physical paper fragments for defeat to the in-engine Foldline arena.
+- Real battle turn actions set corresponding animation states; perfect timed Needle Strikes have stronger impact presentation; incoming enemy action reacts physically, not just as a text/HP update.
+- Existing battle mechanics/numeric damage/guards unchanged, and every action remains keyboard and touch usable. Accessibility reduced motion suppresses dynamic sweeps, not gameplay.
+- Source tests assert action-state activation, Fold Cover, Guard and defeat effects in addition to original combat outcomes.
+- Artwork acceptance still NOT READY. This is a focused real-in-game VFX pass, not a full sprite atlas or final art standard.
