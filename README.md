@@ -165,3 +165,7 @@ The in-game North Terrace has a newly illustrated asymmetrical ribbon-tree crown
 
 ### First Fold 0.29.0 — reconstructed dimensional architecture
 The playable North Terrace's original dye-wheel tower and glasspaper cupola have been substantially redrawn as distinct, structurally layered roof and wall silhouettes rather than simply decorated existing shapes. Both main roofs gain exposed cut-paper construction with contrasting profiles; Tavi's back-facing character gains a more deliberate handmade-paper hair silhouette. These changes are implemented in the actual game scene. Same saves, gameplay, and iPhone Home Screen URL. Milestone A artwork still needs creator approval and real-device validation.
+
+
+### First Fold 0.30.0 — character proportions and continuity
+Updated the actual playable Tavi character silhouette across all five directional field poses, all three emotion/face orientations and all six full-body turning frames. The oversized head was reduced without changing the body, walking/turning frame count, ground anchor, collision or save data. Hair shading inside the 40 existing walking upper-body cels now follows the corrected form. All art is real in-engine SVG, not a concept painting. Creator art approval and physical iPhone QA remain open; Milestone B locked.
