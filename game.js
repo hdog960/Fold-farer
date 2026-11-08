@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.23.1: distinct shops and mobile-safe physical dye sign.
+/* FoldFarer: The Unfinished World. First Fold 0.24.0: world-space cast shadows, inlaid archive seal and conservatory sightline.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){

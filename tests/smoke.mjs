@@ -152,7 +152,7 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.34'),'The existing Home Screen PWA must refresh 0.23.1 assets');
+assert(sw.includes('foldfarer-shell-0.35'),'The existing Home Screen PWA must refresh 0.24 assets');
 
 
 const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
@@ -174,7 +174,7 @@ assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
  'Independent physical depth layers require separate deterministic parallax');
 assert(!html.includes('M-10 302 122 176 228 229 350 134'),
  'Generic zig-zag mountain card must be replaced, not covered with a decal');
-assert(sw.includes('foldfarer-shell-0.34'),'Mobile must fetch the new 0.23.1 build');
+assert(sw.includes('foldfarer-shell-0.35'),'Mobile must fetch the new 0.24 build');
 
 
 const identityIds=['terraceDyeEnamel','terraceDyeCavity','terraceHerbVellum','terraceHerbRib',
@@ -203,4 +203,22 @@ assert(html.includes('id="terraceDyerSign" transform="translate(171 -115)"'),
  'Dyer sign must clear the iPhone movement controls, not sit below them');
 assert(html.includes('M60 563v28m131-36 13 43'),
  'Moved sign requires its illustrated physical hanging mount');
+
+const cohesionIds=['terraceFolioPewter','terraceEtchedInk','terraceCastInk',
+ 'terraceRibbonLeaves','terraceBookbinderWalkway','terraceLongCastShadows',
+ 'terraceGateCardFooting','terraceMenderInlay','terraceBindingSutures'];
+for(const id of cohesionIds)assert(ids.includes(id),'0.24 grounded environmental art missing: '+id);
+assert(html.indexOf('id="terracePavingInlay"')<html.indexOf('id="terraceBookbinderWalkway"')&&
+ html.indexOf('id="terraceBookbinderWalkway"')<html.indexOf('id="terraceNaturalMarginalia"')&&
+ html.indexOf('id="terraceBookbinderWalkway"')<html.indexOf('id="terraceDepthStage"'),
+ 'Story engraving and cast shadows must be stationary and behind characters');
+assert(html.includes('class="terrace-leaf-sway" transform="translate(-62 -10)"'),
+ 'Tree foliage should stop hiding the conservatory display');
+assert(html.includes('id="terraceRibbonTree" transform="translate(1177 591)"'),
+ 'Ribbon tree physics must not be moved merely for canopy clearance');
+assert(css.includes('#terraceBookbinderWalkway *')&&
+ css.includes('pointer-events:none!important'),
+ 'Painted ground shadows must not steal tapping');
+assert(sw.includes('foldfarer-shell-0.35'),'0.24 assets must invalidate earlier Home Screen cache');
+
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

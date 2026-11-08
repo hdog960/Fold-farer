@@ -271,3 +271,12 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Reviewed the actual 0.23.0 screenshot and caught the Ink Dyer sign sitting underneath the on-screen movement pad. Moved the entire in-world hanging sign to the clear lane with original illustrated suspension hardware.
 - New live Chromium regression compares screen rectangles of shop sign and D-pad, rejecting actual overlap rather than merely ensuring SVG geometry exists. Game logic, collision, saves, and icon untouched. Version 0.23.1, offline cache 0.34.
 - Art is still pending 90/100 creator visual acceptance and physical iPhone testing; Milestone B remains locked.
+
+
+## First Fold 0.24.0 — central world-space composition and open conservatory view (Milestone A)
+- The ribbon tree now has a new asymmetrical, windswept cut-paper crown and articulated leaf highlights, shifted northwest **visually only**. Its trunk, collision coordinate (1177,591), depth order and player walking footprint stay entirely unchanged. The purpose is to reveal the conservatory's actual glazed façade instead of layering a generic balloon canopy over it.
+- Added `terraceBookbinderWalkway` to the real walk plane after the paving and before the wall/actor layers: perspective-projected long ink shadows for the original lantern, archive bell, dyer's bench, letter cabinet, ribbon tree and gate; two layered gateway cardstock footings; one unique, embossed feather-and-needle folio insignia; and four irregular hand-sutured floor edges. No new hitboxes.
+- Reduced the high-contrast repeating paving dashes to make materials and focal architecture more legible. Original assets are SVG physically rendered in game; no concept-art substitution, external textures or new dependencies.
+- Source checks and live Chromium geometry checks cover layer bounds, proper paint order, touch passthrough, constant ground and tree anchors, and screen-space canopy obstruction of the conservatory. Screenshot: `screenshots/39-terrace-engraving-and-shadow.png` from actual running gameplay.
+- First Fold 0.24.0; Home Screen cache 0.35; existing save key, gameplay, controls, companion animation and GitHub Pages URL preserved.
+- **Visual quality and real-iPhone acceptance remain pending.** Milestone B stays locked until explicit creator approval.

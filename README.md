@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.23.1](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.24.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -133,3 +133,7 @@ The North Terrace's two large buildings now have deliberately distinct handmade 
 
 #### 0.23.1 mobile visibility correction
 The original Ink Dyer's sign has been repositioned above and to the right of the movement pad with an illustrated hanger. Live browser QA prevents a return of the overlap. Same Home Screen icon and preview saves; art signoff remains pending.
+
+
+### First Fold 0.24.0 — central engraving, grounded shadows and open sightlines
+North Terrace's ribbon tree gains a handmade windswept crown shifted only at the foliage level to reveal the botanical conservatory. The tree's real collision and depth-sorted trunk stay put. A new world-space floor-composition layer adds lengthened directional shadows from existing architectural feet, exposed cardstock gate footings, an illustrated feather-and-needle story seal and irregularly sewn pathway margins. The work is integrated into the actual playable game, not a static visual mockup. Source and headless-browser tests enforce depth ordering, painted geometry, touch passthrough and greenhouse occlusion; real-game screenshot `screenshots/39-terrace-engraving-and-shadow.png`. Existing saves and installed Home Screen URL are unchanged. Milestone A art acceptance is still pending; Milestone B is locked.

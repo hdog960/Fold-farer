@@ -709,3 +709,14 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
    animation:none!important;transform:none!important
  }
 }
+
+/* First Fold 0.24 — grounded shadows, letterpress engraving and an open
+   conservatory sightline. All painted detail remains on the walkable page.
+   The ribbon-tree trunk, its collision and dynamic occlusion stay fixed. */
+#terraceBookbinderWalkway,#terraceBookbinderWalkway *,
+#terraceRibbonTree .terrace-leaf-sway *{pointer-events:none!important}
+#terraceMenderInlay path,#terraceGateCardFooting path{shape-rendering:geometricPrecision}
+#terraceLongCastShadows{opacity:.76}
+@media(prefers-reduced-motion:reduce){
+ #terraceRibbonTree .terrace-leaf-sway{animation:none!important}
+}
