@@ -485,7 +485,7 @@ assert((html.match(/class="morrow-cut-face35"/g)||[]).length===14,
 assert((html.match(/class="morrow-reaction-cel"/g)||[]).length===6 &&
        (html.match(/class="morrow-wing-frame"/g)||[]).length===4,
        'The original reactive bird facial and flapping animation frame counts must survive');
-assert((html.match(/fill="url\\(#morrowWingInk(?:Left|Right)\\)"/g)||[]).length===8,
+assert((html.match(/fill="url\(#morrowWingInk(?:Left|Right)\)"/g)||[]).length===8,
        'Keep all eight independently illustrated base wings beneath their new cut-paper feathers');
 assert(html.includes('id="morrowGroundShadow"')&&html.includes('id="morrowReactionAtlas"'),
        'Morrow floor anchoring, expressions, and save integration must remain intact');
