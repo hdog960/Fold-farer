@@ -169,3 +169,7 @@ The playable North Terrace's original dye-wheel tower and glasspaper cupola have
 
 ### First Fold 0.30.0 — character proportions and continuity
 Updated the actual playable Tavi character silhouette across all five directional field poses, all three emotion/face orientations and all six full-body turning frames. The oversized head was reduced without changing the body, walking/turning frame count, ground anchor, collision or save data. Hair shading inside the 40 existing walking upper-body cels now follows the corrected form. All art is real in-engine SVG, not a concept painting. Creator art approval and physical iPhone QA remain open; Milestone B locked.
+
+
+### First Fold 0.31.0 — head-to-body walking continuity
+Tavi's existing 40 independently painted lower-body and upper-body walk frames now have **40 aligned SVG head/face/hair cels**, eight per each of the five actual directions. The animation is indexed by distance walked and retains the same neck anchor and 0.88 head proportion established in 0.30. New hand-drawn feathered fringe and ink seams change between frames. Original idle art, dialogue expressions and six fully authored turning poses remain intact. Duplicate old in-motion hair strokes are suppressed. No change to world-scale, foot positions, collision, save data or Home Screen address. First Fold is still a Milestone A artwork-in-progress preview; final visual approval and real iPhone QA are outstanding.
