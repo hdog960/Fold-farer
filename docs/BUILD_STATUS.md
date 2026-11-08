@@ -313,3 +313,12 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Re-drew the back-facing crown as an asymmetric cut-card contour with a broken forelock and tapered nape. Removed the two original heavy crossing hair arcs, simplified the overlaid artwork to three restrained hand-inked accents, and kept Tavi's real skull proportions, world foot anchor, 40 upper-body walk frames and all orientation transition art intact.
 - Added static and headless-Chromium tests on the actual physical hair bounds, exact 3-strand contour, opacity/edge weights, actor parentage, and pointer transparency. Real-world screenshot `screenshots/42-terrace-refined-hair-and-watercolor.png`.
 - First Fold 0.26.1, offline shell 0.39. Current iPhone Home Screen, user save key, collision and combat unchanged. Milestone A visual acceptance and physical device testing remain open; Milestone B remains locked.
+
+
+## First Fold 0.27.0 — central papercraft construction overhaul (Milestone A)
+- Replaced the real North Terrace archive bell prop with a physically assembled open pavilion: dimensional three-face plinth, uneven roof stock, shadowed side columns, suspended copper bell, visible bell mouth, separate clapper and hand-engraved paper seams. Preserved the exact existing bell world origin (719,484), proximity dialogue, collision and painter sorting.
+- Rebuilt the existing memory kiosk as an intentionally asymmetrical open-book display with separate curved spine roof, hinged left/right page walls, front/back cover thickness, removable paper tabs and two facing written folio pages. Preserved kiosk world origin (1022,660), lore dialogue and physics.
+- Reconstructed the tree's trunk as shaded exposed cardboard with two true branch faces, visible grain, exposed roots and binding stitches. Its original animated foliage assembly, collision anchor (1177,591) and controlled greenhouse/kiosk visual overlap stay fixed.
+- Source verification and real-Chromium screenshot audit cover geometry, original anchor positions, layer membership, touch passthrough and surviving Tavi world-space foot anchor. Gameplay capture: `screenshots/43-terrace-archive-papercraft.png`.
+- Game version 0.27.0 and offline cache 0.40. Existing iPhone Home Screen URL, save key, quests, interactions and battle systems remain unchanged; no paid dependency.
+- **Milestone A visual gate and real physical iPhone QA remain open. Milestone B stays locked until creator inspection and approval.**

@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.26.1: corrected back-facing cut-paper hair silhouette after in-game review.
+/* FoldFarer: The Unfinished World. First Fold 0.27.0: dimensional hanging archive bell, open-book kiosk and original tree branch assembly.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){

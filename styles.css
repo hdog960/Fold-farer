@@ -749,3 +749,14 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #tavi .farer-hair-volume path,#terraceArchEdgeRelief path{
   shape-rendering:geometricPrecision
 }
+
+/* First Fold 0.27 — the ORIGINAL in-world archive bell, three-hinged folio
+   kiosk and physical ribbon-tree branch have separated paper faces. No new
+   collision, HUD covers, blur layers or invisible interaction targets. */
+#terraceBell,#terraceBell *,#terraceKiosk,#terraceKiosk *,
+#terraceTreeBranchConstruction,#terraceTreeBranchConstruction *{
+  pointer-events:none!important
+}
+#terraceBell path,#terraceKiosk path,#terraceTreeBranchConstruction path{
+  shape-rendering:geometricPrecision
+}
