@@ -134,4 +134,24 @@ const pavement=html.indexOf('id="terracePavingInlay"');
 const stage=html.indexOf('id="terraceDepthStage"');
 assert(riserInGround>0&&riserInGround<pavement&&pavement<stage,
  'Physical page cross-sections must paint on the stable ground BEHIND actors');
+
+const newPaperLayers=['terracePaperArchitecture','terraceDyerPaperCore','terraceConservatoryPaperCore',
+ 'terraceNaturalMarginalia','terraceDyerHerbs','terraceConservatorySpores','terracePressedPetals',
+ 'terraceRoofStrata','terraceWallCavity','terraceContactGold','taviContactBounce','morrowContactBounce'];
+for(const id of newPaperLayers)assert(ids.includes(id),'Missing 0.21 original in-world artwork: '+id);
+assert(html.indexOf('id="terraceNaturalMarginalia"')<html.indexOf('id="terraceSideWalls"'),
+ 'Ground vegetation must be behind stage walls');
+assert(html.indexOf('id="terraceSideWalls"')<html.indexOf('id="terracePaperArchitecture"')&&
+       html.indexOf('id="terracePaperArchitecture"')<html.indexOf('id="terraceDepthStage"'),
+ 'Paper core architecture must live behind depth-sorted actors');
+assert(css.includes('#terraceNaturalMarginalia *{pointer-events:none!important}'),
+ 'Plant decoration must never consume touch input');
+assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
+       game.includes("el.taviContactBounce.setAttribute('opacity'")&&
+       game.includes("el.morrowContactBounce.setAttribute('opacity'"),
+ 'New lighting must respond to physical world position in real gameplay');
+assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
+ 'World-space contact lighting must preserve both original foot anchors');
+assert(sw.includes('foldfarer-shell-0.31'),'The existing Home Screen PWA must refresh 0.21 assets');
+
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

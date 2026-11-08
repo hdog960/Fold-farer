@@ -660,3 +660,15 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #terraceStairFoldAssembly .terrace-stair-fold{shape-rendering:geometricPrecision}
 #terraceStairRakingLight{mix-blend-mode:screen}
 @media(prefers-reduced-motion:reduce){#terraceStairRakingLight{mix-blend-mode:normal;opacity:.7}}
+
+
+/* First Fold 0.21 — architecture has layered roof-card edges and dark interior
+   reveals. All paint is in the scene behind actors; no new collision or tap
+   interception. Ground plants are drawn directly on the floor before walls. */
+#terracePaperArchitecture,#terracePaperArchitecture *,
+#terraceNaturalMarginalia,#terraceNaturalMarginalia *{pointer-events:none!important}
+#terracePaperArchitecture path,#terraceNaturalMarginalia path{shape-rendering:geometricPrecision}
+#taviContactBounce,#morrowContactBounce{pointer-events:none!important;mix-blend-mode:screen}
+@media(prefers-reduced-motion:reduce){
+ #taviContactBounce,#morrowContactBounce{mix-blend-mode:normal}
+}
