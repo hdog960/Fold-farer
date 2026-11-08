@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.27.0: dimensional hanging archive bell, open-book kiosk and original tree branch assembly.
+/* FoldFarer: The Unfinished World. First Fold 0.28.0: illustrated tree crown, cloth, botanical glazing and watercolor air.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
