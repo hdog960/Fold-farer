@@ -682,3 +682,30 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #terraceMountainBack,#terraceValleyCard,
 #terraceLandscapeRetainingWall{shape-rendering:geometricPrecision}
 #terraceLetterpressPlaque,#terraceLetterpressTitle{pointer-events:none!important}
+
+
+/* First Fold 0.23 — identity-defining original architectural assemblies.
+   The dye press, deep silk alcove, arched greenhouse and botanical cupola
+   paint behind both actors. Never attach hitboxes to decorative silhouettes. */
+#terraceCraftedShopfronts,#terraceCraftedShopfronts *{pointer-events:none!important}
+#terraceCraftedShopfronts path{shape-rendering:geometricPrecision}
+#terraceDyerSign text,#terraceHerbariumPlaque text{paint-order:stroke;stroke:#f1dfba;stroke-width:.35px}
+#terraceDyerSilkCurtain .terrace-silk-ribbon,
+#terraceVellumSpecimens .terrace-botanical-hanger{
+  transform-box:fill-box;transform-origin:50% 1%;
+  animation:terraceFabricBreathe 5.8s ease-in-out infinite alternate;
+}
+#terraceDyerSilkCurtain .terrace-silk-ribbon.alternate,
+#terraceVellumSpecimens .terrace-botanical-hanger.alternate{animation-duration:7.1s;animation-direction:alternate-reverse}
+#terraceDyerSilkCurtain .terrace-silk-ribbon.third,
+#terraceVellumSpecimens .terrace-botanical-hanger.third{animation-duration:6.7s;animation-delay:-2.2s}
+@keyframes terraceFabricBreathe{
+ from{transform:rotate(-1.3deg)}
+ to{transform:rotate(1.7deg)}
+}
+@media(prefers-reduced-motion:reduce){
+ #terraceDyerSilkCurtain .terrace-silk-ribbon,
+ #terraceVellumSpecimens .terrace-botanical-hanger{
+   animation:none!important;transform:none!important
+ }
+}

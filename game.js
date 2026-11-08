@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.22.0: authored valley horizon, two independent paper-parallax cards and legible gateway crest.
+/* FoldFarer: The Unfinished World. First Fold 0.23.0: distinct hand-built dyer and conservatory architectural silhouettes.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){

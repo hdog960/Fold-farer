@@ -152,7 +152,7 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.32'),'The existing Home Screen PWA must refresh 0.22 assets');
+assert(sw.includes('foldfarer-shell-0.33'),'The existing Home Screen PWA must refresh 0.23 assets');
 
 
 const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
@@ -174,6 +174,28 @@ assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
  'Independent physical depth layers require separate deterministic parallax');
 assert(!html.includes('M-10 302 122 176 228 229 350 134'),
  'Generic zig-zag mountain card must be replaced, not covered with a decal');
-assert(sw.includes('foldfarer-shell-0.32'),'Mobile must fetch the new 0.22 build');
+assert(sw.includes('foldfarer-shell-0.33'),'Mobile must fetch the new 0.23 build');
+
+
+const identityIds=['terraceDyeEnamel','terraceDyeCavity','terraceHerbVellum','terraceHerbRib',
+ 'terraceCraftedShopfronts','terraceDyerIdentity','terraceDyeTower','terraceDyerRecess',
+ 'terraceDyerSign','terraceDyerSilkCurtain','terraceConservatoryIdentity',
+ 'terraceConservatoryCupola','terraceVellumBay','terraceHerbariumPlaque','terraceVellumSpecimens'];
+for(const id of identityIds)assert(ids.includes(id),'0.23 identity artwork missing: '+id);
+const shopLayer=html.indexOf('id="terraceCraftedShopfronts"');
+assert(shopLayer>html.indexOf('id="terraceMaterialStories"')&&
+ shopLayer<html.indexOf('id="terraceLightShift"')&&
+ shopLayer<html.indexOf('id="terraceDepthStage"'),
+ 'Structural shopfronts must paint after old building texture, but behind active actors');
+assert(css.includes('#terraceCraftedShopfronts *{pointer-events:none!important}'),
+ 'No artwork may intercept tap-to-walk or accessible act button');
+assert(css.includes('@keyframes terraceFabricBreathe')&&
+ css.includes('@media(prefers-reduced-motion:reduce)'),
+ 'Moving paper ornaments must preserve reduced-motion compatibility');
+assert((html.match(/class="terrace-silk-ribbon/g)||[]).length===3&&
+ (html.match(/class="terrace-botanical-hanger/g)||[]).length===3,
+ 'Six individually hung silk/botanical shapes must be present');
+assert(html.includes('>INK DYER</text>')&&html.includes('>HERBARIUM</text>'),
+ 'Each building needs a readable, distinct shop identity');
 
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

@@ -256,3 +256,12 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Added structural and real Chromium browser verification for group rendering, parallax separation, gate/floor paint order, zero pointer interception, label fit, and a new true-play screenshot `screenshots/37-terrace-illustrated-valley.png`.
 - No changes to existing quests, combat, localStorage save key, companion follow, traversal or Home Screen icon. Version 0.22.0; PWA offline shell 0.32.
 - **Art quality still pending creator acceptance**: these changes improve scenery composition but are not a substitute for a comprehensive animation/material redesign or physical iPhone testing. Milestone B stays locked.
+
+
+## First Fold 0.23.0 — two unmistakably different North Terrace façades (Milestone A)
+- Added original roof-mounted, woodbound dye-wheel tower to the Ink Dyer's Nook; a physically recessed tinted silk display, hand-cut window reveals, three separately hung animated cloth strips, and a small readable sewn shop tag.
+- Added a distinct glasspaper cupola and a broad, arched vellum greenhouse bay to the Vellum Conservatory. Its glazing has individually drawn leaves, pressed flowers, structural paper ribs, specular slits and physical sill layers. A separate herbarium plaque and three individual specimen cards replace lookalike decorations.
+- Architecture occupies one original static in-game SVG layer behind depth-sorted characters, with no collision/quest/save changes. Tiny cloth and specimen movement is disabled under reduced-motion preferences. The old Folio and North Terrace controls remain usable.
+- New source and real-Chromium tests verify eight nonempty rendered architecture groups, structural order, labels, zero pointer capture, stable geometry and the same character foot positions. Actual screenshot: `screenshots/38-terrace-distinct-shopfronts.png`.
+- New First Fold 0.23.0 version and service-worker shell 0.33. Existing iPhone Home Screen icon, GitHub Pages URL and preview save key retained; no paid dependencies.
+- **Milestone A remains unapproved** until the creator sees and approves the overall visual quality. These shopfronts deepen the physical scene, but the full 90/100 animation/environment standard and physical iPhone QA remain open. Milestone B is locked.

@@ -528,6 +528,43 @@ try {
       Math.abs(parallax.far[1]-parallax.mid[1])<.5||
       await terraceNear.locator('#terraceGround').getAttribute('transform')!==landscapeOld)
     throw Error('Independent two-layer parallax displaced real floor or failed: '+JSON.stringify(parallax));
+
+  // 0.23: real browser confirms independently authored Dyer and Conservatory
+  // architecture physically visible in gameplay, behind active characters
+  // and never stealing tap or accessible buttons.
+  const shopfrontQA=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(root=>{
+    const ids=['terraceDyeTower','terraceDyerRecess','terraceDyerSign','terraceDyerSilkCurtain',
+      'terraceConservatoryCupola','terraceVellumBay','terraceHerbariumPlaque','terraceVellumSpecimens'];
+    const rectangles=ids.map(id=>{
+      const e=document.getElementById(id),b=e.getBBox();
+      return {id,w:b.width,h:b.height,x:b.x,y:b.y,events:getComputedStyle(e).pointerEvents};
+    });
+    const stage=document.getElementById('terraceDepthStage');
+    const plaque=document.getElementById('terraceHerbariumPlaque').getBBox();
+    const sign=document.getElementById('terraceDyerSign').getBBox();
+    const properOrder=!!(root.compareDocumentPosition(stage)&Node.DOCUMENT_POSITION_FOLLOWING);
+    const nearLeft=rectangles.find(a=>a.id==='terraceDyeTower');
+    const nearRight=rectangles.find(a=>a.id==='terraceConservatoryCupola');
+    return {rootEvents:getComputedStyle(root).pointerEvents,
+      properOrder,rectangles,signFits:sign.x>=0&&sign.x+sign.w<300,
+      plaqueFits:plaque.x>1150&&plaque.x+plaque.width<1450,
+      twoDifferentSilhouettes:nearLeft.w!==nearRight.w||nearLeft.h!==nearRight.h,
+      distinctParents:document.getElementById('terraceDyerIdentity')!==document.getElementById('terraceConservatoryIdentity')};
+  });
+  if(shopfrontQA.rootEvents!=='none'||!shopfrontQA.properOrder||
+      !shopfrontQA.signFits||!shopfrontQA.plaqueFits||
+      !shopfrontQA.twoDifferentSilhouettes||!shopfrontQA.distinctParents||
+      shopfrontQA.rectangles.some(b=>b.w<65||b.h<26||b.events!=='none')){
+    throw Error('0.23 distinct shop architecture missing, occluded, or intercepting touch: '+JSON.stringify(shopfrontQA));
+  }
+  const savedPose=await terraceNear.locator('#tavi').getAttribute('transform');
+  const rectBefore=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(el=>el.getBBox().toJSON());
+  await terraceNear.screenshot({path:'screenshots/38-terrace-distinct-shopfronts.png'});
+  if(await terraceNear.locator('#tavi').getAttribute('transform')!==savedPose)
+    throw Error('0.23 shopfront rendering changed the game character position');
+  const rectAfter=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(el=>el.getBBox().toJSON());
+  if(Math.abs(rectAfter.x-rectBefore.x)>.01||Math.abs(rectAfter.width-rectBefore.width)>.01)
+    throw Error('0.23 painted architecture unexpectedly moved relative to collision world');
   await terraceNear.screenshot({path:'screenshots/37-terrace-illustrated-valley.png'});
   await terraceNear.screenshot({path:'screenshots/36-terrace-architectural-contact-light.png'});
   await terraceNear.screenshot({path:'screenshots/35-terrace-folded-step-construction.png'});
