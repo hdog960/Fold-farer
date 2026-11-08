@@ -135,6 +135,10 @@
         <linearGradient id="morrowChestInk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#648d8d"/><stop offset=".48" stop-color="#3f6777"/><stop offset="1" stop-color="#233c57"/></linearGradient>
         <linearGradient id="morrowWingInkLeft" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#83aaa9"/><stop offset=".48" stop-color="#3e6a80"/><stop offset="1" stop-color="#1d3952"/></linearGradient>
         <linearGradient id="morrowWingInkRight" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#729f9f"/><stop offset=".48" stop-color="#385f76"/><stop offset="1" stop-color="#182f4b"/></linearGradient>
+<linearGradient id="morrowBreastWash35" x1="10%" y1="0%" x2="90%" y2="100%"><stop stop-color="#7eaa9e"/><stop offset=".5" stop-color="#426c79"/><stop offset="1" stop-color="#25445b"/></linearGradient>
+<linearGradient id="morrowEyeParchment35" x1="5%" y1="5%" x2="95%" y2="90%"><stop stop-color="#fff9de"/><stop offset=".6" stop-color="#f2e6c5"/><stop offset="1" stop-color="#c7cfb6"/></linearGradient>
+<linearGradient id="morrowFeatherStock35" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#adc9b1"/><stop offset=".5" stop-color="#739c9e"/><stop offset="1" stop-color="#32546c"/></linearGradient>
+<linearGradient id="morrowBeakOchre35" x1="5%" y1="0%" x2="95%" y2="100%"><stop stop-color="#fff0ba"/><stop offset=".55" stop-color="#e4be7e"/><stop offset="1" stop-color="#ae7a71"/></linearGradient>
         <linearGradient id="terraceArchWatercolor" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#f9e6bc"/><stop offset=".48" stop-color="#d9b393"/><stop offset="1" stop-color="#a17c80"/></linearGradient>
         <linearGradient id="terraceArchReveal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#d1a78d"/><stop offset=".48" stop-color="#97777b"/><stop offset="1" stop-color="#5b606c"/></linearGradient>
         <!-- First Fold 0.27: shadowed physical paper edge-stock in the live world. -->
@@ -777,11 +781,32 @@
           <path d="M-14-20  -20 5m8-3-23 7m23-7-6 11"/>
           <path d="M14-20 21 5m-6-3 23 7m-23-7 7 11"/>
         </g>
-        <path d="M19-37Q57-29 71-55 65-13 32-14L17-21Z" fill="#374d67" stroke="#1d354c" stroke-width="5"/>
-        <path d="M27-31Q53-23 63-42" fill="none" stroke="#70aaa4" stroke-width="3.5"/>
-        <path d="M-34-37Q-49-68-35-97q11-37 42-36 34-8 42 30 15 39-7 76Q11-12-25-20Z" fill="url(#morrowBodyInk)" stroke="#142e43" stroke-width="7"/>
+        <g id="morrowInkedTail35" pointer-events="none" aria-hidden="true">
+ <path d="M18-39q21 5 41-10l15-14-7 29-12 12 16-7-16 19-27-6-14-8Z" fill="#334f69" stroke="#192f46" stroke-width="4.6"/>
+ <path d="M30-32q22 2 36-20m-26 27 24-9m-23 14 15 0" fill="none" stroke="#88ada7" stroke-width="2.7" stroke-linecap="round"/>
+ <path d="M49-26q8 3 13 1" fill="none" stroke="#f5e2b5" stroke-width="1.7"/>
+</g>
+        
+        <path id="morrowOriginalCardBody35" d="M-39-45q-11-17-9-37l-4-11 10-10q1-23 16-30l10-7 16-2q23-8 41 10l9 16 8 26-3 16 4 22-13 12-4 18-12 8-10 9-21-3-13 6-16-11-7-12Z" fill="url(#morrowBodyInk)" stroke="#142e43" stroke-width="6" stroke-linejoin="round"/>
+<g id="morrowBodyCardstock35" pointer-events="none" aria-hidden="true">
+ <path d="M-40-104q-11 37 8 64 6 12 19 18l-5-16-9-14q-8-25-6-48Z" fill="#8cb0a6" stroke="#27475a" stroke-width="3.2" opacity=".8"/>
+ <path d="M44-113q13 24 10 49l-10 25-14 19 3-20q12-32 8-58Z" fill="#1e3d53" stroke="#173247" stroke-width="3"/>
+ <path d="M-37-42q7 13 19 15l8 13-14-4-11-14Zm61 17q17-12 24-30l-1 17-17 24-12 1Z" fill="#24455d" stroke="#163349" stroke-width="3"/>
+ <path d="M-42-88q2-13 9-22m60-23q22 21 20 46m-65 65 14 7m24-3 13-14" fill="none" stroke="#b3cec0" stroke-width="2.3" stroke-linecap="round" opacity=".58"/>
+ <path d="M-42-67q3 8 11 12m65 12q10-9 13-21" fill="none" stroke="#142d43" stroke-width="2.4"/>
+</g>
         <path d="M-26-73q-13-25 0-45 16-25 43-10 24 17 24 48Q19-93-26-73Z" fill="url(#morrowChestInk)" stroke="#244256" stroke-width="3"/>
-        <path d="M-18-119Q-30-136-21-153q18 17 21 26m7 0 11-33q12 19 2 34" fill="#25394e" stroke="#162e41" stroke-width="5" stroke-linejoin="round"/>
+<g id="morrowIllustratedBreast35" pointer-events="none" aria-hidden="true">
+ <path d="M-26-85q5 19 17 31l15 13 11-10q13-17 18-37l-9 12-12 6-10-2-12 7-18-5Z" fill="url(#morrowBreastWash35)" stroke="#295368" stroke-width="2.8"/>
+ <path d="M-24-67q8 10 16 13m-2 8 12 9m6-5 12-13m-21-13 10 9 13-8" fill="none" stroke="#b1ceba" stroke-width="2.8" stroke-linecap="round" opacity=".72"/>
+ <path d="m-18-51 10 9 7-8m8 12 9-9" fill="none" stroke="#f7e3bb" stroke-width="1.5" opacity=".62"/>
+ <path d="M-17-104q9-10 20-12m11 0q12 5 16 17" fill="none" stroke="#e8ddbb" stroke-width="2.1" opacity=".48"/>
+</g>
+        <g id="morrowFeatherCrown35" pointer-events="none" aria-hidden="true">
+ <path d="M-28-124q-16-16-13-31l18 10 5-17 14 20 12-25 9 24 18-9-7 29-16 10Z" fill="#213c52" stroke="#162f45" stroke-width="4.5" stroke-linejoin="round"/>
+ <path d="m-27-143 11 11 8-21 9 19 9-23 7 22 10-7" fill="none" stroke="#71979c" stroke-width="2.5" stroke-linecap="round"/>
+ <path d="m-22-151 7 7m25-15 4 12" stroke="#d8c9ad" stroke-width="2" opacity=".72" fill="none"/>
+</g>
         <g id="morrowCardstockFeathers" pointer-events="none" aria-label="Hand-creased ink-feather cardstock edging">
           <path d="M-31-101q-9 20 0 41 6 22 14 27" stroke="url(#morrowFeatherBindLight)" stroke-width="4" fill="none" stroke-linecap="round"/>
           <path d="M40-101q8 32-3 56" stroke="#152f43" stroke-width="4.2" opacity=".62" fill="none" stroke-linecap="round"/>
@@ -795,67 +820,138 @@
           <path d="M-32-81Q-63-90-81-61l22 4-19 13 25 6-13 15 29-2Q-16-42-18-64Z" fill="url(#morrowWingInkLeft)" stroke="#182e47" stroke-width="6" stroke-linejoin="round"/>
           <path d="m-59-57 29-4m-27 19 32-7m-21 19 23-12" stroke="#6aa5a5" stroke-width="3.8" fill="none" stroke-linecap="round"/>
           <path d="m-73-60 14 3m-17 13 20 2m-7 17 15-2" stroke="#e5d7aa" stroke-width="2.2" stroke-dasharray="3 6" fill="none"/>
-        </g>
+        <g class="morrow-physical-wing-relief35" data-feather-frame="0" data-feather-side="left" pointer-events="none" aria-hidden="true">
+  <g fill="url(#morrowFeatherStock35)" stroke="#274d60" stroke-width="2.5" stroke-linejoin="round" opacity=".83">
+    <path d="M-75-57q18 1 33-13l14 8-15 12-26 1Z"/>
+    <path d="M-76-44q16 5 32-8l13 8-18 12-23-1Z"/>
+    <path d="M-65-26q20-1 32-18l9 8-20 17-17-1Z"/>
+  </g>
+  <path d="M-65-60q18 9 37-9m-37 26q21 7 34-10" fill="none" stroke="#f4ddba" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+ </g></g>
         <g class="inkwing-right">
           <path d="M32-80Q52-95 69-75l-9 12 19 3-16 12 15 6-30 16Q21-28 21-66Z" fill="url(#morrowWingInkRight)" stroke="#1d354e" stroke-width="6" stroke-linejoin="round"/>
           <path d="m44-63 22-8m-19 18 21-7m-22 19 20-9" stroke="#78aca6" stroke-width="3.5" fill="none" stroke-linecap="round"/>
           <path d="m58-68 11-8m-5 19 14-5" stroke="#e5d5aa" stroke-width="2" stroke-dasharray="4 6"/>
-        </g>
+        <g class="morrow-physical-wing-relief35" data-feather-frame="0" data-feather-side="right" pointer-events="none" aria-hidden="true">
+  <g fill="url(#morrowFeatherStock35)" stroke="#274d60" stroke-width="2.5" stroke-linejoin="round" opacity=".83">
+    <path d="M68-76q-15 1-27 14l-9-8q11-19 31-15Z"/>
+    <path d="M77-60q-17 0-30 14l-10-6q14-17 31-16Z"/>
+    <path d="M74-43q-17 6-31 15l-7-8q12-13 30-17Z"/>
+  </g>
+  <path d="M66-69q-17 8-32-6m30 29q-19 7-30-5" fill="none" stroke="#f4ddba" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+ </g></g>
         </g>
         <g class="morrow-wing-frame" data-wing-frame="1">
-          <g class="inkwing-left"><path d="M-32-79Q-66-116-87-114l9 20-16 1 25 22-12 9 34-3Q-18-43-18-65Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-31-74-35-27m34 33-38-18m39 24-30-7" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-73-105 10 10m-26 4 13 7m-5 21 16-2" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
-          <g class="inkwing-right"><path d="M31-81Q54-119 84-111l-12 21 18 1-23 20 14 10-35-4Q20-40 20-66Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m31-72 38-26m-37 32 41-19m-41 25 31-8" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m70-103-7 10m23 3-12 8m10 20-15-1" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-left"><path d="M-32-79Q-66-116-87-114l9 20-16 1 25 22-12 9 34-3Q-18-43-18-65Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-31-74-35-27m34 33-38-18m39 24-30-7" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-73-105 10 10m-26 4 13 7m-5 21 16-2" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/><g class="morrow-physical-wing-relief35" data-feather-frame="1" data-feather-side="left" pointer-events="none" aria-hidden="true">
+  <g fill="url(#morrowFeatherStock35)" stroke="#274d60" stroke-width="2.5" stroke-linejoin="round" opacity=".83">
+    <path d="M-85-111q19 5 36 20l13 18-13 8q-22-28-36-46Z"/>
+    <path d="M-91-93q20 3 42 20l17 16-16 6q-19-25-43-42Z"/>
+    <path d="M-77-64q22-8 42-3l11 12-19 1-21 3Z"/>
+  </g>
+  <path d="M-65-60q18 9 37-9m-37 26q21 7 34-10" fill="none" stroke="#f4ddba" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+ </g></g>
+          <g class="inkwing-right"><path d="M31-81Q54-119 84-111l-12 21 18 1-23 20 14 10-35-4Q20-40 20-66Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m31-72 38-26m-37 32 41-19m-41 25 31-8" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m70-103-7 10m23 3-12 8m10 20-15-1" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/><g class="morrow-physical-wing-relief35" data-feather-frame="1" data-feather-side="right" pointer-events="none" aria-hidden="true">
+  <g fill="url(#morrowFeatherStock35)" stroke="#274d60" stroke-width="2.5" stroke-linejoin="round" opacity=".83">
+    <path d="M82-111q-17 5-34 20l-12 19 14 7q20-29 32-46Z"/>
+    <path d="M86-91q-20 6-37 18L32-58l15 8q18-26 39-41Z"/>
+    <path d="M79-64q-23-6-40-1L28-54l18 5 22-1Z"/>
+  </g>
+  <path d="M66-69q-17 8-32-6m30 29q-19 7-30-5" fill="none" stroke="#f4ddba" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+ </g></g>
         </g>
         <g class="morrow-wing-frame" data-wing-frame="2">
-          <g class="inkwing-left"><path d="M-33-80Q-70-100-100-77l17 11-20 9 25 14-18 13 42-8Q-18-39-18-63Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-32-69-49-6m49 13-49 2m48 8-34 13" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-87-76 16 5m-27 13 18 3m-12 25 18-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
-          <g class="inkwing-right"><path d="M30-80Q69-101 100-79l-17 12 20 9-25 15 17 13-43-8Q19-38 19-62Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-69 50-8m-49 15 49 1m-47 10 35 12" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m87-78-16 6m28 14-18 3m12 25-17-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-left"><path d="M-33-80Q-70-100-100-77l17 11-20 9 25 14-18 13 42-8Q-18-39-18-63Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-32-69-49-6m49 13-49 2m48 8-34 13" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-87-76 16 5m-27 13 18 3m-12 25 18-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/><g class="morrow-physical-wing-relief35" data-feather-frame="2" data-feather-side="left" pointer-events="none" aria-hidden="true">
+  <g fill="url(#morrowFeatherStock35)" stroke="#274d60" stroke-width="2.5" stroke-linejoin="round" opacity=".83">
+    <path d="M-97-75q30-5 55 3l10 12-23 6q-17-13-42-21Z"/>
+    <path d="M-101-58q27 4 52-3l15 8-26 11-41-16Z"/>
+    <path d="M-92-30q30-8 46-23l10 8-22 16-34-1Z"/>
+  </g>
+  <path d="M-65-60q18 9 37-9m-37 26q21 7 34-10" fill="none" stroke="#f4ddba" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+ </g></g>
+          <g class="inkwing-right"><path d="M30-80Q69-101 100-79l-17 12 20 9-25 15 17 13-43-8Q19-38 19-62Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-69 50-8m-49 15 49 1m-47 10 35 12" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m87-78-16 6m28 14-18 3m12 25-17-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/><g class="morrow-physical-wing-relief35" data-feather-frame="2" data-feather-side="right" pointer-events="none" aria-hidden="true">
+  <g fill="url(#morrowFeatherStock35)" stroke="#274d60" stroke-width="2.5" stroke-linejoin="round" opacity=".83">
+    <path d="M96-77q-29-5-56 5L30-60l23 6q20-12 43-23Z"/>
+    <path d="M100-58q-28 3-50-4l-15 8 25 13 40-17Z"/>
+    <path d="M94-30q-29-6-46-23l-10 9 23 15 33-1Z"/>
+  </g>
+  <path d="M66-69q-17 8-32-6m30 29q-19 7-30-5" fill="none" stroke="#f4ddba" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+ </g></g>
         </g>
         <g class="morrow-wing-frame" data-wing-frame="3">
-          <g class="inkwing-left"><path d="M-32-75Q-69-62-74-27l19-12-8 30 23-18-4 26 20-27Q-15-46-20-64Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-30-64-29 24m32-16-27 35m34-27-18 37" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-68-29 15-11m-8 29 15-15m4 21 14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
-          <g class="inkwing-right"><path d="M31-75Q67-61 74-28L55-40l8 31-23-18 4 26-21-28Q15-47 20-64Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-64 29 24m-32-17 27 36m-34-28 18 38" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m68-29-15-11m8 29-15-15m-4 21-14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-left"><path d="M-32-75Q-69-62-74-27l19-12-8 30 23-18-4 26 20-27Q-15-46-20-64Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-30-64-29 24m32-16-27 35m34-27-18 37" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-68-29 15-11m-8 29 15-15m4 21 14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/><g class="morrow-physical-wing-relief35" data-feather-frame="3" data-feather-side="left" pointer-events="none" aria-hidden="true">
+  <g fill="url(#morrowFeatherStock35)" stroke="#274d60" stroke-width="2.5" stroke-linejoin="round" opacity=".83">
+    <path d="M-72-27q12-30 32-36l12 7-20 23-24 6Z"/>
+    <path d="M-61-8q11-27 26-40l13 6-16 23-23 11Z"/>
+    <path d="M-43-1q0-23 16-43l9 10-13 25-12 8Z"/>
+  </g>
+  <path d="M-65-60q18 9 37-9m-37 26q21 7 34-10" fill="none" stroke="#f4ddba" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+ </g></g>
+          <g class="inkwing-right"><path d="M31-75Q67-61 74-28L55-40l8 31-23-18 4 26-21-28Q15-47 20-64Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-64 29 24m-32-17 27 36m-34-28 18 38" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m68-29-15-11m8 29-15-15m-4 21-14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/><g class="morrow-physical-wing-relief35" data-feather-frame="3" data-feather-side="right" pointer-events="none" aria-hidden="true">
+  <g fill="url(#morrowFeatherStock35)" stroke="#274d60" stroke-width="2.5" stroke-linejoin="round" opacity=".83">
+    <path d="M72-27q-15-30-33-36l-12 7 22 23 23 6Z"/>
+    <path d="M61-8q-10-27-26-40l-13 7 16 23 23 10Z"/>
+    <path d="M43-1q-1-23-16-43l-9 10 13 25 12 8Z"/>
+  </g>
+  <path d="M66-69q-17 8-32-6m30 29q-19 7-30-5" fill="none" stroke="#f4ddba" stroke-width="2" stroke-linecap="round" opacity=".62"/>
+ </g></g>
         </g>
         <path d="M-33-89Q-36-125-6-131q35-10 48 29L31-79Q0-92-33-89Z" fill="#536c77" stroke="#29485c" stroke-width="5"/>
         <path d="M-29-99q14-12 31-10 18-7 30 10" stroke="#9ec5b9" stroke-width="3.3" fill="none"/>
         <g class="morrow-rest-face">
-<ellipse cx="-14" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
-        <ellipse cx="17" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
+<path class="morrow-cut-face35" d="M-28-111q0-12 8-17l10-1q11 5 10 20-2 19-13 22-14-1-15-24Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M-23-121q9-8 18-1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
+        <path class="morrow-cut-face35" d="M3-111q0-13 10-18l12 4q7 7 7 19-2 17-14 18-14-4-15-23Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M9-122q9-8 19 1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
         <circle cx="-12" cy="-105" r="5.2" fill="#243f53"/>
         <circle cx="16" cy="-105" r="5.2" fill="#243f53"/>
         <circle cx="-14" cy="-108" r="1.7" fill="#ffffff"/>
         <circle cx="14" cy="-108" r="1.7" fill="#ffffff"/>
         <path d="M-28-124q16-8 27-3m6 1q15-5 29 5" stroke="#173047" stroke-width="6" stroke-linecap="round"/>
-        <path d="M-5-88 16-92l-8 22Z" fill="#e6ba79" stroke="#9c7771" stroke-width="3" stroke-linejoin="round"/>
+        <path id="morrowRestBeak35" d="M-7-90q13-10 26-1l-7 12-6 15-9-19Z" fill="url(#morrowBeakOchre35)" stroke="#916e70" stroke-width="3.1" stroke-linejoin="round"/>
+ <path d="M-2-87q9-5 16 0" stroke="#fff2c6" stroke-width="2" fill="none" stroke-linecap="round"/>
         <path d="M-5-88 12-86" fill="none" stroke="#fff0bb" stroke-width="2.3"/>
 </g>
 <g id="morrowReactionAtlas" pointer-events="none" aria-hidden="true">
 <g class="morrow-reaction-cel" data-reaction="attentive" data-beak="0">
-   <ellipse cx="-14" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
-   <ellipse cx="17" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
+   <path class="morrow-cut-face35" d="M-28-111q0-12 8-17l10-1q11 5 10 20-2 19-13 22-14-1-15-24Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M-23-121q9-8 18-1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
+   <path class="morrow-cut-face35" d="M3-111q0-13 10-18l12 4q7 7 7 19-2 17-14 18-14-4-15-23Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M9-122q9-8 19 1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
    <circle cx="-14" cy="-105" r="4.7" fill="#244054"/><circle cx="17" cy="-105" r="4.7" fill="#244054"/><circle cx="-16" cy="-108" r="1.6" fill="#fff5db"/><circle cx="15" cy="-108" r="1.6" fill="#fff5db"/><path d="m-29-127 26-2m9 1 25-1" fill="none" stroke="#1d3348" stroke-width="5.4" stroke-linecap="round"/><path d="M-6-90 18-94 6-73Z" fill="#e4b87d" stroke="#9d7670" stroke-width="3"/><path d="m-4-90 17-1" stroke="#fff1be" stroke-width="2.3"/>
  </g>
 <g class="morrow-reaction-cel" data-reaction="attentive" data-beak="1">
-   <ellipse cx="-14" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
-   <ellipse cx="17" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
+   <path class="morrow-cut-face35" d="M-28-111q0-12 8-17l10-1q11 5 10 20-2 19-13 22-14-1-15-24Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M-23-121q9-8 18-1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
+   <path class="morrow-cut-face35" d="M3-111q0-13 10-18l12 4q7 7 7 19-2 17-14 18-14-4-15-23Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M9-122q9-8 19 1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
    <circle cx="-14" cy="-105" r="4.7" fill="#244054"/><circle cx="17" cy="-105" r="4.7" fill="#244054"/><circle cx="-16" cy="-108" r="1.6" fill="#fff5db"/><circle cx="15" cy="-108" r="1.6" fill="#fff5db"/><path d="m-29-127 26-2m9 1 25-1" fill="none" stroke="#1d3348" stroke-width="5.4" stroke-linecap="round"/><path d="M-6-90 18-94 7-61Z" fill="#e0af78" stroke="#9d7670" stroke-width="3"/><path d="M-3-84 12-86 7-72Z" fill="#614b55"/><path d="m0-91 10-1" stroke="#fff0bc" stroke-width="2"/>
  </g>
 <g class="morrow-reaction-cel" data-reaction="alarmed" data-beak="0">
-   <ellipse cx="-14" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
-   <ellipse cx="17" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
+   <path class="morrow-cut-face35" d="M-28-111q0-12 8-17l10-1q11 5 10 20-2 19-13 22-14-1-15-24Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M-23-121q9-8 18-1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
+   <path class="morrow-cut-face35" d="M3-111q0-13 10-18l12 4q7 7 7 19-2 17-14 18-14-4-15-23Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M9-122q9-8 19 1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
    <circle cx="-14" cy="-105" r="6" fill="#244054"/><circle cx="17" cy="-105" r="6" fill="#244054"/><circle cx="-16" cy="-108" r="1.6" fill="#fff5db"/><circle cx="15" cy="-108" r="1.6" fill="#fff5db"/><path d="m-28-129 20-6m15-1 25 5" fill="none" stroke="#1d3348" stroke-width="5.4" stroke-linecap="round"/><path d="M-6-90 18-94 6-73Z" fill="#e4b87d" stroke="#9d7670" stroke-width="3"/><path d="m-4-90 17-1" stroke="#fff1be" stroke-width="2.3"/>
  </g>
 <g class="morrow-reaction-cel" data-reaction="alarmed" data-beak="1">
-   <ellipse cx="-14" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
-   <ellipse cx="17" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
+   <path class="morrow-cut-face35" d="M-28-111q0-12 8-17l10-1q11 5 10 20-2 19-13 22-14-1-15-24Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M-23-121q9-8 18-1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
+   <path class="morrow-cut-face35" d="M3-111q0-13 10-18l12 4q7 7 7 19-2 17-14 18-14-4-15-23Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M9-122q9-8 19 1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
    <circle cx="-14" cy="-105" r="6" fill="#244054"/><circle cx="17" cy="-105" r="6" fill="#244054"/><circle cx="-16" cy="-108" r="1.6" fill="#fff5db"/><circle cx="15" cy="-108" r="1.6" fill="#fff5db"/><path d="m-28-129 20-6m15-1 25 5" fill="none" stroke="#1d3348" stroke-width="5.4" stroke-linecap="round"/><path d="M-6-90 18-94 7-61Z" fill="#e0af78" stroke="#9d7670" stroke-width="3"/><path d="M-3-84 12-86 7-72Z" fill="#614b55"/><path d="m0-91 10-1" stroke="#fff0bc" stroke-width="2"/>
  </g>
 <g class="morrow-reaction-cel" data-reaction="delighted" data-beak="0">
-   <ellipse cx="-14" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
-   <ellipse cx="17" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
+   <path class="morrow-cut-face35" d="M-28-111q0-12 8-17l10-1q11 5 10 20-2 19-13 22-14-1-15-24Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M-23-121q9-8 18-1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
+   <path class="morrow-cut-face35" d="M3-111q0-13 10-18l12 4q7 7 7 19-2 17-14 18-14-4-15-23Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M9-122q9-8 19 1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
    <path d="M-22-105q8-11 17 0m13 0q8-11 18 0" fill="none" stroke="#314a5c" stroke-width="5" stroke-linecap="round"/><path d="M-29-123q15-14 27 1m7 0q16-13 29 0" fill="none" stroke="#1d3348" stroke-width="5.4" stroke-linecap="round"/><path d="M-6-90 18-94 6-73Z" fill="#e4b87d" stroke="#9d7670" stroke-width="3"/><path d="m-4-90 17-1" stroke="#fff1be" stroke-width="2.3"/>
  </g>
 <g class="morrow-reaction-cel" data-reaction="delighted" data-beak="1">
-   <ellipse cx="-14" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
-   <ellipse cx="17" cy="-105" rx="12" ry="16" fill="#f9eccd" stroke="#344958" stroke-width="3"/>
+   <path class="morrow-cut-face35" d="M-28-111q0-12 8-17l10-1q11 5 10 20-2 19-13 22-14-1-15-24Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M-23-121q9-8 18-1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
+   <path class="morrow-cut-face35" d="M3-111q0-13 10-18l12 4q7 7 7 19-2 17-14 18-14-4-15-23Z" fill="url(#morrowEyeParchment35)" stroke="#274459" stroke-width="2.8" stroke-linejoin="round"/>
+ <path d="M9-122q9-8 19 1" fill="none" stroke="#fff4d8" stroke-width="2" opacity=".86"/>
    <path d="M-22-105q8-11 17 0m13 0q8-11 18 0" fill="none" stroke="#314a5c" stroke-width="5" stroke-linecap="round"/><path d="M-29-123q15-14 27 1m7 0q16-13 29 0" fill="none" stroke="#1d3348" stroke-width="5.4" stroke-linecap="round"/><path d="M-6-90 18-94 7-61Z" fill="#e0af78" stroke="#9d7670" stroke-width="3"/><path d="M-3-84 12-86 7-72Z" fill="#614b55"/><path d="m0-91 10-1" stroke="#fff0bc" stroke-width="2"/>
  </g>
 </g>

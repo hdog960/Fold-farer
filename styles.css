@@ -836,3 +836,20 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #tavi .tavi-woven-collar34 *{pointer-events:none!important;animation:none!important}
 #tavi .tavi-cardstock-hair34 path,
 #tavi .tavi-woven-collar34 path{shape-rendering:geometricPrecision}
+
+
+/* First Fold 0.35 — real companion paper layers live in Morrow's animated
+   SVG silhouette and are disabled for touch; never a static screen overlay. */
+#morrowSprite #morrowBodyCardstock35,
+#morrowSprite #morrowBodyCardstock35 *,
+#morrowSprite #morrowIllustratedBreast35,
+#morrowSprite #morrowIllustratedBreast35 *,
+#morrowSprite #morrowFeatherCrown35,
+#morrowSprite #morrowFeatherCrown35 *,
+#morrowSprite #morrowInkedTail35,
+#morrowSprite #morrowInkedTail35 *,
+#morrowSprite .morrow-physical-wing-relief35,
+#morrowSprite .morrow-physical-wing-relief35 *,
+#morrowSprite .morrow-cut-face35{pointer-events:none!important}
+#morrowSprite .morrow-physical-wing-relief35 path,
+#morrowSprite .morrow-cut-face35{shape-rendering:geometricPrecision}
