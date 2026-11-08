@@ -569,6 +569,47 @@ try {
       JSON.stringify({signRect,dpadRect}));
   const savedPose=await terraceNear.locator('#tavi').getAttribute('transform');
   const rectBefore=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(el=>{const b=el.getBBox();return {x:b.x,width:b.width};});
+
+  // 0.24 is checked in real Chromium at the actual world camera.
+  const inlayQA=await terraceNear.locator('#terraceBookbinderWalkway').evaluate(root=>{
+    const stage=document.getElementById('terraceDepthStage');
+    const pave=document.getElementById('terracePavingInlay');
+    const rect=id=>{const b=document.getElementById(id).getBBox();return {x:b.x,y:b.y,w:b.width,h:b.height}};
+    return {
+      pointer:getComputedStyle(root).pointerEvents,
+      behindActors:!!(root.compareDocumentPosition(stage)&Node.DOCUMENT_POSITION_FOLLOWING),
+      afterPavement:!!(pave.compareDocumentPosition(root)&Node.DOCUMENT_POSITION_FOLLOWING),
+      seal:rect('terraceMenderInlay'),
+      shadows:rect('terraceLongCastShadows'),
+      footings:rect('terraceGateCardFooting'),
+      sutures:rect('terraceBindingSutures')};
+  });
+  if(inlayQA.pointer!=='none'||!inlayQA.behindActors||!inlayQA.afterPavement||
+     inlayQA.seal.w<140||inlayQA.seal.h<35||inlayQA.shadows.w<700||
+     inlayQA.shadows.h<120||inlayQA.footings.w<300||
+     inlayQA.sutures.w<400){
+    throw Error('0.24 grounded cut-paper art invisible or in wrong depth layer: '+
+      JSON.stringify(inlayQA));
+  }
+  const treeLeafBox=await terraceNear.locator('#terraceRibbonTree .terrace-leaf-sway').boundingBox();
+  const conservatoryBox=await terraceNear.locator('#terraceVellumBay').boundingBox();
+  const intersectionArea=(a,b)=>Math.max(0,Math.min(a.x+a.width,b.x+b.width)-Math.max(a.x,b.x))*
+    Math.max(0,Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y));
+  const treeCover=treeLeafBox&&conservatoryBox?
+    intersectionArea(treeLeafBox,conservatoryBox)/(conservatoryBox.width*conservatoryBox.height):1;
+  if(!treeLeafBox||!conservatoryBox||treeCover>.11){
+    throw Error('0.24 windswept tree still obscures the botanical architecture: '+
+      JSON.stringify({treeLeafBox,conservatoryBox,treeCover}));
+  }
+  const groundPose=await terraceNear.locator('#terraceBookbinderWalkway').getAttribute('transform');
+  const trunkPose=await terraceNear.locator('#terraceRibbonTree').getAttribute('transform');
+  await terraceNear.waitForTimeout(220);
+  if(groundPose!==await terraceNear.locator('#terraceBookbinderWalkway').getAttribute('transform')||
+     trunkPose!==await terraceNear.locator('#terraceRibbonTree').getAttribute('transform')){
+    throw Error('0.24 parallax must not move fixed scenery or tree collision anchor');
+  }
+  console.log('0.24 COMPOSITION:',JSON.stringify({treeCover,inlayQA}));
+  await terraceNear.screenshot({path:'screenshots/39-terrace-engraving-and-shadow.png'});
   await terraceNear.screenshot({path:'screenshots/38-terrace-distinct-shopfronts.png'});
   if(await terraceNear.locator('#tavi').getAttribute('transform')!==savedPose)
     throw Error('0.23 shopfront rendering changed the game character position');
