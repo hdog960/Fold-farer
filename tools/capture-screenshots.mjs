@@ -557,6 +557,16 @@ try {
       shopfrontQA.rectangles.some(b=>b.w<65||b.h<26||b.events!=='none')){
     throw Error('0.23 distinct shop architecture missing, occluded, or intercepting touch: '+JSON.stringify(shopfrontQA));
   }
+
+  // A genuine in-world label can be present but covered by iPhone controls.
+  // Compare rendered screen-space bounds, not untransformed SVG paths.
+  const signRect=await terraceNear.locator('#terraceDyerSign').boundingBox();
+  const dpadRect=await terraceNear.locator('.dpad').boundingBox();
+  const overlap=(a,b)=>Math.max(0,Math.min(a.x+a.width,b.x+b.width)-Math.max(a.x,b.x))*
+                        Math.max(0,Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y));
+  if(!signRect||!dpadRect||overlap(signRect,dpadRect)>1)
+    throw Error('0.23.1 shop sign still obscured by landscape movement pad: '+
+      JSON.stringify({signRect,dpadRect}));
   const savedPose=await terraceNear.locator('#tavi').getAttribute('transform');
   const rectBefore=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(el=>{const b=el.getBBox();return {x:b.x,width:b.width};});
   await terraceNear.screenshot({path:'screenshots/38-terrace-distinct-shopfronts.png'});

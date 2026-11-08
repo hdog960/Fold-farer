@@ -265,3 +265,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - New source and real-Chromium tests verify eight nonempty rendered architecture groups, structural order, labels, zero pointer capture, stable geometry and the same character foot positions. Actual screenshot: `screenshots/38-terrace-distinct-shopfronts.png`.
 - New First Fold 0.23.0 version and service-worker shell 0.33. Existing iPhone Home Screen icon, GitHub Pages URL and preview save key retained; no paid dependencies.
 - **Milestone A remains unapproved** until the creator sees and approves the overall visual quality. These shopfronts deepen the physical scene, but the full 90/100 animation/environment standard and physical iPhone QA remain open. Milestone B is locked.
+
+
+### First Fold 0.23.1 — unobstructed signage on iPhone
+- Reviewed the actual 0.23.0 screenshot and caught the Ink Dyer sign sitting underneath the on-screen movement pad. Moved the entire in-world hanging sign to the clear lane with original illustrated suspension hardware.
+- New live Chromium regression compares screen rectangles of shop sign and D-pad, rejecting actual overlap rather than merely ensuring SVG geometry exists. Game logic, collision, saves, and icon untouched. Version 0.23.1, offline cache 0.34.
+- Art is still pending 90/100 creator visual acceptance and physical iPhone testing; Milestone B remains locked.

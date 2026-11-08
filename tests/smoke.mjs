@@ -152,7 +152,7 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.33'),'The existing Home Screen PWA must refresh 0.23 assets');
+assert(sw.includes('foldfarer-shell-0.34'),'The existing Home Screen PWA must refresh 0.23.1 assets');
 
 
 const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
@@ -174,7 +174,7 @@ assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
  'Independent physical depth layers require separate deterministic parallax');
 assert(!html.includes('M-10 302 122 176 228 229 350 134'),
  'Generic zig-zag mountain card must be replaced, not covered with a decal');
-assert(sw.includes('foldfarer-shell-0.33'),'Mobile must fetch the new 0.23 build');
+assert(sw.includes('foldfarer-shell-0.34'),'Mobile must fetch the new 0.23.1 build');
 
 
 const identityIds=['terraceDyeEnamel','terraceDyeCavity','terraceHerbVellum','terraceHerbRib',
@@ -198,4 +198,9 @@ assert((html.match(/class="terrace-silk-ribbon/g)||[]).length===3&&
 assert(html.includes('>INK DYER</text>')&&html.includes('>HERBARIUM</text>'),
  'Each building needs a readable, distinct shop identity');
 
+
+assert(html.includes('id="terraceDyerSign" transform="translate(171 -79)"'),
+ 'Dyer sign must clear the iPhone movement controls, not sit below them');
+assert(html.includes('M60 563v28m131-36 13 43'),
+ 'Moved sign requires its illustrated physical hanging mount');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
