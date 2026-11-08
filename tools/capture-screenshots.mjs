@@ -457,6 +457,32 @@ try {
   });
   if(rake.w<600||rake.h<300||rake.events!=='none')
     throw Error('Subtle sunlight does not cover the six step edges: '+JSON.stringify(rake));
+
+  // 0.21 actual rendered architecture, herbs and BOTH world-anchored contact lights.
+  // Validate paint order, visible bounds and pointer passthrough before capture.
+  for(const id of ['terracePaperArchitecture','terraceDyerPaperCore',
+                    'terraceConservatoryPaperCore','terraceNaturalMarginalia',
+                    'terraceDyerHerbs','terraceConservatorySpores','terracePressedPetals']){
+    const result=await terraceNear.locator('#'+id).evaluate(el=>{
+      const b=el.getBBox();
+      return {w:b.width,h:b.height,pointer:getComputedStyle(el).pointerEvents,
+        beforeActors:!!(el.compareDocumentPosition(document.getElementById('terraceDepthStage'))&
+                        Node.DOCUMENT_POSITION_FOLLOWING)};
+    });
+    if(result.w<25||result.h<9||result.pointer!=='none'||!result.beforeActors)
+      throw Error('0.21 paper architecture/botanical layer failed: '+id+' '+JSON.stringify(result));
+  }
+  const lighting=await terraceNear.locator('#taviContactBounce').evaluate(el=>{
+    const bird=document.getElementById('morrowContactBounce');
+    const actor=document.getElementById('tavi');
+    const birdActor=document.getElementById('morrow');
+    return {hero:parseFloat(el.getAttribute('opacity')||'0'),
+      bird:parseFloat(bird.getAttribute('opacity')||'0'),
+      heroParent:actor.contains(el),birdParent:birdActor.contains(bird)};
+  });
+  if(!lighting.heroParent||!lighting.birdParent||lighting.hero<.2||lighting.bird<.1)
+    throw Error('Ground-contact illumination is missing from running character artwork: '+JSON.stringify(lighting));
+  await terraceNear.screenshot({path:'screenshots/36-terrace-architectural-contact-light.png'});
   await terraceNear.screenshot({path:'screenshots/35-terrace-folded-step-construction.png'});
   await terraceNear.screenshot({path:'screenshots/23-terrace-material-light.png'});
   const depthBox=await terraceNear.locator('#terraceGround').evaluate(e=>{const b=e.getBBox();return {width:b.width,height:b.height}});

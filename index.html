@@ -37,6 +37,22 @@
           <stop offset="1" stop-color="#f2d39c" stop-opacity=".09"/>
         </linearGradient>
 
+
+        <!-- 0.21: cut edges and cavity shading are real dimensional paper materials, not flat decals. -->
+        <linearGradient id="terraceRoofStrata" x1="0%" y1="0%" x2="15%" y2="100%">
+          <stop stop-color="#fff1cc"/><stop offset=".19" stop-color="#eac39c"/>
+          <stop offset=".47" stop-color="#ba8f84"/><stop offset=".78" stop-color="#795d6d"/>
+          <stop offset="1" stop-color="#584e60"/>
+        </linearGradient>
+        <linearGradient id="terraceWallCavity" x1="0%" y1="0%" x2="100%" y2="18%">
+          <stop stop-color="#695866"/><stop offset=".38" stop-color="#916e71"/>
+          <stop offset=".62" stop-color="#c79b88"/><stop offset="1" stop-color="#eed3a7"/>
+        </linearGradient>
+        <radialGradient id="terraceContactGold" cx="48%" cy="49%" r="52%">
+          <stop stop-color="#fff3c4" stop-opacity=".94"/>
+          <stop offset=".38" stop-color="#f8d4a2" stop-opacity=".5"/>
+          <stop offset="1" stop-color="#e6b88c" stop-opacity="0"/>
+        </radialGradient>
         <radialGradient id="actorGroundInk"><stop stop-color="#1f404e" stop-opacity=".7"/><stop offset=".5" stop-color="#355c62" stop-opacity=".35"/><stop offset="1" stop-color="#355c62" stop-opacity="0"/></radialGradient>
         <linearGradient id="terraceDyeSilk" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#e9d6ad"/><stop offset=".35" stop-color="#87b9b4"/><stop offset=".67" stop-color="#537f89"/><stop offset="1" stop-color="#c08d9d"/></linearGradient>
         <linearGradient id="terraceGlassPaper" x1="0%" x2="100%" y1="0%" y2="35%"><stop stop-color="#faf0d7" stop-opacity=".04"/><stop offset=".43" stop-color="#fff3d0" stop-opacity=".49"/><stop offset=".68" stop-color="#f9ecd3" stop-opacity=".04"/><stop offset="1" stop-color="#f1dbb0" stop-opacity=".29"/></linearGradient>
@@ -622,7 +638,7 @@
         </g>
         <!-- Morrow: original ink-crow archivist, shaped from layered physical paper feathers, not an ear-tipped mascot. -->
       <g id="morrow" transform="translate(474 610)" filter="url(#softShadow)" aria-label="Morrow, the ink-bird archivist">
-        <g id="morrowGroundShadow" pointer-events="none"><ellipse cx="-7" cy="13" rx="58" ry="15" fill="url(#actorGroundInk)" opacity=".5"/><ellipse cx="-8" cy="13" rx="27" ry="4.8" fill="#395e64" opacity=".12"/></g>
+        <g id="morrowGroundShadow" pointer-events="none"><ellipse cx="-7" cy="13" rx="58" ry="15" fill="url(#actorGroundInk)" opacity=".5"/><ellipse cx="-8" cy="13" rx="27" ry="4.8" fill="#395e64" opacity=".12"/><ellipse id="morrowContactBounce" cx="-5" cy="9" rx="49" ry="12" fill="url(#terraceContactGold)" opacity=".12"/></g>
         <g id="morrowSprite" aria-label="Morrow original ink-bird papercraft artwork">
         <ellipse cx="0" cy="9" rx="42" ry="10" fill="#3b5a58" opacity=".24"/>
         <g fill="none" stroke="#263b4c" stroke-width="7" stroke-linecap="round">
@@ -811,7 +827,7 @@
       <g id="tavi" transform="translate(273 654)" filter="url(#softShadow)">
         <!-- Keep the parent translated/scaled positively. Only this inner art
              is mirrored, so perspective placement never sends a pose offstage. -->
-        <g id="taviGroundShadow" pointer-events="none"><ellipse cx="-8" cy="8" rx="64" ry="19" fill="url(#actorGroundInk)" opacity=".82"/><ellipse cx="-7" cy="8" rx="28" ry="5" fill="#3c656a" opacity=".16"/></g>
+        <g id="taviGroundShadow" pointer-events="none"><ellipse cx="-8" cy="8" rx="64" ry="19" fill="url(#actorGroundInk)" opacity=".82"/><ellipse cx="-7" cy="8" rx="28" ry="5" fill="#3c656a" opacity=".16"/><ellipse id="taviContactBounce" cx="-3" cy="5" rx="58" ry="13" fill="url(#terraceContactGold)" opacity=".14"/></g>
         <g id="taviFlip" transform="scale(1)">
         <g id="taviSprite" aria-label="Tavi original directional art">
         <g id="taviFrontArt">
@@ -3743,7 +3759,46 @@
             <path d="m1050 728 15-9 9 13-14 8Z"/><path d="m508 458 12-6 7 12-11 5Z"/>
           </g>
         </g>
-        <!-- Side-facing stage wings make the paper village visibly three-dimensional. -->
+  
+      <!-- Ground-plane botanical marginalia. Every leaf, dried bloom and shadow is authored on
+           stationary floor geometry; no decoration creates a hitbox or blocks tap-to-walk. -->
+      <g id="terraceNaturalMarginalia" pointer-events="none" aria-label="Pressed wildflowers, grasses and scattered handmade paper leaves">
+        <g id="terraceDyerHerbs" aria-hidden="true">
+          <path d="M386 721q32-15 81-8t78 2" fill="none" stroke="#5d816d" stroke-width="9" opacity=".15"/>
+          <path d="M401 704q13-42 20-54m-6 47q26-26 33-40m-5 49q9-37 31-51" stroke="#587b6e" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M421 669q-31-17-29-37 24 1 33 30Zm17 12q6-30 30-35-1 22-30 35Zm10-13q-9-20 6-33 13 12-6 33Zm27-17q4-30 30-35-4 24-30 35Z" fill="#80ac88" stroke="#50776f" stroke-width="3"/>
+          <path d="M405 692q-31-7-35-29 26-9 38 25Zm38-9q17-23 39-18-5 28-38 23Z" fill="#c1c88d" stroke="#748971" stroke-width="3"/>
+          <g stroke="#f4dfa9" stroke-width="2.3" fill="none">
+            <path d="m403 678-9-9m53 9 21-13m-51 5-13-20m69-16 13-12"/>
+          </g>
+          <g stroke="#98767a" stroke-width="2.5">
+            <path d="m419 647-9-9 9-10 10 10Z" fill="#dfad9d"/>
+            <path d="m446 655-8-9 8-9 9 9Z" fill="#d1a1ae"/>
+            <path d="m477 651-7-8 8-8 8 8Z" fill="#edcf9b"/>
+          </g>
+          <g fill="#f8e8b8"><circle cx="419" cy="638" r="3"/><circle cx="446" cy="646" r="3"/><circle cx="478" cy="643" r="2.4"/></g>
+        </g>
+        <g id="terraceConservatorySpores" aria-hidden="true">
+          <path d="M1051 733q43-24 94-14" stroke="#587b72" stroke-width="10" opacity=".16" fill="none"/>
+          <path d="m1073 717 11-65m-11 56-21-42m35 40 24-42m3 55 13-38" fill="none" stroke="#6b927c" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M1081 670q-34-5-40-28 28-10 41 26Zm-13 25q-29 3-38-15 25-12 40 13Zm40-17q9-31 35-30-3 25-34 34Zm6 27q14-25 36-14-10 26-35 19Z" fill="#8eaf87" stroke="#5a8375" stroke-width="3"/>
+          <path d="M1135 688q6-20 26-20-2 17-25 25Zm-85-23q-23-14-23-34 24 3 25 31Z" fill="#bdd0a1" stroke="#6e927a" stroke-width="3"/>
+          <g fill="#e7c394" stroke="#a47a7b" stroke-width="3"><path d="m1082 654 9-12 11 9-10 12Z"/><path d="m1115 665 11-10 10 11-11 10Z"/></g>
+          <g fill="#fff0c9"><circle cx="1092" cy="653" r="3"/><circle cx="1125" cy="666" r="3"/></g>
+          <path d="m1037 726 9-8 13 3-9 10Zm122-3 17-6 9 8-16 5Z" fill="#dfb88f" stroke="#a1827b" stroke-width="2.4"/>
+        </g>
+        <g id="terracePressedPetals" aria-hidden="true" fill="#d7a39d" stroke="#a77d79" stroke-width="1.8">
+          <path d="m556 531 10-7 9 10-11 6Z"/><path d="m878 545 13-4 6 10-12 4Z"/>
+          <path d="m535 578 6-8 11 3-2 12Z"/><path d="m952 605 14-5 5 12-13 3Z"/>
+          <path d="m382 762 12-6 8 10-14 4Z"/><path d="m1061 778 15-7 8 9-13 5Z"/>
+        </g>
+        <g fill="none" stroke="#907e70" stroke-width="2.2" opacity=".65" stroke-linecap="round">
+          <path d="m575 541 7-9 12-2m-10 12 10 6"/>
+          <path d="m877 566 8-8 11 1m-18 8 6 8"/>
+          <path d="m985 738 11-6 14 5"/>
+        </g>
+      </g>
+      <!-- Side-facing stage wings make the paper village visibly three-dimensional. -->
         <g id="terraceSideWalls" pointer-events="none">
           <path d="M0 283 207 301 367 480 365 773 0 778Z" fill="#b88c82" stroke="#7c6369" stroke-width="11"/>
           <path d="M0 290 187 313 335 485 334 769 0 780Z" fill="#e7c4a2" stroke="#9a766f" stroke-width="7"/>
@@ -3768,7 +3823,62 @@
           <path d="m0 610 336 79m746 0 358-87" stroke="#f6e7c5" stroke-width="5" opacity=".72" stroke-dasharray="9 13"/>
         </g>
 
-        <!-- HAND-FINISHED SIDE BUILDINGS. The two facades are not mirrored copies:
+  
+      <!-- Structural papercraft, not window stickers: cavity walls, projecting cardstock
+           side faces, layered roof spines and hand-creased eaves. Stationary scenery. -->
+      <g id="terracePaperArchitecture" pointer-events="none" aria-label="Hand-bound thick paper shop and conservatory architecture">
+        <g id="terraceDyerPaperCore" aria-hidden="true">
+          <!-- Deep eave underside and a distinct four-ply cut-card edge. -->
+          <path d="M2 312 184 331 357 490l-18 24L174 354 2 340Z" fill="url(#terraceRoofStrata)" stroke="#795e6d" stroke-width="6" stroke-linejoin="round"/>
+          <path d="m6 319 172 21 165 158" fill="none" stroke="#fff1c8" stroke-width="4.6" stroke-linecap="round"/>
+          <path d="m8 329 168 23 157 147" fill="none" stroke="#ddb48f" stroke-width="3.2"/>
+          <path d="m6 336 166 23 155 147" fill="none" stroke="#5c5364" stroke-width="3.6" stroke-dasharray="20 5 4 8" opacity=".72"/>
+          <path d="M190 353 324 494l2 219-25 19-4-230L177 365Z" fill="url(#terraceWallCavity)" stroke="#785c68" stroke-width="5" opacity=".88"/>
+          <path d="m307 516-2 189m14-199-2 211" stroke="#ffe5b6" stroke-width="2.8" opacity=".65"/>
+          <path d="M13 364 170 385l127 126-6 26L151 408 14 389Z" fill="#5b5360" opacity=".19"/>
+          <!-- Four irregularly spaced page-bound wall ribs, with small exposed seams. -->
+          <g fill="#c8a38c" stroke="#876a70" stroke-width="3.5">
+            <path d="m22 410 13 3-1 137-12 7Z"/>
+            <path d="m247 478 13 13-1 155-12-8Z"/>
+            <path d="m280 507 11 10-1 163-10 9Z"/>
+          </g>
+          <g stroke="#fff0c9" stroke-width="2.4" fill="none" opacity=".7">
+            <path d="m27 424 1 117m225-36v120m33-99v139"/>
+          </g>
+          <!-- Inset paper window reveals: dark undercut, reflective bevel, sill lip. -->
+          <path d="M59 383l81 3 65 58v115l-17 4V451l-57-44-73-2Z" fill="#6d6570" opacity=".63"/>
+          <path d="m60 381 82 4 65 56m-17 119 20 10" stroke="#f6d9aa" stroke-width="5" fill="none"/>
+          <path d="M56 562l155 1-12 16-141 4Z" fill="#bc9784" stroke="#795e6c" stroke-width="4"/>
+          <path d="m64 569 124 1" stroke="#fff0c7" stroke-width="2.7" fill="none"/>
+          <g fill="#f8dbad" stroke="#886876" stroke-width="2.1">
+            <circle cx="42" cy="418" r="4"/><circle cx="250" cy="490" r="4"/><circle cx="286" cy="523" r="4"/>
+          </g>
+        </g>
+        <g id="terraceConservatoryPaperCore" aria-hidden="true">
+          <!-- Asymmetrical conservatory construction: book-cloth roof spine and
+               thicker, wax-sealed vellum edges rather than copying the dyer. -->
+          <path d="M1440 307 1211 328 1071 504l-22-17 148-187 243-27Z" fill="url(#terraceRoofStrata)" stroke="#765f72" stroke-width="7" stroke-linejoin="round"/>
+          <path d="M1438 298 1206 319l-145 178" fill="none" stroke="#f7e0b5" stroke-width="5" stroke-linecap="round"/>
+          <path d="m1438 308-226 23-143 173" stroke="#a77f7b" stroke-width="3.5" fill="none"/>
+          <path d="M1072 504 1093 482l3 233-26 19-1-215Z" fill="url(#terraceWallCavity)" stroke="#785d6c" stroke-width="5"/>
+          <path d="m1081 528 3 186" stroke="#fae6bc" stroke-width="3.2" opacity=".8"/>
+          <path d="m1433 338-207 27-127 165-2 30 135-174 201-25Z" fill="#5a5164" opacity=".18"/>
+          <path d="M1274 396l112-8 28 13v172l-21 8-1-173-113 10Z" fill="#675a65" opacity=".57"/>
+          <path d="M1277 395l103-7 23 10m-12 177 20-8" stroke="#fbdfb1" stroke-width="5.2" fill="none"/>
+          <path d="M1264 568 1419 556l5 17-161 20Z" fill="#bc9a83" stroke="#78606b" stroke-width="4.5"/>
+          <path d="m1271 575 140-12" stroke="#fff0c8" stroke-width="2.7" fill="none"/>
+          <path d="M1102 517l17-21-1 211-17 14Z" fill="#bb9787" stroke="#856671" stroke-width="3.5"/>
+          <path d="m1110 520-1 187" stroke="#fff0c5" stroke-width="2.5"/>
+          <g fill="#e9b987" stroke="#986c6f" stroke-width="2.8">
+            <path d="m1198 328 11-10 12 10-10 13Z"/><path d="m1061 492 9-11 12 11-11 12Z"/>
+            <circle cx="1272" cy="577" r="4.5"/><circle cx="1396" cy="563" r="4.5"/>
+          </g>
+          <g stroke="#fbe7c3" stroke-width="2.4" stroke-dasharray="4 8" fill="none">
+            <path d="M1119 506q55-88 118-135m-98 180-2 133"/>
+          </g>
+        </g>
+      </g>
+      <!-- HAND-FINISHED SIDE BUILDINGS. The two facades are not mirrored copies:
              the left is the Ink Dyer's Nook; the right a Vellum Conservatory. -->
         <g id="terraceFacadeFinish" pointer-events="none">
           <g id="inkDyersNook">
