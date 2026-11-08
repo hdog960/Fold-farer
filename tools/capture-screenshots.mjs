@@ -385,7 +385,7 @@ try {
 
 
   const morrowActing=await openedAt({
-    started:true,area:'folio',x:350,y:700,facing:1,direction:'down',
+    started:true,area:'folio',x:370,y:620,facing:1,direction:'down',
     metMorrow:true,mended:false,letter:false,won:false
   });
   await morrowActing.emulateMedia({reducedMotion:'no-preference'});
@@ -403,6 +403,13 @@ try {
   });
   if(!owl.reacting||owl.shown.length!==1||owl.shown[0]!==owl.reaction+':'+owl.beak||
       owl.resting!=='none')throw Error('Morrow expression must replace old face: '+JSON.stringify(owl));
+  const birdVisibility=await morrowActing.evaluate(()=>{
+    const bird=document.getElementById('morrow').getBoundingClientRect();
+    const dialog=document.getElementById('dialogue').getBoundingClientRect();
+    return {birdBottom:bird.bottom,dialogTop:dialog.top};
+  });
+  if(birdVisibility.birdBottom>birdVisibility.dialogTop+12)
+    throw Error('Character acting is hidden by the dialogue panel: '+JSON.stringify(birdVisibility));
   await morrowActing.screenshot({path:'screenshots/34-morrow-live-dialogue-reaction.png',animations:'allow'});
   await morrowActing.locator('#nextLine').click();
   if(await morrowActing.locator('#morrow').evaluate(el=>el.classList.contains('reacting')))
