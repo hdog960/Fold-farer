@@ -61,12 +61,19 @@ try {
       .filter(e=>getComputedStyle(e).display!=='none');
     const leg=visible('.tavi-walk-cel');
     const upper=visible('.tavi-upper-cel');
+    const heads=visible('.tavi-stride-head-cel31');
     const geo=leg.length===1?leg[0].getBBox():null;
     const body=upper.length===1?upper[0].getBBox():null;
+    const head=heads.length===1?heads[0].getBBox():null;
+    const unitedHeight=body&&head?
+      Math.max(body.y+body.height,head.y+head.height)-Math.min(body.y,head.y):0;
     return {pose,stride,walking:el.classList.contains('walking'),
       legs:leg.map(x=>x.dataset.cel),upper:upper.map(x=>x.dataset.upperFrame),
+      heads:heads.map(x=>x.dataset.headFrame),
       geometry:geo&&{w:geo.width,h:geo.height},
-      body:body&&{w:body.width,h:body.height}};
+      body:body&&{w:body.width,h:body.height},
+      head:head&&{w:head.width,h:head.height},
+      unitedHeight};
   });
   if(!walkingPose.walking||!['0','1','2','3','4','5','6','7'].includes(walkingPose.stride))
     throw Error('World movement did not choose an illustrated stride: '+JSON.stringify(walkingPose));
@@ -80,9 +87,16 @@ try {
     throw Error('Painted leg frame is not synchronous: '+JSON.stringify(walkingPose));
   if(walkingPose.upper.length!==1||walkingPose.upper[0]!==walkingPose.stride)
     throw Error('Painted coat frame is not synchronous: '+JSON.stringify(walkingPose));
+  if(walkingPose.heads.length!==1||walkingPose.heads[0]!==walkingPose.stride)
+    throw Error('Illustrated head is out of sync with actual running body: '+JSON.stringify(walkingPose));
+  // 0.31 deliberately separates original animated head art from torso art.
+  // Test anatomical UNION, not the old coat-only box (whose height is ~80).
   if(!walkingPose.geometry||walkingPose.geometry.w<48||walkingPose.geometry.h<35||
-     !walkingPose.body||walkingPose.body.w<65||walkingPose.body.h<120)
-    throw Error('One or more limbs or coat panels have collapsed: '+JSON.stringify(walkingPose));
+     !walkingPose.body||walkingPose.body.w<65||walkingPose.body.h<65||
+     !walkingPose.head||walkingPose.head.w<35||walkingPose.head.h<40||
+     walkingPose.unitedHeight<140)
+    throw Error('Illustrated head, coat, and legs fail combined anatomical proportions: '+
+      JSON.stringify(walkingPose));
   await page.screenshot({path:'screenshots/28-tavi-paper-costume-side-walk.png',animations:'allow'});
   await page.screenshot({path:'screenshots/25-tavi-eight-frame-walk.png',animations:'allow'});
   await page.screenshot({path:'screenshots/14-botanical-walk-cycle.png',animations:'allow'});
