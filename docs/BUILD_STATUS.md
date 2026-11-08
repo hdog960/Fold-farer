@@ -280,3 +280,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Source checks and live Chromium geometry checks cover layer bounds, proper paint order, touch passthrough, constant ground and tree anchors, and screen-space canopy obstruction of the conservatory. Screenshot: `screenshots/39-terrace-engraving-and-shadow.png` from actual running gameplay.
 - First Fold 0.24.0; Home Screen cache 0.35; existing save key, gameplay, controls, companion animation and GitHub Pages URL preserved.
 - **Visual quality and real-iPhone acceptance remain pending.** Milestone B stays locked until explicit creator approval.
+
+
+### First Fold 0.24.1 — release screenshot composition correction
+- The full 0.24.0 real-game screenshot showed a remaining composition issue despite passing geometry: the tree canopy had swung left over the central archive kiosk. Changed its visual subassembly only from a large offset blob to a smaller, higher, coherent canopy, leaving the original tree trunk and solid world-space foot exactly where they were.
+- Added a second in-browser, screen-space occlusion gate that checks **both** conservatory glazing and central kiosk remain visually accessible on the actual North Terrace camera. This is not just source checking.
+- Version 0.24.1, service-worker cache 0.36, preserving the existing Home Screen icon and all localStorage data. Milestone A stays pending creator art approval and physical iPhone QA.

@@ -601,6 +601,14 @@ try {
     throw Error('0.24 windswept tree still obscures the botanical architecture: '+
       JSON.stringify({treeLeafBox,conservatoryBox,treeCover}));
   }
+
+  const kioskBox=await terraceNear.locator('#terraceKiosk').boundingBox();
+  const kioskCover=treeLeafBox&&kioskBox?
+    intersectionArea(treeLeafBox,kioskBox)/(kioskBox.width*kioskBox.height):1;
+  if(!kioskBox||kioskCover>.075){
+    throw Error('0.24.1 tree canopy obscures the archive kiosk: '+
+      JSON.stringify({treeLeafBox,kioskBox,kioskCover}));
+  }
   const groundPose=await terraceNear.locator('#terraceBookbinderWalkway').getAttribute('transform');
   const trunkPose=await terraceNear.locator('#terraceRibbonTree').getAttribute('transform');
   await terraceNear.waitForTimeout(220);
