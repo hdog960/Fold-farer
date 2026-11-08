@@ -706,6 +706,25 @@ try {
     paintQA.gate.w<260||paintQA.gate.h<180||paintQA.gate.pointer!=='none')
     throw Error('0.26 watercolor material atlas failed in actual running game: '+JSON.stringify(paintQA));
   console.log('0.26 REAL CHARACTER MATERIALS:',JSON.stringify(paintQA));
+
+  // 0.26.1 release-check the corrected hair geometry and authored shading
+  // directly within the playable back-facing character.
+  const crownQA=await terraceNear.locator('#taviRearHairCut').evaluate(hair=>{
+    const tavi=document.getElementById('tavi');
+    const group=tavi.querySelector('.farer-hair-volume[data-hair-view="rear"]');
+    const r=hair.getBBox(),strands=[...group.querySelectorAll('path')];
+    return {bounds:{width:r.width,height:r.height,x:r.x,y:r.y},
+      containedByActor:tavi.contains(hair),grad:hair.getAttribute('fill'),
+      strandCount:strands.length,
+      maxStroke:Math.max(...strands.map(p=>Number(p.getAttribute('stroke-width')))),
+      noTouch:getComputedStyle(group).pointerEvents};
+  });
+  if(!crownQA.containedByActor||crownQA.grad!=='url(#farerHairRear)'||
+    crownQA.bounds.width<65||crownQA.bounds.height<75||
+    crownQA.strandCount!==3||crownQA.maxStroke>3.3||crownQA.noTouch!=='none')
+    throw Error('0.26.1 sculpted hair silhouette is not legible/grounded: '+JSON.stringify(crownQA));
+  console.log('0.26.1 CORRECTED ORIGINAL REAR HAIR:',JSON.stringify(crownQA));
+  await terraceNear.screenshot({path:'screenshots/42-terrace-refined-hair-and-watercolor.png'});
   await terraceNear.screenshot({path:'screenshots/41-terrace-watercolor-characters-and-arch.png'});
   await terraceNear.screenshot({path:'screenshots/40-terrace-character-cardstock-contact.png'});
   await terraceNear.screenshot({path:'screenshots/39-terrace-engraving-and-shadow.png'});

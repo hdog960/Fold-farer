@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.26.0: directional watercolor materials across genuine pose atlases and a physically shaded paper gateway.
+/* FoldFarer: The Unfinished World. First Fold 0.26.1: corrected back-facing cut-paper hair silhouette after in-game review.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
