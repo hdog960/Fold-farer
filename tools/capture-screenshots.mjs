@@ -433,6 +433,31 @@ try {
       throw Error('Terrace art layer failed rendering/non-blocking check: '+id+' '+JSON.stringify(result));
     }
   }
+
+  // This is the genuine game rendered at its gameplay camera, with authored
+  // folio cross sections beneath the dynamic actor layer. Not concept art.
+  const construction=await terraceNear.locator('#terraceStairFoldAssembly').evaluate(el=>{
+    const b=el.getBBox(),ground=document.getElementById('terraceGround'),
+      stage=document.getElementById('terraceDepthStage');
+    const sections=[...el.querySelectorAll('.terrace-stair-fold')].map(e=>{
+      const bb=e.getBBox();
+      return {id:e.dataset.step,w:bb.width,h:bb.height,events:getComputedStyle(e).pointerEvents};
+    });
+    return {w:b.width,h:b.height,groundParent:ground.contains(el),
+      beforeStage:!!(el.compareDocumentPosition(stage)&Node.DOCUMENT_POSITION_FOLLOWING),
+      events:getComputedStyle(el).pointerEvents,sections};
+  });
+  if(!construction.groundParent||!construction.beforeStage||construction.w<800||
+     construction.h<330||construction.events!=='none'||construction.sections.length!==6||
+     construction.sections.some((step,i)=>step.id!==String(i+1)||
+                        step.w<200||step.h<7||step.events!=='none'))
+    throw Error('Physical paper-step artwork missing/collapsed/interactive: '+JSON.stringify(construction));
+  const rake=await terraceNear.locator('#terraceStairRakingLight').evaluate(el=>{
+    const b=el.getBBox();return {w:b.width,h:b.height,events:getComputedStyle(el).pointerEvents};
+  });
+  if(rake.w<600||rake.h<300||rake.events!=='none')
+    throw Error('Subtle sunlight does not cover the six step edges: '+JSON.stringify(rake));
+  await terraceNear.screenshot({path:'screenshots/35-terrace-folded-step-construction.png'});
   await terraceNear.screenshot({path:'screenshots/23-terrace-material-light.png'});
   const depthBox=await terraceNear.locator('#terraceGround').evaluate(e=>{const b=e.getBBox();return {width:b.width,height:b.height}});
   if(depthBox.height<350||depthBox.width<1100)throw Error('Terrace does not span a substantial rendered walk plane '+JSON.stringify(depthBox));

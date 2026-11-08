@@ -141,7 +141,7 @@ click('interact');
 assert(save().area==='terrace','North Terrace gateway did not open a connected world');
 drainDialogue();
 assert(e('terraceScene').style.display==='', 'North Terrace is not visible');
-for(const id of ['terraceMaterialStories','terraceDyerSilks','terraceBotanicalRelief','terraceGateEngraving','terraceLightShift']){
+for(const id of ['terraceMaterialStories','terraceDyerSilks','terraceBotanicalRelief','terraceGateEngraving','terraceLightShift','terraceStairFoldAssembly','terraceStairRakingLight']){
  assert(e(id),'Missing real stage art: '+id);
 }
 step(4);

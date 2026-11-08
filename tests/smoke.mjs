@@ -121,4 +121,17 @@ assert(css.includes('#tavi.turning #taviTurnAtlas')&&css.includes('#morrow.react
  'Real art must replace, never overlap, resting source art');
 assert(game.includes("el.tavi.classList.toggle('turning',!reduced)")&&game.includes("el.morrow.dataset.reaction=birdMood"),
  'World animation loop must drive both full-body turns and companion reactions');
+
+const stairFaces=[...html.matchAll(/class="terrace-stair-fold" data-step="([1-6])"/g)].map(m=>m[1]);
+assert.deepEqual(stairFaces,['1','2','3','4','5','6'],'North Terrace must have six fully built page-edge profiles');
+for(const id of ['terraceStairFoldAssembly','terraceStairRakingLight',
+                  'terraceCutPageFace','terraceStepUnderlip','terraceGrazingGold'])
+ assert(ids.includes(id),'Missing original physical paper construction or light material: '+id);
+assert(css.includes('#terraceStairFoldAssembly *')&&css.includes('pointer-events:none!important'),
+ 'All new detailed step edges must be non-interactive and leave gameplay untouched');
+const riserInGround=html.indexOf('id="terraceStairFoldAssembly"');
+const pavement=html.indexOf('id="terracePavingInlay"');
+const stage=html.indexOf('id="terraceDepthStage"');
+assert(riserInGround>0&&riserInGround<pavement&&pavement<stage,
+ 'Physical page cross-sections must paint on the stable ground BEHIND actors');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
