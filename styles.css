@@ -740,3 +740,12 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #tavi.walking #taviFlip{animation:none!important;translate:0 0!important}
  #morrowSprite{animation:none!important}
 }
+
+/* First Fold 0.26: watercolor washes are rendered INSIDE existing genuine
+   walk cels, not as a static character decal. Crown and gateway relief are
+   purely painted; leave all input hit areas, world anchors, save data alone. */
+#tavi .farer-hair-volume,#tavi .farer-hair-volume *,
+#terraceArchEdgeRelief,#terraceArchEdgeRelief *{pointer-events:none!important}
+#tavi .farer-hair-volume path,#terraceArchEdgeRelief path{
+  shape-rendering:geometricPrecision
+}

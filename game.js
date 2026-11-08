@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.25.0: physically grounded animated characters with per-pose cardstock rim drawing.
+/* FoldFarer: The Unfinished World. First Fold 0.26.0: directional watercolor materials across genuine pose atlases and a physically shaded paper gateway.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){

@@ -152,7 +152,7 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.37'),'The existing Home Screen PWA must refresh 0.25 assets');
+assert(sw.includes('foldfarer-shell-0.38'),'The existing Home Screen PWA must refresh 0.26 assets');
 
 
 const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
@@ -174,7 +174,7 @@ assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
  'Independent physical depth layers require separate deterministic parallax');
 assert(!html.includes('M-10 302 122 176 228 229 350 134'),
  'Generic zig-zag mountain card must be replaced, not covered with a decal');
-assert(sw.includes('foldfarer-shell-0.37'),'Mobile must fetch the new 0.25 build');
+assert(sw.includes('foldfarer-shell-0.38'),'Mobile must fetch the new 0.26 build');
 
 
 const identityIds=['terraceDyeEnamel','terraceDyeCavity','terraceHerbVellum','terraceHerbRib',
@@ -219,7 +219,7 @@ assert(html.includes('id="terraceRibbonTree" transform="translate(1177 591)"'),
 assert(css.includes('#terraceBookbinderWalkway *')&&
  css.includes('pointer-events:none!important'),
  'Painted ground shadows must not steal tapping');
-assert(sw.includes('foldfarer-shell-0.37'),'0.25 assets must invalidate earlier Home Screen cache');
+assert(sw.includes('foldfarer-shell-0.38'),'0.26 assets must invalidate earlier Home Screen cache');
 
 
 const upperPoseViews=['front','rear','side','quarter-front','quarter-rear'];
@@ -242,6 +242,32 @@ assert(html.indexOf('id="taviGroundShadow"')<html.indexOf('id="taviFlip"') &&
 assert(game.includes("el.tavi.style.setProperty('--paper-rim-strength'") &&
  game.includes("el.morrow.style.setProperty('--paper-rim-strength'"),
  'Actor fabric reflections must change with physical scene lighting');
-assert(sw.includes('foldfarer-shell-0.37'),'PWA must refresh the 0.25 art assets');
+assert(sw.includes('foldfarer-shell-0.38'),'PWA must refresh the 0.25 art assets');
+
+
+const watercolorViews=['front','rear','side','quarter-front','quarter-rear'];
+const coatedCels=[...html.matchAll(/<g class="tavi-upper-cel" data-upper-frame="([0-7])" data-upper-view="([^"]+)" aria-hidden="true">\s*<g class="tavi-upper-coat">\s*<path[^>]*fill="url\(#farerCoatShell-([^\)]+)\)"[^>]*\/>\s*<path[^>]*fill="url\(#farerCoatPanel-([^\)]+)\)"/g)];
+assert(coatedCels.length===40,'All 40 original moving coat cels must use two real painted material surfaces');
+for(const view of watercolorViews){
+ assert(coatedCels.filter(m=>m[2]===view&&m[3]===view&&m[4]===view).length===8,
+  'Incorrect character material on original '+view+' walking frames');
+ assert(ids.includes('farerCoatShell-'+view)&&ids.includes('farerCoatPanel-'+view),
+  'Watercolor cardstock gradient missing on '+view);
+ assert(html.includes('data-hair-view="'+view+'"'),'Hand-inked hair contour missing in '+view);
+}
+assert((html.match(/class="tavi-upper-scarf"/g)||[]).length===40 &&
+ (html.match(/fill="url\(#farerScarfCloth\)"/g)||[]).length===80,
+ 'All 40 original animated scarf shapes must share hand-washed cloth material');
+assert((html.match(/fill="url\(#morrowWingInk(?:Left|Right)\)"/g)||[]).length===8,
+ 'All eight real animated Morrow wing silhouettes must use watercolor paper materials');
+for(const id of ['taviRearHairCut','terraceArchEdgeRelief','farerHairFront',
+ 'farerHairRear','morrowBodyInk','morrowChestInk','terraceArchWatercolor'])
+ assert(ids.includes(id),'0.26 physical character/gateway art missing: '+id);
+assert(html.indexOf('id="terraceArchEdgeRelief"')<html.indexOf('id="terraceGround"'),
+ 'The dimensional arch must stay behind the true walk plane and characters');
+assert(css.includes('#tavi .farer-hair-volume *')&&
+ css.includes('#terraceArchEdgeRelief *{pointer-events:none!important}'),
+ 'Paper details must never intercept touch-to-walk');
+assert(sw.includes('foldfarer-shell-0.38'),'Existing iPhone Home Screen cache must refresh 0.26 artwork');
 
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
