@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.18.0: illustrated expression cels and responsive paper-joint pivots.
+/* FoldFarer: The Unfinished World. First Fold 0.19.0: original full-body pivot cels and companion emotions.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -69,7 +69,7 @@ function load(){
 let state=load();
 const $=id=>document.getElementById(id);
 const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),terraceLightShift:$('terraceLightShift'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),taviFlip:$('taviFlip'),morrow:$('morrow'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
-let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0,walkDistance=0,mendingUntil=0,pivotStart=0,pivotUntil=0,pivotFacing=state.direction+':'+state.facing;
+let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0,walkDistance=0,mendingUntil=0,pivotStart=0,pivotUntil=0,pivotFacing=state.direction+':'+state.facing,lastVerticalTurnView=state.direction.includes('up')?'rear':'front';
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
 const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceRibbonTree:591,
@@ -98,6 +98,8 @@ const companion={x:474,y:620,area:'folio',ready:false};
 const morrowWingCycle=[0,1,2,3,2,1];
 function updateMorrowAnimation(now){
  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ el.morrow.dataset.beak=reduced?'0':
+   (el.morrow.classList.contains('talking')&&Math.floor(now/155)%3===1?'1':'0');
  if(reduced){el.morrow.dataset.flap='0';return;}
  const interval=el.morrow.classList.contains('talking')?105:
    el.morrow.classList.contains('following')?145:240;
@@ -192,8 +194,8 @@ function sync(){
 }
 function travelTo(area,x,y,direction){
  cancelTap();
- pivotStart=0;pivotUntil=0;el.tavi.classList.remove('pivoting');
- pivotFacing=direction+':'+state.facing;
+ pivotStart=0;pivotUntil=0;el.tavi.classList.remove('pivoting');el.tavi.classList.remove('turning');
+ pivotFacing=direction+':'+state.facing;lastVerticalTurnView=direction.includes('up')?'rear':'front';
  clearHeld();
  walkDistance=0;mendingUntil=0;
  el.tavi.dataset.stride='0';
@@ -221,7 +223,7 @@ function startGame(){
  }
 }
 function speak(lines,done){
- pivotStart=0;pivotUntil=0;el.tavi.classList.remove('pivoting');
+ pivotStart=0;pivotUntil=0;el.tavi.classList.remove('pivoting');el.tavi.classList.remove('turning');
  dialogue=lines.slice();afterDialogue=typeof done==='function'?done:null;modal='dialogue';el.dialog.classList.remove('hidden');nextLine();
 }
 function nextLine(){
@@ -229,6 +231,8 @@ function nextLine(){
  if(!line){
    el.dialog.classList.add('hidden');modal='field';
    $('morrow').classList.remove('talking');
+   $('morrow').classList.remove('reacting');
+   $('morrow').dataset.reaction='neutral';$('morrow').dataset.beak='0';
    $('mila').classList.remove('talking');
    el.tavi.classList.remove('speaking');
    el.tavi.dataset.mood='neutral';el.tavi.dataset.speech='closed';
@@ -240,6 +244,15 @@ function nextLine(){
  el.line.textContent=line[1];
  el.speakerMark.textContent=line[2]||'✦';
  const isTavi=line[0]==='Tavi';
+ const isMorrow=line[0]==='Morrow';
+ const messageForMorrow=line[1].toLowerCase();
+ const birdMood=isMorrow?
+  (/removed|missing|danger|erased|lost|wrong/.test(messageForMorrow)?'alarmed':
+   /excellent|finally|wonderful|brilliant|good|happy/.test(messageForMorrow)?'delighted':'attentive'):
+  (isTavi&&state.metMorrow?'attentive':'neutral');
+ el.morrow.classList.toggle('reacting',birdMood!=='neutral');
+ el.morrow.dataset.reaction=birdMood;
+ el.morrow.dataset.beak='0';
  const allowed=['curious','pleased','concerned','determined'];
  const message=line[1].toLowerCase();
  const suggested=message.includes('?')?'curious':
@@ -565,19 +578,25 @@ function updateTaviActing(now){
    el.tavi.dataset.speech=reduced?'closed':Math.floor(now/190)%3===0?'open':'closed';
  }else el.tavi.dataset.speech='closed';
  if(modal!=='field'||mendingUntil){
-   pivotUntil=0;el.tavi.classList.remove('pivoting');
+   pivotUntil=0;el.tavi.classList.remove('pivoting');el.tavi.classList.remove('turning');
    return;
  }
  const facing=state.direction+':'+state.facing;
  if(facing!==pivotFacing){
    pivotFacing=facing;
+   if(state.direction!=='side')lastVerticalTurnView=state.direction.includes('up')?'rear':'front';
+   el.tavi.dataset.turnView=lastVerticalTurnView;
+   el.tavi.dataset.turnPhase='0';
    pivotStart=now;pivotUntil=reduced?0:now+156;
    el.tavi.classList.toggle('pivoting',!reduced);
+   el.tavi.classList.toggle('turning',!reduced);
  }
  if(pivotUntil&&now>=pivotUntil){
-   pivotUntil=0;el.tavi.classList.remove('pivoting');
+   pivotUntil=0;el.tavi.classList.remove('pivoting');el.tavi.classList.remove('turning');
  }else if(pivotUntil){
-   el.tavi.dataset.pivotPhase=String(Math.min(2,Math.floor((now-pivotStart)/52)));
+   const phase=String(Math.min(2,Math.floor((now-pivotStart)/52)));
+   el.tavi.dataset.pivotPhase=phase;
+   el.tavi.dataset.turnPhase=phase;
  }
 }
 
