@@ -831,6 +831,78 @@ try {
       throw Error('0.30 in-engine character proportion/animation integrity failed: '+
         JSON.stringify(proportion30));
   console.log('0.30 ACTUAL CHARACTER PROPORTIONS:',JSON.stringify(proportion30));
+
+  // 0.31: Render the real direction-specific eight-frame head atlas alongside
+  // the existing independently painted upper and lower walking sprite cels.
+  await terraceNear.emulateMedia({reducedMotion:'no-preference'});
+  const headAudit31=await terraceNear.locator('#tavi').evaluate(actor=>{
+    const oldClass=actor.getAttribute('class'),oldStride=actor.dataset.stride;
+    const views=[
+      ['front','taviFrontArt','dir-down'],
+      ['rear','taviBackArt','dir-up'],
+      ['side','taviSideArt','dir-side'],
+      ['quarter-front','taviFrontQuarterArt','dir-diag-down'],
+      ['quarter-rear','taviBackQuarterArt','dir-diag-up']
+    ];
+    const errors=[],data=[];
+    try{
+      for(const [view,poseId,dirClass] of views){
+        const pose=document.getElementById(poseId);
+        const frames=[...pose.querySelectorAll('.tavi-stride-head-cel31')];
+        if(frames.length!==8)errors.push(view+' has '+frames.length+' head cels');
+        for(let n=0;n<8;n++){
+          actor.classList.remove('dir-up','dir-down','dir-side','dir-diag-down','dir-diag-up',
+            'turning','pivoting');
+          actor.classList.add(dirClass,'walking');
+          actor.dataset.stride=String(n);
+          const visible=selector=>[...pose.querySelectorAll(selector)]
+            .filter(el=>getComputedStyle(el).display!=='none');
+          const heads=visible('.tavi-stride-head-cel31');
+          const torso=visible('.tavi-upper-cel');
+          const legs=visible('.tavi-walk-cel');
+          const oldHead=pose.querySelector('.tavi-proportioned-head30');
+          const measured=heads[0]?.getBBox();
+          if(heads.length!==1||heads[0]?.dataset.headFrame!==String(n)||
+             torso.length!==1||torso[0]?.dataset.upperFrame!==String(n)||
+             legs.length!==1||legs[0]?.dataset.cel!==String(n)||
+             getComputedStyle(oldHead).display!=='none'||
+             !measured||measured.width<35||measured.height<40||
+             getComputedStyle(heads[0]).pointerEvents!=='none')
+            errors.push(view+'/'+n+' failed aligned triple-cel rendering');
+          if(n===0||n===4)data.push({view,stride:n,w:measured?.width,h:measured?.height});
+        }
+      }
+    }finally{
+      actor.setAttribute('class',oldClass);
+      actor.dataset.stride=oldStride;
+    }
+    return {errors,data,total:actor.querySelectorAll('.tavi-stride-head-cel31').length,
+      upper:actor.querySelectorAll('.tavi-upper-cel').length,
+      lower:actor.querySelectorAll('.tavi-walk-cel').length};
+  });
+  if(headAudit31.errors.length||headAudit31.total!==40||
+     headAudit31.upper!==40||headAudit31.lower!==40)
+     throw Error('0.31 walk head/torso/leg registration failed: '+JSON.stringify(headAudit31));
+  console.log('0.31 GENUINE ANIMATED CHARACTER HEAD ATLAS:',JSON.stringify(headAudit31));
+  const moving31=await openedAt({started:true,area:'terrace',x:720,y:701,facing:1,
+    direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+  await moving31.emulateMedia({reducedMotion:'no-preference'});
+  await moving31.keyboard.down('ArrowRight');
+  await moving31.waitForTimeout(190);
+  const walking31=await moving31.locator('#tavi').evaluate(actor=>{
+    const shown=[...actor.querySelectorAll('.tavi-stride-head-cel31')]
+      .filter(x=>getComputedStyle(x).display!=='none'&&
+        getComputedStyle(x.parentElement.parentElement).display!=='none');
+    return {walking:actor.classList.contains('walking'),stride:actor.dataset.stride,
+      headPaint:shown.map(x=>x.dataset.headView+'-'+x.dataset.headFrame)};
+  });
+  if(!walking31.walking||!walking31.headPaint.length)
+    throw Error('0.31 moving screenshot must capture a real animated walk: '+JSON.stringify(walking31));
+  await moving31.screenshot({path:'screenshots/47-tavi-live-eight-phase-walk.png',animations:'allow'});
+  await moving31.keyboard.up('ArrowRight');
+  await moving31.close();
+  await terraceNear.emulateMedia({reducedMotion:'reduce'});
+
   await terraceNear.screenshot({path:'screenshots/46-tavi-proportion-audit.png'});
 
   await terraceNear.screenshot({path:'screenshots/45-terrace-constructed-roofs.png'});
