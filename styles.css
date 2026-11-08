@@ -760,3 +760,20 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #terraceBell path,#terraceKiosk path,#terraceTreeBranchConstruction path{
   shape-rendering:geometricPrecision
 }
+
+
+/* 0.30: consistent real character proportions in every field-facing and turn cel.
+   The built-in 40 walking upper-body cels contain paper-hair etching; align those
+   with the reshaped actual head, never rotate/scale the character or ground shadow.
+   All motion remains driven by traveled distance rather than CSS keyframe cheats. */
+#tavi .tavi-proportioned-head30,
+#tavi .tavi-proportioned-head30 *,
+#tavi .tavi-turn-head30,
+#tavi .tavi-turn-head30 *{pointer-events:none!important}
+#tavi .tavi-upper-atlas .tavi-upper-hair-details{
+  transform:translate(0px,-12px) scale(.88)!important;
+  transform-origin:0px 0px;
+  pointer-events:none!important
+}
+#tavi .tavi-proportioned-head30 path,
+#tavi .tavi-turn-head30 path{shape-rendering:geometricPrecision}
