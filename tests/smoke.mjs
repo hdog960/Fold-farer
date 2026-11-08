@@ -174,7 +174,7 @@ assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
  'Independent physical depth layers require separate deterministic parallax');
 assert(!html.includes('M-10 302 122 176 228 229 350 134'),
  'Generic zig-zag mountain card must be replaced, not covered with a decal');
-assert(sw.includes('foldfarer-shell-0.32'),'Mobile must fetch the new 0.22 build');
+assert(sw.includes('foldfarer-shell-0.33'),'Mobile must fetch the new 0.23 build');
 
 
 const identityIds=['terraceDyeEnamel','terraceDyeCavity','terraceHerbVellum','terraceHerbRib',
