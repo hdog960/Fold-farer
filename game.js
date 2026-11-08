@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.33.0: sculpted face silhouettes and anatomical hands across every field and turn pose.
+/* FoldFarer: The Unfinished World. First Fold 0.34.0: directional cut-card hair and sewn-paper collars in all resting, walking and turning poses.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
