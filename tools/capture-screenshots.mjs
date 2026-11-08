@@ -759,6 +759,25 @@ try {
   if(stablePlayer!==await terraceNear.locator('#tavi').getAttribute('transform'))
     throw Error('0.27 art displaced real player physical anchor');
   console.log('0.27 BUILT PAPER WORLD:',JSON.stringify(propsQA));
+
+  // 0.28: ensure all four authored art layers exist as measurable parts of the
+  // real running SVG stage and remain unable to steal iPhone touch controls.
+  const botanicalQA=await terraceNear.locator('#terraceScene').evaluate(scene=>{
+    const ids=['terraceAtmosphericWatercolor28','terraceDyerSilkRelief28',
+      'terraceConservatoryBotanicalEtching28','terraceLeafClusterStructure28'];
+    return ids.map(id=>{
+      const el=document.getElementById(id),b=el.getBBox();
+      return {id,w:b.width,h:b.height,events:getComputedStyle(el).pointerEvents,
+        inScene:scene.contains(el)};
+    });
+  });
+  if(botanicalQA.some(a=>!a.inScene||a.events!=='none'||a.w<90||a.h<65))
+    throw Error('0.28 actual illustrated scene missing/unusable: '+JSON.stringify(botanicalQA));
+  if(await terraceNear.locator('#tavi').getAttribute('transform')!==stablePlayer)
+    throw Error('0.28 art displaced the playable hero');
+  console.log('0.28 REAL BOTANICAL ILLUSTRATION:',JSON.stringify(botanicalQA));
+  await terraceNear.screenshot({path:'screenshots/44-terrace-illustrated-botanicals.png'});
+
   await terraceNear.screenshot({path:'screenshots/43-terrace-archive-papercraft.png'});
   await terraceNear.screenshot({path:'screenshots/42-terrace-refined-hair-and-watercolor.png'});
   await terraceNear.screenshot({path:'screenshots/41-terrace-watercolor-characters-and-arch.png'});
