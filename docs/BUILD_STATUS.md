@@ -360,3 +360,12 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Extend actual Chromium scene test to audit 5x8 combinations and reduced-motion behavior, and capture in-engine moving screenshot 47. Test that input remains touch-transparent, head ratios remain stable, and existing save / movement / collision invariants hold.
 - Game version 0.31.0 / PWA cache 0.44. Original URL, saved progress, controls, story, geometry and navigation are unchanged.
 - **Not a final art signoff:** 40 new head cels remain simplified hand-authored SVG; high-fidelity full character painting, full ensemble consistency and physical iPhone QA are still required. Milestone B remains LOCKED.
+
+
+## First Fold 0.32.0 — genuine hand-shaped costume material per walking cel (Milestone A)
+- Reworked **each of the existing 40 independently authored upper-body gait cels** with matching custom-drawn and original material relief, not a floating global effect or extra frame count. Five view-specific arrangements and eight stride-specific fold states produce 40 unique paint geometries.
+- Every outer coat is now a physically clipped cardstock silhouette, with a dark side ply, softly blended dye-glaze, paper fiber grain, warm inner-facing edge, curved hem, multiple fine hand-ink creases and asymmetrical sewing accents. The clip uses the **exact original coat-outline path for that cel**, ensuring folded wash and edge paint cannot extend outside the body.
+- Material layers are ordered between the base coat and its foreground cut-card panels; high-contrast fold accents sit within the coat stage. The actual upper arm, scarf, satchel, ink and head assets remain distinct from those clothes materials.
+- Original 40 eight-directionally-indexed (5×8) leg frames, upper torso cels, and head cels retain the exact movement-driven gait clock. Preserves all five idle head facings, facial-expression atlas, turning cels, foot collision and world actor transform.
+- Added static per-source tests and real Chromium on-screen 5×8 paint registration/clip/pointer checking, with screenshot 48 and a real character close-up 49. Build 0.32.0, cache 0.45, unchanged save key/Home Screen URL.
+- Still not a final production-quality art signoff. Paper material detail, anatomy coherence, true animation fluidity and environment-wide illustration harmony require further work. Physical iPhone Safari tests and author approval outstanding. **Milestone B locked.**

@@ -183,7 +183,19 @@
         <linearGradient id="architectInset" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5b8e8b"/><stop offset="1" stop-color="#a3c9ab"/></linearGradient>
         <linearGradient id="architectPaperEdge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff1ca"/><stop offset=".46" stop-color="#d2a789"/><stop offset="1" stop-color="#906a6b"/></linearGradient>
         <radialGradient id="architectWindowGlow"><stop stop-color="#ffe8aa" stop-opacity=".72"/><stop offset=".58" stop-color="#f8c695" stop-opacity=".18"/><stop offset="1" stop-color="#f8c695" stop-opacity="0"/></radialGradient>
-      </defs>
+      
+<!-- v0.32 color is layered in the physical costume paint, not an image over the entire hero. -->
+<linearGradient id="taviCoatGlaze32" x1="0%" y1="0%" x2="85%" y2="95%">
+ <stop offset="0%" stop-color="#f9ebc8" stop-opacity=".21"/>
+ <stop offset="34%" stop-color="#e2b79c" stop-opacity=".11"/>
+ <stop offset="68%" stop-color="#8f6573" stop-opacity=".13"/>
+ <stop offset="100%" stop-color="#4a536c" stop-opacity=".28"/>
+</linearGradient>
+<pattern id="taviPaperFibers32" width="11" height="13" patternUnits="userSpaceOnUse">
+  <path d="M1 3l3-1M7 8l2-1M2 12l1-1" stroke="#f7dbac" stroke-width=".6" opacity=".42"/>
+  <path d="M5 3l1 1M8 12l2-1" stroke="#574c5f" stroke-width=".55" opacity=".24"/>
+</pattern>
+</defs>
       <g id="folioScene">
       <rect width="1440" height="810" fill="url(#sky)"/>
       <g class="sky-cloud clouds-a" fill="#f6f1d8" stroke="#bcd3bc" stroke-width="3" opacity=".82">
@@ -1240,8 +1252,18 @@
           <g class="tavi-upper-atlas" data-upper-atlas="front" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -102 Q-2.8 -118 26 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-31 -102 Q-2.8 -118 26 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z" fill="url(#farerCoatShell-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-23 -98Q-6.8 -105 18 -96L24.1 -51 Q-2.8 -45 -21 -45Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="front" data-paint-frame="0" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-front-0" clipPathUnits="userSpaceOnUse"><path d="M-31 -102 Q-2.8 -118 26 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-front-0)">
+ <path d="M-34.0 -108 Q-20.0 -112 -4.0 -107 L1.0 -38 Q-16.0 -31 -43.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M6.0 -107 Q26.0 -111 35.0 -88L40.0 -30L15.0 -39Z" fill="#765567" opacity=".36"/>
+ <path d="M-29.0 -109L35.0 -109L36.0 -27L-38.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-29.0 -108L36.0 -109L36.0 -28L-39.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1254,7 +1276,18 @@
                 <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
               <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
               <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="front-0" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-front-0)">
+ <path d="M-23.0-91Q-21.0-72 -26.0-45 Q-21.0-41 -16.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-21.0-94Q-11.0-81 -20.0-62T-15.0-41" fill="none" stroke="#f9d6ac" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-25.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-26.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-10.0-75l3.0 18m3-23 3 16M6.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-23.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-6.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -93Q-38.5 -88 -48 -69.1Q-54.9 -56.8 -55.8 -44.4" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-46 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1285,8 +1318,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -103 Q-1.4 -119 26 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-31 -103 Q-1.4 -119 26 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z" fill="url(#farerCoatShell-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-23 -99Q-5.4 -106 18 -97L24.7 -50 Q-1.4 -44 -21 -46Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="front" data-paint-frame="1" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-front-1" clipPathUnits="userSpaceOnUse"><path d="M-31 -103 Q-1.4 -119 26 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-front-1)">
+ <path d="M-34.0 -108 Q-20.0 -112 -4.0 -107 L-0.2 -38 Q-13.2 -31 -40.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M6.0 -107 Q26.0 -111 35.0 -88L38.8 -30L17.8 -39Z" fill="#765567" opacity=".36"/>
+ <path d="M-29.0 -109L35.0 -109L34.8 -27L-35.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-29.0 -108L36.0 -109L34.8 -28L-36.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1299,7 +1342,18 @@
                 <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
               <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
               <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="front-1" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-front-1)">
+ <path d="M-24.2-91Q-19.9-72 -23.2-45 Q-21.0-41 -16.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-21.0-94Q-12.2-81 -21.2-62T-12.2-41" fill="none" stroke="#f9d6ac" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-25.0-46q15.8 7 23.8 4t20.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-26.0-42q15.8 8 22.8 5t20.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-11.2-75l4.1 18m3-23 3 16M4.8-68l1.2 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-23.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-7.2-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -94Q-37.7 -88 -46.4 -70.1Q-53 -58 -53.6 -46" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-44.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1330,8 +1384,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -104 Q0 -120 26 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-31 -104 Q0 -120 26 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z" fill="url(#farerCoatShell-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-23 -100Q-4 -107 18 -98L26.6 -47 Q0 -41 -21 -49Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="front" data-paint-frame="2" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-front-2" clipPathUnits="userSpaceOnUse"><path d="M-31 -104 Q0 -120 26 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-front-2)">
+ <path d="M-34.0 -108 Q-20.0 -112 -4.0 -107 L-1.4 -38 Q-11.7 -31 -38.7 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M6.0 -107 Q26.0 -111 35.0 -88L37.6 -30L19.3 -39Z" fill="#765567" opacity=".36"/>
+ <path d="M-29.0 -109L35.0 -109L33.6 -27L-33.7 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-29.0 -108L36.0 -109L33.6 -28L-34.7 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1344,7 +1408,18 @@
                 <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
               <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
               <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="front-2" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-front-2)">
+ <path d="M-25.4-91Q-19.3-72 -21.7-45 Q-21.0-41 -16.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-21.0-94Q-13.4-81 -22.4-62T-10.7-41" fill="none" stroke="#f9d6ac" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q9.0 25 10.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-25.0-46q17.3 7 22.6 4t18.7 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-26.0-42q17.3 8 21.6 5t18.7-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-12.4-75l4.7 18m3-23 3 16M3.6-68l0.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-23.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-8.4-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -95Q-36.8 -88 -44.6 -71.3Q-50.9 -59.6 -51.1 -47.9" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1375,8 +1450,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -102 Q1.4 -118 26 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-31 -102 Q1.4 -118 26 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z" fill="url(#farerCoatShell-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-23 -98Q-2.6 -105 18 -96L27.9 -45 Q1.4 -39 -21 -51Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="front" data-paint-frame="3" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-front-3" clipPathUnits="userSpaceOnUse"><path d="M-31 -102 Q1.4 -118 26 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-front-3)">
+ <path d="M-34.0 -108 Q-20.0 -112 -4.0 -107 L0.0 -38 Q-13.5 -31 -40.5 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M6.0 -107 Q26.0 -111 35.0 -88L39.0 -30L17.5 -39Z" fill="#765567" opacity=".36"/>
+ <path d="M-29.0 -109L35.0 -109L35.0 -27L-35.5 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-29.0 -108L36.0 -109L35.0 -28L-36.5 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1389,7 +1474,18 @@
                 <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
               <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
               <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="front-3" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-front-3)">
+ <path d="M-24.0-91Q-20.0-72 -23.5-45 Q-21.0-41 -16.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-21.0-94Q-12.0-81 -21.0-62T-12.5-41" fill="none" stroke="#f9d6ac" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-25.0-46q15.5 7 24.0 4t20.5 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-26.0-42q15.5 8 23.0 5t20.5-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-11.0-75l4.0 18m3-23 3 16M5.0-68l1.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-23.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-7.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -93Q-36.7 -88 -44.4 -73.4Q-50 -62.4 -49.5 -51.3" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1420,8 +1516,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -102 Q2.8 -118 26 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-31 -102 Q2.8 -118 26 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z" fill="url(#farerCoatShell-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-23 -98Q-1.2 -105 18 -96L27.9 -45 Q2.8 -39 -21 -51Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="front" data-paint-frame="4" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-front-4" clipPathUnits="userSpaceOnUse"><path d="M-31 -102 Q2.8 -118 26 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-front-4)">
+ <path d="M-34.0 -108 Q-20.0 -112 -4.0 -107 L1.0 -38 Q-16.0 -31 -43.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M6.0 -107 Q26.0 -111 35.0 -88L40.0 -30L15.0 -39Z" fill="#765567" opacity=".36"/>
+ <path d="M-29.0 -109L35.0 -109L36.0 -27L-38.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-29.0 -108L36.0 -109L36.0 -28L-39.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1434,7 +1540,18 @@
                 <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
               <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
               <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="front-4" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-front-4)">
+ <path d="M-23.0-91Q-21.0-72 -26.0-45 Q-21.0-41 -16.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-21.0-94Q-11.0-81 -20.0-62T-15.0-41" fill="none" stroke="#f9d6ac" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-25.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-26.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-10.0-75l3.0 18m3-23 3 16M6.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-23.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-6.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -93Q-36.9 -88 -44.8 -74.9Q-49.9 -64.3 -49 -53.6" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1465,8 +1582,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -103 Q1.4 -119 26 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-31 -103 Q1.4 -119 26 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z" fill="url(#farerCoatShell-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-23 -99Q-2.6 -106 18 -97L26.6 -47 Q1.4 -41 -21 -49Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="front" data-paint-frame="5" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-front-5" clipPathUnits="userSpaceOnUse"><path d="M-31 -103 Q1.4 -119 26 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-front-5)">
+ <path d="M-34.0 -108 Q-20.0 -112 -4.0 -107 L2.2 -38 Q-18.8 -31 -45.8 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M6.0 -107 Q26.0 -111 35.0 -88L41.2 -30L12.2 -39Z" fill="#765567" opacity=".36"/>
+ <path d="M-29.0 -109L35.0 -109L37.2 -27L-40.8 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-29.0 -108L36.0 -109L37.2 -28L-41.8 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1479,7 +1606,18 @@
                 <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
               <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
               <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="front-5" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-front-5)">
+ <path d="M-21.8-91Q-22.1-72 -28.8-45 Q-21.0-41 -16.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-21.0-94Q-9.8-81 -18.8-62T-17.8-41" fill="none" stroke="#f9d6ac" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-25.0-46q10.2 7 26.2 4t25.8 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-26.0-42q10.2 8 25.2 5t25.8-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-8.8-75l1.9 18m3-23 3 16M7.2-68l2.8 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-23.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-4.8-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -94Q-36.9 -88 -44.8 -73.9Q-50.2 -63 -49.6 -52" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1510,8 +1648,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -104 Q0 -120 26 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-31 -104 Q0 -120 26 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z" fill="url(#farerCoatShell-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-23 -100Q-4 -107 18 -98L25.4 -49 Q0 -43 -21 -47Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="front" data-paint-frame="6" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-front-6" clipPathUnits="userSpaceOnUse"><path d="M-31 -104 Q0 -120 26 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-front-6)">
+ <path d="M-34.0 -108 Q-20.0 -112 -4.0 -107 L3.5 -38 Q-20.2 -31 -47.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M6.0 -107 Q26.0 -111 35.0 -88L42.5 -30L10.8 -39Z" fill="#765567" opacity=".36"/>
+ <path d="M-29.0 -109L35.0 -109L38.5 -27L-42.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-29.0 -108L36.0 -109L38.5 -28L-43.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1524,7 +1672,18 @@
                 <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
               <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
               <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="front-6" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-front-6)">
+ <path d="M-20.5-91Q-22.7-72 -30.2-45 Q-21.0-41 -16.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-21.0-94Q-8.5-81 -17.5-62T-19.2-41" fill="none" stroke="#f9d6ac" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q5.0 25 6.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-25.0-46q8.8 7 27.5 4t27.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-26.0-42q8.8 8 26.5 5t27.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-7.5-75l1.3 18m3-23 3 16M8.5-68l3.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-23.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-3.5-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -95Q-36.8 -88 -44.6 -72.7Q-50.4 -61.4 -50.1 -50.1" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1555,8 +1714,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -102 Q-1.4 -118 26 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-31 -102 Q-1.4 -118 26 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z" fill="url(#farerCoatShell-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-23 -98Q-5.4 -105 18 -96L24.1 -51 Q-1.4 -45 -21 -45Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="front" data-paint-frame="7" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-front-7" clipPathUnits="userSpaceOnUse"><path d="M-31 -102 Q-1.4 -118 26 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-front-7)">
+ <path d="M-34.0 -108 Q-20.0 -112 -4.0 -107 L2.0 -38 Q-18.3 -31 -45.3 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M6.0 -107 Q26.0 -111 35.0 -88L41.0 -30L12.7 -39Z" fill="#765567" opacity=".36"/>
+ <path d="M-29.0 -109L35.0 -109L37.0 -27L-40.3 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-29.0 -108L36.0 -109L37.0 -28L-41.3 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1569,7 +1738,18 @@
                 <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
               <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
               <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="front-7" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-front-7)">
+ <path d="M-22.0-91Q-21.9-72 -28.3-45 Q-21.0-41 -16.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-21.0-94Q-10.0-81 -19.0-62T-17.3-41" fill="none" stroke="#f9d6ac" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-25.0-46q10.7 7 26.0 4t25.3 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-26.0-42q10.7 8 25.0 5t25.3-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-9.0-75l2.1 18m3-23 3 16M7.0-68l2.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-23.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-5.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -93Q-37.5 -88 -46 -70.6Q-52.5 -58.6 -52.9 -46.7" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-44 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2047,8 +2227,18 @@
           <g class="tavi-upper-atlas" data-upper-atlas="rear" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -102 Q-2.8 -118 31 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-32 -102 Q-2.8 -118 31 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z" fill="url(#farerCoatShell-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-24 -98Q-6.8 -105 23 -96L29.1 -51 Q-2.8 -45 -22 -45Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="rear" data-paint-frame="0" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-rear-0" clipPathUnits="userSpaceOnUse"><path d="M-32 -102 Q-2.8 -118 31 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-rear-0)">
+ <path d="M-35.0 -108 Q-18.0 -112 -2.0 -107 L3.0 -38 Q-14.0 -31 -44.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q29.0 -111 38.0 -88L43.0 -30L17.0 -39Z" fill="#62576c" opacity=".36"/>
+ <path d="M-30.0 -109L38.0 -109L39.0 -27L-39.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-30.0 -108L39.0 -109L39.0 -28L-40.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2061,7 +2251,18 @@
                 <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
               <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
               <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="rear-0" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-rear-0)">
+ <path d="M-24.0-91Q-22.0-72 -27.0-45 Q-22.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-22.0-94Q-12.0-81 -21.0-62T-16.0-41" fill="none" stroke="#edcda8" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M28.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-26.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-27.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-8.0-75l3.0 18m3-23 3 16M8.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-24.0-59q8 2 13-1M18.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-4.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -93Q-39.5 -88 -49 -69.1Q-55.9 -56.8 -56.8 -44.4" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-47 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2087,8 +2288,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -103 Q-1.4 -119 31 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-32 -103 Q-1.4 -119 31 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z" fill="url(#farerCoatShell-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-24 -99Q-5.4 -106 23 -97L29.7 -50 Q-1.4 -44 -22 -46Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="rear" data-paint-frame="1" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-rear-1" clipPathUnits="userSpaceOnUse"><path d="M-32 -103 Q-1.4 -119 31 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-rear-1)">
+ <path d="M-35.0 -108 Q-18.0 -112 -2.0 -107 L1.8 -38 Q-11.2 -31 -41.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q29.0 -111 38.0 -88L41.8 -30L19.8 -39Z" fill="#62576c" opacity=".36"/>
+ <path d="M-30.0 -109L38.0 -109L37.8 -27L-36.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-30.0 -108L39.0 -109L37.8 -28L-37.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2101,7 +2312,18 @@
                 <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
               <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
               <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="rear-1" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-rear-1)">
+ <path d="M-25.2-91Q-20.9-72 -24.2-45 Q-22.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-22.0-94Q-13.2-81 -22.2-62T-13.2-41" fill="none" stroke="#edcda8" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M28.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-26.0-46q15.8 7 23.8 4t20.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-27.0-42q15.8 8 22.8 5t20.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-9.2-75l4.1 18m3-23 3 16M6.8-68l1.2 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-24.0-59q8 2 13-1M18.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-5.2-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -94Q-38.7 -88 -47.4 -70.1Q-54 -58 -54.6 -46" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-45.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2127,8 +2349,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -104 Q0 -120 31 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-32 -104 Q0 -120 31 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z" fill="url(#farerCoatShell-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-24 -100Q-4 -107 23 -98L31.6 -47 Q0 -41 -22 -49Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="rear" data-paint-frame="2" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-rear-2" clipPathUnits="userSpaceOnUse"><path d="M-32 -104 Q0 -120 31 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-rear-2)">
+ <path d="M-35.0 -108 Q-18.0 -112 -2.0 -107 L0.6 -38 Q-9.7 -31 -39.7 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q29.0 -111 38.0 -88L40.6 -30L21.3 -39Z" fill="#62576c" opacity=".36"/>
+ <path d="M-30.0 -109L38.0 -109L36.6 -27L-34.7 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-30.0 -108L39.0 -109L36.6 -28L-35.7 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2141,7 +2373,18 @@
                 <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
               <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
               <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="rear-2" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-rear-2)">
+ <path d="M-26.4-91Q-20.3-72 -22.7-45 Q-22.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-22.0-94Q-14.4-81 -23.4-62T-11.7-41" fill="none" stroke="#edcda8" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M28.0-96q9.0 25 10.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-26.0-46q17.3 7 22.6 4t18.7 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-27.0-42q17.3 8 21.6 5t18.7-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-10.4-75l4.7 18m3-23 3 16M5.6-68l0.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-24.0-59q8 2 13-1M18.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-6.4-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -95Q-37.8 -88 -45.6 -71.3Q-51.9 -59.6 -52.1 -47.9" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2167,8 +2410,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -102 Q1.4 -118 31 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-32 -102 Q1.4 -118 31 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z" fill="url(#farerCoatShell-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-24 -98Q-2.6 -105 23 -96L33 -45 Q1.4 -39 -22 -51Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="rear" data-paint-frame="3" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-rear-3" clipPathUnits="userSpaceOnUse"><path d="M-32 -102 Q1.4 -118 31 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-rear-3)">
+ <path d="M-35.0 -108 Q-18.0 -112 -2.0 -107 L2.0 -38 Q-11.5 -31 -41.5 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q29.0 -111 38.0 -88L42.0 -30L19.5 -39Z" fill="#62576c" opacity=".36"/>
+ <path d="M-30.0 -109L38.0 -109L38.0 -27L-36.5 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-30.0 -108L39.0 -109L38.0 -28L-37.5 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2181,7 +2434,18 @@
                 <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
               <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
               <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="rear-3" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-rear-3)">
+ <path d="M-25.0-91Q-21.0-72 -24.5-45 Q-22.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-22.0-94Q-13.0-81 -22.0-62T-13.5-41" fill="none" stroke="#edcda8" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M28.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-26.0-46q15.5 7 24.0 4t20.5 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-27.0-42q15.5 8 23.0 5t20.5-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-9.0-75l4.0 18m3-23 3 16M7.0-68l1.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-24.0-59q8 2 13-1M18.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-5.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -93Q-37.7 -88 -45.4 -73.4Q-51 -62.4 -50.5 -51.3" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2207,8 +2471,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -102 Q2.8 -118 31 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-32 -102 Q2.8 -118 31 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z" fill="url(#farerCoatShell-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-24 -98Q-1.2 -105 23 -96L33 -45 Q2.8 -39 -22 -51Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="rear" data-paint-frame="4" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-rear-4" clipPathUnits="userSpaceOnUse"><path d="M-32 -102 Q2.8 -118 31 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-rear-4)">
+ <path d="M-35.0 -108 Q-18.0 -112 -2.0 -107 L3.0 -38 Q-14.0 -31 -44.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q29.0 -111 38.0 -88L43.0 -30L17.0 -39Z" fill="#62576c" opacity=".36"/>
+ <path d="M-30.0 -109L38.0 -109L39.0 -27L-39.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-30.0 -108L39.0 -109L39.0 -28L-40.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2221,7 +2495,18 @@
                 <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
               <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
               <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="rear-4" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-rear-4)">
+ <path d="M-24.0-91Q-22.0-72 -27.0-45 Q-22.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-22.0-94Q-12.0-81 -21.0-62T-16.0-41" fill="none" stroke="#edcda8" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M28.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-26.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-27.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-8.0-75l3.0 18m3-23 3 16M8.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-24.0-59q8 2 13-1M18.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-4.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -93Q-37.9 -88 -45.8 -74.9Q-50.9 -64.3 -50 -53.6" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2247,8 +2532,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -103 Q1.4 -119 31 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-32 -103 Q1.4 -119 31 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z" fill="url(#farerCoatShell-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-24 -99Q-2.6 -106 23 -97L31.6 -47 Q1.4 -41 -22 -49Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="rear" data-paint-frame="5" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-rear-5" clipPathUnits="userSpaceOnUse"><path d="M-32 -103 Q1.4 -119 31 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-rear-5)">
+ <path d="M-35.0 -108 Q-18.0 -112 -2.0 -107 L4.2 -38 Q-16.8 -31 -46.8 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q29.0 -111 38.0 -88L44.2 -30L14.2 -39Z" fill="#62576c" opacity=".36"/>
+ <path d="M-30.0 -109L38.0 -109L40.2 -27L-41.8 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-30.0 -108L39.0 -109L40.2 -28L-42.8 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2261,7 +2556,18 @@
                 <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
               <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
               <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="rear-5" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-rear-5)">
+ <path d="M-22.8-91Q-23.1-72 -29.8-45 Q-22.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-22.0-94Q-10.8-81 -19.8-62T-18.8-41" fill="none" stroke="#edcda8" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M28.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-26.0-46q10.2 7 26.2 4t25.8 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-27.0-42q10.2 8 25.2 5t25.8-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-6.8-75l1.9 18m3-23 3 16M9.2-68l2.8 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-24.0-59q8 2 13-1M18.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-2.8-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -94Q-37.9 -88 -45.8 -73.9Q-51.2 -63 -50.6 -52" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2287,8 +2593,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -104 Q0 -120 31 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-32 -104 Q0 -120 31 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z" fill="url(#farerCoatShell-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-24 -100Q-4 -107 23 -98L30.4 -49 Q0 -43 -22 -47Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="rear" data-paint-frame="6" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-rear-6" clipPathUnits="userSpaceOnUse"><path d="M-32 -104 Q0 -120 31 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-rear-6)">
+ <path d="M-35.0 -108 Q-18.0 -112 -2.0 -107 L5.5 -38 Q-18.2 -31 -48.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q29.0 -111 38.0 -88L45.5 -30L12.8 -39Z" fill="#62576c" opacity=".36"/>
+ <path d="M-30.0 -109L38.0 -109L41.5 -27L-43.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-30.0 -108L39.0 -109L41.5 -28L-44.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2301,7 +2617,18 @@
                 <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
               <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
               <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="rear-6" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-rear-6)">
+ <path d="M-21.5-91Q-23.7-72 -31.2-45 Q-22.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-22.0-94Q-9.5-81 -18.5-62T-20.2-41" fill="none" stroke="#edcda8" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M28.0-96q5.0 25 6.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-26.0-46q8.8 7 27.5 4t27.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-27.0-42q8.8 8 26.5 5t27.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-5.5-75l1.3 18m3-23 3 16M10.5-68l3.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-24.0-59q8 2 13-1M18.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-1.5-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -95Q-37.8 -88 -45.6 -72.7Q-51.4 -61.4 -51.1 -50.1" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2327,8 +2654,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -102 Q-1.4 -118 31 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-32 -102 Q-1.4 -118 31 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z" fill="url(#farerCoatShell-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-24 -98Q-5.4 -105 23 -96L29.1 -51 Q-1.4 -45 -22 -45Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="rear" data-paint-frame="7" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-rear-7" clipPathUnits="userSpaceOnUse"><path d="M-32 -102 Q-1.4 -118 31 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-rear-7)">
+ <path d="M-35.0 -108 Q-18.0 -112 -2.0 -107 L4.0 -38 Q-16.3 -31 -46.3 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q29.0 -111 38.0 -88L44.0 -30L14.7 -39Z" fill="#62576c" opacity=".36"/>
+ <path d="M-30.0 -109L38.0 -109L40.0 -27L-41.3 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-30.0 -108L39.0 -109L40.0 -28L-42.3 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2341,7 +2678,18 @@
                 <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
               <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
               <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="rear-7" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-rear-7)">
+ <path d="M-23.0-91Q-22.9-72 -29.3-45 Q-22.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-22.0-94Q-11.0-81 -20.0-62T-18.3-41" fill="none" stroke="#edcda8" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M28.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-26.0-46q10.7 7 26.0 4t25.3 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-27.0-42q10.7 8 25.0 5t25.3-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-7.0-75l2.1 18m3-23 3 16M9.0-68l2.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-24.0-59q8 2 13-1M18.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-3.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -93Q-38.5 -88 -47 -70.6Q-53.5 -58.6 -53.9 -46.7" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-45 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2631,8 +2979,18 @@
           <g class="tavi-upper-atlas" data-upper-atlas="side" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q0.2 -118 20 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -36 -34.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q0.2 -118 20 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -36 -34.5Z" fill="url(#farerCoatShell-side)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -98Q-3.8 -105 12 -96L18.1 -51 Q0.2 -45 -15 -45Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="side" data-paint-frame="0" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-side-0" clipPathUnits="userSpaceOnUse"><path d="M-25 -102 Q0.2 -118 20 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -36 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-side-0)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L5.0 -38 Q-12.0 -31 -37.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q18.0 -111 27.0 -88L32.0 -30L19.0 -39Z" fill="#594c64" opacity=".36"/>
+ <path d="M-23.0 -109L27.0 -109L28.0 -27L-32.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L28.0 -109L28.0 -28L-33.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2645,7 +3003,18 @@
                 <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
               <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
               <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="side-0" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-side-0)">
+ <path d="M-17.0-91Q-15.0-72 -20.0-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-5.0-81 -14.0-62T-9.0-41" fill="none" stroke="#f6d3b2" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M17.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-6.0-75l3.0 18m3-23 3 16M10.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M7.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-2.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-32.5 -88 -42 -69.1Q-48.9 -56.8 -49.8 -44.4" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-40 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2671,8 +3040,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -103 Q1.6 -119 20 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -35 -35Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -103 Q1.6 -119 20 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -35 -35Z" fill="url(#farerCoatShell-side)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -99Q-2.4 -106 12 -97L18.7 -50 Q1.6 -44 -15 -46Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="side" data-paint-frame="1" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-side-1" clipPathUnits="userSpaceOnUse"><path d="M-25 -103 Q1.6 -119 20 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -35 -35Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-side-1)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L3.8 -38 Q-9.2 -31 -34.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q18.0 -111 27.0 -88L30.8 -30L21.8 -39Z" fill="#594c64" opacity=".36"/>
+ <path d="M-23.0 -109L27.0 -109L26.8 -27L-29.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L28.0 -109L26.8 -28L-30.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2685,7 +3064,18 @@
                 <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
               <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
               <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="side-1" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-side-1)">
+ <path d="M-18.2-91Q-13.9-72 -17.2-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-6.2-81 -15.2-62T-6.2-41" fill="none" stroke="#f6d3b2" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M17.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q15.8 7 23.8 4t20.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q15.8 8 22.8 5t20.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-7.2-75l4.1 18m3-23 3 16M8.8-68l1.2 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M7.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-3.2-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -94Q-31.7 -88 -40.4 -70.1Q-47 -58 -47.6 -46" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-38.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2711,8 +3101,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -104 Q3 -120 20 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -32 -34.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -104 Q3 -120 20 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -32 -34.5Z" fill="url(#farerCoatShell-side)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -100Q-1 -107 12 -98L20.6 -47 Q3 -41 -15 -49Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="side" data-paint-frame="2" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-side-2" clipPathUnits="userSpaceOnUse"><path d="M-25 -104 Q3 -120 20 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -32 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-side-2)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L2.6 -38 Q-7.7 -31 -32.7 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q18.0 -111 27.0 -88L29.6 -30L23.3 -39Z" fill="#594c64" opacity=".36"/>
+ <path d="M-23.0 -109L27.0 -109L25.6 -27L-27.7 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L28.0 -109L25.6 -28L-28.7 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2725,7 +3125,18 @@
                 <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
               <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
               <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="side-2" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-side-2)">
+ <path d="M-19.4-91Q-13.3-72 -15.7-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-7.4-81 -16.4-62T-4.7-41" fill="none" stroke="#f6d3b2" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M17.0-96q9.0 25 10.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q17.3 7 22.6 4t18.7 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q17.3 8 21.6 5t18.7-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-8.4-75l4.7 18m3-23 3 16M7.6-68l0.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M7.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-4.4-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -95Q-30.8 -88 -38.6 -71.3Q-44.9 -59.6 -45.1 -47.9" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2751,8 +3162,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q4.4 -118 20 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -30 -31.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q4.4 -118 20 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -30 -31.5Z" fill="url(#farerCoatShell-side)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -98Q0.4 -105 12 -96L21.9 -45 Q4.4 -39 -15 -51Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="side" data-paint-frame="3" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-side-3" clipPathUnits="userSpaceOnUse"><path d="M-25 -102 Q4.4 -118 20 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -30 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-side-3)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L4.0 -38 Q-9.5 -31 -34.5 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q18.0 -111 27.0 -88L31.0 -30L21.5 -39Z" fill="#594c64" opacity=".36"/>
+ <path d="M-23.0 -109L27.0 -109L27.0 -27L-29.5 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L28.0 -109L27.0 -28L-30.5 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2765,7 +3186,18 @@
                 <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
               <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
               <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="side-3" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-side-3)">
+ <path d="M-18.0-91Q-14.0-72 -17.5-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-6.0-81 -15.0-62T-6.5-41" fill="none" stroke="#f6d3b2" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M17.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q15.5 7 24.0 4t20.5 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q15.5 8 23.0 5t20.5-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-7.0-75l4.0 18m3-23 3 16M9.0-68l1.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M7.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-3.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-30.7 -88 -38.4 -73.4Q-44 -62.4 -43.5 -51.3" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2791,8 +3223,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q5.8 -118 20 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -30 -31.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q5.8 -118 20 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -30 -31.5Z" fill="url(#farerCoatShell-side)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -98Q1.8 -105 12 -96L21.9 -45 Q5.8 -39 -15 -51Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="side" data-paint-frame="4" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-side-4" clipPathUnits="userSpaceOnUse"><path d="M-25 -102 Q5.8 -118 20 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -30 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-side-4)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L5.0 -38 Q-12.0 -31 -37.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q18.0 -111 27.0 -88L32.0 -30L19.0 -39Z" fill="#594c64" opacity=".36"/>
+ <path d="M-23.0 -109L27.0 -109L28.0 -27L-32.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L28.0 -109L28.0 -28L-33.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2805,7 +3247,18 @@
                 <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
               <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
               <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="side-4" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-side-4)">
+ <path d="M-17.0-91Q-15.0-72 -20.0-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-5.0-81 -14.0-62T-9.0-41" fill="none" stroke="#f6d3b2" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M17.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-6.0-75l3.0 18m3-23 3 16M10.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M7.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-2.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-30.9 -88 -38.8 -74.9Q-43.9 -64.3 -43 -53.6" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2831,8 +3284,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -103 Q4.4 -119 20 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -32 -33.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -103 Q4.4 -119 20 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -32 -33.5Z" fill="url(#farerCoatShell-side)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -99Q0.4 -106 12 -97L20.6 -47 Q4.4 -41 -15 -49Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="side" data-paint-frame="5" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-side-5" clipPathUnits="userSpaceOnUse"><path d="M-25 -103 Q4.4 -119 20 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -32 -33.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-side-5)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L6.2 -38 Q-14.8 -31 -39.8 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q18.0 -111 27.0 -88L33.2 -30L16.2 -39Z" fill="#594c64" opacity=".36"/>
+ <path d="M-23.0 -109L27.0 -109L29.2 -27L-34.8 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L28.0 -109L29.2 -28L-35.8 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2845,7 +3308,18 @@
                 <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
               <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
               <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="side-5" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-side-5)">
+ <path d="M-15.8-91Q-16.1-72 -22.8-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-3.8-81 -12.8-62T-11.8-41" fill="none" stroke="#f6d3b2" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M17.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q10.2 7 26.2 4t25.8 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q10.2 8 25.2 5t25.8-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-4.8-75l1.9 18m3-23 3 16M11.2-68l2.8 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M7.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-0.8-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -94Q-30.9 -88 -38.8 -73.9Q-44.2 -63 -43.6 -52" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2871,8 +3345,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -104 Q3 -120 20 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -34 -35.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -104 Q3 -120 20 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -34 -35.5Z" fill="url(#farerCoatShell-side)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -100Q-1 -107 12 -98L19.4 -49 Q3 -43 -15 -47Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="side" data-paint-frame="6" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-side-6" clipPathUnits="userSpaceOnUse"><path d="M-25 -104 Q3 -120 20 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -34 -35.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-side-6)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L7.5 -38 Q-16.2 -31 -41.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q18.0 -111 27.0 -88L34.5 -30L14.8 -39Z" fill="#594c64" opacity=".36"/>
+ <path d="M-23.0 -109L27.0 -109L30.5 -27L-36.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L28.0 -109L30.5 -28L-37.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2885,7 +3369,18 @@
                 <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
               <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
               <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="side-6" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-side-6)">
+ <path d="M-14.5-91Q-16.7-72 -24.2-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-2.5-81 -11.5-62T-13.2-41" fill="none" stroke="#f6d3b2" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M17.0-96q5.0 25 6.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q8.8 7 27.5 4t27.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q8.8 8 26.5 5t27.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-3.5-75l1.3 18m3-23 3 16M12.5-68l3.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M7.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M0.5-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -95Q-30.8 -88 -38.6 -72.7Q-44.4 -61.4 -44.1 -50.1" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2911,8 +3406,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q1.6 -118 20 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -36 -34.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q1.6 -118 20 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -36 -34.5Z" fill="url(#farerCoatShell-side)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -98Q-2.4 -105 12 -96L18.1 -51 Q1.6 -45 -15 -45Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="side" data-paint-frame="7" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-side-7" clipPathUnits="userSpaceOnUse"><path d="M-25 -102 Q1.6 -118 20 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -36 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-side-7)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L6.0 -38 Q-14.3 -31 -39.3 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q18.0 -111 27.0 -88L33.0 -30L16.7 -39Z" fill="#594c64" opacity=".36"/>
+ <path d="M-23.0 -109L27.0 -109L29.0 -27L-34.3 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L28.0 -109L29.0 -28L-35.3 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2925,7 +3430,18 @@
                 <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
               <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
               <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="side-7" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-side-7)">
+ <path d="M-16.0-91Q-15.9-72 -22.3-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-4.0-81 -13.0-62T-11.3-41" fill="none" stroke="#f6d3b2" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M17.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q10.7 7 26.0 4t25.3 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q10.7 8 25.0 5t25.3-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-5.0-75l2.1 18m3-23 3 16M11.0-68l2.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M7.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-1.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-31.5 -88 -40 -70.6Q-46.5 -58.6 -46.9 -46.7" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-38 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3324,8 +3840,18 @@
           <g class="tavi-upper-atlas" data-upper-atlas="quarter-front" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q-1 -118 23 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q-1 -118 23 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -98Q-5 -105 15 -96L21.1 -51 Q-1 -45 -15 -45Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-front" data-paint-frame="0" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-front-0" clipPathUnits="userSpaceOnUse"><path d="M-25 -102 Q-1 -118 23 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.2 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-front-0)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L5.0 -38 Q-12.0 -31 -37.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q21.0 -111 30.0 -88L35.0 -30L19.0 -39Z" fill="#755468" opacity=".36"/>
+ <path d="M-23.0 -109L30.0 -109L31.0 -27L-32.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L31.0 -109L31.0 -28L-33.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3338,7 +3864,18 @@
                 <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
               <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-front-0" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-front-0)">
+ <path d="M-17.0-91Q-15.0-72 -20.0-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-5.0-81 -14.0-62T-9.0-41" fill="none" stroke="#f7ddbb" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M20.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-6.0-75l3.0 18m3-23 3 16M10.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M10.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-2.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-32.5 -88 -42 -69.1Q-48.9 -56.8 -49.8 -44.4" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-40 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3369,8 +3906,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -103 Q0.4 -119 23 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.2 -35Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -103 Q0.4 -119 23 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.2 -35Z" fill="url(#farerCoatShell-quarter-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -99Q-3.6 -106 15 -97L21.7 -50 Q0.4 -44 -15 -46Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-front" data-paint-frame="1" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-front-1" clipPathUnits="userSpaceOnUse"><path d="M-25 -103 Q0.4 -119 23 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.2 -35Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-front-1)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L3.8 -38 Q-9.2 -31 -34.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q21.0 -111 30.0 -88L33.8 -30L21.8 -39Z" fill="#755468" opacity=".36"/>
+ <path d="M-23.0 -109L30.0 -109L29.8 -27L-29.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L31.0 -109L29.8 -28L-30.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3383,7 +3930,18 @@
                 <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
               <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-front-1" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-front-1)">
+ <path d="M-18.2-91Q-13.9-72 -17.2-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-6.2-81 -15.2-62T-6.2-41" fill="none" stroke="#f7ddbb" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M20.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q15.8 7 23.8 4t20.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q15.8 8 22.8 5t20.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-7.2-75l4.1 18m3-23 3 16M8.8-68l1.2 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M10.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-3.2-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -94Q-31.7 -88 -40.4 -70.1Q-47 -58 -47.6 -46" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-38.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3414,8 +3972,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -104 Q1.8 -120 23 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -104 Q1.8 -120 23 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -100Q-2.2 -107 15 -98L23.6 -47 Q1.8 -41 -15 -49Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-front" data-paint-frame="2" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-front-2" clipPathUnits="userSpaceOnUse"><path d="M-25 -104 Q1.8 -120 23 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.2 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-front-2)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L2.6 -38 Q-7.7 -31 -32.7 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q21.0 -111 30.0 -88L32.6 -30L23.3 -39Z" fill="#755468" opacity=".36"/>
+ <path d="M-23.0 -109L30.0 -109L28.6 -27L-27.7 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L31.0 -109L28.6 -28L-28.7 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3428,7 +3996,18 @@
                 <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
               <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-front-2" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-front-2)">
+ <path d="M-19.4-91Q-13.3-72 -15.7-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-7.4-81 -16.4-62T-4.7-41" fill="none" stroke="#f7ddbb" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M20.0-96q9.0 25 10.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q17.3 7 22.6 4t18.7 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q17.3 8 21.6 5t18.7-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-8.4-75l4.7 18m3-23 3 16M7.6-68l0.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M10.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-4.4-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -95Q-30.8 -88 -38.6 -71.3Q-44.9 -59.6 -45.1 -47.9" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3459,8 +4038,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q3.2 -118 23 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.2 -31.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q3.2 -118 23 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.2 -31.5Z" fill="url(#farerCoatShell-quarter-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -98Q-0.8 -105 15 -96L24.9 -45 Q3.2 -39 -15 -51Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-front" data-paint-frame="3" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-front-3" clipPathUnits="userSpaceOnUse"><path d="M-25 -102 Q3.2 -118 23 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.2 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-front-3)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L4.0 -38 Q-9.5 -31 -34.5 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q21.0 -111 30.0 -88L34.0 -30L21.5 -39Z" fill="#755468" opacity=".36"/>
+ <path d="M-23.0 -109L30.0 -109L30.0 -27L-29.5 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L31.0 -109L30.0 -28L-30.5 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3473,7 +4062,18 @@
                 <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
               <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-front-3" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-front-3)">
+ <path d="M-18.0-91Q-14.0-72 -17.5-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-6.0-81 -15.0-62T-6.5-41" fill="none" stroke="#f7ddbb" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M20.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q15.5 7 24.0 4t20.5 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q15.5 8 23.0 5t20.5-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-7.0-75l4.0 18m3-23 3 16M9.0-68l1.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M10.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-3.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-30.7 -88 -38.4 -73.4Q-44 -62.4 -43.5 -51.3" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3504,8 +4104,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q4.6 -118 23 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.2 -31.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q4.6 -118 23 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.2 -31.5Z" fill="url(#farerCoatShell-quarter-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -98Q0.6 -105 15 -96L24.9 -45 Q4.6 -39 -15 -51Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-front" data-paint-frame="4" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-front-4" clipPathUnits="userSpaceOnUse"><path d="M-25 -102 Q4.6 -118 23 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.2 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-front-4)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L5.0 -38 Q-12.0 -31 -37.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q21.0 -111 30.0 -88L35.0 -30L19.0 -39Z" fill="#755468" opacity=".36"/>
+ <path d="M-23.0 -109L30.0 -109L31.0 -27L-32.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L31.0 -109L31.0 -28L-33.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3518,7 +4128,18 @@
                 <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
               <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-front-4" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-front-4)">
+ <path d="M-17.0-91Q-15.0-72 -20.0-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-5.0-81 -14.0-62T-9.0-41" fill="none" stroke="#f7ddbb" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M20.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-6.0-75l3.0 18m3-23 3 16M10.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M10.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-2.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-30.9 -88 -38.8 -74.9Q-43.9 -64.3 -43 -53.6" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3549,8 +4170,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -103 Q3.2 -119 23 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.2 -33.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -103 Q3.2 -119 23 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.2 -33.5Z" fill="url(#farerCoatShell-quarter-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -99Q-0.8 -106 15 -97L23.6 -47 Q3.2 -41 -15 -49Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-front" data-paint-frame="5" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-front-5" clipPathUnits="userSpaceOnUse"><path d="M-25 -103 Q3.2 -119 23 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.2 -33.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-front-5)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L6.2 -38 Q-14.8 -31 -39.8 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q21.0 -111 30.0 -88L36.2 -30L16.2 -39Z" fill="#755468" opacity=".36"/>
+ <path d="M-23.0 -109L30.0 -109L32.2 -27L-34.8 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L31.0 -109L32.2 -28L-35.8 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3563,7 +4194,18 @@
                 <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
               <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-front-5" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-front-5)">
+ <path d="M-15.8-91Q-16.1-72 -22.8-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-3.8-81 -12.8-62T-11.8-41" fill="none" stroke="#f7ddbb" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M20.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q10.2 7 26.2 4t25.8 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q10.2 8 25.2 5t25.8-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-4.8-75l1.9 18m3-23 3 16M11.2-68l2.8 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M10.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-0.8-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -94Q-30.9 -88 -38.8 -73.9Q-44.2 -63 -43.6 -52" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3594,8 +4236,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -104 Q1.8 -120 23 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.2 -35.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -104 Q1.8 -120 23 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.2 -35.5Z" fill="url(#farerCoatShell-quarter-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -100Q-2.2 -107 15 -98L22.4 -49 Q1.8 -43 -15 -47Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-front" data-paint-frame="6" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-front-6" clipPathUnits="userSpaceOnUse"><path d="M-25 -104 Q1.8 -120 23 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.2 -35.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-front-6)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L7.5 -38 Q-16.2 -31 -41.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q21.0 -111 30.0 -88L37.5 -30L14.8 -39Z" fill="#755468" opacity=".36"/>
+ <path d="M-23.0 -109L30.0 -109L33.5 -27L-36.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L31.0 -109L33.5 -28L-37.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3608,7 +4260,18 @@
                 <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
               <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-front-6" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-front-6)">
+ <path d="M-14.5-91Q-16.7-72 -24.2-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-2.5-81 -11.5-62T-13.2-41" fill="none" stroke="#f7ddbb" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M20.0-96q5.0 25 6.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q8.8 7 27.5 4t27.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q8.8 8 26.5 5t27.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-3.5-75l1.3 18m3-23 3 16M12.5-68l3.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M10.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M0.5-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -95Q-30.8 -88 -38.6 -72.7Q-44.4 -61.4 -44.1 -50.1" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3639,8 +4302,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q0.4 -118 23 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q0.4 -118 23 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-17 -98Q-3.6 -105 15 -96L21.1 -51 Q0.4 -45 -15 -45Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-front" data-paint-frame="7" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-front-7" clipPathUnits="userSpaceOnUse"><path d="M-25 -102 Q0.4 -118 23 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.2 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-front-7)">
+ <path d="M-28.0 -108 Q-16.0 -112 0.0 -107 L6.0 -38 Q-14.3 -31 -39.3 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M10.0 -107 Q21.0 -111 30.0 -88L36.0 -30L16.7 -39Z" fill="#755468" opacity=".36"/>
+ <path d="M-23.0 -109L30.0 -109L32.0 -27L-34.3 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-23.0 -108L31.0 -109L32.0 -28L-35.3 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3653,7 +4326,18 @@
                 <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
               <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-front-7" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-front-7)">
+ <path d="M-16.0-91Q-15.9-72 -22.3-45 Q-15.0-41 -12.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-15.0-94Q-4.0-81 -13.0-62T-11.3-41" fill="none" stroke="#f7ddbb" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M20.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-19.0-46q10.7 7 26.0 4t25.3 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-20.0-42q10.7 8 25.0 5t25.3-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-5.0-75l2.1 18m3-23 3 16M11.0-68l2.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-17.0-59q8 2 13-1M10.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-1.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-31.5 -88 -40 -70.6Q-46.5 -58.6 -46.9 -46.7" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-38 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -4002,8 +4686,18 @@
           <g class="tavi-upper-atlas" data-upper-atlas="quarter-rear" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -102 Q-1.3 -118 28 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-29 -102 Q-1.3 -118 28 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-21 -98Q-5.3 -105 20 -96L26.1 -51 Q-1.3 -45 -19 -45Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-rear" data-paint-frame="0" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-rear-0" clipPathUnits="userSpaceOnUse"><path d="M-29 -102 Q-1.3 -118 28 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.5 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-rear-0)">
+ <path d="M-32.0 -108 Q-18.0 -112 -2.0 -107 L3.0 -38 Q-14.0 -31 -41.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q26.0 -111 35.0 -88L40.0 -30L17.0 -39Z" fill="#65516a" opacity=".36"/>
+ <path d="M-27.0 -109L35.0 -109L36.0 -27L-36.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-27.0 -108L36.0 -109L36.0 -28L-37.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -4016,7 +4710,18 @@
                 <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
               <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-rear-0" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-rear-0)">
+ <path d="M-21.0-91Q-19.0-72 -24.0-45 Q-19.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-19.0-94Q-9.0-81 -18.0-62T-13.0-41" fill="none" stroke="#edd4b0" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-23.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-24.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-8.0-75l3.0 18m3-23 3 16M8.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-21.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-4.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -93Q-36.5 -88 -46 -69.1Q-52.9 -56.8 -53.8 -44.4" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-44 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -4047,8 +4752,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -103 Q0.1 -119 28 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.5 -35Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-29 -103 Q0.1 -119 28 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.5 -35Z" fill="url(#farerCoatShell-quarter-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-21 -99Q-3.9 -106 20 -97L26.7 -50 Q0.1 -44 -19 -46Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-rear" data-paint-frame="1" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-rear-1" clipPathUnits="userSpaceOnUse"><path d="M-29 -103 Q0.1 -119 28 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.5 -35Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-rear-1)">
+ <path d="M-32.0 -108 Q-18.0 -112 -2.0 -107 L1.8 -38 Q-11.2 -31 -38.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q26.0 -111 35.0 -88L38.8 -30L19.8 -39Z" fill="#65516a" opacity=".36"/>
+ <path d="M-27.0 -109L35.0 -109L34.8 -27L-33.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-27.0 -108L36.0 -109L34.8 -28L-34.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -4061,7 +4776,18 @@
                 <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
               <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-rear-1" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-rear-1)">
+ <path d="M-22.2-91Q-17.9-72 -21.2-45 Q-19.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-19.0-94Q-10.2-81 -19.2-62T-10.2-41" fill="none" stroke="#edd4b0" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-23.0-46q15.8 7 23.8 4t20.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-24.0-42q15.8 8 22.8 5t20.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-9.2-75l4.1 18m3-23 3 16M6.8-68l1.2 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-21.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-5.2-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -94Q-35.7 -88 -44.4 -70.1Q-51 -58 -51.6 -46" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-42.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -4092,8 +4818,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -104 Q1.5 -120 28 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-29 -104 Q1.5 -120 28 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-21 -100Q-2.5 -107 20 -98L28.6 -47 Q1.5 -41 -19 -49Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-rear" data-paint-frame="2" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-rear-2" clipPathUnits="userSpaceOnUse"><path d="M-29 -104 Q1.5 -120 28 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.5 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-rear-2)">
+ <path d="M-32.0 -108 Q-18.0 -112 -2.0 -107 L0.6 -38 Q-9.7 -31 -36.7 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q26.0 -111 35.0 -88L37.6 -30L21.3 -39Z" fill="#65516a" opacity=".36"/>
+ <path d="M-27.0 -109L35.0 -109L33.6 -27L-31.7 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-27.0 -108L36.0 -109L33.6 -28L-32.7 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -4106,7 +4842,18 @@
                 <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
               <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-rear-2" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-rear-2)">
+ <path d="M-23.4-91Q-17.3-72 -19.7-45 Q-19.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-19.0-94Q-11.4-81 -20.4-62T-8.7-41" fill="none" stroke="#edd4b0" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q9.0 25 10.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-23.0-46q17.3 7 22.6 4t18.7 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-24.0-42q17.3 8 21.6 5t18.7-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-10.4-75l4.7 18m3-23 3 16M5.6-68l0.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-21.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-6.4-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -95Q-34.8 -88 -42.6 -71.3Q-48.9 -59.6 -49.1 -47.9" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -4137,8 +4884,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -102 Q2.9 -118 28 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.5 -31.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-29 -102 Q2.9 -118 28 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.5 -31.5Z" fill="url(#farerCoatShell-quarter-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-21 -98Q-1.1 -105 20 -96L29.9 -45 Q2.9 -39 -19 -51Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-rear" data-paint-frame="3" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-rear-3" clipPathUnits="userSpaceOnUse"><path d="M-29 -102 Q2.9 -118 28 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.5 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-rear-3)">
+ <path d="M-32.0 -108 Q-18.0 -112 -2.0 -107 L2.0 -38 Q-11.5 -31 -38.5 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q26.0 -111 35.0 -88L39.0 -30L19.5 -39Z" fill="#65516a" opacity=".36"/>
+ <path d="M-27.0 -109L35.0 -109L35.0 -27L-33.5 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-27.0 -108L36.0 -109L35.0 -28L-34.5 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -4151,7 +4908,18 @@
                 <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
               <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-rear-3" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-rear-3)">
+ <path d="M-22.0-91Q-18.0-72 -21.5-45 Q-19.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-19.0-94Q-10.0-81 -19.0-62T-10.5-41" fill="none" stroke="#edd4b0" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q8.0 25 9.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-23.0-46q15.5 7 24.0 4t20.5 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-24.0-42q15.5 8 23.0 5t20.5-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-9.0-75l4.0 18m3-23 3 16M7.0-68l1.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-21.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-5.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -93Q-34.7 -88 -42.4 -73.4Q-48 -62.4 -47.5 -51.3" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -4182,8 +4950,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -102 Q4.3 -118 28 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.5 -31.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-29 -102 Q4.3 -118 28 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.5 -31.5Z" fill="url(#farerCoatShell-quarter-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-21 -98Q0.3 -105 20 -96L29.9 -45 Q4.3 -39 -19 -51Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-rear" data-paint-frame="4" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-rear-4" clipPathUnits="userSpaceOnUse"><path d="M-29 -102 Q4.3 -118 28 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.5 -31.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-rear-4)">
+ <path d="M-32.0 -108 Q-18.0 -112 -2.0 -107 L3.0 -38 Q-14.0 -31 -41.0 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q26.0 -111 35.0 -88L40.0 -30L17.0 -39Z" fill="#65516a" opacity=".36"/>
+ <path d="M-27.0 -109L35.0 -109L36.0 -27L-36.0 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-27.0 -108L36.0 -109L36.0 -28L-37.0 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -4196,7 +4974,18 @@
                 <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
               <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-rear-4" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-rear-4)">
+ <path d="M-21.0-91Q-19.0-72 -24.0-45 Q-19.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-19.0-94Q-9.0-81 -18.0-62T-13.0-41" fill="none" stroke="#edd4b0" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q7.0 25 8.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-23.0-46q13.0 7 25.0 4t23.0 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-24.0-42q13.0 8 24.0 5t23.0-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-8.0-75l3.0 18m3-23 3 16M8.0-68l2.0 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-21.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-4.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -93Q-34.9 -88 -42.8 -74.9Q-47.9 -64.3 -47 -53.6" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -4227,8 +5016,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -103 Q2.9 -119 28 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.5 -33.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-29 -103 Q2.9 -119 28 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.5 -33.5Z" fill="url(#farerCoatShell-quarter-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-21 -99Q-1.1 -106 20 -97L28.6 -47 Q2.9 -41 -19 -49Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-rear" data-paint-frame="5" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-rear-5" clipPathUnits="userSpaceOnUse"><path d="M-29 -103 Q2.9 -119 28 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.5 -33.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-rear-5)">
+ <path d="M-32.0 -108 Q-18.0 -112 -2.0 -107 L4.2 -38 Q-16.8 -31 -43.8 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q26.0 -111 35.0 -88L41.2 -30L14.2 -39Z" fill="#65516a" opacity=".36"/>
+ <path d="M-27.0 -109L35.0 -109L37.2 -27L-38.8 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-27.0 -108L36.0 -109L37.2 -28L-39.8 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -4241,7 +5040,18 @@
                 <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
               <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-rear-5" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-rear-5)">
+ <path d="M-19.8-91Q-20.1-72 -26.8-45 Q-19.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-19.0-94Q-7.8-81 -16.8-62T-15.8-41" fill="none" stroke="#edd4b0" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-23.0-46q10.2 7 26.2 4t25.8 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-24.0-42q10.2 8 25.2 5t25.8-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-6.8-75l1.9 18m3-23 3 16M9.2-68l2.8 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-21.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-2.8-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -94Q-34.9 -88 -42.8 -73.9Q-48.2 -63 -47.6 -52" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -4272,8 +5082,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -104 Q1.5 -120 28 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.5 -35.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-29 -104 Q1.5 -120 28 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.5 -35.5Z" fill="url(#farerCoatShell-quarter-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-21 -100Q-2.5 -107 20 -98L27.4 -49 Q1.5 -43 -19 -47Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-rear" data-paint-frame="6" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-rear-6" clipPathUnits="userSpaceOnUse"><path d="M-29 -104 Q1.5 -120 28 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.5 -35.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-rear-6)">
+ <path d="M-32.0 -108 Q-18.0 -112 -2.0 -107 L5.5 -38 Q-18.2 -31 -45.2 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q26.0 -111 35.0 -88L42.5 -30L12.8 -39Z" fill="#65516a" opacity=".36"/>
+ <path d="M-27.0 -109L35.0 -109L38.5 -27L-40.2 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-27.0 -108L36.0 -109L38.5 -28L-41.2 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -4286,7 +5106,18 @@
                 <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
               <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-rear-6" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-rear-6)">
+ <path d="M-18.5-91Q-20.7-72 -28.2-45 Q-19.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-19.0-94Q-6.5-81 -15.5-62T-17.2-41" fill="none" stroke="#edd4b0" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q5.0 25 6.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-23.0-46q8.8 7 27.5 4t27.2 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-24.0-42q8.8 8 26.5 5t27.2-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-5.5-75l1.3 18m3-23 3 16M10.5-68l3.3 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-21.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-1.5-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -95Q-34.8 -88 -42.6 -72.7Q-48.4 -61.4 -48.1 -50.1" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -4317,8 +5148,18 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -102 Q0.1 -118 28 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-29 -102 Q0.1 -118 28 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)"
+
+ stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
    <path d="M-21 -98Q-3.9 -105 20 -96L26.1 -51 Q0.1 -45 -19 -45Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+<g class="tavi-pigment-foundation32" data-paint-view="quarter-rear" data-paint-frame="7" pointer-events="none">
+<defs><clipPath id="taviCostumeCut32-quarter-rear-7" clipPathUnits="userSpaceOnUse"><path d="M-29 -102 Q0.1 -118 28 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.5 -34.5Z"/></clipPath></defs>
+<g clip-path="url(#taviCostumeCut32-quarter-rear-7)">
+ <path d="M-32.0 -108 Q-18.0 -112 -2.0 -107 L4.0 -38 Q-16.3 -31 -43.3 -35Z" fill="#603f60" opacity=".23"/>
+ <path d="M8.0 -107 Q26.0 -111 35.0 -88L41.0 -30L14.7 -39Z" fill="#65516a" opacity=".36"/>
+ <path d="M-27.0 -109L35.0 -109L37.0 -27L-38.3 -27Z" fill="url(#taviCoatGlaze32)"/>
+ <path d="M-27.0 -108L36.0 -109L37.0 -28L-39.3 -26Z" fill="url(#taviPaperFibers32)" opacity=".7"/>
+</g></g>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -4331,7 +5172,18 @@
                 <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
               <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
               <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
-              </g></g>
+              </g>
+<g class="tavi-painted-costume32" data-paint-pose="quarter-rear-7" pointer-events="none" aria-hidden="true" clip-path="url(#taviCostumeCut32-quarter-rear-7)">
+ <path d="M-20.0-91Q-19.9-72 -26.3-45 Q-19.0-41 -14.0-39" fill="none" stroke="#553f5c" stroke-width="4.6" opacity=".19" stroke-linecap="round"/>
+ <path d="M-19.0-94Q-8.0-81 -17.0-62T-15.3-41" fill="none" stroke="#edd4b0" stroke-width="2.2" opacity=".65" stroke-linecap="round"/>
+ <path d="M25.0-96q6.0 25 7.0 50" fill="none" stroke="#55445f" stroke-width="3.2" opacity=".23" stroke-linecap="round"/>
+ <path d="M-23.0-46q10.7 7 26.0 4t25.3 0" fill="none" stroke="#f4d6ac" stroke-width="2.9" opacity=".64" stroke-linecap="round"/>
+ <path d="M-24.0-42q10.7 8 25.0 5t25.3-1" fill="none" stroke="#614e68" stroke-width="2.1" opacity=".45" stroke-linecap="round"/>
+ <path d="M-7.0-75l2.1 18m3-23 3 16M9.0-68l2.7 14" fill="none" stroke="#f6d9b3" stroke-width="1.2" opacity=".52" stroke-linecap="round"/>
+ <path d="M-21.0-59q8 2 13-1M15.0-57q6 4 11 1" fill="none" stroke="#513f5d" stroke-width="1.2" opacity=".29"/>
+ <path d="M-3.0-41l5-2m-15 4 4-1m22-5 4 0" fill="none" stroke="#fff1cf" stroke-width="1.6" opacity=".78" stroke-linecap="round"/>
+</g>
+</g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -93Q-35.5 -88 -44 -70.6Q-50.5 -58.6 -50.9 -46.7" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-42 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
