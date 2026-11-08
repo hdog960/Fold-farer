@@ -340,3 +340,13 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Improved Tavi's actual rear-facing character art with a quiet, cut-card hair fringe, warm layered highlight and shaded back/nape shapes. It is drawn with the current animated actor, not a UI or screenshot overlay. Existing 40 upper/lower walking poses, direction switches and the foot-ground anchor are preserved.
 - Expanded source integrity tests and Chromium geometry/touch screenshot checks; added gameplay screenshot 45 from the actual game. No changed collisions, scene coordinates, story logic, localStorage checkpoint, control zones, Home Screen URL or paid assets. Package 0.29.0, offline cache 0.42.
 - Artistic approval is still required; character atlas production, illustration harmony, remaining scene artwork, and real iPhone device QA are incomplete. Milestone B stays LOCKED.
+
+
+## First Fold 0.30.0 — cohesive Tavi proportions across field, dialogue and turns (Milestone A)
+- Corrected Tavi's oversized head-to-body ratio in **all five true field art facings**, at the artwork-group level, around a fixed neck location. The updated SVG proportions share the same 0.88 head scale and -12 unit head translation, without scaling any torso, boot, floor shadow, outer actor anchor or world-position transform.
+- Registered the original twelve expressive face drawings across the three visible-face directions to the new physical head volume (rather than letting eyes and lips drift after a silhouette correction).
+- Updated the head sections of all six complete hand-authored full-body turn cels (three facing front and three facing rear). They retain their individual poses and current direction-selection timings; turning no longer flashes the old oversized head.
+- Brought in-motion hair-detail etchings from all 40 existing upper-body walking cels into alignment with the corrected illustration without replacing or duplicating cels. The 40 original leg/boot cels remain intact.
+- Expanded static tests and the true Chromium in-game capture to reject missing directional head groups, mismatched expression transforms, incorrect scale ratios, altered foot transforms, or input interception. Capture: screenshots/46-tavi-proportion-audit.png.
+- No altered collision footprints, save schema/key, combat systems, Morrow AI, quest flags, or Home Screen URL. Version 0.30.0; offline cache 0.43.
+- **Artwork is still in progress:** This is a proportion and continuity correction, not full-production portrait atlases, animated hair/garment paint, or final character signoff. iPhone on-device QA remains outstanding. Milestone B stays locked.

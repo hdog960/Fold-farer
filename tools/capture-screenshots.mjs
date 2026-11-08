@@ -800,6 +800,39 @@ try {
   if(await terraceNear.locator('#tavi').getAttribute('transform')!==stablePlayer)
     throw Error('0.29 art moved the player or broke ground anchoring');
   console.log('0.29 ORIGINAL REBUILT PAPER ARCHITECTURE:',JSON.stringify(relief29));
+
+  // 0.30 inspect each actual field head and every authored turn head in the
+  // running game, including parent relationships and the displayed transform.
+  const proportion30=await terraceNear.locator('#tavi').evaluate(actor=>{
+    const heads=[...actor.querySelectorAll('.tavi-proportioned-head30')];
+    const turns=[...actor.querySelectorAll('.tavi-turn-head30')];
+    const expressions=[...actor.querySelectorAll('.tavi-expression-atlas')];
+    const measure=e=>{
+      const b=e.getBBox(), transform=e.getAttribute('transform');
+      return {w:b.width,h:b.height,transform,events:getComputedStyle(e).pointerEvents};
+    };
+    const field=heads.map(e=>({view:e.dataset.proportionView,...measure(e)}));
+    return {field,turns:turns.map(e=>({...measure(e),name:e.dataset.turnHead})),
+      expressions:expressions.map(e=>({...measure(e),view:e.dataset.faceView})),
+      actorTransform:actor.getAttribute('transform'),
+      walkingUpper:actor.querySelectorAll('.tavi-upper-cel').length,
+      walkingLegs:actor.querySelectorAll('.tavi-walk-cel').length};
+  });
+  if(proportion30.field.length!==5||proportion30.turns.length!==6||
+    proportion30.expressions.length!==3||
+    proportion30.walkingUpper!==40||proportion30.walkingLegs!==40||
+    proportion30.field.some(x=>x.transform!=='translate(0 -12) scale(.88)'||
+      x.events!=='none'||x.w<35||x.h<45)||
+    proportion30.turns.some(x=>x.transform!=='translate(0 -12) scale(.88)'||
+      x.events!=='none'||x.w<25||x.h<30)||
+    proportion30.expressions.some(x=>x.transform!=='translate(0 -12) scale(.88)'||
+      x.events!=='none')||
+    proportion30.actorTransform!==stablePlayer)
+      throw Error('0.30 in-engine character proportion/animation integrity failed: '+
+        JSON.stringify(proportion30));
+  console.log('0.30 ACTUAL CHARACTER PROPORTIONS:',JSON.stringify(proportion30));
+  await terraceNear.screenshot({path:'screenshots/46-tavi-proportion-audit.png'});
+
   await terraceNear.screenshot({path:'screenshots/45-terrace-constructed-roofs.png'});
 
   await terraceNear.screenshot({path:'screenshots/44-terrace-illustrated-botanicals.png'});
