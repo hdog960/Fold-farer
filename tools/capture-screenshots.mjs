@@ -667,6 +667,46 @@ try {
     throw Error('0.25 must disable body bob in Reduced Motion: '+reducedMotionQA);
   // Snapshot is captured from game renderer after all actual movement and
   // stage depth ordering have run, never from standalone concept artwork.
+
+  // 0.26: verify ALL real animation frames, the genuinely moving bird wing
+  // cels and sculpted rear-hair dimensions in the browser's active scene.
+  // This rejects an attractive but unused overlay or concept art.
+  const paintQA=await terraceNear.locator('#tavi').evaluate(actor=>{
+    const frames=[...actor.querySelectorAll('.tavi-upper-cel')];
+    const perView={};let correctlyPainted=0;
+    for(const cel of frames){
+      const view=cel.getAttribute('data-upper-view');
+      const paths=[...cel.querySelectorAll(':scope > .tavi-upper-coat > path')];
+      const a=paths.filter(path=>(path.getAttribute('fill')||'').startsWith('url('));
+      const good=a.length>=2 &&
+        a[0].getAttribute('fill')==='url(#farerCoatShell-'+view+')' &&
+        a[1].getAttribute('fill')==='url(#farerCoatPanel-'+view+')';
+      if(good)correctlyPainted++;
+      perView[view]=(perView[view]||0)+(good?1:0);
+    }
+    const bird=document.getElementById('morrow');
+    const wingFrames=[...bird.querySelectorAll('.morrow-wing-frame')];
+    const wingsCorrect=wingFrames.length===4&&wingFrames.every(w=>{
+      const l=w.querySelector('.inkwing-left > path'),r=w.querySelector('.inkwing-right > path');
+      return l?.getAttribute('fill')==='url(#morrowWingInkLeft)' &&
+             r?.getAttribute('fill')==='url(#morrowWingInkRight)';
+    });
+    const hair=document.getElementById('taviRearHairCut'),gate=document.getElementById('terraceArchEdgeRelief');
+    const hb=hair.getBBox(),gb=gate.getBBox();
+    return {frames:frames.length,correctlyPainted,perView,wingsCorrect,
+      hair:{w:hb.width,h:hb.height},gate:{w:gb.width,h:gb.height,
+        pointer:getComputedStyle(gate).pointerEvents},
+      hairInTavi:actor.contains(hair),wingsInMorrow:bird.contains(wingFrames[0]),
+      worldAnchor:actor.getAttribute('transform')};
+  });
+  if(paintQA.frames!==40||paintQA.correctlyPainted!==40||
+    ['front','rear','side','quarter-front','quarter-rear'].some(v=>paintQA.perView[v]!==8)||
+    !paintQA.wingsCorrect||!paintQA.hairInTavi||!paintQA.wingsInMorrow||
+    paintQA.hair.w<55||paintQA.hair.h<72||
+    paintQA.gate.w<260||paintQA.gate.h<180||paintQA.gate.pointer!=='none')
+    throw Error('0.26 watercolor material atlas failed in actual running game: '+JSON.stringify(paintQA));
+  console.log('0.26 REAL CHARACTER MATERIALS:',JSON.stringify(paintQA));
+  await terraceNear.screenshot({path:'screenshots/41-terrace-watercolor-characters-and-arch.png'});
   await terraceNear.screenshot({path:'screenshots/40-terrace-character-cardstock-contact.png'});
   await terraceNear.screenshot({path:'screenshots/39-terrace-engraving-and-shadow.png'});
   await terraceNear.screenshot({path:'screenshots/38-terrace-distinct-shopfronts.png'});

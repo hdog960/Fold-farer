@@ -296,3 +296,13 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - New smoke and real-Chromium checks cover all 40 exact coat rim instances, five facing families, no globally bouncing shadow, stable world-space parent order, live actor material values, and physical geometry. Real game capture: `screenshots/40-terrace-character-cardstock-contact.png`.
 - Package version 0.25.0, service-worker cache 0.37. Existing free GitHub Pages URL, iPhone Home Screen installation, save key and gameplay unchanged.
 - **Artwork verdict still pending inspection/creator approval**; real physical iPhone validation remains outstanding. Milestone B remains locked.
+
+
+## First Fold 0.26.0 — fully integrated watercolor character materials (Milestone A)
+- Material overhaul inside existing in-game SVG characters, not a static picture. Tavi's **40 original upper-body walking cels** (five directions, eight frames each) now shade their actual coat shell and inset panel with view-specific, three-stop watercolor gradients; all 40 original frame-indexed scarf components use coherent warm fabric shading. Idle/rest coat panels now match these animated materials so stopping does not reveal a flat old design.
+- Tavi's previously circular back-of-head is reshaped into a handmade cut-paper hair crown with three nested inked sections. The front, side, quarter-front, and quarter-rear head artwork receive a consistent painted base plus different local hair outlines; none displaces the true foot anchor, portraits or face-expression frames.
+- Morrow's original body and chest now feature indigo and sage tonal volume; all four genuine wing animation poses (left/right wings each) have original wing-paper shading. No CSS wing flipping or static texture substitutions.
+- Recolored the existing North Terrace portal's actual outer arch with parchment/wood watercolor; added narrow exposed cardboard cross-sections and hand-drawn ink edges, entirely within the original passable arch footprint. No new collision or overlay intercepts taps.
+- Expanded source and real Chromium tests verify 40/40 frame materials, five views, all cloth and wing animation surfaces, correct rear hair shape and physical arch bounds. The generated real-game review capture is `screenshots/41-terrace-watercolor-characters-and-arch.png`.
+- Version 0.26.0, offline shell 0.38, existing free GitHub Pages deployment, same iPhone Home Screen icon, saved progress and collision logic. No new dependencies.
+- **Milestone A still awaiting the creator's art approval and physical iPhone performance verification. Milestone B remains locked.**
