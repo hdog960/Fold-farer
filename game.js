@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.28.0: illustrated tree crown, cloth, botanical glazing and watercolor air.
+/* FoldFarer: The Unfinished World. First Fold 0.29.0: rebuilt paper architecture silhouettes and sculpted Tavi's rear hair.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
