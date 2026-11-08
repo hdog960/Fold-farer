@@ -915,6 +915,74 @@ try {
   await moving31.screenshot({path:'screenshots/47-tavi-live-eight-phase-walk.png',animations:'allow'});
   await moving31.keyboard.up('ArrowRight');
   await moving31.close();
+
+  // 0.32: verify these layers are ACTUALLY within each moving coat and not
+  // a separate static sticker drawn over the world or the character.
+  const paperCoat32=await terraceNear.locator('#tavi').evaluate(actor=>{
+    const oldClass=actor.getAttribute('class'),oldStride=actor.dataset.stride;
+    const views=[['front','taviFrontArt','dir-down'],['rear','taviBackArt','dir-up'],
+      ['side','taviSideArt','dir-side'],['quarter-front','taviFrontQuarterArt','dir-diag-down'],
+      ['quarter-rear','taviBackQuarterArt','dir-diag-up']];
+    const errors=[],measurements=[];
+    try{
+      for(const [view,poseId,dirClass] of views){
+        const pose=document.getElementById(poseId);
+        for(let n=0;n<8;n++){
+          actor.classList.remove('dir-up','dir-down','dir-side','dir-diag-down','dir-diag-up',
+            'turning','pivoting'); actor.classList.add(dirClass,'walking');
+          actor.dataset.stride=String(n);
+          const visible=[...pose.querySelectorAll('.tavi-upper-cel')]
+            .filter(x=>getComputedStyle(x).display!=='none');
+          const upper=visible[0],paint=upper?.querySelector('.tavi-painted-costume32');
+          const wash=upper?.querySelector('.tavi-pigment-foundation32');
+          const coat=upper?.querySelector('.tavi-upper-coat');
+          const clip=document.getElementById('taviCostumeCut32-'+view+'-'+n);
+          const silhouette=coat?.querySelector('path[fill^="url(#farerCoatShell-"]');
+          const sourceBounds=silhouette?.getBBox(),inkBounds=paint?.getBBox();
+          const clipPath=clip?.querySelector('path');
+          if(visible.length!==1||upper?.dataset.upperFrame!==String(n)||
+            !paint||!wash||!clipPath||!silhouette||
+            clipPath.getAttribute('d')!==silhouette.getAttribute('d')||
+            paint.dataset.paintPose!==view+'-'+n||
+            !sourceBounds||sourceBounds.width<43||sourceBounds.height<58||
+            !inkBounds||inkBounds.width<33||inkBounds.height<38||
+            getComputedStyle(paint).pointerEvents!=='none'||
+            getComputedStyle(wash).pointerEvents!=='none')
+            errors.push(view+'/'+n+' misregistered, clipped, or unpainted');
+          if(n===0||n===4)measurements.push({view,n,
+            coatW:sourceBounds?.width,coatH:sourceBounds?.height,inkW:inkBounds?.width});
+        }
+      }
+    }finally{actor.setAttribute('class',oldClass);actor.dataset.stride=oldStride}
+    return {errors,measurements,numberOfPaintCels:actor.querySelectorAll('.tavi-painted-costume32').length,
+      originalHeadCels:actor.querySelectorAll('.tavi-stride-head-cel31').length,
+      originalUpperCels:actor.querySelectorAll('.tavi-upper-cel').length};
+  });
+  if(paperCoat32.errors.length||paperCoat32.numberOfPaintCels!==40||
+     paperCoat32.originalHeadCels!==40||paperCoat32.originalUpperCels!==40)
+     throw Error('0.32 physical in-game coat paint/geometry failed: '+JSON.stringify(paperCoat32));
+  console.log('0.32 ACTUAL 40 COSTUME MATERIALS:',JSON.stringify(paperCoat32));
+  const moving32=await openedAt({started:true,area:'terrace',x:720,y:701,facing:1,
+    direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+  await moving32.emulateMedia({reducedMotion:'no-preference'});
+  await moving32.keyboard.down('ArrowRight');
+  await moving32.waitForTimeout(200);
+  const actualCoat32=await moving32.locator('#tavi').evaluate(actor=>{
+    const visible=[...actor.querySelectorAll('.tavi-upper-cel')]
+      .filter(el=>getComputedStyle(el).display!=='none'&&
+        getComputedStyle(el.parentElement.parentElement).display!=='none');
+    const paint=visible[0]?.querySelector('.tavi-painted-costume32');
+    return {moving:actor.classList.contains('walking'),stride:actor.dataset.stride,
+      frame:visible[0]?.dataset.upperFrame,coatPaint:paint?.dataset.paintPose};
+  });
+  if(!actualCoat32.moving||actualCoat32.stride!==actualCoat32.frame||
+     !actualCoat32.coatPaint)
+    throw Error('0.32 screenshot must show real in-motion costume art: '+JSON.stringify(actualCoat32));
+  await moving32.screenshot({path:'screenshots/48-tavi-costume-painted-in-motion.png',animations:'allow'});
+  await moving32.locator('#tavi').screenshot({path:'screenshots/49-tavi-costume-real-game-closeup.png',
+    animations:'allow'});
+  await moving32.keyboard.up('ArrowRight');
+  await moving32.close();
   await terraceNear.emulateMedia({reducedMotion:'reduce'});
 
   await terraceNear.screenshot({path:'screenshots/46-tavi-proportion-audit.png'});
