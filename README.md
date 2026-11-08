@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.24.1](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.25.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -141,3 +141,7 @@ North Terrace's ribbon tree gains a handmade windswept crown shifted only at the
 
 #### 0.24.1 tree canopy composition correction
 Refined the North Terrace paper tree to a more compact, elevated cut-paper crown after screenshot inspection found its first new silhouette still overlapped the kiosk. Real-browser acceptance now checks visibility of both the central archive kiosk and greenhouse bay. Same iPhone Home Screen URL and save data; Milestone B remains locked.
+
+
+### First Fold 0.25.0 — characters belong to the same handmade paper world
+Tavi's walking animation now moves the actual body inside a stationary world-space shoe shadow; the old animation incorrectly bobbed the entire actor and shadow. Every one of the 40 existing upper-body gait cels gains original view-specific illustrated coat edging, exposed fold thickness and hand-sewn seams. Morrow adds subtle ink-feather paper edge contours without replacing his real flapping and expression drawings. Warm rim intensity responds to the same nearby light as their actual grounded contact. Tests validate five pose families, fixed shadow anchors, full animation continuity and the running game itself. Screenshot: `screenshots/40-terrace-character-cardstock-contact.png`. Original save data, collision, quests and Home Screen URL preserved. Milestone A art acceptance remains pending; Milestone B stays locked.

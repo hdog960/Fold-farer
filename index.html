@@ -112,6 +112,21 @@
           <stop offset=".38" stop-color="#f8d4a2" stop-opacity=".5"/>
           <stop offset="1" stop-color="#e6b88c" stop-opacity="0"/>
         </radialGradient>
+
+        <!-- 0.25: material-dependent rim light derived from the same warm
+             upper-left sun as the carved buildings. The cloth never glows
+             as an unshaped screen-overlay rectangle. -->
+        <linearGradient id="farerCoatBindLight" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stop-color="#fff1c7" stop-opacity=".94"/>
+          <stop offset=".28" stop-color="#f0ca9b" stop-opacity=".66"/>
+          <stop offset=".74" stop-color="#c59085" stop-opacity=".28"/>
+          <stop offset="1" stop-color="#7a606f" stop-opacity=".18"/>
+        </linearGradient>
+        <linearGradient id="morrowFeatherBindLight" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stop-color="#d9e5be" stop-opacity=".86"/>
+          <stop offset=".48" stop-color="#96bca8" stop-opacity=".58"/>
+          <stop offset="1" stop-color="#527e85" stop-opacity=".18"/>
+        </linearGradient>
         <radialGradient id="actorGroundInk"><stop stop-color="#1f404e" stop-opacity=".7"/><stop offset=".5" stop-color="#355c62" stop-opacity=".35"/><stop offset="1" stop-color="#355c62" stop-opacity="0"/></radialGradient>
         <linearGradient id="terraceDyeSilk" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#e9d6ad"/><stop offset=".35" stop-color="#87b9b4"/><stop offset=".67" stop-color="#537f89"/><stop offset="1" stop-color="#c08d9d"/></linearGradient>
         <linearGradient id="terraceGlassPaper" x1="0%" x2="100%" y1="0%" y2="35%"><stop stop-color="#faf0d7" stop-opacity=".04"/><stop offset=".43" stop-color="#fff3d0" stop-opacity=".49"/><stop offset=".68" stop-color="#f9ecd3" stop-opacity=".04"/><stop offset="1" stop-color="#f1dbb0" stop-opacity=".29"/></linearGradient>
@@ -697,7 +712,13 @@
         </g>
         <!-- Morrow: original ink-crow archivist, shaped from layered physical paper feathers, not an ear-tipped mascot. -->
       <g id="morrow" transform="translate(474 610)" filter="url(#softShadow)" aria-label="Morrow, the ink-bird archivist">
-        <g id="morrowGroundShadow" pointer-events="none"><ellipse cx="-7" cy="13" rx="58" ry="15" fill="url(#actorGroundInk)" opacity=".5"/><ellipse cx="-8" cy="13" rx="27" ry="4.8" fill="#395e64" opacity=".12"/><ellipse id="morrowContactBounce" cx="-5" cy="9" rx="49" ry="12" fill="url(#terraceContactGold)" opacity=".12"/></g>
+        <g id="morrowGroundShadow" pointer-events="none">
+          <ellipse cx="-7" cy="13" rx="58" ry="15" fill="url(#actorGroundInk)" opacity=".5"/>
+          <!-- Bird's cast remains on the floor while feathers hover above it. -->
+          <path id="morrowFeatherOcclusion" d="M-38 11q35-11 67-1l20 8q-57 8-92-2Z" fill="#47696a" opacity=".12"/>
+          <ellipse cx="-8" cy="13" rx="27" ry="4.8" fill="#395e64" opacity=".12"/>
+          <ellipse id="morrowContactBounce" cx="-5" cy="9" rx="49" ry="12" fill="url(#terraceContactGold)" opacity=".12"/>
+        </g>
         <g id="morrowSprite" aria-label="Morrow original ink-bird papercraft artwork">
         <ellipse cx="0" cy="9" rx="42" ry="10" fill="#3b5a58" opacity=".24"/>
         <g fill="none" stroke="#263b4c" stroke-width="7" stroke-linecap="round">
@@ -709,6 +730,14 @@
         <path d="M-34-37Q-49-68-35-97q11-37 42-36 34-8 42 30 15 39-7 76Q11-12-25-20Z" fill="#233c55" stroke="#142e43" stroke-width="7"/>
         <path d="M-26-73q-13-25 0-45 16-25 43-10 24 17 24 48Q19-93-26-73Z" fill="#344c62" stroke="#244256" stroke-width="3"/>
         <path d="M-18-119Q-30-136-21-153q18 17 21 26m7 0 11-33q12 19 2 34" fill="#25394e" stroke="#162e41" stroke-width="5" stroke-linejoin="round"/>
+        <g id="morrowCardstockFeathers" pointer-events="none" aria-label="Hand-creased ink-feather cardstock edging">
+          <path d="M-31-101q-9 20 0 41 6 22 14 27" stroke="url(#morrowFeatherBindLight)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M40-101q8 32-3 56" stroke="#152f43" stroke-width="4.2" opacity=".62" fill="none" stroke-linecap="round"/>
+          <path d="M-22-42q9 6 22 4m9 1q11-2 21-10" stroke="#abcbb0" stroke-width="2.8" opacity=".67" fill="none" stroke-linecap="round"/>
+          <path d="m-24-75 7 4m-10 5 7 4m28 28 8-5m-17 6 8-2" stroke="#d8d7b3" stroke-width="1.8" opacity=".74" fill="none" stroke-linecap="round"/>
+          <path d="m-20-117 6-8m-6 26 8-4m27-14 6-12" stroke="#96b3aa" stroke-width="2" fill="none" opacity=".73"/>
+        </g>
+
         <g class="morrow-wing-frame" data-wing-frame="0">
         <g class="inkwing-left">
           <path d="M-32-81Q-63-90-81-61l22 4-19 13 25 6-13 15 29-2Q-16-42-18-64Z" fill="#2a4560" stroke="#182e47" stroke-width="6" stroke-linejoin="round"/>
@@ -886,7 +915,18 @@
       <g id="tavi" transform="translate(273 654)" filter="url(#softShadow)">
         <!-- Keep the parent translated/scaled positively. Only this inner art
              is mirrored, so perspective placement never sends a pose offstage. -->
-        <g id="taviGroundShadow" pointer-events="none"><ellipse cx="-8" cy="8" rx="64" ry="19" fill="url(#actorGroundInk)" opacity=".82"/><ellipse cx="-7" cy="8" rx="28" ry="5" fill="#3c656a" opacity=".16"/><ellipse id="taviContactBounce" cx="-3" cy="5" rx="58" ry="13" fill="url(#terraceContactGold)" opacity=".14"/></g>
+        <g id="taviGroundShadow" pointer-events="none">
+          <ellipse cx="-8" cy="8" rx="64" ry="19" fill="url(#actorGroundInk)" opacity=".82"/>
+          <!-- The feet cast two low-profile cut-paper contact prints, physically
+               attached to the ground, not to the walking-bobbing body. -->
+          <g id="taviFootOcclusion" aria-hidden="true">
+            <path d="M-44 3Q-30-4-13 1l12 8q-22 5-42-2Z" fill="#435e60" opacity=".21"/>
+            <path d="M12 2q19-5 32 2l11 6q-22 6-46-2Z" fill="#435e60" opacity=".19"/>
+            <path d="M-37 5q15-5 25 0m28 0q14-4 26 2" stroke="#e6d5ad" stroke-width="1.8" opacity=".33" fill="none"/>
+          </g>
+          <ellipse cx="-7" cy="8" rx="28" ry="5" fill="#3c656a" opacity=".16"/>
+          <ellipse id="taviContactBounce" cx="-3" cy="5" rx="58" ry="13" fill="url(#terraceContactGold)" opacity=".14"/>
+        </g>
         <g id="taviFlip" transform="scale(1)">
         <g id="taviSprite" aria-label="Tavi original directional art">
         <g id="taviFrontArt">
@@ -1084,7 +1124,14 @@
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="7" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-33 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f3d19b" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="front" pointer-events="none">
+                <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+              <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
+              <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -93Q-38.5 -88 -48 -69.1Q-54.9 -56.8 -55.8 -44.4" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-46 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1122,7 +1169,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-32 -37l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f3d19b" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="front" pointer-events="none">
+                <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+              <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
+              <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -94Q-37.7 -88 -46.4 -70.1Q-53 -58 -53.6 -46" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-44.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1160,7 +1214,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-29 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f3d19b" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="front" pointer-events="none">
+                <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+              <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
+              <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -95Q-36.8 -88 -44.6 -71.3Q-50.9 -59.6 -51.1 -47.9" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1198,7 +1259,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-27 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f3d19b" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="front" pointer-events="none">
+                <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+              <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
+              <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -93Q-36.7 -88 -44.4 -73.4Q-50 -62.4 -49.5 -51.3" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1236,7 +1304,14 @@
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="11" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-27 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f3d19b" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="front" pointer-events="none">
+                <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+              <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
+              <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -93Q-36.9 -88 -44.8 -74.9Q-49.9 -64.3 -49 -53.6" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1274,7 +1349,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-29 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f3d19b" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="front" pointer-events="none">
+                <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+              <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
+              <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -94Q-36.9 -88 -44.8 -73.9Q-50.2 -63 -49.6 -52" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1312,7 +1394,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-31 -38l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f3d19b" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="front" pointer-events="none">
+                <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+              <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
+              <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -95Q-36.8 -88 -44.6 -72.7Q-50.4 -61.4 -50.1 -50.1" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-42.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1350,7 +1439,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-33 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f3d19b" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="front" pointer-events="none">
+                <path d="M-30 -94q-4 17-5 39m8 5q13 7 23 3m18 0q11 5 19-1" stroke="url(#farerCoatBindLight)" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+              <path d="M30 -93q4 18 5 44" stroke="#775b68" stroke-width="3.3" opacity=".56" fill="none" stroke-linecap="round"/>
+              <path d="m-26-80 5 1m-6 8 5 1m-6 8 5 1" stroke="#f9dfb2" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-29 -93Q-37.5 -88 -46 -70.6Q-52.5 -58.6 -52.9 -46.7" fill="none" stroke="#c78677" stroke-width="14" stroke-linecap="round"/>
     <path d="M-32 -83L-44 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1592,7 +1688,14 @@
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="7" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-33 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2c98c" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="rear" pointer-events="none">
+                <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
+              <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -93Q-39.5 -88 -49 -69.1Q-55.9 -56.8 -56.8 -44.4" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-47 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1625,7 +1728,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-32 -37l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2c98c" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="rear" pointer-events="none">
+                <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
+              <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -94Q-38.7 -88 -47.4 -70.1Q-54 -58 -54.6 -46" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-45.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1658,7 +1768,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-29 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2c98c" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="rear" pointer-events="none">
+                <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
+              <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -95Q-37.8 -88 -45.6 -71.3Q-51.9 -59.6 -52.1 -47.9" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1691,7 +1808,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-27 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2c98c" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="rear" pointer-events="none">
+                <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
+              <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -93Q-37.7 -88 -45.4 -73.4Q-51 -62.4 -50.5 -51.3" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1724,7 +1848,14 @@
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="11" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-27 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2c98c" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="rear" pointer-events="none">
+                <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
+              <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -93Q-37.9 -88 -45.8 -74.9Q-50.9 -64.3 -50 -53.6" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1757,7 +1888,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-29 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2c98c" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="rear" pointer-events="none">
+                <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
+              <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -94Q-37.9 -88 -45.8 -73.9Q-51.2 -63 -50.6 -52" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1790,7 +1928,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-31 -38l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2c98c" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="rear" pointer-events="none">
+                <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
+              <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -95Q-37.8 -88 -45.6 -72.7Q-51.4 -61.4 -51.1 -50.1" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-43.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -1823,7 +1968,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-33 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2c98c" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="rear" pointer-events="none">
+                <path d="M-30 -95q-4 20-4 40m7 6q11 7 22 3m19 0q12 6 20-1" stroke="url(#farerCoatBindLight)" stroke-width="2.9" fill="none" stroke-linecap="round"/>
+              <path d="M31 -94q2 20 3 43" stroke="#705464" stroke-width="3.7" opacity=".55" fill="none"/>
+              <path d="m-29-77 5 2m-6 7 5 2m-5 6 4 2" stroke="#f6ddba" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-30 -93Q-38.5 -88 -47 -70.6Q-53.5 -58.6 -53.9 -46.7" fill="none" stroke="#b87770" stroke-width="14" stroke-linecap="round"/>
     <path d="M-33 -83L-45 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2033,7 +2185,14 @@
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="7" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-30 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2d39e" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="side" pointer-events="none">
+                <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
+              <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-32.5 -88 -42 -69.1Q-48.9 -56.8 -49.8 -44.4" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-40 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2066,7 +2225,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-29 -37l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2d39e" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="side" pointer-events="none">
+                <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
+              <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -94Q-31.7 -88 -40.4 -70.1Q-47 -58 -47.6 -46" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-38.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2099,7 +2265,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-26 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2d39e" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="side" pointer-events="none">
+                <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
+              <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -95Q-30.8 -88 -38.6 -71.3Q-44.9 -59.6 -45.1 -47.9" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2132,7 +2305,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-24 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2d39e" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="side" pointer-events="none">
+                <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
+              <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-30.7 -88 -38.4 -73.4Q-44 -62.4 -43.5 -51.3" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2165,7 +2345,14 @@
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="11" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-24 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2d39e" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="side" pointer-events="none">
+                <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
+              <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-30.9 -88 -38.8 -74.9Q-43.9 -64.3 -43 -53.6" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2198,7 +2385,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-26 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2d39e" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="side" pointer-events="none">
+                <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
+              <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -94Q-30.9 -88 -38.8 -73.9Q-44.2 -63 -43.6 -52" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2231,7 +2425,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-28 -38l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2d39e" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="side" pointer-events="none">
+                <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
+              <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -95Q-30.8 -88 -38.6 -72.7Q-44.4 -61.4 -44.1 -50.1" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2264,7 +2465,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-30 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f2d39e" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="side" pointer-events="none">
+                <path d="M-23 -97q-5 16-7 39m4 6q10 6 22 6m21-1 12 7" stroke="url(#farerCoatBindLight)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+              <path d="M29 -91q2 21 5 41" stroke="#765968" stroke-width="3.4" opacity=".51" fill="none"/>
+              <path d="m-21-79 4 1m-6 6 5 2" stroke="#f9dfb2" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-31.5 -88 -40 -70.6Q-46.5 -58.6 -46.9 -46.7" fill="none" stroke="#a97976" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-38 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2543,7 +2751,14 @@
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="7" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-31.2 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f6d5a2" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-front" pointer-events="none">
+                <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
+              <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-32.5 -88 -42 -69.1Q-48.9 -56.8 -49.8 -44.4" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-40 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2581,7 +2796,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-30.2 -37l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f6d5a2" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-front" pointer-events="none">
+                <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
+              <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -94Q-31.7 -88 -40.4 -70.1Q-47 -58 -47.6 -46" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-38.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2619,7 +2841,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-27.2 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f6d5a2" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-front" pointer-events="none">
+                <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
+              <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -95Q-30.8 -88 -38.6 -71.3Q-44.9 -59.6 -45.1 -47.9" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2657,7 +2886,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-25.2 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f6d5a2" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-front" pointer-events="none">
+                <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
+              <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-30.7 -88 -38.4 -73.4Q-44 -62.4 -43.5 -51.3" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2695,7 +2931,14 @@
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="11" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-25.2 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f6d5a2" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-front" pointer-events="none">
+                <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
+              <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-30.9 -88 -38.8 -74.9Q-43.9 -64.3 -43 -53.6" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2733,7 +2976,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-27.2 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f6d5a2" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-front" pointer-events="none">
+                <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
+              <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -94Q-30.9 -88 -38.8 -73.9Q-44.2 -63 -43.6 -52" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2771,7 +3021,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-29.2 -38l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f6d5a2" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-front" pointer-events="none">
+                <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
+              <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -95Q-30.8 -88 -38.6 -72.7Q-44.4 -61.4 -44.1 -50.1" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-36.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -2809,7 +3066,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-31.2 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#f6d5a2" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-front" pointer-events="none">
+                <path d="M-23 -96q-5 18-8 41m7 7q12 8 23 2m18 2 14-1" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -93q2 21 3 43" stroke="#735765" stroke-width="3.3" opacity=".56" fill="none"/>
+              <path d="m-23-80 5 1m-7 8 5 1m-6 7 5 2" stroke="#f9dfb8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-23 -93Q-31.5 -88 -40 -70.6Q-46.5 -58.6 -46.9 -46.7" fill="none" stroke="#ab7476" stroke-width="14" stroke-linecap="round"/>
     <path d="M-26 -83L-38 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3078,7 +3342,14 @@
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="7" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-31.5 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#e9d3a1" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-rear" pointer-events="none">
+                <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
+              <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -93Q-36.5 -88 -46 -69.1Q-52.9 -56.8 -53.8 -44.4" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-44 -66.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3116,7 +3387,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-30.5 -37l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#e9d3a1" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-rear" pointer-events="none">
+                <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
+              <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -94Q-35.7 -88 -44.4 -70.1Q-51 -58 -51.6 -46" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-42.4 -67.1" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3154,7 +3432,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-27.5 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#e9d3a1" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-rear" pointer-events="none">
+                <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
+              <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -95Q-34.8 -88 -42.6 -71.3Q-48.9 -59.6 -49.1 -47.9" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.6 -68.3" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3192,7 +3477,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-25.5 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#e9d3a1" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-rear" pointer-events="none">
+                <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
+              <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -93Q-34.7 -88 -42.4 -73.4Q-48 -62.4 -47.5 -51.3" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.4 -70.4" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3230,7 +3522,14 @@
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="11" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-25.5 -42l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#e9d3a1" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-rear" pointer-events="none">
+                <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
+              <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -93Q-34.9 -88 -42.8 -74.9Q-47.9 -64.3 -47 -53.6" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.8 -71.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3268,7 +3567,14 @@
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="10" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-27.5 -40l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#e9d3a1" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-rear" pointer-events="none">
+                <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
+              <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -94Q-34.9 -88 -42.8 -73.9Q-48.2 -63 -47.6 -52" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.8 -70.9" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3306,7 +3612,14 @@
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="9" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-29.5 -38l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#e9d3a1" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-rear" pointer-events="none">
+                <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
+              <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -95Q-34.8 -88 -42.6 -72.7Q-48.4 -61.4 -48.1 -50.1" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-40.6 -69.7" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>
@@ -3344,7 +3657,14 @@
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
    <circle cx="8" cy="-85" r="2.8" fill="#f9dba1"/>
    <path d="M-31.5 -36l10 2m9-2 8-3m11 1 8-2" fill="none" stroke="#e9d3a1" stroke-width="2.3" stroke-dasharray="4 5"/>
-  </g>
+  
+              <!-- Original cut-card coat rim, individually attached to this
+                   exact upper-body pose and NOT a global fixed sticker. -->
+              <g class="tavi-cardstock-coat-edges" data-coat-view="quarter-rear" pointer-events="none">
+                <path d="M-28 -96q-4 18-6 41m8 9q10 5 22 0m19 0q11 5 19-2" stroke="url(#farerCoatBindLight)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M31 -92q2 20 3 41" stroke="#715763" stroke-width="3.3" opacity=".55" fill="none"/>
+              <path d="m-26-80 4 2m-6 6 5 2m-5 8 4 1" stroke="#f9dfb4" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+              </g></g>
  <g class="tavi-upper-arm tavi-upper-left">
     <path d="M-27 -93Q-35.5 -88 -44 -70.6Q-50.5 -58.6 -50.9 -46.7" fill="none" stroke="#a16d75" stroke-width="14" stroke-linecap="round"/>
     <path d="M-30 -83L-42 -67.6" fill="none" stroke="#f2b593" opacity=".55" stroke-width="2.6" stroke-linecap="round"/>

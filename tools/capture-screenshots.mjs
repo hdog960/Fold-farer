@@ -617,6 +617,45 @@ try {
     throw Error('0.24 parallax must not move fixed scenery or tree collision anchor');
   }
   console.log('0.24 COMPOSITION:',JSON.stringify({treeCover,inlayQA}));
+
+  // First Fold 0.25: real Chromium verifies ALL independently painted coat
+  // facings are present, character world-coordinate shadows remain outside
+  // the animated body, and lighting is derived from actual terrace position.
+  const actorsQA=await terraceNear.locator('#tavi').evaluate(actor=>{
+    const bird=document.getElementById('morrow');
+    const rimGroups=[...actor.querySelectorAll('.tavi-cardstock-coat-edges')];
+    const numByPose={};
+    for(const e of rimGroups)numByPose[e.getAttribute('data-coat-view')]=(numByPose[e.getAttribute('data-coat-view')]||0)+1;
+    const getBox=id=>{const b=document.getElementById(id).getBBox();return {width:b.width,height:b.height,x:b.x,y:b.y}};
+    const bshadow=document.getElementById('morrowGroundShadow');
+    const tshadow=document.getElementById('taviGroundShadow');
+    const tflip=document.getElementById('taviFlip');
+    const msprite=document.getElementById('morrowSprite');
+    actor.classList.add('walking');
+    const rootAnimation=getComputedStyle(actor).animationName;
+    const bodyAnimation=getComputedStyle(tflip).animationName;
+    actor.classList.remove('walking');
+    return {numByPose,rootAnimation,bodyAnimation,
+      taviMaterial:actor.style.getPropertyValue('--paper-rim-strength'),
+      morrowMaterial:bird.style.getPropertyValue('--paper-rim-strength'),
+      taviShadowSibling:tshadow.parentNode===tflip.parentNode,
+      morrowShadowSibling:bshadow.parentNode===msprite.parentNode,
+      taviShadow:getBox('taviFootOcclusion'),
+      birdPaper:getBox('morrowCardstockFeathers'),
+      taviPaper:getBox('taviGroundShadow'),
+      birdPaperOpacity:getComputedStyle(document.getElementById('morrowCardstockFeathers')).opacity};
+  });
+  if(['front','rear','side','quarter-front','quarter-rear'].some(x=>actorsQA.numByPose[x]!==8)||
+     actorsQA.rootAnimation!=='none'||!actorsQA.bodyAnimation.includes('farerBodyStride')||
+     !actorsQA.taviShadowSibling||!actorsQA.morrowShadowSibling||
+     actorsQA.taviShadow.width<55||actorsQA.birdPaper.height<85||
+     actorsQA.taviPaper.width<100||
+     Number(actorsQA.taviMaterial)<.5||Number(actorsQA.morrowMaterial)<.5){
+    throw Error('0.25 characters are not physically integrated on real gameplay floor: '+JSON.stringify(actorsQA));
+  }
+  // Snapshot is captured from game renderer after all actual movement and
+  // stage depth ordering have run, never from standalone concept artwork.
+  await terraceNear.screenshot({path:'screenshots/40-terrace-character-cardstock-contact.png'});
   await terraceNear.screenshot({path:'screenshots/39-terrace-engraving-and-shadow.png'});
   await terraceNear.screenshot({path:'screenshots/38-terrace-distinct-shopfronts.png'});
   if(await terraceNear.locator('#tavi').getAttribute('transform')!==savedPose)

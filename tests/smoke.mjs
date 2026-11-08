@@ -152,7 +152,7 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.36'),'The existing Home Screen PWA must refresh 0.24.1 assets');
+assert(sw.includes('foldfarer-shell-0.37'),'The existing Home Screen PWA must refresh 0.25 assets');
 
 
 const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
@@ -174,7 +174,7 @@ assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
  'Independent physical depth layers require separate deterministic parallax');
 assert(!html.includes('M-10 302 122 176 228 229 350 134'),
  'Generic zig-zag mountain card must be replaced, not covered with a decal');
-assert(sw.includes('foldfarer-shell-0.36'),'Mobile must fetch the new 0.24.1 build');
+assert(sw.includes('foldfarer-shell-0.37'),'Mobile must fetch the new 0.25 build');
 
 
 const identityIds=['terraceDyeEnamel','terraceDyeCavity','terraceHerbVellum','terraceHerbRib',
@@ -219,6 +219,29 @@ assert(html.includes('id="terraceRibbonTree" transform="translate(1177 591)"'),
 assert(css.includes('#terraceBookbinderWalkway *')&&
  css.includes('pointer-events:none!important'),
  'Painted ground shadows must not steal tapping');
-assert(sw.includes('foldfarer-shell-0.36'),'0.24.1 assets must invalidate earlier Home Screen cache');
+assert(sw.includes('foldfarer-shell-0.37'),'0.25 assets must invalidate earlier Home Screen cache');
+
+
+const upperPoseViews=['front','rear','side','quarter-front','quarter-rear'];
+const authoredCoatRims=(html.match(/class="tavi-cardstock-coat-edges"/g)||[]).length;
+assert(authoredCoatRims===40,'0.25 must have original drawn cardstock edges in ALL 40 upper-body cels');
+for(const view of upperPoseViews){
+ const n=(html.match(new RegExp('data-coat-view="'+view+'"','g'))||[]).length;
+ assert(n===8,'Missing original garment rim for '+view+': '+n+'/8');
+}
+for(const id of ['farerCoatBindLight','morrowFeatherBindLight','morrowCardstockFeathers',
+ 'taviFootOcclusion','morrowFeatherOcclusion'])
+ assert(ids.includes(id),'0.25 paper character material missing: '+id);
+assert(css.includes('#tavi.walking{animation:none!important;translate:0 0!important}') &&
+ css.includes('#tavi.walking #taviFlip{animation:farerBodyStride') &&
+ css.includes('#taviGroundShadow,#morrowGroundShadow{animation:none!important'),
+ 'World-positioned shadows must not bounce when character bodies animate');
+assert(html.indexOf('id="taviGroundShadow"')<html.indexOf('id="taviFlip"') &&
+ html.indexOf('id="morrowGroundShadow"')<html.indexOf('id="morrowSprite"'),
+ 'Stationary ground shadow must be sibling before animated sprite, not its child');
+assert(game.includes("el.tavi.style.setProperty('--paper-rim-strength'") &&
+ game.includes("el.morrow.style.setProperty('--paper-rim-strength'"),
+ 'Actor fabric reflections must change with physical scene lighting');
+assert(sw.includes('foldfarer-shell-0.37'),'PWA must refresh the 0.25 art assets');
 
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');

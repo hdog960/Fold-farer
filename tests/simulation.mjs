@@ -10,7 +10,10 @@ function element(id){
  const classes=new Set();
  const listeners=new Map();
  return {
-   id,style:{},dataset:{},firstChild:{textContent:''},textContent:'',innerHTML:'',attrs:{},
+   id,style:{
+     setProperty(name,value){this[name]=String(value);},
+     getPropertyValue(name){return this[name]??'';}
+   },dataset:{},firstChild:{textContent:''},textContent:'',innerHTML:'',attrs:{},
    classList:{
      add:x=>classes.add(x),remove:x=>classes.delete(x),
      contains:x=>classes.has(x),
