@@ -1126,6 +1126,47 @@ try {
   await face33.screenshot({path:'screenshots/52-tavi-cut-paper-hair-in-game.png'});
   await face33.locator('#tavi').screenshot({path:'screenshots/53-tavi-hair-and-collar-closeup.png'});
 
+
+  // 0.35 original companion paper engineering — verify the genuine animated
+  // world actor, all eight feathered wings and all seven parchment-eye faces.
+  const realBird35=await terraceNear.locator('#morrowSprite').evaluate(bird=>{
+    const errors=[],wing=[];
+    const cut=bird.querySelector('#morrowOriginalCardBody35');
+    const crown=bird.querySelector('#morrowFeatherCrown35');
+    const breast=bird.querySelector('#morrowIllustratedBreast35');
+    const tail=bird.querySelector('#morrowInkedTail35');
+    const eyes=[...bird.querySelectorAll('.morrow-cut-face35')];
+    const wingframes=[...bird.querySelectorAll('.morrow-wing-frame')];
+    for(const el of [cut,crown,breast,tail]){
+      const b=el?.getBBox();
+      if(!b||b.width<30||b.height<18)errors.push('Collapsed companion body component');
+    }
+    if(eyes.length!==14||eyes.some(e=>e.getBBox().width<15||e.getBBox().height<24))
+      errors.push('Morrow original expression face illustration missing');
+    for(let frame=0;frame<4;frame++){
+      const stage=wingframes.find(w=>w.dataset.wingFrame===String(frame));
+      const panels=[...(stage?.querySelectorAll('.morrow-physical-wing-relief35')||[])];
+      if(panels.length!==2)errors.push('Wing frame '+frame+' missing both original feather planes');
+      for(const side of ['left','right']){
+        const relief=panels.find(p=>p.dataset.featherSide===side);
+        const bounds=relief?.getBBox();
+        const touches=getComputedStyle(relief).pointerEvents;
+        if(!bounds||bounds.width<20||bounds.height<18||touches!=='none')
+          errors.push('Wing relief not physical/touch-transparent '+frame+'/'+side);
+        wing.push({frame,side,w:bounds?.width,h:bounds?.height});
+      }
+    }
+    return {errors,wing,body:cut?.getBBox().width,eyes:eyes.length,
+      root:bird.closest('#morrow')?.getAttribute('transform')};
+  });
+  if(realBird35.errors.length||realBird35.wing.length!==8||
+     realBird35.eyes!==14||!realBird35.root)
+    throw Error('0.35 companion original paper anatomy regression: '+JSON.stringify(realBird35));
+  console.log('0.35 ACTUAL Morrow cut-card illustration:',JSON.stringify(realBird35));
+  await face33.screenshot({path:'screenshots/54-morrow-illustrated-north-terrace.png'});
+  await face33.locator('#morrow').screenshot({
+    path:'screenshots/55-morrow-illustrated-companion-closeup.png'});
+
   await face33.close();
   await terraceNear.emulateMedia({reducedMotion:'reduce'});
 
