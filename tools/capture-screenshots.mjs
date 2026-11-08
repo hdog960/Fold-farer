@@ -546,7 +546,7 @@ try {
     const nearLeft=rectangles.find(a=>a.id==='terraceDyeTower');
     const nearRight=rectangles.find(a=>a.id==='terraceConservatoryCupola');
     return {rootEvents:getComputedStyle(root).pointerEvents,
-      properOrder,rectangles,signFits:sign.x>=0&&sign.x+sign.w<300,
+      properOrder,rectangles,signFits:sign.x>=0&&sign.x+sign.width<300,
       plaqueFits:plaque.x>1150&&plaque.x+plaque.width<1450,
       twoDifferentSilhouettes:nearLeft.w!==nearRight.w||nearLeft.h!==nearRight.h,
       distinctParents:document.getElementById('terraceDyerIdentity')!==document.getElementById('terraceConservatoryIdentity')};
