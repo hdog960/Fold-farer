@@ -212,7 +212,7 @@ assert(html.indexOf('id="terracePavingInlay"')<html.indexOf('id="terraceBookbind
  html.indexOf('id="terraceBookbinderWalkway"')<html.indexOf('id="terraceNaturalMarginalia"')&&
  html.indexOf('id="terraceBookbinderWalkway"')<html.indexOf('id="terraceDepthStage"'),
  'Story engraving and cast shadows must be stationary and behind characters');
-assert(html.includes('class="terrace-leaf-sway" transform="translate(-62 -10)"'),
+assert(html.includes('class="terrace-leaf-sway" transform="translate(-96 -10)"'),
  'Tree foliage should stop hiding the conservatory display');
 assert(html.includes('id="terraceRibbonTree" transform="translate(1177 591)"'),
  'Ribbon tree physics must not be moved merely for canopy clearance');
