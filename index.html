@@ -21,6 +21,22 @@
   <div class="world-frame">
     <svg id="world" viewBox="0 0 1440 810" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A richly layered paper-and-fabric village at golden hour, with houses, flowers, stitched hills and a damaged bridge">
       <defs>
+        <linearGradient id="terraceCutPageFace" x1="0%" y1="0%" x2="7%" y2="100%">
+          <stop offset="0" stop-color="#fff1ca"/><stop offset=".12" stop-color="#d4ac8e"/>
+          <stop offset=".43" stop-color="#a67d79"/><stop offset=".69" stop-color="#bb9786"/>
+          <stop offset="1" stop-color="#816675"/>
+        </linearGradient>
+        <linearGradient id="terraceStepUnderlip" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0" stop-color="#514c60" stop-opacity=".44"/>
+          <stop offset=".46" stop-color="#725f6a" stop-opacity=".2"/>
+          <stop offset="1" stop-color="#816f71" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="terraceGrazingGold" x1="0%" y1="0%" x2="100%" y2="40%">
+          <stop offset="0" stop-color="#fcdfaf" stop-opacity=".04"/>
+          <stop offset=".43" stop-color="#fff3cc" stop-opacity=".44"/>
+          <stop offset="1" stop-color="#f2d39c" stop-opacity=".09"/>
+        </linearGradient>
+
         <radialGradient id="actorGroundInk"><stop stop-color="#1f404e" stop-opacity=".7"/><stop offset=".5" stop-color="#355c62" stop-opacity=".35"/><stop offset="1" stop-color="#355c62" stop-opacity="0"/></radialGradient>
         <linearGradient id="terraceDyeSilk" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#e9d6ad"/><stop offset=".35" stop-color="#87b9b4"/><stop offset=".67" stop-color="#537f89"/><stop offset="1" stop-color="#c08d9d"/></linearGradient>
         <linearGradient id="terraceGlassPaper" x1="0%" x2="100%" y1="0%" y2="35%"><stop stop-color="#faf0d7" stop-opacity=".04"/><stop offset=".43" stop-color="#fff3d0" stop-opacity=".49"/><stop offset=".68" stop-color="#f9ecd3" stop-opacity=".04"/><stop offset="1" stop-color="#f1dbb0" stop-opacity=".29"/></linearGradient>
@@ -3564,6 +3580,122 @@
             <path d="m184 522 15-47 24 41Z"/><path d="m253 535 19-42 24 41Z"/>
             <path d="m1203 515 20-52 24 46Z"/><path d="m1290 538 18-42 22 41Z"/>
           </g>
+
+          <!-- Six real pop-up-book step cross sections share existing traversable
+               ground coordinates; artwork adds no walls, masks or input areas. -->
+          <g id="terraceStairFoldAssembly" pointer-events="none" aria-label="Exposed folio-paper step edges and fine hand stitched layers">
+
+            <g class="terrace-stair-fold" data-step="1" aria-hidden="true">
+              <path d="M604 459Q724 455 844 460L856 471Q724 468 592 471Z" fill="url(#terraceStepUnderlip)" opacity=".63"/>
+              <path d="M596 466Q702 469 852 466L857 475Q738 478 592 475Z" fill="url(#terraceCutPageFace)" stroke="#836674" stroke-width="2.8" stroke-linejoin="round"/>
+              <path d="M599 468Q724 470 849 468" fill="none" stroke="#fff0ca" stroke-width="2.6" opacity=".9" stroke-linecap="round"/>
+              <path d="M599 471Q735 473 850 471" fill="none" stroke="#e7c29d" stroke-width="1.9" opacity=".69"/>
+              <path d="M594 473Q724 476 854 473" fill="none" stroke="#695c6d" stroke-width="2.3" opacity=".57"/>
+              <path d="M602 471.72Q704 471.64 846 472.12" fill="none" stroke="#f3d9ae" stroke-width="1.3" opacity=".49" stroke-dasharray="9 6 4 11"/>
+              <path d="M596 466l-11-3-9 8 15 8.6 13-7Z" fill="#b3867f" stroke="#795f6d" stroke-width="2.8"/>
+              <path d="M586 464l-7 7 10 4" fill="none" stroke="#f2d1a6" stroke-width="2.1"/>
+              <path d="M852 466l12-3 10 8-17 9.6-9-8Z" fill="#947b7f" stroke="#756171" stroke-width="2.8"/>
+              <path d="M863 464l8 7-12 5" fill="none" stroke="#efd1a4" stroke-width="2"/>
+              <path d="M693 470l-3 3 2 2" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M743 470.7l3 3 -2 2" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M821 471.4l-3 3 -2 2" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+            </g>
+
+            <g class="terrace-stair-fold" data-step="2" aria-hidden="true">
+              <path d="M559 500Q723 496 887 501L899 512Q723 509 547 512Z" fill="url(#terraceStepUnderlip)" opacity=".63"/>
+              <path d="M551 507Q701 510 895 507L900 518Q737 521 547 518Z" fill="url(#terraceCutPageFace)" stroke="#836674" stroke-width="3.01" stroke-linejoin="round"/>
+              <path d="M554 509Q723 511 892 509" fill="none" stroke="#fff0ca" stroke-width="2.78" opacity=".9" stroke-linecap="round"/>
+              <path d="M554 512Q734 514 893 512" fill="none" stroke="#e7c29d" stroke-width="1.9" opacity=".69"/>
+              <path d="M549 516Q723 519 897 516" fill="none" stroke="#695c6d" stroke-width="2.51" opacity=".57"/>
+              <path d="M557 513.9Q703 513.8 889 514.4" fill="none" stroke="#f3d9ae" stroke-width="1.3" opacity=".49" stroke-dasharray="9 6 4 11"/>
+              <path d="M551 507l-11-3-9 8 15 10 13-7Z" fill="#b3867f" stroke="#795f6d" stroke-width="2.8"/>
+              <path d="M541 505l-7 7 10 4" fill="none" stroke="#f2d1a6" stroke-width="2.1"/>
+              <path d="M895 507l12-3 10 8-17 11-9-8Z" fill="#947b7f" stroke="#756171" stroke-width="2.8"/>
+              <path d="M906 505l8 7-12 5" fill="none" stroke="#efd1a4" stroke-width="2"/>
+              <path d="M657.8 511l-3 3.5 2 2" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M702.6 511.7l3 3.5 -2 2" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M795.4 512.4l-3 3.5 -2 2" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M840.2 511l3 3.5 2 2" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+            </g>
+
+            <g class="terrace-stair-fold" data-step="3" aria-hidden="true">
+              <path d="M513 550Q722.5 546 932 551L944 562Q722.5 559 501 562Z" fill="url(#terraceStepUnderlip)" opacity=".63"/>
+              <path d="M505 557Q700.5 560 940 557L945 569Q736.5 572 501 569Z" fill="url(#terraceCutPageFace)" stroke="#836674" stroke-width="3.22" stroke-linejoin="round"/>
+              <path d="M508 559Q722.5 561 937 559" fill="none" stroke="#fff0ca" stroke-width="2.96" opacity=".9" stroke-linecap="round"/>
+              <path d="M508 562Q733.5 564 938 562" fill="none" stroke="#e7c29d" stroke-width="1.9" opacity=".69"/>
+              <path d="M503 567Q722.5 570 942 567" fill="none" stroke="#695c6d" stroke-width="2.72" opacity=".57"/>
+              <path d="M511 564.49Q702.5 564.38 934 565.04" fill="none" stroke="#f3d9ae" stroke-width="1.3" opacity=".49" stroke-dasharray="9 6 4 11"/>
+              <path d="M505 557l-11-3-9 8 15 10.7 13-7Z" fill="#b3867f" stroke="#795f6d" stroke-width="2.8"/>
+              <path d="M495 555l-7 7 10 4" fill="none" stroke="#f2d1a6" stroke-width="2.1"/>
+              <path d="M940 557l12-3 10 8-17 11.7-9-8Z" fill="#947b7f" stroke="#756171" stroke-width="2.8"/>
+              <path d="M951 555l8 7-12 5" fill="none" stroke="#efd1a4" stroke-width="2"/>
+              <path d="M608.5 561l-3 3.85 2 2" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M671 561.7l3 3.85 -2 2" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M753.5 562.4l-3 3.85 -2 2" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M816 561l3 3.85 2 2" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M898.5 561.7l-3 3.85 -2 2" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+            </g>
+
+            <g class="terrace-stair-fold" data-step="4" aria-hidden="true">
+              <path d="M449 613Q718.5 609 988 614L1000 625Q718.5 622 437 625Z" fill="url(#terraceStepUnderlip)" opacity=".63"/>
+              <path d="M441 620Q696.5 623 996 620L1001 634Q732.5 637 437 634Z" fill="url(#terraceCutPageFace)" stroke="#836674" stroke-width="3.43" stroke-linejoin="round"/>
+              <path d="M444 622Q718.5 624 993 622" fill="none" stroke="#fff0ca" stroke-width="3.14" opacity=".9" stroke-linecap="round"/>
+              <path d="M444 625Q729.5 627 994 625" fill="none" stroke="#e7c29d" stroke-width="1.9" opacity=".69"/>
+              <path d="M439 632Q718.5 635 998 632" fill="none" stroke="#695c6d" stroke-width="2.93" opacity=".57"/>
+              <path d="M447 628.67Q698.5 628.54 990 629.32" fill="none" stroke="#f3d9ae" stroke-width="1.3" opacity=".49" stroke-dasharray="9 6 4 11"/>
+              <path d="M441 620l-11-3-9 8 15 12.1 13-7Z" fill="#b3867f" stroke="#795f6d" stroke-width="2.8"/>
+              <path d="M431 618l-7 7 10 4" fill="none" stroke="#f2d1a6" stroke-width="2.1"/>
+              <path d="M996 620l12-3 10 8-17 13.1-9-8Z" fill="#947b7f" stroke="#756171" stroke-width="2.8"/>
+              <path d="M1007 618l8 7-12 5" fill="none" stroke="#efd1a4" stroke-width="2"/>
+              <path d="M561.29 624l-3 4.55 2 2.21" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M610.57 624.7l3 4.55 -2 2.21" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M719.86 625.4l-3 4.55 -2 2.21" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M769.14 624l3 4.55 2 2.21" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M878.43 624.7l-3 4.55 -2 2.21" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M927.71 625.4l3 4.55 -2 2.21" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+            </g>
+
+            <g class="terrace-stair-fold" data-step="5" aria-hidden="true">
+              <path d="M371 698Q716.5 694 1062 699L1074 710Q716.5 707 359 710Z" fill="url(#terraceStepUnderlip)" opacity=".63"/>
+              <path d="M363 705Q694.5 708 1070 705L1075 721Q730.5 724 359 721Z" fill="url(#terraceCutPageFace)" stroke="#836674" stroke-width="3.64" stroke-linejoin="round"/>
+              <path d="M366 707Q716.5 709 1067 707" fill="none" stroke="#fff0ca" stroke-width="3.32" opacity=".9" stroke-linecap="round"/>
+              <path d="M366 710Q727.5 712 1068 710" fill="none" stroke="#e7c29d" stroke-width="1.9" opacity=".69"/>
+              <path d="M361 719Q716.5 722 1072 719" fill="none" stroke="#695c6d" stroke-width="3.14" opacity=".57"/>
+              <path d="M369 714.85Q696.5 714.7 1064 715.6" fill="none" stroke="#f3d9ae" stroke-width="1.3" opacity=".49" stroke-dasharray="9 6 4 11"/>
+              <path d="M363 705l-11-3-9 8 15 13.5 13-7Z" fill="#b3867f" stroke="#795f6d" stroke-width="2.8"/>
+              <path d="M353 703l-7 7 10 4" fill="none" stroke="#f2d1a6" stroke-width="2.1"/>
+              <path d="M1070 705l12-3 10 8-17 14.5-9-8Z" fill="#947b7f" stroke="#756171" stroke-width="2.8"/>
+              <path d="M1081 703l8 7-12 5" fill="none" stroke="#efd1a4" stroke-width="2"/>
+              <path d="M486.38 709l-3 5.25 2 2.55" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M556.75 709.7l3 5.25 -2 2.55" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M663.13 710.4l-3 5.25 -2 2.55" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M733.5 709l3 5.25 2 2.55" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M839.88 709.7l-3 5.25 -2 2.55" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M910.25 710.4l3 5.25 -2 2.55" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M1016.63 709l-3 5.25 2 2.55" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+            </g>
+
+            <g class="terrace-stair-fold" data-step="6" aria-hidden="true">
+              <path d="M285 792Q715 788 1145 793L1157 804Q715 801 273 804Z" fill="url(#terraceStepUnderlip)" opacity=".63"/>
+              <path d="M277 799Q693 802 1153 799L1158 817Q729 820 273 817Z" fill="url(#terraceCutPageFace)" stroke="#836674" stroke-width="3.85" stroke-linejoin="round"/>
+              <path d="M280 801Q715 803 1150 801" fill="none" stroke="#fff0ca" stroke-width="3.5" opacity=".9" stroke-linecap="round"/>
+              <path d="M280 804Q726 806 1151 804" fill="none" stroke="#e7c29d" stroke-width="1.9" opacity=".69"/>
+              <path d="M275 815Q715 818 1155 815" fill="none" stroke="#695c6d" stroke-width="3.35" opacity=".57"/>
+              <path d="M283 810.03Q695 809.86 1147 810.88" fill="none" stroke="#f3d9ae" stroke-width="1.3" opacity=".49" stroke-dasharray="9 6 4 11"/>
+              <path d="M277 799l-11-3-9 8 15 14.9 13-7Z" fill="#b3867f" stroke="#795f6d" stroke-width="2.8"/>
+              <path d="M267 797l-7 7 10 4" fill="none" stroke="#f2d1a6" stroke-width="2.1"/>
+              <path d="M1153 799l12-3 10 8-17 15.9-9-8Z" fill="#947b7f" stroke="#756171" stroke-width="2.8"/>
+              <path d="M1164 797l8 7-12 5" fill="none" stroke="#efd1a4" stroke-width="2"/>
+              <path d="M418.33 803l-3 5.95 2 2.89" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M479.67 803.7l3 5.95 -2 2.89" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M613 804.4l-3 5.95 -2 2.89" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M674.33 803l3 5.95 2 2.89" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M807.67 803.7l-3 5.95 -2 2.89" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M869 804.4l3 5.95 -2 2.89" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+              <path d="M1002.33 803l-3 5.95 2 2.89" fill="none" stroke="#775e6b" stroke-width="1.3" opacity=".68"/>
+              <path d="M1063.67 803.7l3 5.95 -2 2.89" fill="none" stroke="#fce1b2" stroke-width="1.6" opacity=".68"/>
+            </g>
+          </g>
         </g>
 
         <!-- THREE-LAYER PAVING WORK: deliberate varied motifs and physically
@@ -3769,6 +3901,11 @@
         <!-- The ambient light reacts to the depth camera by a few units;
              architecture and gameplay collision remain fully stationary. -->
         <g id="terraceLightShift" pointer-events="none">
+          <g id="terraceStairRakingLight" aria-hidden="true">
+            <path d="M639 440Q724 444 814 438L1085 780Q767 699 367 798Z" fill="url(#terraceGrazingGold)" opacity=".22"/>
+            <path d="M633 472Q724 475 859 471M574 560Q733 555 926 559M453 704Q725 703 1062 706" fill="none" stroke="#fff5d6" stroke-width="3" opacity=".16" stroke-linecap="round"/>
+          </g>
+
           <ellipse cx="1018" cy="363" rx="540" ry="350" fill="url(#terraceWarmBounce)" opacity=".52"/>
           <ellipse cx="476" cy="531" rx="275" ry="180" fill="url(#terraceWarmBounce)" opacity=".27"/>
           <path d="M1075 277q-162 151-293 205l-21 84q178-73 382-271Z" fill="#ffe9b3" opacity=".05"/>

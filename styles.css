@@ -653,3 +653,10 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #tavi.turning #taviFrontQuarterArt,#tavi.turning #taviBackQuarterArt{display:revert!important}
  #morrow.reacting .morrow-reaction-cel[data-beak="1"]{display:none!important}
 }
+
+/* First Fold 0.20.0: actual ground-space, handcrafted paper stair risers. */
+#terraceStairFoldAssembly,#terraceStairFoldAssembly *,
+#terraceStairRakingLight,#terraceStairRakingLight *{pointer-events:none!important}
+#terraceStairFoldAssembly .terrace-stair-fold{shape-rendering:geometricPrecision}
+#terraceStairRakingLight{mix-blend-mode:screen}
+@media(prefers-reduced-motion:reduce){#terraceStairRakingLight{mix-blend-mode:normal;opacity:.7}}
