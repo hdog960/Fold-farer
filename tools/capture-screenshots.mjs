@@ -362,12 +362,50 @@ try {
   });
   if(!turn.turning||turn.shown.length!==1||turn.shown[0]!==turn.phase||turn.pointer!=='none')
     throw Error('Illustrated turn poses did not render on the playable character: '+JSON.stringify(turn));
+  const bodyTurn=await pivotPage.locator('#tavi').evaluate(el=>{
+    const group=document.getElementById('taviTurnAtlas');
+    const visible=[...group.querySelectorAll('.tavi-turn-cel')]
+      .filter(node=>getComputedStyle(node).display!=='none');
+    const bounds=visible.length===1?visible[0].getBBox():null;
+    return {turning:el.classList.contains('turning'),phase:el.dataset.turnPhase,
+      view:el.dataset.turnView,shown:visible.map(n=>n.dataset.turnView+':'+n.dataset.turnPhase),
+      width:bounds?.width,height:bounds?.height,hit:getComputedStyle(group).pointerEvents};
+  });
+  if(!bodyTurn.turning||bodyTurn.shown.length!==1||
+     bodyTurn.shown[0]!==bodyTurn.view+':'+bodyTurn.phase||
+     bodyTurn.width<65||bodyTurn.height<145||bodyTurn.hit!=='none')
+    throw Error('Full-body turn is not one drawn, foot-anchored pose: '+JSON.stringify(bodyTurn));
+  await pivotPage.screenshot({path:'screenshots/33-tavi-fullbody-direction-turn.png',animations:'allow'});
   await pivotPage.screenshot({path:'screenshots/32-tavi-paper-pivot-turn.png',animations:'allow'});
   await pivotPage.waitForTimeout(180);
-  if(await pivotPage.locator('#tavi').evaluate(el=>el.classList.contains('pivoting')))
-    throw Error('Paper pivot continued after its animation ended');
+  if(await pivotPage.locator('#tavi').evaluate(el=>el.classList.contains('pivoting')||el.classList.contains('turning')))
+    throw Error('Full-body turn persisted after its intended three frames');
   await pivotPage.keyboard.up('ArrowUp');
   await pivotPage.close();
+
+
+  const morrowActing=await openedAt({
+    started:true,area:'folio',x:628,y:705,facing:1,direction:'down',
+    metMorrow:true,mended:false,letter:false,won:false
+  });
+  await morrowActing.emulateMedia({reducedMotion:'no-preference'});
+  await morrowActing.locator('#interact').click();
+  await morrowActing.locator('#dialogue').waitFor({state:'visible'});
+  const owl=await morrowActing.locator('#morrow').evaluate(el=>{
+    const atlas=document.getElementById('morrowReactionAtlas');
+    const visible=[...atlas.querySelectorAll('.morrow-reaction-cel')]
+       .filter(n=>getComputedStyle(n).display!=='none');
+    return {reacting:el.classList.contains('reacting'),reaction:el.dataset.reaction,
+      beak:el.dataset.beak,shown:visible.map(n=>n.dataset.reaction+':'+n.dataset.beak),
+      resting:getComputedStyle(el.querySelector('.morrow-rest-face')).display};
+  });
+  if(!owl.reacting||owl.shown.length!==1||owl.shown[0]!==owl.reaction+':'+owl.beak||
+      owl.resting!=='none')throw Error('Morrow expression must replace old face: '+JSON.stringify(owl));
+  await morrowActing.screenshot({path:'screenshots/34-morrow-live-dialogue-reaction.png',animations:'allow'});
+  await morrowActing.locator('#nextLine').click();
+  if(await morrowActing.locator('#morrow').evaluate(el=>el.classList.contains('reacting')))
+    throw Error('Morrow did not release facial acting on dialogue close');
+  await morrowActing.close();
 
   const terraceNear=await openedAt({started:true,area:'terrace',x:720,y:702,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   if(await terraceNear.locator('#terraceScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('North Terrace is hidden after loading its save');

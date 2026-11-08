@@ -70,14 +70,22 @@ assert(e('tavi').classList.contains('speaking'),'The live hero must animate faci
 assert(e('tavi').dataset.mood==='determined','Opening line must use original determined expression artwork');
 step(18);assert(['open','closed'].includes(e('tavi').dataset.speech),'Dialogue mouth must have an actual state');
 click('nextLine');assert(!e('tavi').classList.contains('speaking'),'The actor must stop speaking when Morrow takes a turn');
+assert(e('morrow').classList.contains('reacting'),'Morrow should visibly react during his response');
+assert(e('morrow').dataset.reaction==='alarmed','Morrow should use his alarmed art for a removed road');
+step(13);assert(['0','1'].includes(e('morrow').dataset.beak),'Morrow speech must select an authored beak cel');
 drainDialogue();assert(!e('tavi').classList.contains('speaking'),'Dialogue must restore neutral face');
+assert(!e('morrow').classList.contains('reacting'),'Morrow should restore original face at end of dialogue');
 // Verify actual into-the-world movement, separate rear artwork, and retreat.
 const pos=()=>{const match=/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(e('tavi').attrs.transform);assert(match,'Missing transform');return {x:Number(match[1]),y:Number(match[2])};};
 const startY=pos().y;
 key('ArrowUp',true);step(3);
 assert(e('tavi').classList.contains('pivoting'),'An authentic orientation change needs an illustrated paper-joint turn');
+assert(e('tavi').classList.contains('turning'),'A true direction change must replace the whole body with a drawn in-between pose');
+assert(e('tavi').dataset.turnView==='rear','Moving up must select rear-facing transitional geometry');
+assert(['0','1','2'].includes(e('tavi').dataset.turnPhase),'Turn must choose one of three authored body poses');
 assert(['0','1','2'].includes(e('tavi').dataset.pivotPhase),'Pivoting must choose one authored art phase');
 step(17);assert(!e('tavi').classList.contains('pivoting'),'Turn flourish must end while movement continues');
+assert(!e('tavi').classList.contains('turning'),'Full-body in-between must stop after the turn and restore the walking atlas');
 assert(['0','1','2','3','4','5','6','7'].includes(e('tavi').dataset.stride),'Movement must select a frame from the eight-cel walking atlas');
 assert(e('tavi').dataset.stride!=='0','Moving into the scene must advance beyond first stride state');
 key('ArrowUp',false);

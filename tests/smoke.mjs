@@ -109,4 +109,16 @@ assert(game.includes('function updateTaviActing(now)')&&game.includes('pivotUnti
  'Live gameplay must own all speaking/pivot time state');
 assert(css.includes('#tavi.speaking[data-mood="curious"]')&&css.includes('#tavi.pivoting[data-pivot-phase="2"]'),
  'Expressions and pivots must be connected to the visible source art');
+
+const fullTurn=[...html.matchAll(/class="tavi-turn-cel" data-turn-view="(front|rear)" data-turn-phase="([0-2])"/g)].map(m=>m[1]+':'+m[2]);
+assert.deepEqual(fullTurn,['front:0','front:1','front:2','rear:0','rear:1','rear:2'],
+ 'Two complete 3-frame illustrated turning sequences required');
+assert(ids.includes('taviTurnAtlas'),'Missing in-world original full-body turning artwork');
+const owlReactions=[...html.matchAll(/class="morrow-reaction-cel" data-reaction="([^"]+)" data-beak="([01])"/g)].map(m=>m[1]+':'+m[2]);
+assert.deepEqual(owlReactions,['attentive:0','attentive:1','alarmed:0','alarmed:1','delighted:0','delighted:1'],
+ 'Three expressive owl faces need fully drawn alternate beak frames');
+assert(css.includes('#tavi.turning #taviTurnAtlas')&&css.includes('#morrow.reacting .morrow-rest-face'),
+ 'Real art must replace, never overlap, resting source art');
+assert(game.includes("el.tavi.classList.toggle('turning',!reduced)")&&game.includes("el.morrow.dataset.reaction=birdMood"),
+ 'World animation loop must drive both full-body turns and companion reactions');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
