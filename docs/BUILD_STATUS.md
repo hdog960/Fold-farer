@@ -306,3 +306,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Expanded source and real Chromium tests verify 40/40 frame materials, five views, all cloth and wing animation surfaces, correct rear hair shape and physical arch bounds. The generated real-game review capture is `screenshots/41-terrace-watercolor-characters-and-arch.png`.
 - Version 0.26.0, offline shell 0.38, existing free GitHub Pages deployment, same iPhone Home Screen icon, saved progress and collision logic. No new dependencies.
 - **Milestone A still awaiting the creator's art approval and physical iPhone performance verification. Milestone B remains locked.**
+
+
+### First Fold 0.26.1 — correct busy hair on actual gameplay screenshot
+- Inspected the real in-game 0.26.0 screenshot and rejected the rear hair's thick overlapping stripe pattern: it made Tavi's head resemble a fingerprint instead of a folded-paper hairstyle.
+- Re-drew the back-facing crown as an asymmetric cut-card contour with a broken forelock and tapered nape. Removed the two original heavy crossing hair arcs, simplified the overlaid artwork to three restrained hand-inked accents, and kept Tavi's real skull proportions, world foot anchor, 40 upper-body walk frames and all orientation transition art intact.
+- Added static and headless-Chromium tests on the actual physical hair bounds, exact 3-strand contour, opacity/edge weights, actor parentage, and pointer transparency. Real-world screenshot `screenshots/42-terrace-refined-hair-and-watercolor.png`.
+- First Fold 0.26.1, offline shell 0.39. Current iPhone Home Screen, user save key, collision and combat unchanged. Milestone A visual acceptance and physical device testing remain open; Milestone B remains locked.

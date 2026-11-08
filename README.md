@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.26.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.26.1](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -149,3 +149,7 @@ Tavi's walking animation now moves the actual body inside a stationary world-spa
 
 ### First Fold 0.26.0 — hand-painted paper volume in the original moving sprites
 Tavi now carries dimensional watercolor material coloring on all five directions and eight authored walking cels per direction (40 total), and the 40 existing scarf cels match his new resting coat palette. His rear hair is no longer a perfect circle; the original front, back, profile and diagonal views now have hand-drawn crown contours. Morrow's four real animated left/right wing pairs and body have matching feather-paper shading. The central North Terrace gateway gains dimensional edge relief, leaving the walkable arch and all controls untouched. Visual regression tests verify this artwork in the actual moving SVG actors and capture `screenshots/41-terrace-watercolor-characters-and-arch.png`. Save data, battle, iPhone Home Screen installation and GitHub Pages URL remain unchanged. Art acceptance still pending; Milestone B stays locked.
+
+
+#### First Fold 0.26.1 visual correction
+After inspecting the real 0.26.0 screenshot, the rear hair's heavy intersecting strokes were removed and replaced by an asymmetric cut-card crown and three light hand-inked contours. This changes the actual Tavi character artwork, not a screenshot or mockup. Browser QA captures `screenshots/42-terrace-refined-hair-and-watercolor.png`. Save data, gameplay, Home Screen installation and Milestone A approval gate remain unchanged.
