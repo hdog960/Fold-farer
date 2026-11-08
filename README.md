@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.26.1](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.27.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -153,3 +153,7 @@ Tavi now carries dimensional watercolor material coloring on all five directions
 
 #### First Fold 0.26.1 visual correction
 After inspecting the real 0.26.0 screenshot, the rear hair's heavy intersecting strokes were removed and replaced by an asymmetric cut-card crown and three light hand-inked contours. This changes the actual Tavi character artwork, not a screenshot or mockup. Browser QA captures `screenshots/42-terrace-refined-hair-and-watercolor.png`. Save data, gameplay, Home Screen installation and Milestone A approval gate remain unchanged.
+
+
+### First Fold 0.27.0 — built paper-world objects, not flat props
+The central archive bell has been rebuilt as a physical pop-up pavilion with three-faced paper plinth, angled cardstock roof, and hanging copper bell with a visible hollow and clapper. The nearby memory kiosk is now an asymmetrical three-panel book with hinges, cover stock, opened pages and bookmarks. The ribbon tree's trunk has actual cut-card branches and roots beneath its untouched animated leaf crown. These objects are present in the PLAYABLE scene and preserve existing depth sorting, movement, collision coordinates, story interactions, save state, iPhone Home Screen icon and free GitHub Pages URL. Chromium and source checks cover the new objects; live game screenshot at `screenshots/43-terrace-archive-papercraft.png`. Milestone A aesthetics still require creator approval; Milestone B locked.

@@ -724,6 +724,42 @@ try {
     crownQA.strandCount!==3||crownQA.maxStroke>3.3||crownQA.noTouch!=='none')
     throw Error('0.26.1 sculpted hair silhouette is not legible/grounded: '+JSON.stringify(crownQA));
   console.log('0.26.1 CORRECTED ORIGINAL REAR HAIR:',JSON.stringify(crownQA));
+
+  // 0.27: these objects must be real stationary world props in the existing
+  // painter-sorted stage, with measurable physical dimensions and zero touch
+  // interception; visual screenshot is from actual game renderer.
+  const propsQA=await terraceNear.locator('#terraceDepthStage').evaluate(stage=>{
+    const measure=id=>{
+      const e=document.getElementById(id),b=e.getBBox();
+      return {id,x:b.x,y:b.y,w:b.width,h:b.height,
+        pointer:getComputedStyle(e).pointerEvents,
+        inStage:stage.contains(e)};
+    };
+    return {
+      bell:measure('terraceBell'),
+      kiosk:measure('terraceKiosk'),
+      bellPieces:['terraceBellFoldedPlinth','terraceBellPavilion','terraceBellHanging'].map(measure),
+      kioskPieces:['terraceFolioKioskBase','terraceFolioKioskHinges',
+        'terraceFolioKioskCanopy','terraceFolioKioskPages'].map(measure),
+      treeBranch:measure('terraceTreeBranchConstruction'),
+      bellAnchor:document.getElementById('terraceBell').getAttribute('transform'),
+      kioskAnchor:document.getElementById('terraceKiosk').getAttribute('transform')
+    };
+  });
+  if(propsQA.bellAnchor!=='translate(719 484)'||propsQA.kioskAnchor!=='translate(1022 660)'||
+      propsQA.bell.w<135||propsQA.bell.w>225||propsQA.bell.h<160||propsQA.bell.h>245||
+      propsQA.kiosk.w<180||propsQA.kiosk.w>280||propsQA.kiosk.h<160||propsQA.kiosk.h>250||
+      propsQA.bellPieces.some(p=>p.w<55||p.h<22||p.pointer!=='none'||!p.inStage)||
+      propsQA.kioskPieces.some(p=>p.w<55||p.h<25||p.pointer!=='none'||!p.inStage)||
+      propsQA.treeBranch.h<120||!propsQA.treeBranch.inStage){
+    throw Error('0.27 architectural prop regression: '+JSON.stringify(propsQA));
+  }
+  const stablePlayer=await terraceNear.locator('#tavi').getAttribute('transform');
+  await terraceNear.waitForTimeout(210);
+  if(stablePlayer!==await terraceNear.locator('#tavi').getAttribute('transform'))
+    throw Error('0.27 art displaced real player physical anchor');
+  console.log('0.27 BUILT PAPER WORLD:',JSON.stringify(propsQA));
+  await terraceNear.screenshot({path:'screenshots/43-terrace-archive-papercraft.png'});
   await terraceNear.screenshot({path:'screenshots/42-terrace-refined-hair-and-watercolor.png'});
   await terraceNear.screenshot({path:'screenshots/41-terrace-watercolor-characters-and-arch.png'});
   await terraceNear.screenshot({path:'screenshots/40-terrace-character-cardstock-contact.png'});
