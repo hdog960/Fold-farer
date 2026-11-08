@@ -53,6 +53,27 @@
           <stop stop-color="#6e9d91"/><stop offset=".5" stop-color="#9ab6a0"/>
           <stop offset="1" stop-color="#c1ca9f"/>
         </linearGradient>
+
+        <!-- 0.23: shop-specific dye enamel, translucent greenhouse vellum and
+             a shaded cut-paper underside. All colors inherit the same palette. -->
+        <linearGradient id="terraceDyeEnamel" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stop-color="#dfb394"/><stop offset=".22" stop-color="#c99089"/>
+          <stop offset=".6" stop-color="#8d687b"/><stop offset="1" stop-color="#526a79"/>
+        </linearGradient>
+        <linearGradient id="terraceDyeCavity" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stop-color="#334e60"/><stop offset=".5" stop-color="#567b81"/>
+          <stop offset="1" stop-color="#a2a68c"/>
+        </linearGradient>
+        <linearGradient id="terraceHerbVellum" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stop-color="#f9efd7" stop-opacity=".87"/>
+          <stop offset=".28" stop-color="#bbd9c3" stop-opacity=".77"/>
+          <stop offset=".76" stop-color="#75a29c" stop-opacity=".73"/>
+          <stop offset="1" stop-color="#f3d4a8" stop-opacity=".82"/>
+        </linearGradient>
+        <linearGradient id="terraceHerbRib" x1="0%" y1="0%" x2="30%" y2="100%">
+          <stop stop-color="#fff4d4"/><stop offset=".34" stop-color="#ddb993"/>
+          <stop offset="1" stop-color="#786577"/>
+        </linearGradient>
         <linearGradient id="terraceSkyVellum" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop stop-color="#fff5d8" stop-opacity=".28"/>
           <stop offset=".4" stop-color="#fcead3" stop-opacity=".07"/>
@@ -4119,6 +4140,154 @@
             <path d="M681 397q36 9 80 0l35 26q-74 15-145 2Z" fill="url(#terraceArchUnderside)" opacity=".8"/>
             <path d="m669 413q50 8 99 1" stroke="#fff0c7" stroke-width="3" stroke-dasharray="7 12" opacity=".65" fill="none"/>
             <path d="m597 447 72-6m109-3 87 9" stroke="#6d7773" stroke-width="4" opacity=".3" fill="none" stroke-linecap="round"/>
+          </g>
+        </g>
+
+        <!-- First Fold 0.23: two deliberately different kinds of architecture.
+             A stitched textile workshop and an arched greenhouse built from
+             individually authored paper/velum pieces, never mirrored assets.
+             Both attach to existing immovable side walls without hitboxes. -->
+        <g id="terraceCraftedShopfronts" pointer-events="none" aria-label="Two original shopfront identities, ink dyer and vellum conservatory">
+          <g id="terraceDyerIdentity" aria-label="Ink Dyer's Nook with folded dye distillery and silk display">
+            <!-- Roof-mounted dye press: twin woodbound side faces, not a flat
+                 symbol painted on the old roof. Its base follows the roof line. -->
+            <g id="terraceDyeTower">
+              <path d="M70 340 72 276 107 246 172 255 199 291 201 378l-26 17-100-19Z" fill="#695f6d" opacity=".23"/>
+              <path d="M79 347 85 276 119 250 178 265 179 365l-34 21-66-16Z" fill="url(#terraceRoofStrata)" stroke="#796172" stroke-width="6"/>
+              <path d="M84 288 114 255 168 266 172 352l-28 16-58-14Z" fill="#d7b093" stroke="#826a73" stroke-width="4"/>
+              <path d="m94 293 24-28 45 10m-63 85 43 11 27-15" stroke="#fff0c8" stroke-width="3" fill="none"/>
+              <path d="M115 254v-41l22-13 22 14v49Z" fill="#b89086" stroke="#745e70" stroke-width="5"/>
+              <path d="m109 219 29-31 29 29-10 6-19-19-21 21Z" fill="#e1c194" stroke="#8d6874" stroke-width="4"/>
+              <path d="M129 221v29m14-28v25" stroke="#f9e5c1" stroke-width="3" opacity=".83"/>
+              <!-- A real carved wheel with readable negative space. -->
+              <circle cx="130" cy="307" r="31" fill="#795f70" stroke="#f4d2a4" stroke-width="7"/>
+              <circle cx="130" cy="307" r="21" fill="#9eb9a3" stroke="#688c8c" stroke-width="3"/>
+              <path d="m130 285 0 45m-20-23h40m-35-15 31 30m0-30-31 30" stroke="#fff1cb" stroke-width="3.5"/>
+              <circle cx="130" cy="307" r="6" fill="#d7ad84" stroke="#7f6674" stroke-width="2.5"/>
+              <path d="m171 281 25 15-2 65-22 17Z" fill="#8e6d76" stroke="#6b5869" stroke-width="4"/>
+              <path d="m178 296 9 6-1 50-8 7" stroke="#f1dab0" stroke-width="3" fill="none"/>
+              <path d="m80 368 62 13 51-20 9 13-59 24-64-16Z" fill="#9f7c7b" stroke="#795e6b" stroke-width="4"/>
+              <path d="m84 375 57 12 44-17" stroke="#f5dfa9" stroke-width="2.6" fill="none" stroke-dasharray="7 9"/>
+            </g>
+            <!-- Deep recessed silk-bolt window; asymmetrically framed with ink
+                 shadows. The old existing window stays behind this cavity. -->
+            <g id="terraceDyerRecess">
+              <path d="M43 426 171 435 221 492v100l-23 12-15-16V501l-26-30-113-8Z" fill="#665665" opacity=".48"/>
+              <path d="M49 429 165 437l46 54v91l-16 6V499l-39-43-108-6Z" fill="url(#terraceDyeCavity)" stroke="#826876" stroke-width="6"/>
+              <path d="M55 439 159 449l37 48v84l-12-5v-74l-31-38-101-7Z" fill="#66988f" opacity=".38"/>
+              <path d="M50 428 163 438 214 490l-17 10-41-45-104-10Z" fill="url(#terraceRoofStrata)" stroke="#856b76" stroke-width="4"/>
+              <path d="M53 449 153 460l33 39v75" fill="none" stroke="#e8d6b4" stroke-width="3.4" opacity=".72"/>
+              <path d="M78 462v110m27-107-2 102m34-98-5 103" stroke="#d9b7a1" stroke-width="4" opacity=".62"/>
+              <g fill="none" stroke-linecap="round">
+                <path d="M75 469q-7 45 1 81m17-81q9 41 3 82" stroke="#d9aa96" stroke-width="8"/>
+                <path d="M112 473q-10 42-3 76m15-76q8 44 2 76" stroke="#9bc2ae" stroke-width="8"/>
+                <path d="M148 479q-10 40-7 72m16-64q9 37 2 68" stroke="#e1c48e" stroke-width="7"/>
+              </g>
+              <path d="M40 565 205 570l-11 18-149-4Z" fill="#b38e83" stroke="#745e6d" stroke-width="5"/>
+              <path d="m49 572 142 5" stroke="#fff0c5" stroke-width="3" fill="none"/>
+            </g>
+            <!-- Sign is an actual folded and stitched hangtag rather than text
+                 floating directly on top of a building or behind an actor. -->
+            <g id="terraceDyerSign">
+              <path d="m34 607 16-15 162 6 10 15-8 37-170-4Z" fill="#b17d84" stroke="#775e71" stroke-width="5"/>
+              <path d="m47 603 160 6-4 27-158-4Z" fill="#edcba4" stroke="#967179" stroke-width="3"/>
+              <path d="m46 617 15-4m121 12 14-4" stroke="#d4ab97" stroke-width="2.3" fill="none"/>
+              <text x="124" y="627" text-anchor="middle" fill="#4f6771" font-family="Georgia,serif" font-size="15" font-weight="bold" letter-spacing="1.2">INK DYER</text>
+              <g fill="#ffdfb0" stroke="#846679" stroke-width="2"><circle cx="49" cy="606" r="3.8"/><circle cx="204" cy="615" r="3.8"/></g>
+            </g>
+            <!-- Physical silk scrolls with hand-cut ends. These three shapes
+                 each move at subtly different cadence, not texture stretch. -->
+            <g id="terraceDyerSilkCurtain">
+              <path d="M25 399q82 10 161 26l24 16-185-27Z" fill="#5e5869" opacity=".29"/>
+              <path d="M28 397q73 8 157 27l20 14-177-26Z" fill="#d6a48f" stroke="#8c6878" stroke-width="4"/>
+              <path d="M31 397q67 10 149 28l10 7-158-24Z" fill="#edcba1" opacity=".78"/>
+              <g class="terrace-silk-ribbon" aria-hidden="true">
+                <path d="M34 410q8 46-1 83l19-13 16 15q-1-53 5-77Z" fill="#b88b9c" stroke="#836778" stroke-width="3.5"/>
+                <path d="m44 426-1 54m18-53-2 52" stroke="#f3d7bc" stroke-width="2.4"/>
+              </g>
+              <g class="terrace-silk-ribbon alternate" aria-hidden="true">
+                <path d="M94 419q-4 44-10 83l17-14 17 18q3-56 17-77Z" fill="#92b9a9" stroke="#637f7d" stroke-width="3.5"/>
+                <path d="m104 436-7 52m23-52-10 55" stroke="#f6ebc9" stroke-width="2.4"/>
+              </g>
+              <g class="terrace-silk-ribbon third" aria-hidden="true">
+                <path d="M145 428q-3 39 1 76l15-11 16 16 2-71Z" fill="#d5af87" stroke="#8f747b" stroke-width="3.5"/>
+                <path d="m159 444 0 52m10-48 0 44" stroke="#fff0ce" stroke-width="2.2"/>
+              </g>
+              <g fill="#f2dfb6" stroke="#876a73" stroke-width="2.5"><circle cx="42" cy="413" r="3"/><circle cx="103" cy="427" r="3"/><circle cx="154" cy="437" r="3"/></g>
+            </g>
+          </g>
+          <g id="terraceConservatoryIdentity" aria-label="Vellum Conservatory with arched glass-paper room and flower cupola">
+            <!-- Delicate greenhouse cupola rises beyond the squared shop roof,
+                 changing the silhouette as well as the materials. -->
+            <g id="terraceConservatoryCupola">
+              <path d="M1314 347 1320 269q21-30 52-30 37 4 54 34l7 71-22 13Z" fill="#6b6872" opacity=".32"/>
+              <path d="M1321 347v-71q19-31 49-31 31 0 49 31v70Z" fill="url(#terraceHerbVellum)" stroke="#826c78" stroke-width="6"/>
+              <path d="M1307 282q16-51 62-52 45-2 68 50l-19 6q-11-38-49-37-35 2-46 39Z" fill="url(#terraceHerbRib)" stroke="#765d72" stroke-width="5"/>
+              <path d="M1369 250v101m-43-60h88m-81-19 16-14m48 4 14 16" stroke="#f9ebc9" stroke-width="4" fill="none"/>
+              <path d="m1338 316 5-29 13 19 10-42 11 29 10-19 8 41" fill="#709786" opacity=".65"/>
+              <path d="m1335 335 17-15 14 16 17-19 19 20" stroke="#c4d7b0" stroke-width="3" fill="none"/>
+              <path d="M1317 337q46 6 110 0l12 18-129 0Z" fill="#c8998c" stroke="#826471" stroke-width="4"/>
+              <path d="m1324 345 103 0" stroke="#fff2c9" stroke-width="3" fill="none" stroke-dasharray="8 10"/>
+              <path d="m1368 232-6-17 9-17 9 16Z" fill="#edc693" stroke="#8b7078" stroke-width="3.5"/>
+              <circle cx="1371" cy="218" r="3.4" fill="#fff2cb"/>
+            </g>
+            <!-- Projecting arched bay instead of a copy of the dyer's slab façade.
+                 Vellum panes reveal unique planted shapes below them. -->
+            <g id="terraceVellumBay">
+              <path d="M1210 572v-157q22-58 104-63 87-1 112 65v155l-25 30-170-5Z" fill="#59656b" opacity=".32"/>
+              <path d="M1223 571V422q21-51 92-56 79 0 99 57v151Z" fill="url(#terraceHerbVellum)" stroke="#806879" stroke-width="7"/>
+              <path d="M1217 426q25-67 98-72 75-4 108 72l-14 13q-21-57-94-58-66 3-82 58Z" fill="url(#terraceHerbRib)" stroke="#785f73" stroke-width="6"/>
+              <path d="m1231 426 8-23q28-44 74-44m88 42 10 27" stroke="#fff0c5" stroke-width="3.2" fill="none"/>
+              <g fill="#6f9e91" stroke="#5e837e" stroke-width="3">
+                <path d="M1248 564q-8-85 12-108 22 23 9 113Z"/>
+                <path d="m1282 565-15-62q34 7 37 61Z"/>
+                <path d="M1316 562q-9-72 23-108 24 51 5 109Z"/>
+                <path d="M1361 562q-18-73 12-103 30 52 15 106Z"/>
+              </g>
+              <g stroke="#dbe5c1" stroke-width="2.7" fill="none">
+                <path d="m1260 538 3-55m66 65 12-63m36 67 6-59m-94 53-7-35"/>
+              </g>
+              <!-- Flower heads are pressed petal cut-outs, not repeated circles. -->
+              <g stroke="#fff1cf" stroke-width="2.5">
+                <path d="m1258 493-11-10 9-13 13 9-9 14Z" fill="#e3ad9f"/>
+                <path d="m1341 472-10-12 11-13 12 11-12 14Z" fill="#ddc29a"/>
+                <path d="m1378 488-10-10 10-15 13 12-13 13Z" fill="#c6a9b3"/>
+              </g>
+              <path d="M1315 377v195m-90-85 188-1m-170-97q72 11 140-3" fill="none" stroke="#f8e6c5" stroke-width="7"/>
+              <path d="m1240 398 30-18m67 3 22-6m-131 61 20-3m139-21 16 17" stroke="#fff6dd" stroke-width="3" opacity=".73" fill="none"/>
+              <path d="M1214 567q97 20 206 2l18 21q-118 27-238 2Z" fill="#c29988" stroke="#786173" stroke-width="6"/>
+              <path d="m1225 581q86 15 189-1" stroke="#fff1cc" stroke-width="3" fill="none" stroke-dasharray="8 9"/>
+              <path d="M1229 592l-5 47m185-47 7 47" stroke="#9b797b" stroke-width="10" fill="none"/>
+            </g>
+            <!-- Pressed-botanical folio crest with an interior specimen, fitted
+                 above the bay instead of obscuring the vellum glazing. -->
+            <g id="terraceHerbariumPlaque">
+              <path d="M1229 616q82-18 184-7l16 27-15 17q-93-10-180 9l-18-19Z" fill="#6c606d" opacity=".33"/>
+              <path d="M1235 611q88-17 175-7l12 34-16 11q-90-10-167 8l-14-17Z" fill="#e9ceaa" stroke="#876978" stroke-width="5"/>
+              <path d="m1241 619q82-14 163-9m-164 35q80-14 163-7" stroke="#fff1ca" stroke-width="2.6" fill="none"/>
+              <text x="1324" y="634" text-anchor="middle" fill="#58746e" font-family="Georgia,serif" font-size="15.5" font-weight="bold" letter-spacing="1.7">HERBARIUM</text>
+              <g fill="#a7b58d" stroke="#78927e" stroke-width="2"><path d="m1250 633 8-10 8 10-9 9Z"/><path d="m1390 628 8-10 8 10-8 9Z"/></g>
+            </g>
+            <!-- Individual hanging specimen wraps and paper fern shadows. -->
+            <g id="terraceVellumSpecimens" aria-hidden="true">
+              <path d="M1262 661q60 9 153-9l-9 23q-72 12-135 4Z" fill="#8c7b78" opacity=".18"/>
+              <path d="M1249 668q60 12 173-11" stroke="#795f71" stroke-width="5" fill="none"/>
+              <path d="M1279 668v21m49-25v23m49-30 2 19" stroke="#9e7b78" stroke-width="3.5"/>
+              <g class="terrace-botanical-hanger">
+                <path d="M1266 688l26-4 10 42-27 7Z" fill="#e7d3aa" stroke="#906e7a" stroke-width="3.5"/>
+                <path d="m1281 721 0-26m-1 12-11-11m12 16 12-14" stroke="#6f9c8a" stroke-width="3" fill="none"/>
+                <path d="m1282 705-4-8-8 3 8 8Z" fill="#a1ba95"/>
+              </g>
+              <g class="terrace-botanical-hanger alternate">
+                <path d="m1321 685 30-3 8 39-30 9Z" fill="#f1dab4" stroke="#8e6f76" stroke-width="3.5"/>
+                <path d="M1335 716q-10-20 5-26 14 15-5 26Zm8 3q-1-15 14-22 4 18-14 22Z" fill="#8fac96" stroke="#5e8279" stroke-width="2.5"/>
+              </g>
+              <g class="terrace-botanical-hanger third">
+                <path d="m1370 676 30-3 8 38-33 7Z" fill="#dec4a7" stroke="#856974" stroke-width="3.5"/>
+                <path d="m1385 710-5-21m8 15 8-19m-13 6-10-7" fill="none" stroke="#759b8a" stroke-width="3"/>
+                <path d="m1375 682-9-4 5-7 9 7Z" fill="#c4a4af"/>
+              </g>
+            </g>
           </g>
         </g>
         <!-- The ambient light reacts to the depth camera by a few units;

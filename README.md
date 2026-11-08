@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.22.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.23.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -125,3 +125,7 @@ All geometry remains attached to the **original walkable floor** rather than bei
 
 ### First Fold 0.22.0 — illustrated valley and true layered distance
 The old repeated mountain triangles and floating box houses on North Terrace are replaced by distinct hand-contoured landscape cards, curved valley seams, a hillside bellhouse and glasspaper conservatory. The separate painted midground adds an irregular garden wall and distinct tree silhouettes with depth-specific parallax, while the letterpress arch name now fits the physical paper plaque. All new artwork is used directly in the running scene, behind stationary gate, hitboxes and perspective-scaled actors. Browser visual QA records a new actual scene at `screenshots/37-terrace-illustrated-valley.png`. The iPhone URL, old saves and Home Screen icon remain unchanged. **Milestone A art approval remains pending; Milestone B is locked.**
+
+
+### First Fold 0.23.0 — distinctive textile and botanical shop architecture
+The North Terrace's two large buildings now have deliberately distinct handmade silhouettes: the Ink Dyer's Nook receives a woodbound dye wheel tower, deep window cavity, animated hand-cut fabric lengths and its own sewn label; the Vellum Conservatory gains a glasspaper cupola, a large arched greenhouse bay, individually pressed leaves and flowers, specimen cards and an herbarium plaque. This is original in-engine art. Tests confirm both buildings remain behind the player and cannot obstruct touch input, collisions or quests; reduced-motion support, saves and the installed Home Screen URL are preserved. Screenshot: `screenshots/38-terrace-distinct-shopfronts.png`. Visual approval still pending; Milestone B stays locked.
