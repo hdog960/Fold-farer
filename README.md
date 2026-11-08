@@ -10,7 +10,7 @@ An original, iPhone-first papercraft storybook RPG in development.
 
 **Updates:** Keep the existing icon. When you open FoldFarer while connected to the internet, the application checks for the latest GitHub Pages files and downloads updates automatically. You never need to reinstall for ordinary game updates. If an update was published while you were playing, close and reopen the Home Screen app to load the updated version. Offline use continues with the last cached build; iOS controls when to wake apps, so updates cannot be guaranteed while the game stays closed/offline. Do not clear Safari website data if you want to retain the current local preview save.
 
-**Current playable review:** [Open First Fold 0.14.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
+**Current playable review:** [Open First Fold 0.22.0](https://hdog960.github.io/Fold-farer/) (GitHub Pages; availability depends on Pages publishing the main/root source).
 **Creative source of truth:** FoldFarer Master Game Design Bible v1.0 (2026-11-06), retained separately by the creator.
 
 ## First Fold — what this build is
@@ -121,3 +121,7 @@ All geometry remains attached to the **original walkable floor** rather than bei
 - The real playable North Terrace now has additional thick cut-card eaves, shaded wall cavities, roof cross-sections, window reveals, and hand-bound detail on two asymmetrically designed buildings. The ground gains separate hand-painted herb, pressed-petal, and conservatory flower clusters rather than uniform filler vegetation.
 - Light at Tavi and Morrow's ground contact is now part of their actual perspective-scaled SVG actors and responds to distance from the terrace lantern. The bird's weaker footprint reflects flying. This does not change collision, scenery ordering, saved positions, or animation atlases.
 - New browser geometry/paint-order/lighting checks and a live game capture at `screenshots/36-terrace-architectural-contact-light.png`. Same Home Screen icon, existing preview checkpoint, and free GitHub Pages deployment. **Art signoff remains pending; Milestone B remains locked.**
+
+
+### First Fold 0.22.0 — illustrated valley and true layered distance
+The old repeated mountain triangles and floating box houses on North Terrace are replaced by distinct hand-contoured landscape cards, curved valley seams, a hillside bellhouse and glasspaper conservatory. The separate painted midground adds an irregular garden wall and distinct tree silhouettes with depth-specific parallax, while the letterpress arch name now fits the physical paper plaque. All new artwork is used directly in the running scene, behind stationary gate, hitboxes and perspective-scaled actors. Browser visual QA records a new actual scene at `screenshots/37-terrace-illustrated-valley.png`. The iPhone URL, old saves and Home Screen icon remain unchanged. **Milestone A art approval remains pending; Milestone B is locked.**

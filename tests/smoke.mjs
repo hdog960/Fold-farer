@@ -152,6 +152,28 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.31'),'The existing Home Screen PWA must refresh 0.21 assets');
+assert(sw.includes('foldfarer-shell-0.32'),'The existing Home Screen PWA must refresh 0.22 assets');
+
+
+const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
+ 'terraceSkyVellum','terraceDistantCards','terraceWeatherVellum','terraceMountainBack',
+ 'terraceValleyCard','terraceHillsideHamlet','terraceHillsideBellhouse',
+ 'terraceHillsideGlasshouse','terraceMidgroundCards','terraceLandscapeRetainingWall',
+ 'terraceWildCopse','terraceWillowSprig','terraceBookleafTree',
+ 'terraceCypressCluster','terraceValleyThread',
+ 'terraceLetterpressPlaque','terraceLetterpressTitle'];
+for(const id of backdropLayers)assert(ids.includes(id),'Missing 0.22 hand-built scenic layer: '+id);
+const farCard=html.indexOf('id="terraceDistantCards"'),midCard=html.indexOf('id="terraceMidgroundCards"');
+const gateCard=html.indexOf('id="terraceGateBack"'),floorCard=html.indexOf('id="terraceGround"');
+assert(farCard>0&&farCard<midCard&&midCard<gateCard&&gateCard<floorCard,
+ 'No distant or midground paint layer may cover the gate or true walk plane');
+assert(css.includes('#terraceMidgroundCards *{pointer-events:none!important}'),
+ 'Scenery must never steal tap-to-walk or interaction input');
+assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
+ game.includes("backdrop.terraceX*.43")&&game.includes("backdrop.terraceY*.55"),
+ 'Independent physical depth layers require separate deterministic parallax');
+assert(!html.includes('M-10 302 122 176 228 229 350 134'),
+ 'Generic zig-zag mountain card must be replaced, not covered with a decal');
+assert(sw.includes('foldfarer-shell-0.32'),'Mobile must fetch the new 0.22 build');
 
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
