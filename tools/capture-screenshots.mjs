@@ -498,7 +498,7 @@ try {
     });
     const offset=e=>{
       const tr=e.getAttribute('transform')||'';
-      const xy=/translate\\((-?[0-9.]+) (-?[0-9.]+)\\)/.exec(tr);
+      const xy=/translate\((-?[0-9.]+) (-?[0-9.]+)\)/.exec(tr);
       return xy?{x:Number(xy[1]),y:Number(xy[2])}:{x:0,y:0};
     };
     const plaque=document.getElementById('terraceLetterpressPlaque').getBBox();
@@ -520,8 +520,8 @@ try {
   const landscapeOld=await terraceNear.locator('#terraceGround').getAttribute('transform');
   await terraceNear.waitForTimeout(340);
   const parallax=await terraceNear.locator('#terraceDistantCards').evaluate(far=>{
-    const a=/translate\\((-?[0-9.]+) (-?[0-9.]+)\\)/.exec(far.getAttribute('transform')||'');
-    const b=/translate\\((-?[0-9.]+) (-?[0-9.]+)\\)/.exec(document.getElementById('terraceMidgroundCards').getAttribute('transform')||'');
+    const a=/translate\((-?[0-9.]+) (-?[0-9.]+)\)/.exec(far.getAttribute('transform')||'');
+    const b=/translate\((-?[0-9.]+) (-?[0-9.]+)\)/.exec(document.getElementById('terraceMidgroundCards').getAttribute('transform')||'');
     return {far:a&&a.slice(1).map(Number),mid:b&&b.slice(1).map(Number)};
   });
   if(!parallax.far||!parallax.mid||
