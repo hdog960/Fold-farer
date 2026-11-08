@@ -322,3 +322,12 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Source verification and real-Chromium screenshot audit cover geometry, original anchor positions, layer membership, touch passthrough and surviving Tavi world-space foot anchor. Gameplay capture: `screenshots/43-terrace-archive-papercraft.png`.
 - Game version 0.27.0 and offline cache 0.40. Existing iPhone Home Screen URL, save key, quests, interactions and battle systems remain unchanged; no paid dependency.
 - **Milestone A visual gate and real physical iPhone QA remain open. Milestone B stays locked until creator inspection and approval.**
+
+
+## First Fold 0.28.0 — original illustrated North Terrace material pass (Milestone A)
+- Replaced the North Terrace ribbon tree's earlier continuous foliage balloon with irregular, layered cut-paper leaf silhouettes, painted feathered vein detail, pressed-petal motifs, recessed darker paper stock and visible lower card edge. Reuses the existing sway animation and unchanged world-space tree foot (1177,591), physical collision and depth painter.
+- Re-illustrated the Ink Dyer's deep window with three distinct silhouette-based painted silk folds, hand-ink creases and layered edge shadows, instead of repeating plain strokes.
+- Added hand-painted botanical etching and original flowers inside the actual Vellum Conservatory greenhouse bay. Atmospheric watercolor veils live on the original far parallax stage instead of a static background picture.
+- Smoke tests confirm all four authored SVG scene groups, no duplicate IDs, fixed original anchors, no altered save key and PWA shell 0.41. Browser screenshot QA can inspect the real scene on every push.
+- No new dependencies, charges, touch/collision shapes, save fields or changed gameplay. Package 0.28.0, same GitHub Pages / Home Screen URL.
+- Visual quality remains IN PROGRESS; creator aesthetic approval, additional production-grade art and physical iPhone QA are outstanding. Milestone B stays locked.
