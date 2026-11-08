@@ -826,3 +826,13 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #tavi .tavi-profile-nose33,
 #tavi .tavi-turn-visage33{pointer-events:none!important;shape-rendering:geometricPrecision}
 #tavi .tavi-inked-hand33 path{vector-effect:none}
+
+
+/* First Fold 0.34: source-painted, directional lock and sewn-paper collar shapes.
+   These are children of the actual animated pose atlases, not a stationary UI mask. */
+#tavi .tavi-cardstock-hair34,
+#tavi .tavi-cardstock-hair34 *,
+#tavi .tavi-woven-collar34,
+#tavi .tavi-woven-collar34 *{pointer-events:none!important;animation:none!important}
+#tavi .tavi-cardstock-hair34 path,
+#tavi .tavi-woven-collar34 path{shape-rendering:geometricPrecision}
