@@ -331,3 +331,12 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Smoke tests confirm all four authored SVG scene groups, no duplicate IDs, fixed original anchors, no altered save key and PWA shell 0.41. Browser screenshot QA can inspect the real scene on every push.
 - No new dependencies, charges, touch/collision shapes, save fields or changed gameplay. Package 0.28.0, same GitHub Pages / Home Screen URL.
 - Visual quality remains IN PROGRESS; creator aesthetic approval, additional production-grade art and physical iPhone QA are outstanding. Milestone B stays locked.
+
+
+## First Fold 0.29.0 — rebuilt paper-roof silhouettes and Tavi rear silhouette (Milestone A)
+- Reconstructed the Ink Dyer's actual tower geometry into a crooked hand-bound dye-wheel structure: asymmetric high roof with cut-card thickness, recessed circular wheel, deep side wall, individual page-binding ribs and staggered plinth. This replaces the original blocky tower SVG, rather than hanging embellishments on it.
+- Replaced the old plain dome conservatory cupola with a distinct articulated glasspaper lantern: split steep paper roof, separate paper-stock side faces, leaded inner glazing, layered foliage silhouettes, patinated metal fittings and a slender asymmetrical botanical finial. Both architectural identities are genuine existing scene elements and remain behind actor depth stage.
+- Authored two broad roof-construction layers with distinct physically overlapping paper edges and material shadow: irregular sloped layered dyer roof and curling conservatory eaves; they sit inside the original static paper architecture stage, behind shopfronts and in front of distant cards.
+- Improved Tavi's actual rear-facing character art with a quiet, cut-card hair fringe, warm layered highlight and shaded back/nape shapes. It is drawn with the current animated actor, not a UI or screenshot overlay. Existing 40 upper/lower walking poses, direction switches and the foot-ground anchor are preserved.
+- Expanded source integrity tests and Chromium geometry/touch screenshot checks; added gameplay screenshot 45 from the actual game. No changed collisions, scene coordinates, story logic, localStorage checkpoint, control zones, Home Screen URL or paid assets. Package 0.29.0, offline cache 0.42.
+- Artistic approval is still required; character atlas production, illustration harmony, remaining scene artwork, and real iPhone device QA are incomplete. Milestone B stays LOCKED.

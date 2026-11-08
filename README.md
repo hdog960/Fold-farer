@@ -161,3 +161,7 @@ The central archive bell has been rebuilt as a physical pop-up pavilion with thr
 
 ### First Fold 0.28.0 — North Terrace illustrated material pass
 The in-game North Terrace has a newly illustrated asymmetrical ribbon-tree crown, three creased and separately painted silk panels inside the actual dyer's window, pressed botanical etchings in the conservatory's translucent greenhouse arch, and watercolor atmospheric veils in the distant parallax card. These are real scene graphics, not a concept render. All existing movement and interactive anchors stay in place; local save schema and original Home Screen URL are unchanged. Visual approval and real iPhone validation remain outstanding; Milestone B is locked.
+
+
+### First Fold 0.29.0 — reconstructed dimensional architecture
+The playable North Terrace's original dye-wheel tower and glasspaper cupola have been substantially redrawn as distinct, structurally layered roof and wall silhouettes rather than simply decorated existing shapes. Both main roofs gain exposed cut-paper construction with contrasting profiles; Tavi's back-facing character gains a more deliberate handmade-paper hair silhouette. These changes are implemented in the actual game scene. Same saves, gameplay, and iPhone Home Screen URL. Milestone A artwork still needs creator approval and real-device validation.

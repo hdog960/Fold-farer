@@ -152,7 +152,7 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.41'),'The existing Home Screen PWA must refresh 0.27 assets');
+assert(sw.includes('foldfarer-shell-0.42'),'The existing Home Screen PWA must refresh 0.27 assets');
 
 
 const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
@@ -174,7 +174,7 @@ assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
  'Independent physical depth layers require separate deterministic parallax');
 assert(!html.includes('M-10 302 122 176 228 229 350 134'),
  'Generic zig-zag mountain card must be replaced, not covered with a decal');
-assert(sw.includes('foldfarer-shell-0.41'),'Mobile must fetch the new 0.27 build');
+assert(sw.includes('foldfarer-shell-0.42'),'Mobile must fetch the new 0.27 build');
 
 
 const identityIds=['terraceDyeEnamel','terraceDyeCavity','terraceHerbVellum','terraceHerbRib',
@@ -219,7 +219,7 @@ assert(html.includes('id="terraceRibbonTree" transform="translate(1177 591)"'),
 assert(css.includes('#terraceBookbinderWalkway *')&&
  css.includes('pointer-events:none!important'),
  'Painted ground shadows must not steal tapping');
-assert(sw.includes('foldfarer-shell-0.41'),'0.27 assets must invalidate earlier Home Screen cache');
+assert(sw.includes('foldfarer-shell-0.42'),'0.27 assets must invalidate earlier Home Screen cache');
 
 
 const upperPoseViews=['front','rear','side','quarter-front','quarter-rear'];
@@ -242,7 +242,7 @@ assert(html.indexOf('id="taviGroundShadow"')<html.indexOf('id="taviFlip"') &&
 assert(game.includes("el.tavi.style.setProperty('--paper-rim-strength'") &&
  game.includes("el.morrow.style.setProperty('--paper-rim-strength'"),
  'Actor fabric reflections must change with physical scene lighting');
-assert(sw.includes('foldfarer-shell-0.41'),'PWA must refresh the 0.25 art assets');
+assert(sw.includes('foldfarer-shell-0.42'),'PWA must refresh the 0.25 art assets');
 
 
 const watercolorViews=['front','rear','side','quarter-front','quarter-rear'];
@@ -268,7 +268,7 @@ assert(html.indexOf('id="terraceArchEdgeRelief"')<html.indexOf('id="terraceGroun
 assert(css.includes('#tavi .farer-hair-volume *')&&
  css.includes('#terraceArchEdgeRelief *{pointer-events:none!important}'),
  'Paper details must never intercept touch-to-walk');
-assert(sw.includes('foldfarer-shell-0.41'),'Existing iPhone Home Screen cache must refresh 0.26 artwork');
+assert(sw.includes('foldfarer-shell-0.42'),'Existing iPhone Home Screen cache must refresh 0.26 artwork');
 
 
 assert(html.includes('id="taviRearHairCut" d="M-34-146Q-42-165-31-180'),
@@ -279,7 +279,7 @@ assert(!html.includes('M-30-144Q-10-120 12-142l20 2') &&
 assert((html.match(/data-hair-view="rear"/g)||[]).length===1 &&
  (html.match(/<g class="farer-hair-volume"/g)||[]).length===5,
  'Keep one carefully illustrated hair texture per authentic facing, no duplicated overlays');
-assert(sw.includes('foldfarer-shell-0.41'),'0.26.1 needs a fresh installed Home Screen cache');
+assert(sw.includes('foldfarer-shell-0.42'),'0.26.1 needs a fresh installed Home Screen cache');
 
 
 const materialPropIds=['terraceBellCopper','terraceBellHollow','terraceBookRoof',
@@ -302,7 +302,7 @@ assert(css.includes('#terraceBell *')&&css.includes('#terraceKiosk *')&&
 assert(html.indexOf('id="terraceBellFoldedPlinth"')<html.indexOf('id="terraceBellPavilion"') &&
  html.indexOf('id="terraceBellPavilion"')<html.indexOf('id="terraceBellHanging"'),
  'Bell must have real independent physical layers rather than flat stickers');
-assert(sw.includes('foldfarer-shell-0.41'),'PWA must invalidate earlier 0.26.1 offline shell');
+assert(sw.includes('foldfarer-shell-0.42'),'PWA must invalidate earlier 0.26.1 offline shell');
 
 // 0.28 original artwork is integrated into the live terrace, not a detached mockup.
 for(const id of ['terraceAtmosphericWatercolor28','terraceDyerSilkRelief28',
@@ -317,5 +317,26 @@ for(const id of ['terraceAtmosphericWatercolor28','terraceDyerSilkRelief28',
 }
 assert(html.includes('class="terrace-leaf-sway" transform="translate(-62 -38) scale(.78)"'),
  'Paper crown must keep original animated transform and visibility constraint');
-assert(sw.includes('foldfarer-shell-0.41'),'Updated iPhone PWA shell required for 0.28');
+assert(sw.includes('foldfarer-shell-0.42'),'Updated iPhone PWA shell required for 0.28');
+// 0.29: replaced core physical structure, not merely 2D sticker details.
+for(const id of ['terraceDyerMultiPlyRoof29','terraceConservatoryCurledEaves29',
+ 'terraceBuiltRoofProfiles29','taviRearIllustratedSilhouette29'])
+ assert(ids.includes(id),'0.29 structural illustration missing: '+id);
+for(const id of ['terraceDyeTower','terraceConservatoryCupola'])
+ assert(html.includes('id="'+id+'" pointer-events="none"'),
+ '0.29 architectural silhouette must be a physical touch-transparent SVG group: '+id);
+const roof29=html.indexOf('id="terraceBuiltRoofProfiles29"');
+assert(roof29>html.indexOf('id="terracePaperArchitecture"') &&
+ roof29<html.indexOf('id="terraceCraftedShopfronts"'),
+ '0.29 paper structure must underlie the actual window/roof front faces');
+assert(html.indexOf('id="taviRearIllustratedSilhouette29"')>
+ html.indexOf('id="taviRearHairCut"') &&
+ html.indexOf('id="taviRearIllustratedSilhouette29"')<
+ html.indexOf('data-upper-atlas="rear"'),
+ '0.29 cut-card hair volumes must stay inside rear-facing actor art and beneath walk atlas');
+assert(html.includes('id="terraceBell" transform="translate(719 484)"') &&
+ html.includes('id="terraceKiosk" transform="translate(1022 660)"') &&
+ html.includes('id="terraceRibbonTree" transform="translate(1177 591)"'),
+ 'New illustrations cannot move existing interactive roots');
+assert(sw.includes('foldfarer-shell-0.42'),'0.29 PWA refresh cache not bumped');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
