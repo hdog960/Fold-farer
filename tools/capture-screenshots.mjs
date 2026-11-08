@@ -621,6 +621,9 @@ try {
   // First Fold 0.25: real Chromium verifies ALL independently painted coat
   // facings are present, character world-coordinate shadows remain outside
   // the animated body, and lighting is derived from actual terrace position.
+  // The screenshot runner starts in Reduced Motion by design. Verify normal
+  // body-only bounce explicitly, then restore reduced-motion rendering.
+  await terraceNear.emulateMedia({reducedMotion:'no-preference'});
   const actorsQA=await terraceNear.locator('#tavi').evaluate(actor=>{
     const bird=document.getElementById('morrow');
     const rimGroups=[...actor.querySelectorAll('.tavi-cardstock-coat-edges')];
@@ -653,6 +656,15 @@ try {
      Number(actorsQA.taviMaterial)<.5||Number(actorsQA.morrowMaterial)<.5){
     throw Error('0.25 characters are not physically integrated on real gameplay floor: '+JSON.stringify(actorsQA));
   }
+  await terraceNear.emulateMedia({reducedMotion:'reduce'});
+  const reducedMotionQA=await terraceNear.locator('#tavi').evaluate(actor=>{
+    actor.classList.add('walking');
+    const animation=getComputedStyle(document.getElementById('taviFlip')).animationName;
+    actor.classList.remove('walking');
+    return animation;
+  });
+  if(reducedMotionQA!=='none')
+    throw Error('0.25 must disable body bob in Reduced Motion: '+reducedMotionQA);
   // Snapshot is captured from game renderer after all actual movement and
   // stage depth ordering have run, never from standalone concept artwork.
   await terraceNear.screenshot({path:'screenshots/40-terrace-character-cardstock-contact.png'});
