@@ -56,6 +56,25 @@
 
         <!-- 0.23: shop-specific dye enamel, translucent greenhouse vellum and
              a shaded cut-paper underside. All colors inherit the same palette. -->
+
+        <linearGradient id="terraceFolioPewter" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop stop-color="#fff4d6"/><stop offset=".3" stop-color="#d9b69a"/>
+          <stop offset=".62" stop-color="#b28b83"/><stop offset="1" stop-color="#786472"/>
+        </linearGradient>
+        <linearGradient id="terraceEtchedInk" x1="0%" y1="0%" x2="85%" y2="100%">
+          <stop stop-color="#6c8980" stop-opacity=".46"/>
+          <stop offset=".55" stop-color="#657878" stop-opacity=".26"/>
+          <stop offset="1" stop-color="#a88380" stop-opacity=".13"/>
+        </linearGradient>
+        <linearGradient id="terraceCastInk" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stop-color="#425e60" stop-opacity=".34"/>
+          <stop offset=".6" stop-color="#607973" stop-opacity=".17"/>
+          <stop offset="1" stop-color="#789588" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="terraceRibbonLeaves" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stop-color="#aac6a5"/><stop offset=".3" stop-color="#7fae99"/>
+          <stop offset=".75" stop-color="#6d9c8c"/><stop offset="1" stop-color="#4e7978"/>
+        </linearGradient>
         <linearGradient id="terraceDyeEnamel" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop stop-color="#dfb394"/><stop offset=".22" stop-color="#c99089"/>
           <stop offset=".6" stop-color="#8d687b"/><stop offset="1" stop-color="#526a79"/>
@@ -3719,7 +3738,7 @@
           <path d="M504 563h435l55 57H443Z" fill="#e5c59f" stroke="#a68a79" stroke-width="5"/>
           <path d="M443 630h549l75 75H366Z" fill="#f1d7ac" stroke="#ab9079" stroke-width="5"/>
           <path d="M366 716h705l76 91H281Z" fill="#e8c79d" stroke="#9e867b" stroke-width="5"/>
-          <g fill="none" stroke="#fcf0cb" stroke-width="4.5" stroke-dasharray="10 14" opacity=".77">
+          <g fill="none" stroke="#fcf0cb" stroke-width="4.5" stroke-dasharray="10 14" opacity=".52">
             <path d="M719 431v373M639 434 500 806M807 431l126 376M583 473 427 804M859 474l166 331"/>
           </g>
           <g fill="none" stroke="#967c74" stroke-width="2" stroke-dasharray="5 13" opacity=".6">
@@ -3894,6 +3913,50 @@
           </g>
         </g>
   
+
+      <!-- World-ground engraving and cast shadows. Everything remains behind
+           the dynamic depth stage; no new collisions, tap areas or fake rooms. -->
+      <g id="terraceBookbinderWalkway" pointer-events="none" aria-label="Bookbound terrace threshold, compass seal and architectural shadows">
+        <g id="terraceLongCastShadows" aria-hidden="true" fill="url(#terraceCastInk)">
+          <path d="M362 610q21-8 35-1l-78 49q-30 6-57 1-9-6 5-14Z"/>
+          <path d="M704 481q19-8 35 1l-65 33-62-2q-24-4-16-11Z"/>
+          <path d="M496 561q30-10 55-1l-75 39q-34 7-77 0-5-7 12-14Z"/>
+          <path d="M943 555q34-13 67-1l-101 55q-34 5-61-2-12-8 8-14Z"/>
+          <path d="M1166 591q18-12 41-3l-117 64q-44 13-78 2-12-9 10-21Z"/>
+          <path d="M669 414q53-12 93 4l-67 24q-51 3-107-2-16-5 9-12Z" opacity=".39"/>
+        </g>
+        <g id="terraceGateCardFooting" aria-hidden="true">
+          <path d="M532 409 619 405 612 429 546 440Z" fill="url(#terraceFolioPewter)" stroke="#7f6872" stroke-width="4.2"/>
+          <path d="m542 414 69-3m-58 21 47-10" stroke="#fff0c7" stroke-width="2.9" opacity=".81" fill="none"/>
+          <path d="M814 405 903 406l19 28-98-7Z" fill="url(#terraceFolioPewter)" stroke="#826870" stroke-width="4.2"/>
+          <path d="m825 412 69 0m-59 12 69 5" stroke="#fff0c7" stroke-width="2.9" opacity=".81" fill="none"/>
+          <path d="M546 438q43 9 66-9m217-5q41 13 83 8" stroke="#5e666b" stroke-width="4" opacity=".35" fill="none"/>
+          <g stroke="#8b7275" stroke-width="2.2" fill="#f4d5a3"><circle cx="556" cy="417" r="3.1"/><circle cx="896" cy="413" r="3.1"/></g>
+        </g>
+        <g id="terraceMenderInlay" aria-hidden="true">
+          <!-- An embossed original feather-and-needle insignia, following the
+               projected scale of the walk plane, not a HUD sticker. -->
+          <path d="M617 593q97-43 209-8l15 17q-113 41-232 12Z" fill="#6f8981" opacity=".11"/>
+          <path d="M610 581q112-43 226-2l-16 26q-100 35-199 7Z" fill="url(#terraceEtchedInk)" stroke="#a1817e" stroke-width="3.5" opacity=".84"/>
+          <path d="M624 584q103-31 195-2l-14 16q-90 23-170 6Z" fill="#f7e6bb" opacity=".31"/>
+          <path d="M638 588q81-21 157-1m-145 12q71 14 134-1" stroke="#fff1cd" stroke-width="2.7" fill="none" opacity=".74" stroke-linecap="round"/>
+          <path d="M667 589q31-31 69-21 7 14-10 23-22 13-54 6Z" fill="#e5c69c" stroke="#8b7a78" stroke-width="3.8"/>
+          <path d="M672 594q36-19 58-22m-39 14-6-11m17 7 1-10m6 8 8-9" fill="none" stroke="#6b908b" stroke-width="2.5" opacity=".8"/>
+          <path d="m728 592 37-22" stroke="#5b7279" stroke-width="5.5" stroke-linecap="round"/>
+          <path d="m728 590 37-22" stroke="#f7e5bb" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="766" cy="569" r="5.3" fill="none" stroke="#7d7376" stroke-width="2.6"/>
+          <path d="M760 578q19-7 20 6-1 7-15 13 13-5 24 5" fill="none" stroke="#e4bd9e" stroke-width="2.7" stroke-linecap="round"/>
+          <g fill="#d6b492" stroke="#846f76" stroke-width="2"><path d="m643 585 7-8 10 8-9 9Z"/><path d="m790 587 9-7 9 9-10 8Z"/></g>
+        </g>
+        <g id="terraceBindingSutures" aria-hidden="true" fill="none" stroke-linecap="round">
+          <path d="M527 558q-23 17-39 35l-29 36m47-24 31-26" stroke="#856f75" stroke-width="3.5" opacity=".54"/>
+          <path d="M939 562q31 20 46 43l27 31m-45-26-27-18" stroke="#856f75" stroke-width="3.5" opacity=".5"/>
+          <path d="m502 583 12-1m-21 10 9 5m-20 3 10 9m-21 3 10 9" stroke="#f9e7c5" stroke-width="3" opacity=".73"/>
+          <path d="m960 589-11 5m22 5-12 7m20 5-11 8m21 6-11 8" stroke="#f9e7c5" stroke-width="3" opacity=".73"/>
+          <path d="M596 651q18-11 41-8m212 7q28-9 44 4" stroke="#c69c8a" stroke-width="3.2" opacity=".55"/>
+          <path d="m612 646 7 9m15-11 8 7m210-8-7 9m24-8-9 8" stroke="#fff0ca" stroke-width="2.7" opacity=".62"/>
+        </g>
+      </g>
       <!-- Ground-plane botanical marginalia. Every leaf, dried bloom and shadow is authored on
            stationary floor geometry; no decoration creates a hitbox or blocks tap-to-walk. -->
       <g id="terraceNaturalMarginalia" pointer-events="none" aria-label="Pressed wildflowers, grasses and scattered handmade paper leaves">
@@ -4414,9 +4477,15 @@
             <ellipse cy="6" rx="74" ry="19" fill="#3c6862" opacity=".27"/>
             <path d="M-13 0q12-60-5-132l19-11 23 8q-21 67 5 134Z" fill="#a18572" stroke="#705e68" stroke-width="7"/>
             <path d="m-2-120 7 44m-10-23-17-16m29 39 24-27" stroke="#f0d0a1" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <g class="terrace-leaf-sway">
-              <path d="M-87-106q-27-51 21-84-1-47 52-44 29-30 64-2 52 3 47 47 42 28 7 64-12 48-64 38-44 19-79-3-43 10-48-16Z" fill="#69998b" stroke="#456f73" stroke-width="8"/>
-              <path d="M-81-119q-12-47 22-57 16-42 46-36 28-37 62-8 43 16 40 49-37-12-51 19-35-13-59 9-35-12-60 24Z" fill="#a5c4a4" opacity=".6"/>
+            
+            <g class="terrace-leaf-sway" transform="translate(-62 -10)">
+              <!-- Intentionally windswept canopy leaves the conservatory's
+                   glasspaper bay visible; the actual tree base never moves. -->
+              <path d="M-118-112Q-142-129-131-157q5-22 26-28-3-31 29-44 19-7 37-2 23-37 59-28 23-20 52 2 36-2 46 28 30 17 16 45 25 25 1 48 0 27-33 36-14 22-49 13-23 17-49 0-29 21-52-5-42 12-53-23Z" fill="url(#terraceRibbonLeaves)" stroke="#456f73" stroke-width="7" stroke-linejoin="round"/>
+              <path d="M-115-135q-18-19 4-38 10-19 32-13m24-39q24-17 49-9m20 6q27-13 50 5m33 16q21 11 17 33M-80-108q22 7 47-1M26-119q22 7 43-3" fill="none" stroke="#d7dec0" stroke-width="3.7" opacity=".85" stroke-linecap="round"/>
+              <path d="M-98-154q17-8 29 5-9 19-29 19Zm36-28q12-20 35-14-1 24-24 32Zm57-37q22-10 36 9-9 22-30 16Zm70 23q22-3 31 18-15 17-31 5Zm-39 50q22-15 42-4-3 27-30 26Z" fill="#b5ceac" stroke="#628f84" stroke-width="2.4"/>
+              <path d="m-90-144 17 2m24-37 11 7m43-39 18 7m51 25 13 5m-48 30 16-2" stroke="#ecedc6" stroke-width="2" fill="none" opacity=".82"/>
+              <path d="M-115-125q-17-34 12-53 27-16 45 3 12-39 48-35 32-21 55 5 39-9 61 26-31-11-51 19-35-14-58 7-31-12-57 16-27-10-55 12Z" fill="#bdd2b3" opacity=".36"/>
               <path d="M-59-119q25-28 47-35 29-18 52-5m-45 7 7 25m32-33 15-20m-76 30-19-19" stroke="#d4ddb4" stroke-width="3.5" fill="none"/>
               <path d="m-50-102 15 17m28-12 18 13m36-30 24 11" stroke="#f3e4bf" stroke-width="3.2" fill="none" stroke-dasharray="4 10"/>
               <g fill="#f3c39d" stroke="#a47778" stroke-width="2.5">
