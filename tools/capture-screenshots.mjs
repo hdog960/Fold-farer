@@ -1066,6 +1066,66 @@ try {
       JSON.stringify(current));
   await face33.screenshot({path:'screenshots/50-tavi-anatomy-in-real-terrace.png'});
   await face33.locator('#tavi').screenshot({path:'screenshots/51-tavi-anatomy-original-actor-closeup.png'});
+
+  // 0.34: validate physically painted hair and collars across 5x8 live stride
+  // selection and all six authored turns, not conceptual art or DOM counts alone.
+  const cutPaper34=await terraceNear.locator('#tavi').evaluate(actor=>{
+    const views=[['front','taviFrontArt','dir-down'],['rear','taviBackArt','dir-up'],
+      ['side','taviSideArt','dir-side'],['quarter-front','taviFrontQuarterArt','dir-diag-down'],
+      ['quarter-rear','taviBackQuarterArt','dir-diag-up']];
+    const priorClass=actor.getAttribute('class'),priorStride=actor.dataset.stride;
+    const errors=[],dimensions=[];
+    const good=el=>{
+      if(!el||getComputedStyle(el).pointerEvents!=='none')return false;
+      const bb=el.getBBox();
+      return bb.width>=38&&bb.height>=14;
+    };
+    try{
+      for(const [view,poseId,cls] of views){
+        actor.classList.remove('dir-up','dir-down','dir-side','dir-diag-up','dir-diag-down',
+          'walking','pivoting','turning');
+        actor.classList.add(cls);
+        const pose=document.getElementById(poseId);
+        const head=pose.querySelector('.tavi-proportioned-head30');
+        const coat=pose.querySelector('.tavi-rest-torso');
+        const idleHair=head?.querySelector('.tavi-cardstock-hair34');
+        const idleCollar=coat?.querySelector('.tavi-woven-collar34');
+        if(!good(idleHair)||!good(idleCollar))errors.push('Idle '+view+' incomplete');
+        for(let frame=0;frame<8;frame++){
+          actor.classList.add('walking'); actor.dataset.stride=String(frame);
+          const heads=[...pose.querySelectorAll('.tavi-stride-head-cel31')]
+            .filter(x=>getComputedStyle(x).display!=='none');
+          const upper=[...pose.querySelectorAll('.tavi-upper-cel')]
+            .filter(x=>getComputedStyle(x).display!=='none');
+          const hair=heads[0]?.querySelector('.tavi-cardstock-hair34');
+          const collar=upper[0]?.querySelector('.tavi-woven-collar34');
+          if(heads.length!==1||upper.length!==1||heads[0].dataset.headFrame!==String(frame)||
+             upper[0].dataset.upperFrame!==String(frame)||
+             hair?.dataset.hair34!==view+'-'+frame||
+             collar?.dataset.collar34!==view+'-'+frame||
+             !good(hair)||!good(collar))
+             errors.push('Missing 0.34 registered illustrated frames '+view+'/'+frame);
+          if(frame===0||frame===4){
+            const b=hair?.getBBox();dimensions.push({view,frame,hairW:b?.width,hairH:b?.height});
+          }
+          actor.classList.remove('walking');
+        }
+      }
+      const turns=[...actor.querySelectorAll('.tavi-turn-head30')];
+      if(turns.length!==6||turns.some(t=>!good(t.querySelector('.tavi-cardstock-hair34'))))
+         errors.push('Actual authored full-body turns missing matching paper hair');
+    }finally{actor.setAttribute('class',priorClass);actor.dataset.stride=priorStride}
+    return {errors,dimensions,hairCount:actor.querySelectorAll('.tavi-cardstock-hair34').length,
+      collarCount:actor.querySelectorAll('.tavi-woven-collar34').length,
+      upperCount:actor.querySelectorAll('.tavi-upper-cel').length};
+  });
+  if(cutPaper34.errors.length||cutPaper34.hairCount!==51||
+     cutPaper34.collarCount!==45||cutPaper34.upperCount!==40)
+    throw Error('0.34 actual playable paper-hair and collar art regressed: '+JSON.stringify(cutPaper34));
+  console.log('0.34 GENUINE PAPER CHARACTER ART:',JSON.stringify(cutPaper34));
+  await face33.screenshot({path:'screenshots/52-tavi-cut-paper-hair-in-game.png'});
+  await face33.locator('#tavi').screenshot({path:'screenshots/53-tavi-hair-and-collar-closeup.png'});
+
   await face33.close();
   await terraceNear.emulateMedia({reducedMotion:'reduce'});
 
