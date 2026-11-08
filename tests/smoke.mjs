@@ -199,7 +199,7 @@ assert(html.includes('>INK DYER</text>')&&html.includes('>HERBARIUM</text>'),
  'Each building needs a readable, distinct shop identity');
 
 
-assert(html.includes('id="terraceDyerSign" transform="translate(171 -79)"'),
+assert(html.includes('id="terraceDyerSign" transform="translate(171 -115)"'),
  'Dyer sign must clear the iPhone movement controls, not sit below them');
 assert(html.includes('M60 563v28m131-36 13 43'),
  'Moved sign requires its illustrated physical hanging mount');
