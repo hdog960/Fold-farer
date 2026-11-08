@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.21.0: dimensional facades, grounded botanical details and floor-light contact.
+/* FoldFarer: The Unfinished World. First Fold 0.22.0: authored valley horizon, two independent paper-parallax cards and legible gateway crest.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -68,7 +68,7 @@ function load(){
 }
 let state=load();
 const $=id=>document.getElementById(id);
-const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),terraceLightShift:$('terraceLightShift'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),taviFlip:$('taviFlip'),morrow:$('morrow'),morrowContactBounce:$('morrowContactBounce'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),taviContactBounce:$('taviContactBounce'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
+const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),terraceMidRidges:$('terraceMidgroundCards'),terraceLightShift:$('terraceLightShift'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),taviFlip:$('taviFlip'),morrow:$('morrow'),morrowContactBounce:$('morrowContactBounce'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),taviContactBounce:$('taviContactBounce'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
 let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0,walkDistance=0,mendingUntil=0,pivotStart=0,pivotUntil=0,pivotFacing=state.direction+':'+state.facing,lastVerticalTurnView=state.direction.includes('up')?'rear':'front';
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
@@ -89,7 +89,11 @@ function updateBackdrop(dt){
  const dy=state.area==='terrace'?clamp((580-state.y)*.038,-10,10):0;
  backdrop.terraceX=(backdrop.terraceX||0)+(dx-(backdrop.terraceX||0))*alpha;
  backdrop.terraceY=(backdrop.terraceY||0)+(dy-(backdrop.terraceY||0))*alpha;
+
  el.terraceRidges.setAttribute('transform','translate('+backdrop.terraceX.toFixed(2)+' '+backdrop.terraceY.toFixed(2)+')');
+ // A nearer paper card glides much less than the furthest card, while the
+ // walk plane, collision geometry, physical props and player stay fixed.
+ el.terraceMidRidges.setAttribute('transform','translate('+(backdrop.terraceX*.43).toFixed(2)+' '+(backdrop.terraceY*.55).toFixed(2)+')');
  // Light drifts slightly with distant cards but never moves physical actors
  // or the camera hit-test coordinate system.
  el.terraceLightShift.setAttribute('transform','translate('+(backdrop.terraceX*.28).toFixed(2)+' '+(backdrop.terraceY*.24).toFixed(2)+')');

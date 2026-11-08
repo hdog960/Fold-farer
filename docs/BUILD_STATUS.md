@@ -247,3 +247,12 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Added static assertions and real-browser acceptance checks for geometry, paint order, pointer passthrough, and in-stage character contact light. The screenshot pipeline captures `screenshots/36-terrace-architectural-contact-light.png` only from actual running gameplay.
 - Version 0.21.0, offline cache 0.31, existing GitHub Pages URL and Home Screen icon unchanged; preview save key `foldfarer.firstfold.0.1` remains stable. No paid dependencies or battle, quest, movement, or save-schema rewrites.
 - **Still NOT approved:** These art features reduce illustrative flatness but do not qualify as the full polished, 90/100 Milestone A environment or a device-tested performance pass. Await real iPhone inspection and creator acceptance before Milestone B.
+
+
+## First Fold 0.22.0 — illustrative landscape art and separate physical depth cards (Milestone A)
+- Replaced the North Terrace's repeating triangular mountain strip and floating box houses with original hand-contoured distant paper mountains, shaded curved valley landforms, brush-ink seams, cut-card exposed edges, and two asymmetric hillside landmarks: the bound Bellhouse and a glasspaper conservatory.
+- Added a separate `terraceMidgroundCards` plane with a curved retainer wall, original willow/bookleaf trees, cypress leaves, stitched route and hand-detailed side greenery. The middle plane shifts by only part of the far card's perspective parallax, while the real gate, character anchors, collisions and walking floor remain fixed. Background bounds extend past the viewport to prevent card-edge leaks on mobile.
+- Redesigned the North Terrace letterpress arch plaque to actually contain its entire name, instead of the previous text overflowing a narrow banner. All new geometry uses original authored SVG directly in-game and catches no touch events.
+- Added structural and real Chromium browser verification for group rendering, parallax separation, gate/floor paint order, zero pointer interception, label fit, and a new true-play screenshot `screenshots/37-terrace-illustrated-valley.png`.
+- No changes to existing quests, combat, localStorage save key, companion follow, traversal or Home Screen icon. Version 0.22.0; PWA offline shell 0.32.
+- **Art quality still pending creator acceptance**: these changes improve scenery composition but are not a substitute for a comprehensive animation/material redesign or physical iPhone testing. Milestone B stays locked.

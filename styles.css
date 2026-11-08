@@ -672,3 +672,13 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){
  #taviContactBounce,#morrowContactBounce{mix-blend-mode:normal}
 }
+
+
+/* First Fold 0.22: handmade three-plane backdrop. Both moving scenery layers
+   sit BEHIND the real gate, ground, foliage, actor and prop paint stages.
+   No new hit-testing surface and no expensive pixel shader on iPhone. */
+#terraceDistantCards,#terraceDistantCards *,
+#terraceMidgroundCards,#terraceMidgroundCards *{pointer-events:none!important}
+#terraceMountainBack,#terraceValleyCard,
+#terraceLandscapeRetainingWall{shape-rendering:geometricPrecision}
+#terraceLetterpressPlaque,#terraceLetterpressTitle{pointer-events:none!important}

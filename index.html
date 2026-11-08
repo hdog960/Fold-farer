@@ -39,6 +39,25 @@
 
 
         <!-- 0.21: cut edges and cavity shading are real dimensional paper materials, not flat decals. -->
+
+        <!-- First Fold 0.22: three optically distinct cut-paper landscape planes. -->
+        <linearGradient id="terraceMountainCard" x1="0%" y1="0%" x2="23%" y2="100%">
+          <stop stop-color="#d5ddbe"/><stop offset=".42" stop-color="#bacbb3"/>
+          <stop offset="1" stop-color="#9bb5a2"/>
+        </linearGradient>
+        <linearGradient id="terraceShadowValley" x1="0%" y1="0%" x2="15%" y2="100%">
+          <stop stop-color="#aac3ad"/><stop offset=".58" stop-color="#84a997"/>
+          <stop offset="1" stop-color="#749b91"/>
+        </linearGradient>
+        <linearGradient id="terraceMidlandInk" x1="0%" y1="0%" x2="100%" y2="70%">
+          <stop stop-color="#6e9d91"/><stop offset=".5" stop-color="#9ab6a0"/>
+          <stop offset="1" stop-color="#c1ca9f"/>
+        </linearGradient>
+        <linearGradient id="terraceSkyVellum" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stop-color="#fff5d8" stop-opacity=".28"/>
+          <stop offset=".4" stop-color="#fcead3" stop-opacity=".07"/>
+          <stop offset="1" stop-color="#f7e7c7" stop-opacity="0"/>
+        </linearGradient>
         <linearGradient id="terraceRoofStrata" x1="0%" y1="0%" x2="15%" y2="100%">
           <stop stop-color="#fff1cc"/><stop offset=".19" stop-color="#eac39c"/>
           <stop offset=".47" stop-color="#ba8f84"/><stop offset=".78" stop-color="#795d6d"/>
@@ -3532,21 +3551,110 @@
       <g id="terraceScene" style="display:none" aria-label="North Terrace, a deep explorable papercraft plaza">
         <rect width="1440" height="810" fill="url(#sky)"/>
         <rect width="1440" height="810" fill="url(#grain)" opacity=".19"/>
-        <!-- Distant cards are separate cutouts with pronounced exposed page edges. -->
-        <g id="terraceDistantCards" pointer-events="none">
-          <path d="M-10 302 122 176 228 229 350 134 459 222 566 161 699 245 841 136 963 223 1068 174 1199 223 1344 144 1462 246V380H-10Z" fill="#bbcbaf" stroke="#edf2cc" stroke-width="8"/>
-          <path d="M-12 360 114 261 211 308 353 213 488 310 614 240 742 326 861 220 970 306 1082 255 1210 309 1356 219 1452 293V424H-12Z" fill="#8ba99b" stroke="#cbd8b4" stroke-width="9"/>
-          <path d="M-10 375q288-44 468-2t414-8q320-46 575-7" stroke="#f5e6bf" stroke-width="6" fill="none" stroke-dasharray="7 13" opacity=".58"/>
-          <g fill="#789b90" stroke="#d4dcb9" stroke-width="3.5" opacity=".85">
-            <path d="m160 336 34-62 40 61Z"/><path d="m223 349 23-47 30 50Z"/>
-            <path d="m1090 333 32-65 38 66Z"/><path d="m1158 346 26-46 33 48Z"/>
-            <path d="m1247 317 29-53 33 50Z"/>
+
+        <!-- Three separately authored paper-depth planes, rather than repeated
+             triangular mountains. Their backgrounds extend beyond all viewport
+             edges to cover the maximum mobile parallax without exposed card backs. -->
+        <g id="terraceDistantCards" pointer-events="none" aria-label="Hand-cut and watercolored distant Foldlands">
+          <g id="terraceWeatherVellum" aria-hidden="true">
+            <path d="M-80 218Q76 148 240 173T555 161Q744 126 888 169T1203 165Q1372 149 1512 201V295H-80Z" fill="url(#terraceSkyVellum)" opacity=".74"/>
+            <path d="M70 215q30-19 63-14 31-23 66-13 31-10 54 9 27-5 44 12-99-5-227 6Z" fill="#e8e9cf" opacity=".36"/>
+            <path d="M1048 177q23-19 53-14 33-25 65-12 29-11 55 10 35-1 56 14-123-4-229 2Z" fill="#eaf0d3" opacity=".31"/>
+            <path d="M119 201q64-6 122 3M1081 167q95-6 164 0" fill="none" stroke="#fff6dc" stroke-width="2.2" opacity=".42"/>
           </g>
-          <g fill="#e3bd99" stroke="#7b8277" stroke-width="3" opacity=".7">
-            <path d="M471 299v-43l29-28 28 28v43Z"/><path d="M903 296v-49l27-29 31 27v52Z"/>
+
+          <g id="terraceMountainBack" aria-hidden="true">
+            <!-- Receding ridge: lopsided, curved mountain silhouettes with layered
+                 internal facets and real dark card-stock side edges. -->
+            <path d="M-80 309C-25 278 40 250 104 257c59 4 85-56 145-60 47-8 77 37 113 26 45-12 71-66 124-61 53 5 81 53 123 57 57 9 84-45 132-35 61 12 81 61 133 55 63-7 87-69 148-65 62 2 89 54 150 62 53 9 94-42 152-35 67 9 100 69 164 59V435H-80Z" fill="url(#terraceMountainCard)" stroke="#fff0d0" stroke-width="8" stroke-linejoin="round"/>
+            <path d="M-80 315C-25 285 40 258 104 264c59 4 85-56 145-60 47-8 77 37 113 26 45-12 71-66 124-61 53 5 81 53 123 57 57 9 84-45 132-35 61 12 81 61 133 55 63-7 87-69 148-65 62 2 89 54 150 62 53 9 94-42 152-35 67 9 100 69 164 59" fill="none" stroke="#658c86" stroke-width="3.7" opacity=".45"/>
+            <!-- Mountain facets use asymmetric cut seams, not repeating zig-zags. -->
+            <path d="M246 201q-51 47-69 102l91-35 43 35-12-70Z" fill="#f6e7c3" opacity=".36"/>
+            <path d="M486 164q-38 47-42 109l52-31 58 56-15-87Z" fill="#e6efce" opacity=".45"/>
+            <path d="M868 177q-31 50-16 108l28-38 63 37-23-66Z" fill="#f1e6c5" opacity=".37"/>
+            <path d="M1121 183q-38 48-23 103l45-36 72 52-22-62Z" fill="#eef1ce" opacity=".4"/>
+            <path d="m152 279 53-26 47-4m180-10 51-46 30 25m335 37 28-43 48 30m193 28 51-51 44 35" fill="none" stroke="#eef2d6" stroke-width="2.8" opacity=".58" stroke-linecap="round"/>
+            <g fill="none" stroke="#8ca99c" opacity=".51" stroke-width="2.2">
+              <path d="m61 286 39-10 29 6m188-21 22-9 44 18m143-12 33-12 28 20m170-12 37 10 32-6m235-3 29-17 44 14m137-14 34 5 32-7"/>
+            </g>
           </g>
-          <g fill="#b67d79" stroke="#f2d4a9" stroke-width="3">
-            <path d="m462 258 38-36 37 36Z"/><path d="m893 247 37-36 41 38Z"/>
+
+          <g id="terraceValleyCard" aria-hidden="true">
+            <path d="M-80 363q73-57 162-48 75 11 135-39 62-50 135-19 69 37 139-1 79-46 145-1 77 53 148 16 56-30 116-6 77 48 141 10 73-46 136-20 58 22 111 71V440H-80Z" fill="url(#terraceShadowValley)" stroke="#e2e6bd" stroke-width="7.5"/>
+            <path d="M-80 375q88-58 164-49 73 17 135-35 62-47 137-16 63 34 137-1 79-44 143-2 77 56 151 15 61-30 116-7 76 46 141 12 70-46 132-21 57 22 111 69" fill="none" stroke="#6c978e" stroke-width="5" opacity=".6"/>
+            <path d="m-45 353q69-33 141-19 86 31 145-27m131-14q43 33 101 20m129-15q61-30 123-13m180 25q63-15 91 5m159-29q75-21 122 27" fill="none" stroke="#d6e5bf" stroke-width="3.2" opacity=".64" stroke-linecap="round"/>
+            <!-- Irregular cut-card crags and brush-ink texture. -->
+            <path d="M62 321q35-25 70-8l-9 16 36-4-34 27-44-7Zm351-22q32-16 55 1l-17 10 42-2-34 23-54-4Zm579 12q36-30 68-12l-18 16 39-1-35 25-55-6Z" fill="#6c958b" opacity=".2"/>
+            <path d="m95 340 12-7m18 10 9-4m295-32 12-4m16 8 10-3m528 4 14-8m19 7 10-3" stroke="#eff0ca" stroke-width="2.2" stroke-linecap="round" opacity=".68"/>
+          </g>
+
+          <!-- The distant settlement is anchored to the upper valley card:
+               asymmetrical roofs, bound page-thickness and small illuminated
+               windows. Never a floating rectangle or identical mirrored home. -->
+          <g id="terraceHillsideHamlet" aria-hidden="true">
+            <g id="terraceHillsideBellhouse">
+              <path d="M333 356 343 285 370 272l60 14 18 74Z" fill="#95776f" opacity=".36"/>
+              <path d="M345 353 345 295l36-30 53 25-2 67Z" fill="#e4c9a5" stroke="#816c70" stroke-width="5"/>
+              <path d="m338 294 41-39 61 27 11 15-17 8-55-32-34 34Z" fill="#ac7a7d" stroke="#785f6b" stroke-width="5"/>
+              <path d="m350 296 31-30 56 30" fill="none" stroke="#ffe8b9" stroke-width="3.3"/>
+              <path d="M368 318q10-19 22 0v27h-22Z" fill="#58877f" stroke="#9c7879" stroke-width="4"/>
+              <path d="M399 309l20 3-1 21-20-3Z" fill="#f8dbad" stroke="#947771" stroke-width="3"/>
+              <path d="m405 313 7 2m-31-2 0 26m-31 1 70 4" stroke="#fff0c8" stroke-width="2.5"/>
+              <path d="M361 270v-31l13-11 14 11v29Z" fill="#d6b08d" stroke="#7c6671" stroke-width="3.7"/>
+              <path d="m356 240 18-21 19 19" fill="#ad7580" stroke="#f3d8b4" stroke-width="3"/>
+              <circle cx="375" cy="251" r="5" fill="#f4d68e" stroke="#866d75" stroke-width="2"/>
+            </g>
+            <g id="terraceHillsideGlasshouse">
+              <path d="M993 360 997 292q29-35 73-38 47 8 68 45l3 64Z" fill="#8a9185" opacity=".44"/>
+              <path d="M998 356v-52q23-43 71-43 44 3 66 43v55Z" fill="#b9c8aa" stroke="#816f74" stroke-width="5"/>
+              <path d="M988 306q28-54 82-57 55 2 77 60l-17 2q-15-47-62-47-41 3-62 46Z" fill="#9e777e" stroke="#705b6d" stroke-width="5"/>
+              <path d="m1008 304q32-39 57-39v91h-57Zm67-39q33 5 54 44v47h-54Z" fill="#709e96" opacity=".61"/>
+              <path d="M1068 258v99m-64-40h127" stroke="#f9e4bb" stroke-width="5" fill="none"/>
+              <path d="m1018 300 30-31m53 2 24 36" stroke="#f4edca" stroke-width="2.7" fill="none" opacity=".65"/>
+              <path d="M994 352q65 12 150 0l7 15-165 0Z" fill="#c99c8d" stroke="#866b72" stroke-width="4"/>
+              <path d="m1001 360 140 0" fill="none" stroke="#fff0c6" stroke-width="2.6" stroke-dasharray="8 9"/>
+            </g>
+          </g>
+        </g>
+        <!-- Independent middle cards travel at a fraction of distant parallax,
+             producing tangible page separation behind the stationary arch. -->
+        <g id="terraceMidgroundCards" pointer-events="none" aria-label="Layered terrace gardens and paper-bound valley walls">
+          <g id="terraceLandscapeRetainingWall" aria-hidden="true">
+            <path d="M-80 401q115-54 205-37 114 33 234 3 98-26 166 14 108 25 212-2 83-19 151 8 112 29 219-12 115-32 214 1 112 35 189-9V466H-80Z" fill="url(#terraceMidlandInk)" stroke="#e1e5c1" stroke-width="9"/>
+            <path d="M-80 413q115-54 205-37 114 33 234 3 98-26 166 14 108 25 212-2 83-19 151 8 112 29 219-12 115-32 214 1 112 35 189-9" fill="none" stroke="#557f7c" stroke-width="7" opacity=".48"/>
+            <path d="M-80 400q115-54 205-37 114 33 234 3 98-26 166 14 108 25 212-2 83-19 151 8 112 29 219-12 115-32 214 1 112 35 189-9" fill="none" stroke="#fff4d6" stroke-width="2.7" opacity=".8" stroke-dasharray="15 9 4 11"/>
+            <path d="M-80 430q112-38 225-24 116 21 210-1 95-19 170 13 116 21 213-6 82-12 164 14 115 22 213-11 120-20 222 10 84 13 173-7" fill="none" stroke="#f6e6b9" stroke-width="3" opacity=".62"/>
+          </g>
+          <!-- Painted wild trees with separate silhouettes and local stitched veins;
+               not a repeated set of triangular pine icons. -->
+          <g id="terraceWildCopse" aria-hidden="true">
+            <g id="terraceWillowSprig" transform="translate(218 364)">
+              <path d="M-6 7q10-29 4-73l9-3q3 36 11 75Z" fill="#8c7a75" stroke="#6b7773" stroke-width="3.5"/>
+              <path d="M0-97q-49-9-64 28-10 32 30 41 16 30 52 10 36 18 49-15 25-26 2-48-20-25-49-20Z" fill="#7aa69a" stroke="#5c8683" stroke-width="5"/>
+              <path d="M-32-88q-33 18-15 51m16-49q-19 23-8 48M6-94q-23 36-9 73M35-87q-10 32 2 66M60-69q-5 24-15 42" fill="none" stroke="#c4dbc4" stroke-width="3.1" opacity=".76" stroke-linecap="round"/>
+              <path d="m-49-45-14 20m30-1-11 22M2-29-7-3m47-27 7 24" stroke="#5a8f8a" stroke-width="3" fill="none" opacity=".55"/>
+            </g>
+            <g id="terraceBookleafTree" transform="translate(1235 354)">
+              <path d="M-12 11q24-61-1-116l13-9q23 56 24 123Z" fill="#a0847a" stroke="#796d71" stroke-width="5"/>
+              <path d="M-61-80q-23-41 18-59 25-21 53 1 41-32 67-1 33 10 19 43 34 24-2 48-28 18-55-3-39 25-70 0-45-1-30-29Z" fill="#83a58e" stroke="#527f78" stroke-width="6"/>
+              <path d="M-49-103q13-27 41-17m-19 35q24-28 48-13m21-25q29 7 29 31m-64 15q12 20 38 15" stroke="#d7dec0" stroke-width="3.7" fill="none" stroke-linecap="round"/>
+              <path d="m-57-84 15-7 10 14-19 6Zm110 21 16-11 12 14-22 12Z" fill="#d5b099" stroke="#faf0c8" stroke-width="2.7"/>
+            </g>
+            <g id="terraceCypressCluster" fill="#577c75" stroke="#c6d4b2" stroke-width="3">
+              <path d="M82 395q-18-40-4-89 26 45 22 89Z"/>
+              <path d="M115 397q-11-34 6-80 18 50 13 80Z"/>
+              <path d="M1289 394q-15-43 5-94 21 50 15 95Z"/>
+              <path d="M1330 396q-9-30 12-71 15 45 7 70Z"/>
+            </g>
+            <g fill="none" stroke="#e3e7c5" stroke-width="2.3" opacity=".6">
+              <path d="m79 385 3-55m41 56 0-48m1171 48 2-63m46 60 2-38"/>
+            </g>
+          </g>
+          <!-- Discontinuous winding stitch road belongs to the painted land,
+               behind collision and the real player, never a false walkable path. -->
+          <g id="terraceValleyThread" aria-hidden="true">
+            <path d="M-68 405q119-25 224-9t178-3m575 6q115-32 211-3t248-2" fill="none" stroke="#f1e0b5" stroke-width="4.5" stroke-dasharray="3 14" stroke-linecap="round" opacity=".85"/>
+            <path d="m306 382 11-3 13 6m617 1 14-7 11 6" fill="none" stroke="#fcebc7" stroke-width="3" opacity=".76"/>
           </g>
         </g>
         <!-- A paper arch over the actual distant walkable entrance. -->
@@ -3558,8 +3666,13 @@
           <path d="M533 410h91l-10 27h-69Z" fill="#bb8d80" stroke="#80646a" stroke-width="6"/>
           <path d="m816 407 91-4-13 30h-74Z" fill="#bb8d80" stroke="#80646a" stroke-width="6"/>
           <path d="m607 250 109-65 120 68" stroke="#ffe8b6" stroke-width="5" fill="none" stroke-dasharray="8 12"/>
-          <path d="M647 145q80-22 145 3l-11 45q-63-13-119 0Z" fill="#ebc693" stroke="#8e6f6e" stroke-width="6"/>
-          <text x="720" y="177" text-anchor="middle" fill="#516a6b" font-family="Georgia,serif" font-size="25" font-weight="bold" letter-spacing="3">NORTH TERRACE</text>
+
+          <!-- Enlarged letterpress crest keeps the whole name on the actual cardboard plaque. -->
+          <path d="M606 154q111-35 230 1l-14 48q-105-23-207 1Z" fill="#977477" opacity=".44"/>
+          <path id="terraceLetterpressPlaque" d="M609 145q112-33 223 1l-13 47q-99-20-196 1Z" fill="#e8c796" stroke="#866970" stroke-width="6"/>
+          <path d="M620 150q96-25 202 1m-190 36q89-16 177 0" fill="none" stroke="#fff0c9" stroke-width="3" opacity=".8"/>
+          <text id="terraceLetterpressTitle" x="720" y="177" text-anchor="middle" fill="#52636a" font-family="Georgia,serif" font-size="18" font-weight="bold" letter-spacing="1.9">NORTH TERRACE</text>
+          <g fill="#e1a77d" stroke="#8d6f70" stroke-width="2.4"><circle cx="625" cy="166" r="4"/><circle cx="813" cy="166" r="4"/></g>
           <g fill="#c7aa8d" stroke="#796a70" stroke-width="4">
             <path d="m563 269 30-9 10 29-35 12Z"/><path d="m834 267 31-7 13 34-37 11Z"/>
           </g>

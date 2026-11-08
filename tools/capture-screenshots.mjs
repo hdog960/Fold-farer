@@ -482,6 +482,53 @@ try {
   });
   if(!lighting.heroParent||!lighting.birdParent||lighting.hero<.2||lighting.bird<.1)
     throw Error('Ground-contact illumination is missing from running character artwork: '+JSON.stringify(lighting));
+
+  // 0.22: capture the ACTUAL running scene, not concept art.
+  // The two cards must be independently authored, behind gate and actor,
+  // not block touch, and shift by different subpixel amounts in the same tick.
+  const vista=await terraceNear.locator('#terraceDistantCards').evaluate(far=>{
+    const mid=document.getElementById('terraceMidgroundCards');
+    const gate=document.getElementById('terraceGateBack');
+    const title=document.getElementById('terraceLetterpressTitle');
+    const groups=['terraceMountainBack','terraceValleyCard','terraceHillsideHamlet',
+      'terraceLandscapeRetainingWall','terraceWildCopse'];
+    const bounds=groups.map(id=>{
+      const el=document.getElementById(id),b=el.getBBox();
+      return {id,w:b.width,h:b.height,events:getComputedStyle(el).pointerEvents};
+    });
+    const offset=e=>{
+      const tr=e.getAttribute('transform')||'';
+      const xy=/translate\\((-?[0-9.]+) (-?[0-9.]+)\\)/.exec(tr);
+      return xy?{x:Number(xy[1]),y:Number(xy[2])}:{x:0,y:0};
+    };
+    const plaque=document.getElementById('terraceLetterpressPlaque').getBBox();
+    const label=title.getBBox();
+    return {order:!!(far.compareDocumentPosition(mid)&Node.DOCUMENT_POSITION_FOLLOWING) &&
+      !!(mid.compareDocumentPosition(gate)&Node.DOCUMENT_POSITION_FOLLOWING),
+      farEvents:getComputedStyle(far).pointerEvents,
+      midEvents:getComputedStyle(mid).pointerEvents,
+      farOffset:offset(far),midOffset:offset(mid),bounds,
+      labelWithinPlaque:label.x>plaque.x+3&&label.x+label.width<plaque.x+plaque.width-3,
+      titleSize:parseFloat(getComputedStyle(title).fontSize)};
+  });
+  if(!vista.order||vista.farEvents!=='none'||vista.midEvents!=='none'||
+      vista.bounds.some(x=>x.w<100||x.h<40||x.events!=='none')||
+      !vista.labelWithinPlaque||vista.titleSize>20)
+    throw Error('0.22 landscape painting/plaque regression: '+JSON.stringify(vista));
+  // Perspective changes scenery only. Distant and nearer paper cards cannot
+  // be the same transform even after settle; the walk plane stays immobile.
+  const landscapeOld=await terraceNear.locator('#terraceGround').getAttribute('transform');
+  await terraceNear.waitForTimeout(340);
+  const parallax=await terraceNear.locator('#terraceDistantCards').evaluate(far=>{
+    const a=/translate\\((-?[0-9.]+) (-?[0-9.]+)\\)/.exec(far.getAttribute('transform')||'');
+    const b=/translate\\((-?[0-9.]+) (-?[0-9.]+)\\)/.exec(document.getElementById('terraceMidgroundCards').getAttribute('transform')||'');
+    return {far:a&&a.slice(1).map(Number),mid:b&&b.slice(1).map(Number)};
+  });
+  if(!parallax.far||!parallax.mid||
+      Math.abs(parallax.far[1]-parallax.mid[1])<.5||
+      await terraceNear.locator('#terraceGround').getAttribute('transform')!==landscapeOld)
+    throw Error('Independent two-layer parallax displaced real floor or failed: '+JSON.stringify(parallax));
+  await terraceNear.screenshot({path:'screenshots/37-terrace-illustrated-valley.png'});
   await terraceNear.screenshot({path:'screenshots/36-terrace-architectural-contact-light.png'});
   await terraceNear.screenshot({path:'screenshots/35-terrace-folded-step-construction.png'});
   await terraceNear.screenshot({path:'screenshots/23-terrace-material-light.png'});
