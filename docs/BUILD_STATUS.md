@@ -350,3 +350,13 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Expanded static tests and the true Chromium in-game capture to reject missing directional head groups, mismatched expression transforms, incorrect scale ratios, altered foot transforms, or input interception. Capture: screenshots/46-tavi-proportion-audit.png.
 - No altered collision footprints, save schema/key, combat systems, Morrow AI, quest flags, or Home Screen URL. Version 0.30.0; offline cache 0.43.
 - **Artwork is still in progress:** This is a proportion and continuity correction, not full-production portrait atlases, animated hair/garment paint, or final character signoff. iPhone on-device QA remains outstanding. Milestone B stays locked.
+
+
+## First Fold 0.31.0 — authored head motion integrated into all original walking cels (Milestone A)
+- Identified and addressed a real animation continuity gap: the already-authored 40 lower-body and 40 upper-body source cels previously moved while Tavi's original head illustration did not have a matching stride-indexed source.
+- Added 40 physical in-world head-and-face source cels, **8 distinct poses for each of front/rear/side/quarter-front/quarter-rear**. Each uses the existing proportions and neck reference with small, frame-specific paper offsets and separately shaped crested hair/scalp ink, under a new real SVG atlas. Every cel remains fixed to the same grounded actor as the legs.
+- The original five 0.30 static heads, three emotional face atlases and six full-body turning poses are preserved for idle, speech and direction changes. Old 40 per-frame hair-detail overlays are suppressed during walking so they cannot create duplicate linework.
+- Sprite choice uses the exact pre-existing distance-driven stride index, not a wall-clock interval. Only one matching head, upper body and leg cel should be visible per stride; reduced-motion users get the consistent zero-stride pose.
+- Extend actual Chromium scene test to audit 5x8 combinations and reduced-motion behavior, and capture in-engine moving screenshot 47. Test that input remains touch-transparent, head ratios remain stable, and existing save / movement / collision invariants hold.
+- Game version 0.31.0 / PWA cache 0.44. Original URL, saved progress, controls, story, geometry and navigation are unchanged.
+- **Not a final art signoff:** 40 new head cels remain simplified hand-authored SVG; high-fidelity full character painting, full ensemble consistency and physical iPhone QA are still required. Milestone B remains LOCKED.

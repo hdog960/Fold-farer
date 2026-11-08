@@ -777,3 +777,40 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 }
 #tavi .tavi-proportioned-head30 path,
 #tavi .tavi-turn-head30 path{shape-rendering:geometricPrecision}
+
+
+/* First Fold 0.31 — complete distance-indexed head/neck illustration,
+   one authored 8-frame sheet per real direction. No universal sprite scaling,
+   head rotation, timer-driven bob, duplicated outlines, or touch interception. */
+#tavi .tavi-stride-head-cel31{display:none}
+#tavi.walking .tavi-proportioned-head30{display:none!important}
+#tavi.walking .tavi-upper-atlas .tavi-upper-hair-details{display:none!important}
+#tavi .tavi-stride-head-atlas31,
+#tavi .tavi-stride-head-atlas31 *,
+#tavi .tavi-stride-head-cel31,
+#tavi .tavi-stride-head-geometry31{pointer-events:none!important;animation:none!important;transition:none!important}
+#tavi .tavi-inked-hair-motion31 path{shape-rendering:geometricPrecision}
+#tavi.walking[data-stride="0"] .tavi-stride-head-cel31[data-head-frame="0"]{display:inline}
+#tavi.walking[data-stride="1"] .tavi-stride-head-cel31[data-head-frame="1"]{display:inline}
+#tavi.walking[data-stride="2"] .tavi-stride-head-cel31[data-head-frame="2"]{display:inline}
+#tavi.walking[data-stride="3"] .tavi-stride-head-cel31[data-head-frame="3"]{display:inline}
+#tavi.walking[data-stride="4"] .tavi-stride-head-cel31[data-head-frame="4"]{display:inline}
+#tavi.walking[data-stride="5"] .tavi-stride-head-cel31[data-head-frame="5"]{display:inline}
+#tavi.walking[data-stride="6"] .tavi-stride-head-cel31[data-head-frame="6"]{display:inline}
+#tavi.walking[data-stride="7"] .tavi-stride-head-cel31[data-head-frame="7"]{display:inline}
+@media(prefers-reduced-motion:reduce){
+  #tavi.walking .tavi-stride-head-cel31:not([data-head-frame="0"]){display:none!important}
+  #tavi.walking .tavi-stride-head-cel31[data-head-frame="0"]{display:inline!important}
+}
+
+/* Blinks remain frame-local. Keep three original idle eyelid sources unique. */
+#tavi .tavi-stride-eyes-open31{opacity:1;animation:farerOpenEyes 6.8s steps(1,end) infinite}
+#tavi .tavi-stride-eyes-blink31{opacity:0;animation:farerClosedEyes 6.8s steps(1,end) infinite}
+#tavi.speaking .tavi-stride-eyes-open31,
+#tavi.speaking .tavi-stride-eyes-blink31,
+#tavi.speaking .tavi-stride-rest-mouth31{display:none!important}
+@media(prefers-reduced-motion:reduce){
+ #tavi .tavi-stride-eyes-open31,#tavi .tavi-stride-eyes-blink31{animation:none!important}
+ #tavi .tavi-stride-eyes-open31{opacity:1!important}
+ #tavi .tavi-stride-eyes-blink31{opacity:0!important}
+}

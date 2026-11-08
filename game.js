@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.30.0: consistent head and face proportions across field poses and full-body turns.
+/* FoldFarer: The Unfinished World. First Fold 0.31.0: distance-indexed original 40-head atlas for five directional walking poses.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
