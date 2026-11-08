@@ -814,3 +814,15 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #tavi .tavi-stride-eyes-open31{opacity:1!important}
  #tavi .tavi-stride-eyes-blink31{opacity:0!important}
 }
+
+
+/* First Fold 0.33 — actual hand-cut face and knuckle contours replace
+   circular mannequin parts in idle, walking and turning art. The character
+   retains its real grounded world/foot transform and all existing stride cels. */
+#tavi .tavi-inked-hand33,
+#tavi .tavi-inked-hand33 *,
+#tavi .tavi-sculpted-face33,
+#tavi .tavi-sculpted-face33 *,
+#tavi .tavi-profile-nose33,
+#tavi .tavi-turn-visage33{pointer-events:none!important;shape-rendering:geometricPrecision}
+#tavi .tavi-inked-hand33 path{vector-effect:none}
