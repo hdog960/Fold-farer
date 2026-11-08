@@ -558,11 +558,11 @@ try {
     throw Error('0.23 distinct shop architecture missing, occluded, or intercepting touch: '+JSON.stringify(shopfrontQA));
   }
   const savedPose=await terraceNear.locator('#tavi').getAttribute('transform');
-  const rectBefore=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(el=>el.getBBox().toJSON());
+  const rectBefore=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(el=>{const b=el.getBBox();return {x:b.x,width:b.width};});
   await terraceNear.screenshot({path:'screenshots/38-terrace-distinct-shopfronts.png'});
   if(await terraceNear.locator('#tavi').getAttribute('transform')!==savedPose)
     throw Error('0.23 shopfront rendering changed the game character position');
-  const rectAfter=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(el=>el.getBBox().toJSON());
+  const rectAfter=await terraceNear.locator('#terraceCraftedShopfronts').evaluate(el=>{const b=el.getBBox();return {x:b.x,width:b.width};});
   if(Math.abs(rectAfter.x-rectBefore.x)>.01||Math.abs(rectAfter.width-rectBefore.width)>.01)
     throw Error('0.23 painted architecture unexpectedly moved relative to collision world');
   await terraceNear.screenshot({path:'screenshots/37-terrace-illustrated-valley.png'});
