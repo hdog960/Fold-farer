@@ -720,3 +720,23 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){
  #terraceRibbonTree .terrace-leaf-sway{animation:none!important}
 }
+
+/* First Fold 0.25 — correct the physics/paint split: body fabric is animated
+   *inside* the world-anchored actor; floor shadow never floats with a step.
+   The 40 individually posed coat edge bindings are part of real upper cels
+   and follow existing gait, directional faces and transition logic. */
+#tavi.walking{animation:none!important;translate:0 0!important}
+#tavi.walking #taviFlip{animation:farerBodyStride .36s ease-in-out infinite alternate}
+#taviGroundShadow,#morrowGroundShadow{animation:none!important;translate:0 0!important}
+#tavi .tavi-cardstock-coat-edges,#morrowCardstockFeathers{
+  opacity:var(--paper-rim-strength,.68);
+  pointer-events:none!important;
+}
+#tavi .tavi-cardstock-coat-edges path,#morrowCardstockFeathers path{
+  shape-rendering:geometricPrecision;
+}
+#taviFootOcclusion,#morrowFeatherOcclusion{pointer-events:none!important}
+@media(prefers-reduced-motion:reduce){
+ #tavi.walking #taviFlip{animation:none!important;translate:0 0!important}
+ #morrowSprite{animation:none!important}
+}

@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.24.1: calibrated tree canopy clears the conservatory and the kiosk.
+/* FoldFarer: The Unfinished World. First Fold 0.25.0: physically grounded animated characters with per-pose cardstock rim drawing.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
@@ -135,6 +135,10 @@ function updateCompanion(dt=0){
  const birdLantern=Math.hypot(companion.x-371,(companion.y-615)*1.1);
  const birdBounce=terrace?.11+.24*Math.max(0,1-birdLantern/460):(indoors?.07:.10);
  el.morrowContactBounce.setAttribute('opacity',birdBounce.toFixed(3));
+ // Cardstock feather highlights catch the SAME nearby warm light as the
+ // walking world; this changes only paint values, not bird movement.
+ const birdReflect=terrace?.56+.27*Math.max(0,1-birdLantern/460):(indoors?.48:.54);
+ el.morrow.style.setProperty('--paper-rim-strength',birdReflect.toFixed(2));
  el.morrow.classList.add('following');
  const targetStage=indoors?el.atelierDepthStage:(terrace?el.terraceDepthStage:el.depthStage);
  if(el.morrow.parentNode!==targetStage){targetStage.appendChild(el.morrow);lastDepthOrder='';}
@@ -155,6 +159,10 @@ function updateCharacter(){
  const proximity=terrace?Math.max(0,1-distanceToLantern/460):0;
  const footBounce=terrace?.20+.45*proximity:(state.area==='atelier'?.10:.14);
  el.taviContactBounce.setAttribute('opacity',footBounce.toFixed(3));
+ // Only the actual painted coat edge responds to the light. No portrait HUD,
+ // fake sprite halo or area-wide flat rectangle is used.
+ const coatReflect=terrace?.56+.32*proximity:(state.area==='atelier'?.50:.61);
+ el.tavi.style.setProperty('--paper-rim-strength',coatReflect.toFixed(2));
  el.taviFlip.setAttribute('transform','scale('+state.facing+' 1)');
  for(const dir of ['up','down','side','diag-up','diag-down'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
  const inside=state.area==='atelier';
