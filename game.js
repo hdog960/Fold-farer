@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.32.0: watercolor cloth and folded-card material art for every Tavi walking cel.
+/* FoldFarer: The Unfinished World. First Fold 0.33.0: sculpted face silhouettes and anatomical hands across every field and turn pose.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
