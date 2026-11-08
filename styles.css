@@ -802,3 +802,15 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   #tavi.walking .tavi-stride-head-cel31:not([data-head-frame="0"]){display:none!important}
   #tavi.walking .tavi-stride-head-cel31[data-head-frame="0"]{display:inline!important}
 }
+
+/* Blinks remain frame-local. Keep three original idle eyelid sources unique. */
+#tavi .tavi-stride-eyes-open31{opacity:1;animation:farerOpenEyes 6.8s steps(1,end) infinite}
+#tavi .tavi-stride-eyes-blink31{opacity:0;animation:farerClosedEyes 6.8s steps(1,end) infinite}
+#tavi.speaking .tavi-stride-eyes-open31,
+#tavi.speaking .tavi-stride-eyes-blink31,
+#tavi.speaking .tavi-stride-rest-mouth31{display:none!important}
+@media(prefers-reduced-motion:reduce){
+ #tavi .tavi-stride-eyes-open31,#tavi .tavi-stride-eyes-blink31{animation:none!important}
+ #tavi .tavi-stride-eyes-open31{opacity:1!important}
+ #tavi .tavi-stride-eyes-blink31{opacity:0!important}
+}
