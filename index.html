@@ -116,6 +116,27 @@
         <!-- 0.25: material-dependent rim light derived from the same warm
              upper-left sun as the carved buildings. The cloth never glows
              as an unshaped screen-overlay rectangle. -->
+
+        <!-- 0.26: directional watercolor washes integrated into actual SVG pose geometry. -->
+        <linearGradient id="farerCoatShell-front" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#efb493"/><stop offset=".48" stop-color="#ce8577"/><stop offset="1" stop-color="#925b67"/></linearGradient>
+        <linearGradient id="farerCoatPanel-front" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#f6d0a7"/><stop offset=".48" stop-color="#df9b84"/><stop offset="1" stop-color="#b56b6f"/></linearGradient>
+        <linearGradient id="farerCoatShell-rear" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#d9a387"/><stop offset=".48" stop-color="#b97973"/><stop offset="1" stop-color="#775669"/></linearGradient>
+        <linearGradient id="farerCoatPanel-rear" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#eac09d"/><stop offset=".48" stop-color="#c78577"/><stop offset="1" stop-color="#925c6b"/></linearGradient>
+        <linearGradient id="farerCoatShell-side" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#e1a993"/><stop offset=".48" stop-color="#bd746c"/><stop offset="1" stop-color="#825866"/></linearGradient>
+        <linearGradient id="farerCoatPanel-side" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#f1c6a3"/><stop offset=".48" stop-color="#d18a7a"/><stop offset="1" stop-color="#9c6271"/></linearGradient>
+        <linearGradient id="farerCoatShell-quarter-front" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#e9b19b"/><stop offset=".48" stop-color="#c27b75"/><stop offset="1" stop-color="#895766"/></linearGradient>
+        <linearGradient id="farerCoatPanel-quarter-front" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#f5c9a4"/><stop offset=".48" stop-color="#d58e7d"/><stop offset="1" stop-color="#a05d71"/></linearGradient>
+        <linearGradient id="farerCoatShell-quarter-rear" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#dba491"/><stop offset=".48" stop-color="#b47277"/><stop offset="1" stop-color="#725269"/></linearGradient>
+        <linearGradient id="farerCoatPanel-quarter-rear" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#edc09d"/><stop offset=".48" stop-color="#cb827d"/><stop offset="1" stop-color="#935771"/></linearGradient>
+        <linearGradient id="farerHairFront" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#9a8280"/><stop offset=".48" stop-color="#615663"/><stop offset="1" stop-color="#363e51"/></linearGradient>
+        <linearGradient id="farerHairRear" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#82757e"/><stop offset=".48" stop-color="#5d5363"/><stop offset="1" stop-color="#383f52"/></linearGradient>
+        <linearGradient id="farerScarfCloth" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#fff0b9"/><stop offset=".48" stop-color="#e7c27e"/><stop offset="1" stop-color="#ba9571"/></linearGradient>
+        <linearGradient id="morrowBodyInk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#52798a"/><stop offset=".48" stop-color="#304d65"/><stop offset="1" stop-color="#172c45"/></linearGradient>
+        <linearGradient id="morrowChestInk" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#648d8d"/><stop offset=".48" stop-color="#3f6777"/><stop offset="1" stop-color="#233c57"/></linearGradient>
+        <linearGradient id="morrowWingInkLeft" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#83aaa9"/><stop offset=".48" stop-color="#3e6a80"/><stop offset="1" stop-color="#1d3952"/></linearGradient>
+        <linearGradient id="morrowWingInkRight" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#729f9f"/><stop offset=".48" stop-color="#385f76"/><stop offset="1" stop-color="#182f4b"/></linearGradient>
+        <linearGradient id="terraceArchWatercolor" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#f9e6bc"/><stop offset=".48" stop-color="#d9b393"/><stop offset="1" stop-color="#a17c80"/></linearGradient>
+        <linearGradient id="terraceArchReveal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#d1a78d"/><stop offset=".48" stop-color="#97777b"/><stop offset="1" stop-color="#5b606c"/></linearGradient>
         <linearGradient id="farerCoatBindLight" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop stop-color="#fff1c7" stop-opacity=".94"/>
           <stop offset=".28" stop-color="#f0ca9b" stop-opacity=".66"/>
@@ -727,8 +748,8 @@
         </g>
         <path d="M19-37Q57-29 71-55 65-13 32-14L17-21Z" fill="#374d67" stroke="#1d354c" stroke-width="5"/>
         <path d="M27-31Q53-23 63-42" fill="none" stroke="#70aaa4" stroke-width="3.5"/>
-        <path d="M-34-37Q-49-68-35-97q11-37 42-36 34-8 42 30 15 39-7 76Q11-12-25-20Z" fill="#233c55" stroke="#142e43" stroke-width="7"/>
-        <path d="M-26-73q-13-25 0-45 16-25 43-10 24 17 24 48Q19-93-26-73Z" fill="#344c62" stroke="#244256" stroke-width="3"/>
+        <path d="M-34-37Q-49-68-35-97q11-37 42-36 34-8 42 30 15 39-7 76Q11-12-25-20Z" fill="url(#morrowBodyInk)" stroke="#142e43" stroke-width="7"/>
+        <path d="M-26-73q-13-25 0-45 16-25 43-10 24 17 24 48Q19-93-26-73Z" fill="url(#morrowChestInk)" stroke="#244256" stroke-width="3"/>
         <path d="M-18-119Q-30-136-21-153q18 17 21 26m7 0 11-33q12 19 2 34" fill="#25394e" stroke="#162e41" stroke-width="5" stroke-linejoin="round"/>
         <g id="morrowCardstockFeathers" pointer-events="none" aria-label="Hand-creased ink-feather cardstock edging">
           <path d="M-31-101q-9 20 0 41 6 22 14 27" stroke="url(#morrowFeatherBindLight)" stroke-width="4" fill="none" stroke-linecap="round"/>
@@ -740,27 +761,27 @@
 
         <g class="morrow-wing-frame" data-wing-frame="0">
         <g class="inkwing-left">
-          <path d="M-32-81Q-63-90-81-61l22 4-19 13 25 6-13 15 29-2Q-16-42-18-64Z" fill="#2a4560" stroke="#182e47" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M-32-81Q-63-90-81-61l22 4-19 13 25 6-13 15 29-2Q-16-42-18-64Z" fill="url(#morrowWingInkLeft)" stroke="#182e47" stroke-width="6" stroke-linejoin="round"/>
           <path d="m-59-57 29-4m-27 19 32-7m-21 19 23-12" stroke="#6aa5a5" stroke-width="3.8" fill="none" stroke-linecap="round"/>
           <path d="m-73-60 14 3m-17 13 20 2m-7 17 15-2" stroke="#e5d7aa" stroke-width="2.2" stroke-dasharray="3 6" fill="none"/>
         </g>
         <g class="inkwing-right">
-          <path d="M32-80Q52-95 69-75l-9 12 19 3-16 12 15 6-30 16Q21-28 21-66Z" fill="#2d5068" stroke="#1d354e" stroke-width="6" stroke-linejoin="round"/>
+          <path d="M32-80Q52-95 69-75l-9 12 19 3-16 12 15 6-30 16Q21-28 21-66Z" fill="url(#morrowWingInkRight)" stroke="#1d354e" stroke-width="6" stroke-linejoin="round"/>
           <path d="m44-63 22-8m-19 18 21-7m-22 19 20-9" stroke="#78aca6" stroke-width="3.5" fill="none" stroke-linecap="round"/>
           <path d="m58-68 11-8m-5 19 14-5" stroke="#e5d5aa" stroke-width="2" stroke-dasharray="4 6"/>
         </g>
         </g>
         <g class="morrow-wing-frame" data-wing-frame="1">
-          <g class="inkwing-left"><path d="M-32-79Q-66-116-87-114l9 20-16 1 25 22-12 9 34-3Q-18-43-18-65Z" fill="#2c4863" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-31-74-35-27m34 33-38-18m39 24-30-7" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-73-105 10 10m-26 4 13 7m-5 21 16-2" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
-          <g class="inkwing-right"><path d="M31-81Q54-119 84-111l-12 21 18 1-23 20 14 10-35-4Q20-40 20-66Z" fill="#2d5069" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m31-72 38-26m-37 32 41-19m-41 25 31-8" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m70-103-7 10m23 3-12 8m10 20-15-1" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-left"><path d="M-32-79Q-66-116-87-114l9 20-16 1 25 22-12 9 34-3Q-18-43-18-65Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-31-74-35-27m34 33-38-18m39 24-30-7" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-73-105 10 10m-26 4 13 7m-5 21 16-2" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-right"><path d="M31-81Q54-119 84-111l-12 21 18 1-23 20 14 10-35-4Q20-40 20-66Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m31-72 38-26m-37 32 41-19m-41 25 31-8" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m70-103-7 10m23 3-12 8m10 20-15-1" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
         </g>
         <g class="morrow-wing-frame" data-wing-frame="2">
-          <g class="inkwing-left"><path d="M-33-80Q-70-100-100-77l17 11-20 9 25 14-18 13 42-8Q-18-39-18-63Z" fill="#31516c" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-32-69-49-6m49 13-49 2m48 8-34 13" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-87-76 16 5m-27 13 18 3m-12 25 18-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
-          <g class="inkwing-right"><path d="M30-80Q69-101 100-79l-17 12 20 9-25 15 17 13-43-8Q19-38 19-62Z" fill="#33556d" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-69 50-8m-49 15 49 1m-47 10 35 12" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m87-78-16 6m28 14-18 3m12 25-17-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-left"><path d="M-33-80Q-70-100-100-77l17 11-20 9 25 14-18 13 42-8Q-18-39-18-63Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-32-69-49-6m49 13-49 2m48 8-34 13" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-87-76 16 5m-27 13 18 3m-12 25 18-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-right"><path d="M30-80Q69-101 100-79l-17 12 20 9-25 15 17 13-43-8Q19-38 19-62Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-69 50-8m-49 15 49 1m-47 10 35 12" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m87-78-16 6m28 14-18 3m12 25-17-8" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
         </g>
         <g class="morrow-wing-frame" data-wing-frame="3">
-          <g class="inkwing-left"><path d="M-32-75Q-69-62-74-27l19-12-8 30 23-18-4 26 20-27Q-15-46-20-64Z" fill="#2a4965" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-30-64-29 24m32-16-27 35m34-27-18 37" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-68-29 15-11m-8 29 15-15m4 21 14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
-          <g class="inkwing-right"><path d="M31-75Q67-61 74-28L55-40l8 31-23-18 4 26-21-28Q15-47 20-64Z" fill="#2f5069" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-64 29 24m-32-17 27 36m-34-28 18 38" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m68-29-15-11m8 29-15-15m-4 21-14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-left"><path d="M-32-75Q-69-62-74-27l19-12-8 30 23-18-4 26 20-27Q-15-46-20-64Z" fill="url(#morrowWingInkLeft)" stroke="#183148" stroke-width="6" stroke-linejoin="round"/><path d="m-30-64-29 24m32-16-27 35m34-27-18 37" stroke="#6fa9a7" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m-68-29 15-11m-8 29 15-15m4 21 14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
+          <g class="inkwing-right"><path d="M31-75Q67-61 74-28L55-40l8 31-23-18 4 26-21-28Q15-47 20-64Z" fill="url(#morrowWingInkRight)" stroke="#1c354d" stroke-width="6" stroke-linejoin="round"/><path d="m30-64 29 24m-32-17 27 36m-34-28 18 38" stroke="#78b0ac" stroke-width="3.7" stroke-linecap="round" fill="none"/><path d="m68-29-15-11m8 29-15-15m-4 21-14-22" stroke="#e7d6b1" stroke-width="2" stroke-dasharray="3 6" fill="none"/></g>
         </g>
         <path d="M-33-89Q-36-125-6-131q35-10 48 29L31-79Q0-92-33-89Z" fill="#536c77" stroke="#29485c" stroke-width="5"/>
         <path d="M-29-99q14-12 31-10 18-7 30 10" stroke="#9ec5b9" stroke-width="3.3" fill="none"/>
@@ -1089,14 +1110,14 @@
           </g>
 
         <g class="tavi-rest-torso" data-rest-view="front">
-<g class="tavi-coat"><path d="M-31-101Q-7-116 24-101l17 66-24 3-13-21-12 20-31-2Z" fill="#b86b63" stroke="#775a62" stroke-width="6"/><path d="m-4-105-9 68" stroke="#ebba8f" stroke-width="6"/><path d="M8-96 19-46" stroke="#d98e79" stroke-width="4"/><path d="M-30-64q30 7 64 0" fill="none" stroke="#805766" stroke-width="6"/><circle cx="8" cy="-78" r="3" fill="#f5cf88"/></g>
+<g class="tavi-coat"><path d="M-31-101Q-7-116 24-101l17 66-24 3-13-21-12 20-31-2Z" fill="url(#farerCoatShell-front)" stroke="#775a62" stroke-width="6"/><path d="m-4-105-9 68" stroke="#ebba8f" stroke-width="6"/><path d="M8-96 19-46" stroke="#d98e79" stroke-width="4"/><path d="M-30-64q30 7 64 0" fill="none" stroke="#805766" stroke-width="6"/><circle cx="8" cy="-78" r="3" fill="#f5cf88"/></g>
         <g class="tavi-arm arm-left"><path d="M-29-93Q-53-60-44-45" stroke="#c78677" stroke-width="15" stroke-linecap="round"/><circle cx="-43" cy="-45" r="8" fill="#f3d1ac"/></g>
         <g class="tavi-arm arm-right"><path d="M30-92Q49-71 44-47" stroke="#9d6874" stroke-width="14" stroke-linecap="round"/><circle cx="43" cy="-46" r="8" fill="#f3d1ac"/></g>
         <path class="tavi-scarf" d="M-21-107q27 12 46-2l-8 16-33 3zm37 7 25 38-15 4-23-35" fill="#dfc078" stroke="#9a7d62" stroke-width="3"/>
         </g>
           <path d="M-12-121v21M14-121v21" stroke="#d3a17d" stroke-width="12" stroke-linecap="round"/>
         <ellipse cy="-145" rx="35" ry="37" fill="#f1c9a5" stroke="#a87f78" stroke-width="4"/>
-        <path d="M-36-150Q-42-182-16-188q26-19 54 14l-2 28-13-25-22 4-21-3Z" fill="#5c505e" stroke="#4d4f60" stroke-width="5"/>
+        <path d="M-36-150Q-42-182-16-188q26-19 54 14l-2 28-13-25-22 4-21-3Z" fill="url(#farerHairFront)" stroke="#4d4f60" stroke-width="5"/><g class="farer-hair-volume" data-hair-view="front" pointer-events="none"><path d="M-27-182q11-12 23-7m14 2q14 1 22 17m-57 10q7-10 18-8m20 6 11-9" fill="none" stroke="#b69b95" stroke-width="3.7" opacity=".73" stroke-linecap="round"/></g>
         <g class="tavi-eyes-open"><circle cx="-12" cy="-145" r="4" fill="#4a525b"/><circle cx="14" cy="-145" r="4" fill="#4a525b"/></g>
         <g class="tavi-eyes-blink" fill="none" stroke="#836871" stroke-width="3.8" stroke-linecap="round"><path d="m-17-145 10 1m16-1 10 1"/></g>
         <path class="tavi-rest-mouth" d="M-7-127q12 7 21-2" fill="none" stroke="#ac7371" stroke-width="3"/>
@@ -1117,8 +1138,8 @@
           <g class="tavi-upper-atlas" data-upper-atlas="front" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -102 Q-2.8 -118 26 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z" fill="#b86b63" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-23 -98Q-6.8 -105 18 -96L24.1 -51 Q-2.8 -45 -21 -45Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-31 -102 Q-2.8 -118 26 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-23 -98Q-6.8 -105 18 -96L24.1 -51 Q-2.8 -45 -21 -45Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1150,8 +1171,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#dfc078" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -100 26.9 -80.5 L35.9 -69.5Q16 -94 4 -93Z" fill="#dfc078" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -100 26.9 -80.5 L35.9 -69.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -91l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1162,8 +1183,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -103 Q-1.4 -119 26 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z" fill="#b86b63" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-23 -99Q-5.4 -106 18 -97L24.7 -50 Q-1.4 -44 -21 -46Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-31 -103 Q-1.4 -119 26 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-23 -99Q-5.4 -106 18 -97L24.7 -50 Q-1.4 -44 -21 -46Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1195,8 +1216,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#dfc078" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -98 30.3 -77.5 L39.3 -66.5Q16 -94 4 -93Z" fill="#dfc078" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -98 30.3 -77.5 L39.3 -66.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -89l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1207,8 +1228,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -104 Q0 -120 26 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z" fill="#b86b63" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-23 -100Q-4 -107 18 -98L26.6 -47 Q0 -41 -21 -49Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-31 -104 Q0 -120 26 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-23 -100Q-4 -107 18 -98L26.6 -47 Q0 -41 -21 -49Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1240,8 +1261,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#dfc078" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -95 35.4 -73 L44.4 -62Q16 -94 4 -93Z" fill="#dfc078" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -95 35.4 -73 L44.4 -62Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -86l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1252,8 +1273,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -102 Q1.4 -118 26 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z" fill="#b86b63" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-23 -98Q-2.6 -105 18 -96L27.9 -45 Q1.4 -39 -21 -51Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-31 -102 Q1.4 -118 26 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-23 -98Q-2.6 -105 18 -96L27.9 -45 Q1.4 -39 -21 -51Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1285,8 +1306,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#dfc078" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -93 38.8 -70 L47.8 -59Q16 -94 4 -93Z" fill="#dfc078" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -93 38.8 -70 L47.8 -59Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -84l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1297,8 +1318,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -102 Q2.8 -118 26 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z" fill="#b86b63" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-23 -98Q-1.2 -105 18 -96L27.9 -45 Q2.8 -39 -21 -51Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-31 -102 Q2.8 -118 26 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-23 -98Q-1.2 -105 18 -96L27.9 -45 Q2.8 -39 -21 -51Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1330,8 +1351,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#dfc078" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -94 37.1 -71.5 L46.1 -60.5Q16 -94 4 -93Z" fill="#dfc078" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -94 37.1 -71.5 L46.1 -60.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -85l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1342,8 +1363,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -103 Q1.4 -119 26 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z" fill="#b86b63" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-23 -99Q-2.6 -106 18 -97L26.6 -47 Q1.4 -41 -21 -49Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-31 -103 Q1.4 -119 26 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-23 -99Q-2.6 -106 18 -97L26.6 -47 Q1.4 -41 -21 -49Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1375,8 +1396,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#dfc078" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -96 33.7 -74.5 L42.7 -63.5Q16 -94 4 -93Z" fill="#dfc078" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -96 33.7 -74.5 L42.7 -63.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -87l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1387,8 +1408,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -104 Q0 -120 26 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z" fill="#b86b63" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-23 -100Q-4 -107 18 -98L25.4 -49 Q0 -43 -21 -47Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-31 -104 Q0 -120 26 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-23 -100Q-4 -107 18 -98L25.4 -49 Q0 -43 -21 -47Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1420,8 +1441,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#dfc078" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -98 30.3 -77.5 L39.3 -66.5Q16 -94 4 -93Z" fill="#dfc078" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -98 30.3 -77.5 L39.3 -66.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -89l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1432,8 +1453,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-31 -102 Q-1.4 -118 26 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z" fill="#b86b63" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-23 -98Q-5.4 -105 18 -96L24.1 -51 Q-1.4 -45 -21 -45Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-31 -102 Q-1.4 -118 26 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z" fill="url(#farerCoatShell-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-23 -98Q-5.4 -105 18 -96L24.1 -51 Q-1.4 -45 -21 -45Z" fill="url(#farerCoatPanel-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1465,8 +1486,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#dfc078" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -101 25.2 -82 L34.2 -71Q16 -94 4 -93Z" fill="#dfc078" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -101 25.2 -82 L34.2 -71Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -92l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1665,13 +1686,20 @@
           </g>
 
           <g class="tavi-rest-torso" data-rest-view="rear">
-<path d="M-32-101Q0-116 31-101l11 67-25 1-18-20-14 19-26-1Z" fill="#b96b66" stroke="#715b65" stroke-width="7"/>
-          <path d="M-19-90Q0-79 22-92l-2 53-23-9-14 10Z" fill="#cc7d6b" stroke="#e6af88" stroke-width="4"/>
+<path d="M-32-101Q0-116 31-101l11 67-25 1-18-20-14 19-26-1Z" fill="url(#farerCoatShell-rear)" stroke="#715b65" stroke-width="7"/>
+          <path d="M-19-90Q0-79 22-92l-2 53-23-9-14 10Z" fill="url(#farerCoatPanel-rear)" stroke="#e6af88" stroke-width="4"/>
           <path d="M-5-87 5-67m-14 38 13-12m12-35 10-18" stroke="#ffe0aa" stroke-dasharray="6 7" stroke-width="4" fill="none"/>
           <g class="tavi-arm arm-left"><path d="M-29-93q-23 28-13 49" stroke="#b87770" stroke-width="14" stroke-linecap="round"/><circle cx="-42" cy="-44" r="8" fill="#efd0a9"/></g>
           <g class="tavi-arm arm-right"><path d="M29-92q24 31 13 47" stroke="#a97277" stroke-width="14" stroke-linecap="round"/><circle cx="42" cy="-45" r="8" fill="#efd0a9"/></g>
           </g>
-          <ellipse cy="-145" rx="35" ry="37" fill="#5f5661" stroke="#58515a" stroke-width="5"/>
+          
+        <!-- Rear hair is now a hand-cut crown rather than a perfect oval disk. -->
+        <path id="taviRearHairCut" d="M-35-147q-6-18 3-33l9-8 9 2q10-13 25-8 10-3 19 11 12 8 9 26l-6 24q-12 29-36 27-27-2-32-41Z" fill="url(#farerHairRear)" stroke="#484858" stroke-width="5" stroke-linejoin="round"/>
+        <g class="farer-hair-volume" data-hair-view="rear" pointer-events="none">
+          <path d="M-25-179q8-16 18-12 12-9 23 1m-44 22q-8 18-1 30m45-41q14 10 12 25" fill="none" stroke="#aa8b8a" stroke-width="4.1" opacity=".74" stroke-linecap="round"/>
+          <path d="M-24-151q10 11 25 9 17 2 26-15m-45 24q17 15 36 6" fill="none" stroke="#796878" stroke-width="4.8" stroke-linecap="round"/>
+          <path d="m-28-164 9-7 11 2m21 0 9 8m-41 20 8 5m21 8 10-7" fill="none" stroke="#c0a69a" opacity=".62" stroke-width="2.6" stroke-linecap="round"/>
+        </g>
           <path d="M-30-144Q-10-120 12-142l20 2m-63-6q15-47 47-33" fill="none" stroke="#7e6972" stroke-width="7"/>
           <path d="M-19-168Q-11-194 12-187" fill="none" stroke="#4b505f" stroke-width="11"/>
           <g class="tavi-scarf tavi-rest-scarf"><path d="M-25-110Q2-100 24-114l-5 20-36 5Z" fill="#e7c178" stroke="#967d62" stroke-width="3"/>
@@ -1681,8 +1709,8 @@
           <g class="tavi-upper-atlas" data-upper-atlas="rear" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -102 Q-2.8 -118 31 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z" fill="#b96b66" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-24 -98Q-6.8 -105 23 -96L29.1 -51 Q-2.8 -45 -22 -45Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-32 -102 Q-2.8 -118 31 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -39 -34.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-24 -98Q-6.8 -105 23 -96L29.1 -51 Q-2.8 -45 -22 -45Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1709,8 +1737,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#e7c178" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -100 -26.9 -80.5 L-35.9 -69.5Q-14 -94 -9 -93Z" fill="#e7c178" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -100 -26.9 -80.5 L-35.9 -69.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -91l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1721,8 +1749,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -103 Q-1.4 -119 31 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z" fill="#b96b66" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-24 -99Q-5.4 -106 23 -97L29.7 -50 Q-1.4 -44 -22 -46Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-32 -103 Q-1.4 -119 31 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -38 -35Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-24 -99Q-5.4 -106 23 -97L29.7 -50 Q-1.4 -44 -22 -46Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1749,8 +1777,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#e7c178" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="#e7c178" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -89l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1761,8 +1789,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -104 Q0 -120 31 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z" fill="#b96b66" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-24 -100Q-4 -107 23 -98L31.6 -47 Q0 -41 -22 -49Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-32 -104 Q0 -120 31 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -35 -34.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-24 -100Q-4 -107 23 -98L31.6 -47 Q0 -41 -22 -49Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1789,8 +1817,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#e7c178" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -95 -35.4 -73 L-44.4 -62Q-14 -94 -9 -93Z" fill="#e7c178" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -95 -35.4 -73 L-44.4 -62Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -86l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1801,8 +1829,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -102 Q1.4 -118 31 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z" fill="#b96b66" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-24 -98Q-2.6 -105 23 -96L33 -45 Q1.4 -39 -22 -51Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-32 -102 Q1.4 -118 31 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -33 -31.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-24 -98Q-2.6 -105 23 -96L33 -45 Q1.4 -39 -22 -51Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1829,8 +1857,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#e7c178" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -93 -38.8 -70 L-47.8 -59Q-14 -94 -9 -93Z" fill="#e7c178" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -93 -38.8 -70 L-47.8 -59Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -84l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1841,8 +1869,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -102 Q2.8 -118 31 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z" fill="#b96b66" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-24 -98Q-1.2 -105 23 -96L33 -45 Q2.8 -39 -22 -51Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-32 -102 Q2.8 -118 31 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -33 -31.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-24 -98Q-1.2 -105 23 -96L33 -45 Q2.8 -39 -22 -51Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1869,8 +1897,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#e7c178" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -94 -37.1 -71.5 L-46.1 -60.5Q-14 -94 -9 -93Z" fill="#e7c178" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -94 -37.1 -71.5 L-46.1 -60.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -85l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1881,8 +1909,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -103 Q1.4 -119 31 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z" fill="#b96b66" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-24 -99Q-2.6 -106 23 -97L31.6 -47 Q1.4 -41 -22 -49Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-32 -103 Q1.4 -119 31 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -35 -33.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-24 -99Q-2.6 -106 23 -97L31.6 -47 Q1.4 -41 -22 -49Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1909,8 +1937,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#e7c178" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -96 -33.7 -74.5 L-42.7 -63.5Q-14 -94 -9 -93Z" fill="#e7c178" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -96 -33.7 -74.5 L-42.7 -63.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -87l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1921,8 +1949,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -104 Q0 -120 31 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z" fill="#b96b66" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-24 -100Q-4 -107 23 -98L30.4 -49 Q0 -43 -22 -47Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-32 -104 Q0 -120 31 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -37 -35.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-24 -100Q-4 -107 23 -98L30.4 -49 Q0 -43 -22 -47Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1949,8 +1977,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#e7c178" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="#e7c178" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -89l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -1961,8 +1989,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-32 -102 Q-1.4 -118 31 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z" fill="#b96b66" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-24 -98Q-5.4 -105 23 -96L29.1 -51 Q-1.4 -45 -22 -45Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-32 -102 Q-1.4 -118 31 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -39 -34.5Z" fill="url(#farerCoatShell-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-24 -98Q-5.4 -105 23 -96L29.1 -51 Q-1.4 -45 -22 -45Z" fill="url(#farerCoatPanel-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -1989,8 +2017,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#e7c178" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -101 -25.2 -82 L-34.2 -71Q-14 -94 -9 -93Z" fill="#e7c178" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -101 -25.2 -82 L-34.2 -71Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -92l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2161,7 +2189,7 @@
           </g>
 
           <g class="tavi-rest-torso" data-rest-view="side">
-<path d="M-25-101Q0-117 20-100l16 67-25 1-6-21-9 22-28-4Z" fill="#b76a65" stroke="#775d64" stroke-width="6"/>
+<path d="M-25-101Q0-117 20-100l16 67-25 1-6-21-9 22-28-4Z" fill="url(#farerCoatShell-side)" stroke="#775d64" stroke-width="6"/>
           <path d="M-18-94q13 7 23 0l-12 60" fill="none" stroke="#e7ad85" stroke-width="5"/>
           <g class="tavi-arm arm-left"><path d="M-17-92q-18 25-6 46" stroke="#a97976" stroke-width="12" stroke-linecap="round"/><circle cx="-23" cy="-46" r="7" fill="#f5ccab"/></g>
           <g class="tavi-arm arm-right"><path d="M17-97q23 23 22 45" stroke="#b77c73" stroke-width="13" stroke-linecap="round"/><circle cx="39" cy="-52" r="8" fill="#f3ceaa"/></g>
@@ -2171,15 +2199,15 @@
           <path d="m10-145 31 8-19 9" fill="#efd0ae" stroke="#a77c79" stroke-width="4"/>
           <g class="tavi-eyes-open"><circle cx="14" cy="-151" r="4" fill="#48525a"/></g>
           <g class="tavi-eyes-blink" fill="none" stroke="#836871" stroke-width="3.5" stroke-linecap="round"><path d="m9-151 10 1"/></g>
-          <path d="M-20-155q-17-31 18-35 22-10 32 20l-17-8-13 14-20 10Z" fill="#5c5260" stroke="#4f4c5a" stroke-width="4"/>
+          <path d="M-20-155q-17-31 18-35 22-10 32 20l-17-8-13 14-20 10Z" fill="url(#farerHairFront)" stroke="#4f4c5a" stroke-width="4"/><g class="farer-hair-volume" data-hair-view="side" pointer-events="none"><path d="M-18-173q10-16 22-14m5-1q10 2 17 12m-31 7 13-8" fill="none" stroke="#b89b98" stroke-width="3.4" opacity=".73" stroke-linecap="round"/></g>
           <g class="tavi-scarf tavi-rest-scarf"><path d="M-20-114q21 15 38 1l-5 16-30 2Z" fill="#e6c178" stroke="#99826a" stroke-width="3"/><path d="M-14-108-46-78l7 14 38-27" fill="#e3b66e" stroke="#957e69" stroke-width="3"/></g>
           <path d="M38-57q25-15 19-46" stroke="#ae8c6b" stroke-width="6" fill="none"/><circle cx="57" cy="-103" r="5" fill="#f7d59a" stroke="#8b7560" stroke-width="3"/>
         
           <g class="tavi-upper-atlas" data-upper-atlas="side" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q0.2 -118 20 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -36 -34.5Z" fill="#b76a65" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -98Q-3.8 -105 12 -96L18.1 -51 Q0.2 -45 -15 -45Z" fill="#d38c7a" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q0.2 -118 20 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -36 -34.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -98Q-3.8 -105 12 -96L18.1 -51 Q0.2 -45 -15 -45Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2206,8 +2234,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#e3b66e" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -100 -26.9 -80.5 L-35.9 -69.5Q-14 -94 -9 -93Z" fill="#e3b66e" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -100 -26.9 -80.5 L-35.9 -69.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -91l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2218,8 +2246,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -103 Q1.6 -119 20 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -35 -35Z" fill="#b76a65" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -99Q-2.4 -106 12 -97L18.7 -50 Q1.6 -44 -15 -46Z" fill="#d38c7a" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -103 Q1.6 -119 20 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -35 -35Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -99Q-2.4 -106 12 -97L18.7 -50 Q1.6 -44 -15 -46Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2246,8 +2274,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#e3b66e" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="#e3b66e" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -89l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2258,8 +2286,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -104 Q3 -120 20 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -32 -34.5Z" fill="#b76a65" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -100Q-1 -107 12 -98L20.6 -47 Q3 -41 -15 -49Z" fill="#d38c7a" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -104 Q3 -120 20 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -32 -34.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -100Q-1 -107 12 -98L20.6 -47 Q3 -41 -15 -49Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2286,8 +2314,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#e3b66e" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -95 -35.4 -73 L-44.4 -62Q-14 -94 -9 -93Z" fill="#e3b66e" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -95 -35.4 -73 L-44.4 -62Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -86l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2298,8 +2326,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q4.4 -118 20 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -30 -31.5Z" fill="#b76a65" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -98Q0.4 -105 12 -96L21.9 -45 Q4.4 -39 -15 -51Z" fill="#d38c7a" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q4.4 -118 20 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -30 -31.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -98Q0.4 -105 12 -96L21.9 -45 Q4.4 -39 -15 -51Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2326,8 +2354,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#e3b66e" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -93 -38.8 -70 L-47.8 -59Q-14 -94 -9 -93Z" fill="#e3b66e" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -93 -38.8 -70 L-47.8 -59Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -84l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2338,8 +2366,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q5.8 -118 20 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -30 -31.5Z" fill="#b76a65" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -98Q1.8 -105 12 -96L21.9 -45 Q5.8 -39 -15 -51Z" fill="#d38c7a" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q5.8 -118 20 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -30 -31.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -98Q1.8 -105 12 -96L21.9 -45 Q5.8 -39 -15 -51Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2366,8 +2394,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#e3b66e" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -94 -37.1 -71.5 L-46.1 -60.5Q-14 -94 -9 -93Z" fill="#e3b66e" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -94 -37.1 -71.5 L-46.1 -60.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -85l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2378,8 +2406,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -103 Q4.4 -119 20 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -32 -33.5Z" fill="#b76a65" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -99Q0.4 -106 12 -97L20.6 -47 Q4.4 -41 -15 -49Z" fill="#d38c7a" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -103 Q4.4 -119 20 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -32 -33.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -99Q0.4 -106 12 -97L20.6 -47 Q4.4 -41 -15 -49Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2406,8 +2434,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#e3b66e" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -96 -33.7 -74.5 L-42.7 -63.5Q-14 -94 -9 -93Z" fill="#e3b66e" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -96 -33.7 -74.5 L-42.7 -63.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -87l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2418,8 +2446,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -104 Q3 -120 20 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -34 -35.5Z" fill="#b76a65" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -100Q-1 -107 12 -98L19.4 -49 Q3 -43 -15 -47Z" fill="#d38c7a" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -104 Q3 -120 20 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -34 -35.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -100Q-1 -107 12 -98L19.4 -49 Q3 -43 -15 -47Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2446,8 +2474,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#e3b66e" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="#e3b66e" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -89l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2458,8 +2486,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="side" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q1.6 -118 20 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -36 -34.5Z" fill="#b76a65" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -98Q-2.4 -105 12 -96L18.1 -51 Q1.6 -45 -15 -45Z" fill="#d38c7a" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q1.6 -118 20 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -36 -34.5Z" fill="url(#farerCoatShell-side)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -98Q-2.4 -105 12 -96L18.1 -51 Q1.6 -45 -15 -45Z" fill="url(#farerCoatPanel-side)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2486,8 +2514,8 @@
  
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#e3b66e" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -101 -25.2 -82 L-34.2 -71Q-14 -94 -9 -93Z" fill="#e3b66e" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -101 -25.2 -82 L-34.2 -71Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -92l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2697,8 +2725,8 @@
 
           <g class="tavi-rest-torso" data-rest-view="quarter-front">
 <!-- Tailored coat, with a folded lit side panel and diagonal chest closure. -->
-          <path d="M-25-107Q-3-124 23-103L37-34 17-27 2-46-10-28-34-41Z" fill="#a35e67" stroke="#775768" stroke-width="6"/>
-          <path d="M-17-107Q2-116 16-103l11 51-21 3-19 16-12-9Z" fill="#c77d72" stroke="#e6a98a" stroke-width="4"/>
+          <path d="M-25-107Q-3-124 23-103L37-34 17-27 2-46-10-28-34-41Z" fill="url(#farerCoatShell-quarter-front)" stroke="#775768" stroke-width="6"/>
+          <path d="M-17-107Q2-116 16-103l11 51-21 3-19 16-12-9Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#e6a98a" stroke-width="4"/>
           <path d="m-13-103 28 25-14 29" stroke="#ffe0a4" stroke-width="4" fill="none"/>
           <path d="m-27-63 25 8 28-7" stroke="#6f5464" stroke-width="7" fill="none"/>
           <path d="m-31-42 17 4m20-12 13-6" stroke="#f5d5a3" stroke-width="2.5" stroke-dasharray="5 6"/>
@@ -2721,12 +2749,12 @@
           </g>
           </g>
           <!-- Hair is a separate painted-paper shell surrounding the tilted face. -->
-          <path d="M-26-159Q-31-189 2-191q29-4 37 28l-8 38-28 21-24-20Z" fill="#514d5b" stroke="#454655" stroke-width="6"/>
+          <path d="M-26-159Q-31-189 2-191q29-4 37 28l-8 38-28 21-24-20Z" fill="url(#farerHairRear)" stroke="#454655" stroke-width="6"/>
           <path d="M-9-121v19" stroke="#d3a17e" stroke-width="12" stroke-linecap="round"/>
           <path d="M12-121v19" stroke="#ddb18f" stroke-width="10" stroke-linecap="round"/>
           <path d="M-19-166Q3-186 23-165q15 19 8 31-5 19-21 25-25-5-28-25-7-19-1-32Z" fill="#eec7a5" stroke="#ae7d75" stroke-width="4"/>
           <path d="m13-146 24 11-23 7Z" fill="#eac3a0" stroke="#ae827a" stroke-width="3"/>
-          <path d="M-30-168Q-26-199 2-195q26-4 37 27L22-181l-16 15-16-9-16 12Z" fill="#5b5263" stroke="#414a5b" stroke-width="5"/>
+          <path d="M-30-168Q-26-199 2-195q26-4 37 27L22-181l-16 15-16-9-16 12Z" fill="url(#farerHairFront)" stroke="#414a5b" stroke-width="5"/><g class="farer-hair-volume" data-hair-view="quarter-front" pointer-events="none"><path d="M-21-177q8-17 24-16m6 2q16 0 22 16M-13-167q12-7 23-2" fill="none" stroke="#b39c97" stroke-width="3.4" opacity=".77" stroke-linecap="round"/></g>
           <path d="m-17-182 16-6 15 4m-24 26 16-5" stroke="#89717a" stroke-width="3" fill="none"/>
           <g class="tavi-eyes-open"><path d="m-7-143 4-2m17-6 5-2" stroke="#484b59" stroke-width="4" stroke-linecap="round"/></g>
           <g class="tavi-eyes-blink" fill="none" stroke="#836871" stroke-width="3.3" stroke-linecap="round"><path d="m-9-142 8 0m12-8 8 0"/></g>
@@ -2744,8 +2772,8 @@
           <g class="tavi-upper-atlas" data-upper-atlas="quarter-front" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q-1 -118 23 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.2 -34.5Z" fill="#b96e6b" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -98Q-5 -105 15 -96L21.1 -51 Q-1 -45 -15 -45Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q-1 -118 23 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -98Q-5 -105 15 -96L21.1 -51 Q-1 -45 -15 -45Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2777,8 +2805,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#eac681" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -100 26.9 -80.5 L35.9 -69.5Q16 -94 4 -93Z" fill="#eac681" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -100 26.9 -80.5 L35.9 -69.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -91l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2789,8 +2817,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -103 Q0.4 -119 23 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.2 -35Z" fill="#b96e6b" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -99Q-3.6 -106 15 -97L21.7 -50 Q0.4 -44 -15 -46Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -103 Q0.4 -119 23 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.2 -35Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -99Q-3.6 -106 15 -97L21.7 -50 Q0.4 -44 -15 -46Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2822,8 +2850,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#eac681" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -98 30.3 -77.5 L39.3 -66.5Q16 -94 4 -93Z" fill="#eac681" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -98 30.3 -77.5 L39.3 -66.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -89l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2834,8 +2862,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -104 Q1.8 -120 23 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.2 -34.5Z" fill="#b96e6b" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -100Q-2.2 -107 15 -98L23.6 -47 Q1.8 -41 -15 -49Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -104 Q1.8 -120 23 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -100Q-2.2 -107 15 -98L23.6 -47 Q1.8 -41 -15 -49Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2867,8 +2895,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#eac681" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -95 35.4 -73 L44.4 -62Q16 -94 4 -93Z" fill="#eac681" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -95 35.4 -73 L44.4 -62Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -86l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2879,8 +2907,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q3.2 -118 23 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.2 -31.5Z" fill="#b96e6b" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -98Q-0.8 -105 15 -96L24.9 -45 Q3.2 -39 -15 -51Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q3.2 -118 23 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.2 -31.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -98Q-0.8 -105 15 -96L24.9 -45 Q3.2 -39 -15 -51Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2912,8 +2940,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#eac681" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -93 38.8 -70 L47.8 -59Q16 -94 4 -93Z" fill="#eac681" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -93 38.8 -70 L47.8 -59Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -84l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2924,8 +2952,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q4.6 -118 23 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.2 -31.5Z" fill="#b96e6b" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -98Q0.6 -105 15 -96L24.9 -45 Q4.6 -39 -15 -51Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q4.6 -118 23 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.2 -31.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -98Q0.6 -105 15 -96L24.9 -45 Q4.6 -39 -15 -51Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -2957,8 +2985,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#eac681" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -94 37.1 -71.5 L46.1 -60.5Q16 -94 4 -93Z" fill="#eac681" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -94 37.1 -71.5 L46.1 -60.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -85l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -2969,8 +2997,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -103 Q3.2 -119 23 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.2 -33.5Z" fill="#b96e6b" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -99Q-0.8 -106 15 -97L23.6 -47 Q3.2 -41 -15 -49Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -103 Q3.2 -119 23 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.2 -33.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -99Q-0.8 -106 15 -97L23.6 -47 Q3.2 -41 -15 -49Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3002,8 +3030,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#eac681" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -96 33.7 -74.5 L42.7 -63.5Q16 -94 4 -93Z" fill="#eac681" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -96 33.7 -74.5 L42.7 -63.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -87l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3014,8 +3042,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -104 Q1.8 -120 23 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.2 -35.5Z" fill="#b96e6b" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -100Q-2.2 -107 15 -98L22.4 -49 Q1.8 -43 -15 -47Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -104 Q1.8 -120 23 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.2 -35.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -100Q-2.2 -107 15 -98L22.4 -49 Q1.8 -43 -15 -47Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3047,8 +3075,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#eac681" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -98 30.3 -77.5 L39.3 -66.5Q16 -94 4 -93Z" fill="#eac681" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -98 30.3 -77.5 L39.3 -66.5Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -89l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3059,8 +3087,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="quarter-front" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-25 -102 Q0.4 -118 23 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.2 -34.5Z" fill="#b96e6b" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-17 -98Q-3.6 -105 15 -96L21.1 -51 Q0.4 -45 -15 -45Z" fill="#d18b76" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-25 -102 Q0.4 -118 23 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.2 -34.5Z" fill="url(#farerCoatShell-quarter-front)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-17 -98Q-3.6 -105 15 -96L21.1 -51 Q0.4 -45 -15 -45Z" fill="url(#farerCoatPanel-quarter-front)" stroke="#f1bf92" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3092,8 +3120,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#eac681" stroke="#957966" stroke-width="3"/>
-  <path d="M15 -102 Q30 -101 25.2 -82 L34.2 -71Q16 -94 4 -93Z" fill="#eac681" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M15 -102 Q30 -101 25.2 -82 L34.2 -71Q16 -94 4 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M28 -92l6 6m1 1 5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3299,8 +3327,8 @@
           </g>
 
           <g class="tavi-rest-torso" data-rest-view="quarter-rear">
-<path d="M-29-103Q3-122 28-97l11 62-24 3-17-20-11 20-25-7Z" fill="#aa6470" stroke="#775a66" stroke-width="6"/>
-          <path d="M-16-106q17 3 35 1l14 60-21 5-16-11-9 17-13-10Z" fill="#c47c70" stroke="#efb18a" stroke-width="4"/>
+<path d="M-29-103Q3-122 28-97l11 62-24 3-17-20-11 20-25-7Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#775a66" stroke-width="6"/>
+          <path d="M-16-106q17 3 35 1l14 60-21 5-16-11-9 17-13-10Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#efb18a" stroke-width="4"/>
           <path d="M-17-89 16-96l-6 48-14-4Z" fill="#d38c73" stroke="#a56d68" stroke-width="3.5"/>
           <path d="M-14-91q16 12 31 0M-6-73l15 6m-11 8 12 4" stroke="#f3d9a4" stroke-width="3" fill="none" stroke-dasharray="5 5"/>
           <path d="M-29-59q29 13 60 1" stroke="#73566a" stroke-width="6" fill="none"/>
@@ -3316,7 +3344,7 @@
           </g>
           <!-- Folded upturned collar, hair crown, one tiny visible ear. -->
           <path d="M-21-119q20 13 41-6" stroke="#c89b82" stroke-width="13" stroke-linecap="round"/>
-          <path d="M-30-168Q-22-190 1-193q27-7 37 29l-5 38Q8-103-25-125Z" fill="#564f5e" stroke="#484655" stroke-width="6"/>
+          <path d="M-30-168Q-22-190 1-193q27-7 37 29l-5 38Q8-103-25-125Z" fill="url(#farerHairRear)" stroke="#484655" stroke-width="6"/><g class="farer-hair-volume" data-hair-view="quarter-rear" pointer-events="none"><path d="M-21-170q7-17 24-17m9-2q16 8 20 29m-44 6q18 10 35 1m-37 25q9 8 20 8" fill="none" stroke="#ab8d8c" stroke-width="3.5" opacity=".74" stroke-linecap="round"/></g>
           <path d="M-28-155q-6 28 5 34l19 5m27-50 12 20-5 26" fill="none" stroke="#7c6571" stroke-width="5" stroke-linecap="round"/>
           <path d="M-12-180Q7-198 23-174m-39 44 20 11 20-9" stroke="#987882" stroke-width="3.8" fill="none"/>
           <path d="M25-148q13-1 13 13-4 14-11 13" fill="#e8b89d" stroke="#a97c78" stroke-width="3"/>
@@ -3335,8 +3363,8 @@
           <g class="tavi-upper-atlas" data-upper-atlas="quarter-rear" pointer-events="none">
 <g class="tavi-upper-cel" data-upper-frame="0" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -102 Q-1.3 -118 28 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.5 -34.5Z" fill="#aa6470" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-21 -98Q-5.3 -105 20 -96L26.1 -51 Q-1.3 -45 -19 -45Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-29 -102 Q-1.3 -118 28 -101 L38 -34.5 Q19 -30 7 -39 L-11 -34 Q-27 -26 -37.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-21 -98Q-5.3 -105 20 -96L26.1 -51 Q-1.3 -45 -19 -45Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-12 -92 Q-7 -73 -10.3 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-4 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M6 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3368,8 +3396,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#ecc780" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -100 -26.9 -80.5 L-35.9 -69.5Q-14 -94 -9 -93Z" fill="#ecc780" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -100 -26.9 -80.5 L-35.9 -69.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -91l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3380,8 +3408,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="1" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -103 Q0.1 -119 28 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.5 -35Z" fill="#aa6470" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-21 -99Q-3.9 -106 20 -97L26.7 -50 Q0.1 -44 -19 -46Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-29 -103 Q0.1 -119 28 -102 L37.3 -36 Q21 -29 8 -38 L-10 -35 Q-25 -27 -36.5 -35Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-21 -99Q-3.9 -106 20 -97L26.7 -50 Q0.1 -44 -19 -46Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -48" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-27 -61 Q-2 -57 30 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3413,8 +3441,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#ecc780" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="#ecc780" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -89l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3425,8 +3453,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="2" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -104 Q1.5 -120 28 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.5 -34.5Z" fill="#aa6470" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-21 -100Q-2.5 -107 20 -98L28.6 -47 Q1.5 -41 -19 -49Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-29 -104 Q1.5 -120 28 -103 L35.4 -38.5 Q23 -26 9 -35 L-9 -38 Q-23 -30 -33.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-21 -100Q-2.5 -107 20 -98L28.6 -47 Q1.5 -41 -19 -49Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -62 Q0 -54 27 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3458,8 +3486,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#ecc780" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -95 -35.4 -73 L-44.4 -62Q-14 -94 -9 -93Z" fill="#ecc780" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -95 -35.4 -73 L-44.4 -62Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -86l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3470,8 +3498,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="3" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -102 Q2.9 -118 28 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.5 -31.5Z" fill="#aa6470" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-21 -98Q-1.1 -105 20 -96L29.9 -45 Q2.9 -39 -19 -51Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-29 -102 Q2.9 -118 28 -101 L34 -37.5 Q25 -24 10 -33 L-8 -40 Q-21 -32 -31.5 -31.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-21 -98Q-1.1 -105 20 -96L29.9 -45 Q2.9 -39 -19 -51Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q2 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3503,8 +3531,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#ecc780" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -93 -38.8 -70 L-47.8 -59Q-14 -94 -9 -93Z" fill="#ecc780" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -93 -38.8 -70 L-47.8 -59Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -84l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3515,8 +3543,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="4" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -102 Q4.3 -118 28 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.5 -31.5Z" fill="#aa6470" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-21 -98Q0.3 -105 20 -96L29.9 -45 Q4.3 -39 -19 -51Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-29 -102 Q4.3 -118 28 -101 L34 -37.5 Q27 -24 11 -33 L-7 -40 Q-19 -32 -31.5 -31.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-21 -98Q0.3 -105 20 -96L29.9 -45 Q4.3 -39 -19 -51Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-4 -92 Q-3 -73 -7.7 -43" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-22 -60 Q4 -52 25 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M10 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3548,8 +3576,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#ecc780" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -94 -37.1 -71.5 L-46.1 -60.5Q-14 -94 -9 -93Z" fill="#ecc780" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -94 -37.1 -71.5 L-46.1 -60.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -85l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3560,8 +3588,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="5" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -103 Q2.9 -119 28 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.5 -33.5Z" fill="#aa6470" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-21 -99Q-1.1 -106 20 -97L28.6 -47 Q2.9 -41 -19 -49Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-29 -103 Q2.9 -119 28 -102 L35.4 -37.5 Q25 -26 10 -35 L-8 -38 Q-21 -30 -33.5 -33.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-21 -99Q-1.1 -106 20 -97L28.6 -47 Q2.9 -41 -19 -49Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-6 -92 Q-4 -73 -8.3 -45" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-24 -61 Q2 -54 27 -62" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M9 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3593,8 +3621,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="#ecc780" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -96 -33.7 -74.5 L-42.7 -63.5Q-14 -94 -9 -93Z" fill="#ecc780" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -108Q1 -98 23 -110l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -96 -33.7 -74.5 L-42.7 -63.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -87l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3605,8 +3633,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="6" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -104 Q1.5 -120 28 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.5 -35.5Z" fill="#aa6470" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-21 -100Q-2.5 -107 20 -98L27.4 -49 Q1.5 -43 -19 -47Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-29 -104 Q1.5 -120 28 -103 L36.6 -37.5 Q23 -28 9 -37 L-9 -36 Q-23 -28 -35.5 -35.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-21 -100Q-2.5 -107 20 -98L27.4 -49 Q1.5 -43 -19 -47Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-8 -92 Q-5 -73 -9 -47" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-26 -62 Q0 -56 29 -63" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M8 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3638,8 +3666,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="#ecc780" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="#ecc780" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -109Q1 -99 23 -111l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -98 -30.3 -77.5 L-39.3 -66.5Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -89l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -3650,8 +3678,8 @@
  </g>
 <g class="tavi-upper-cel" data-upper-frame="7" data-upper-view="quarter-rear" aria-hidden="true">
  <g class="tavi-upper-coat">
-   <path d="M-29 -102 Q0.1 -118 28 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.5 -34.5Z" fill="#aa6470" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
-   <path d="M-21 -98Q-3.9 -105 20 -96L26.1 -51 Q0.1 -45 -19 -45Z" fill="#cb7e73" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
+   <path d="M-29 -102 Q0.1 -118 28 -101 L38 -34.5 Q21 -30 8 -39 L-10 -34 Q-25 -26 -37.5 -34.5Z" fill="url(#farerCoatShell-quarter-rear)" stroke="#745463" stroke-width="6" stroke-linejoin="round"/>
+   <path d="M-21 -98Q-3.9 -105 20 -96L26.1 -51 Q0.1 -45 -19 -45Z" fill="url(#farerCoatPanel-quarter-rear)" stroke="#ecb58d" stroke-width="3.5" stroke-linejoin="round"/>
    <path d="M-10 -92 Q-6 -73 -9.7 -49" fill="none" stroke="#f3cc94" stroke-width="3.1"/>
    <path d="M-28 -60 Q-2 -58 31 -61" fill="none" stroke="#825763" stroke-width="4.5"/>
    <path d="M7 -89l6 1-2 8-7-2Z" fill="#e4c083" stroke="#957267" stroke-width="1.8"/>
@@ -3683,8 +3711,8 @@
  </g>
  
  <g class="tavi-upper-scarf">
-  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="#ecc780" stroke="#957966" stroke-width="3"/>
-  <path d="M-19 -102 Q-32 -101 -25.2 -82 L-34.2 -71Q-14 -94 -9 -93Z" fill="#ecc780" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
+  <path d="M-22 -107Q1 -97 23 -109l-5 15-36 3Z" fill="url(#farerScarfCloth)" stroke="#957966" stroke-width="3"/>
+  <path d="M-19 -102 Q-32 -101 -25.2 -82 L-34.2 -71Q-14 -94 -9 -93Z" fill="url(#farerScarfCloth)" stroke="#97806d" stroke-width="3.1" stroke-linejoin="round"/>
   <path d="M-29 -92l-6 6m-1 1 -5 5" fill="none" stroke="#ffecba" stroke-width="2.1" stroke-linecap="round"/>
  </g>
  
@@ -4019,9 +4047,18 @@
         </g>
         <!-- A paper arch over the actual distant walkable entrance. -->
         <g id="terraceGateBack" filter="url(#softShadow)" pointer-events="none">
-          <path d="M552 404V234Q717 99 875 234v174l-60 5V257Q722 192 617 258v153Z" fill="#d8ae91" stroke="#805f69" stroke-width="12"/>
+          <path d="M552 404V234Q717 99 875 234v174l-60 5V257Q722 192 617 258v153Z" fill="url(#terraceArchWatercolor)" stroke="#805f69" stroke-width="12"/>
           <path d="M567 394V235q150-123 294 0v156l-25 0V246Q721 158 594 246v149Z" fill="#f4d7ae" stroke="#926f70" stroke-width="6"/>
           <path d="M602 400V257q112-88 227 0v146" fill="none" stroke="#6d8b88" stroke-width="14"/>
+          <g id="terraceArchEdgeRelief" pointer-events="none" aria-label="Physical cut-page thickness on the old passable arch">
+            <path d="M556 390V236Q716 107 867 236V397" fill="none" stroke="#715e6d" opacity=".35" stroke-width="10" stroke-linecap="round"/>
+            <path d="M563 238Q715 115 860 239" fill="none" stroke="#fff0cb" opacity=".78" stroke-width="5.1" stroke-linecap="round"/>
+            <path d="M575 249Q720 138 850 248" fill="none" stroke="#9b7978" opacity=".61" stroke-width="5" stroke-linecap="round"/>
+            <path d="M581 256Q716 150 842 254" fill="none" stroke="#f3d4a8" opacity=".68" stroke-width="2.9" stroke-dasharray="18 9 5 7"/>
+            <path d="M569 387V258l18-11v146l-11 6Z" fill="url(#terraceArchReveal)" opacity=".58"/>
+            <path d="M858 261v126l-17 6V249Z" fill="url(#terraceArchReveal)" opacity=".56"/>
+            <path d="M567 263v116m283-113v115" fill="none" stroke="#fff0c5" opacity=".69" stroke-width="3.1"/>
+          </g>
           <path d="m601 258 21-8m8-10 19-9m19-7 20-5m22-2 22 1m22 4 18 7m19 11 15 13" stroke="#f4e8c7" stroke-width="3" stroke-dasharray="6 9"/>
           <path d="M533 410h91l-10 27h-69Z" fill="#bb8d80" stroke="#80646a" stroke-width="6"/>
           <path d="m816 407 91-4-13 30h-74Z" fill="#bb8d80" stroke="#80646a" stroke-width="6"/>
