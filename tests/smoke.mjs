@@ -152,7 +152,7 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.45'),'The existing Home Screen PWA must refresh 0.27 assets');
+assert(sw.includes('foldfarer-shell-0.46'),'The existing Home Screen PWA must refresh 0.27 assets');
 
 
 const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
@@ -174,7 +174,7 @@ assert(game.includes("terraceMidRidges:$('terraceMidgroundCards')")&&
  'Independent physical depth layers require separate deterministic parallax');
 assert(!html.includes('M-10 302 122 176 228 229 350 134'),
  'Generic zig-zag mountain card must be replaced, not covered with a decal');
-assert(sw.includes('foldfarer-shell-0.45'),'Mobile must fetch the new 0.27 build');
+assert(sw.includes('foldfarer-shell-0.46'),'Mobile must fetch the new 0.27 build');
 
 
 const identityIds=['terraceDyeEnamel','terraceDyeCavity','terraceHerbVellum','terraceHerbRib',
@@ -219,7 +219,7 @@ assert(html.includes('id="terraceRibbonTree" transform="translate(1177 591)"'),
 assert(css.includes('#terraceBookbinderWalkway *')&&
  css.includes('pointer-events:none!important'),
  'Painted ground shadows must not steal tapping');
-assert(sw.includes('foldfarer-shell-0.45'),'0.27 assets must invalidate earlier Home Screen cache');
+assert(sw.includes('foldfarer-shell-0.46'),'0.27 assets must invalidate earlier Home Screen cache');
 
 
 const upperPoseViews=['front','rear','side','quarter-front','quarter-rear'];
@@ -242,7 +242,7 @@ assert(html.indexOf('id="taviGroundShadow"')<html.indexOf('id="taviFlip"') &&
 assert(game.includes("el.tavi.style.setProperty('--paper-rim-strength'") &&
  game.includes("el.morrow.style.setProperty('--paper-rim-strength'"),
  'Actor fabric reflections must change with physical scene lighting');
-assert(sw.includes('foldfarer-shell-0.45'),'PWA must refresh the 0.25 art assets');
+assert(sw.includes('foldfarer-shell-0.46'),'PWA must refresh the 0.25 art assets');
 
 
 const watercolorViews=['front','rear','side','quarter-front','quarter-rear'];
@@ -268,7 +268,7 @@ assert(html.indexOf('id="terraceArchEdgeRelief"')<html.indexOf('id="terraceGroun
 assert(css.includes('#tavi .farer-hair-volume *')&&
  css.includes('#terraceArchEdgeRelief *{pointer-events:none!important}'),
  'Paper details must never intercept touch-to-walk');
-assert(sw.includes('foldfarer-shell-0.45'),'Existing iPhone Home Screen cache must refresh 0.26 artwork');
+assert(sw.includes('foldfarer-shell-0.46'),'Existing iPhone Home Screen cache must refresh 0.26 artwork');
 
 
 assert(html.includes('id="taviRearHairCut" d="M-34-146Q-42-165-31-180'),
@@ -279,7 +279,7 @@ assert(!html.includes('M-30-144Q-10-120 12-142l20 2') &&
 assert((html.match(/data-hair-view="rear"/g)||[]).length===1 &&
  (html.match(/<g class="farer-hair-volume"/g)||[]).length===5,
  'Keep one carefully illustrated hair texture per authentic facing, no duplicated overlays');
-assert(sw.includes('foldfarer-shell-0.45'),'0.26.1 needs a fresh installed Home Screen cache');
+assert(sw.includes('foldfarer-shell-0.46'),'0.26.1 needs a fresh installed Home Screen cache');
 
 
 const materialPropIds=['terraceBellCopper','terraceBellHollow','terraceBookRoof',
@@ -302,7 +302,7 @@ assert(css.includes('#terraceBell *')&&css.includes('#terraceKiosk *')&&
 assert(html.indexOf('id="terraceBellFoldedPlinth"')<html.indexOf('id="terraceBellPavilion"') &&
  html.indexOf('id="terraceBellPavilion"')<html.indexOf('id="terraceBellHanging"'),
  'Bell must have real independent physical layers rather than flat stickers');
-assert(sw.includes('foldfarer-shell-0.45'),'PWA must invalidate earlier 0.26.1 offline shell');
+assert(sw.includes('foldfarer-shell-0.46'),'PWA must invalidate earlier 0.26.1 offline shell');
 
 // 0.28 original artwork is integrated into the live terrace, not a detached mockup.
 for(const id of ['terraceAtmosphericWatercolor28','terraceDyerSilkRelief28',
@@ -317,7 +317,7 @@ for(const id of ['terraceAtmosphericWatercolor28','terraceDyerSilkRelief28',
 }
 assert(html.includes('class="terrace-leaf-sway" transform="translate(-62 -38) scale(.78)"'),
  'Paper crown must keep original animated transform and visibility constraint');
-assert(sw.includes('foldfarer-shell-0.45'),'Updated iPhone PWA shell required for 0.28');
+assert(sw.includes('foldfarer-shell-0.46'),'Updated iPhone PWA shell required for 0.28');
 // 0.29: replaced core physical structure, not merely 2D sticker details.
 for(const id of ['terraceDyerMultiPlyRoof29','terraceConservatoryCurledEaves29',
  'terraceBuiltRoofProfiles29','taviRearIllustratedSilhouette29'])
@@ -338,7 +338,7 @@ assert(html.includes('id="terraceBell" transform="translate(719 484)"') &&
  html.includes('id="terraceKiosk" transform="translate(1022 660)"') &&
  html.includes('id="terraceRibbonTree" transform="translate(1177 591)"'),
  'New illustrations cannot move existing interactive roots');
-assert(sw.includes('foldfarer-shell-0.45'),'0.29 PWA refresh cache not bumped');
+assert(sw.includes('foldfarer-shell-0.46'),'0.29 PWA refresh cache not bumped');
 // 0.30: real, aligned head anatomy across idle, walking, expression and turns.
 assert((html.match(/class="tavi-proportioned-head30"/g)||[]).length===5,
  'All 5 authentic field head drawings must share corrected proportions');
@@ -357,7 +357,7 @@ assert((html.match(/class="tavi-upper-cel"/g)||[]).length===40 &&
  'Changing body ratios must NOT lose authored 5-direction walking cels');
 assert(css.includes('#tavi .tavi-upper-atlas .tavi-upper-hair-details') &&
  css.includes('scale(.88)!important'), 'Hair details must follow corrected head in all upper atlas frames');
-assert(sw.includes('foldfarer-shell-0.45'),'0.30 Home Screen shell revision missing');
+assert(sw.includes('foldfarer-shell-0.46'),'0.30 Home Screen shell revision missing');
 // 0.31: 40 new authentic head/face/hair walk cels synchronized with the old atlas.
 assert((html.match(/class="tavi-stride-head-cel31"/g)||[]).length===40,
   'A complete set of 40 illustrated head walking frames is required');
@@ -382,7 +382,7 @@ assert((html.match(/class="tavi-walk-cel"/g)||[]).length===40&&
 assert(css.includes('#tavi.walking .tavi-proportioned-head30{display:none!important}')&&
        css.includes('#tavi.walking .tavi-upper-atlas .tavi-upper-hair-details{display:none!important}'),
        'Render only one head, avoid duplicated hair-outline artifacts');
-assert(sw.includes('foldfarer-shell-0.45'),'Installed iPhone 0.31 update must bust old cache');
+assert(sw.includes('foldfarer-shell-0.46'),'Installed iPhone 0.31 update must bust old cache');
 // 0.32: every existing gait frame now has shaped material and a cut-edge clipping path.
 for(const view of ['front','rear','side','quarter-front','quarter-rear']){
   for(let n=0;n<8;n++){
@@ -405,5 +405,40 @@ assert((html.match(/class="tavi-upper-cel"/g)||[]).length===40 &&
        (html.match(/class="tavi-stride-head-cel31"/g)||[]).length===40 &&
        (html.match(/class="tavi-walk-cel"/g)||[]).length===40,
        'Costume refinement must retain all independently drawn frames');
-assert(sw.includes('foldfarer-shell-0.45'),'0.32 offline install cache version must advance');
+assert(sw.includes('foldfarer-shell-0.46'),'0.32 offline install cache version must advance');
+// 0.33 verifies the actual anatomy art, not decorative portrait overlays.
+const taviHands=[...html.matchAll(/class="tavi-inked-hand33"/g)];
+assert(taviHands.length===102,
+ 'A total of 80 walking, 10 idle, and 12 turn hands must use inked contour source art');
+assert((html.match(/class="tavi-hand-silhouette33"/g)||[]).length===102,
+ 'Every hand source must be a real authored irregular palm/thumb contour');
+for(const view of ['front','rear','side','quarter-front','quarter-rear']){
+ for(let frame=0;frame<8;frame++){
+  for(const side of ['left','right'])assert(
+   html.includes('data-hand-view="'+view+'" data-hand-frame="'+frame+
+     '" data-hand-side="'+side+'"'),
+   'Missing individually registered finger art '+view+'/'+frame+'/'+side);
+ }
+ for(const side of ['left','right'])assert(
+  html.includes('data-idle-hand-view="'+view+'" data-idle-hand-side="'+side+'"'),
+  'Missing physical idle palm '+view+'/'+side);
+}
+assert((html.match(/data-turn-hand="true"/g)||[]).length===12,
+ 'Six full-body turning drawings must not flash old circular fists');
+for(const view of ['front','side','quarter-front']){
+ assert((html.match(new RegExp('data-sculpted-view="'+view+'"','g'))||[]).length===9,
+  'Each forward direction needs a coherent original idle face and eight animated contour faces: '+view);
+}
+assert((html.match(/class="tavi-sculpted-face33"/g)||[]).length===27 &&
+       (html.match(/class="tavi-profile-nose33"/g)||[]).length===18 &&
+       (html.match(/class="tavi-turn-visage33"/g)||[]).length===3,
+ 'Front, side, quarter and in-between turning facial anatomy needs original painted face shapes');
+for(const id of ['taviSkinIllustration33','taviCheekWash33'])
+ assert(ids.includes(id),'Missing original face wash gradient '+id);
+assert((html.match(/class="tavi-walk-cel"/g)||[]).length===40 &&
+       (html.match(/class="tavi-upper-cel"/g)||[]).length===40 &&
+       (html.match(/class="tavi-stride-head-cel31"/g)||[]).length===40 &&
+       (html.match(/class="tavi-turn-head30"/g)||[]).length===6,
+ 'Anatomical redraw must not remove existing physical gait/turn art');
+assert(sw.includes('foldfarer-shell-0.46'),'New painted anatomy must refresh iPhone Home Screen offline shell');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
