@@ -137,6 +137,13 @@
         <linearGradient id="morrowWingInkRight" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#729f9f"/><stop offset=".48" stop-color="#385f76"/><stop offset="1" stop-color="#182f4b"/></linearGradient>
         <linearGradient id="terraceArchWatercolor" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#f9e6bc"/><stop offset=".48" stop-color="#d9b393"/><stop offset="1" stop-color="#a17c80"/></linearGradient>
         <linearGradient id="terraceArchReveal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#d1a78d"/><stop offset=".48" stop-color="#97777b"/><stop offset="1" stop-color="#5b606c"/></linearGradient>
+        <!-- First Fold 0.27: shadowed physical paper edge-stock in the live world. -->
+        <linearGradient id="terraceBellCopper" x1="0%" y1="0%" x2="96%" y2="100%"><stop stop-color="#fff2c9"/><stop offset=".52" stop-color="#d6a785"/><stop offset="1" stop-color="#916e78"/></linearGradient>
+        <linearGradient id="terraceBellHollow" x1="0%" y1="0%" x2="96%" y2="100%"><stop stop-color="#ac8182"/><stop offset=".52" stop-color="#6d6270"/><stop offset="1" stop-color="#3b5b60"/></linearGradient>
+        <linearGradient id="terraceBookRoof" x1="0%" y1="0%" x2="96%" y2="100%"><stop stop-color="#ffe2b0"/><stop offset=".52" stop-color="#cb9788"/><stop offset="1" stop-color="#725d70"/></linearGradient>
+        <linearGradient id="terraceBookSpine" x1="0%" y1="0%" x2="96%" y2="100%"><stop stop-color="#98bbac"/><stop offset=".52" stop-color="#6b9890"/><stop offset="1" stop-color="#3b6172"/></linearGradient>
+        <linearGradient id="terraceBookLeaves" x1="0%" y1="0%" x2="96%" y2="100%"><stop stop-color="#fff4d4"/><stop offset=".52" stop-color="#ebd6af"/><stop offset="1" stop-color="#ba8f86"/></linearGradient>
+        <linearGradient id="terraceTreeBark" x1="0%" y1="0%" x2="96%" y2="100%"><stop stop-color="#f0d4a4"/><stop offset=".52" stop-color="#b48a7e"/><stop offset="1" stop-color="#755e70"/></linearGradient>
         <linearGradient id="farerCoatBindLight" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop stop-color="#fff1c7" stop-opacity=".94"/>
           <stop offset=".28" stop-color="#f0ca9b" stop-opacity=".66"/>
@@ -4784,19 +4791,45 @@
               <circle cx="-59" cy="-57" r="4"/><circle cx="61" cy="-61" r="4"/>
             </g>
           </g>
-          <g id="terraceBell" transform="translate(719 484)" filter="url(#softShadow)" aria-label="The terrace's archive bell">
-            <ellipse cy="14" rx="72" ry="14" fill="#375e5d" opacity=".33"/>
-            <path d="m-68-26 58-32 66 15 16 22-78 31Z" fill="#bf8b7c" stroke="#795d67" stroke-width="6"/>
-            <path d="M-60-27v-75m117 59v-72" stroke="#745d68" stroke-width="12" stroke-linecap="round"/>
-            <path d="m-65-110 63-36 67 24-8 17-60-21-60 32Z" fill="#edc796" stroke="#927173" stroke-width="6"/>
-            <path d="m-4-129 3 25m-25 14q-8-36 27-41 39 10 28 48l12 8-74 1Z" fill="#e5bb7e" stroke="#92716b" stroke-width="5"/>
-            <path d="m-30-79 59 0" stroke="#fff0be" stroke-width="5"/>
-            <path d="m-11-84 12 15 16-15" fill="none" stroke="#9d7873" stroke-width="4"/>
-            <circle cx="-1" cy="-69" r="6" fill="#f5d99a" stroke="#a38374" stroke-width="3"/>
-            <path d="m-62-109 60-34 63 23" stroke="#fff2c8" stroke-width="3" stroke-dasharray="7 10" fill="none"/>
-            <path d="m-31-47 29 18 37-13" stroke="#f8e0b9" stroke-width="3" stroke-dasharray="5 6" fill="none"/>
-            <path d="m-52 6 49-15 49 11" stroke="#f2dab0" stroke-width="3.5" fill="none"/>
-          </g>
+          
+<g id="terraceBell" transform="translate(719 484)" filter="url(#softShadow)" pointer-events="none" aria-label="Handfolded open pavilion and its hanging archive bell">
+  <!-- A non-floating dais, projected at the original solid foot anchor. -->
+  <g id="terraceBellFoldedPlinth" aria-hidden="true">
+    <ellipse cy="15" rx="72" ry="17" fill="#3b6562" opacity=".28"/>
+    <path d="M-70-22 2-47 74-20 6 8Z" fill="url(#terraceBookLeaves)" stroke="#8c7075" stroke-width="5"/>
+    <path d="m-70-22 76 30v17L-71-4Z" fill="#b38d84" stroke="#796372" stroke-width="4"/>
+    <path d="m6 8 68-28-2 18L6 25Z" fill="#997a7a" stroke="#786474" stroke-width="4"/>
+    <path d="m-58-20 63 20 59-20" fill="none" stroke="#fff0c8" stroke-width="2.7"/>
+    <path d="M-33-19 2-30l37 12L4-5Z" fill="#a3b9a6" stroke="#779189" stroke-width="3"/>
+  </g>
+  <g id="terraceBellPavilion" aria-hidden="true">
+    <!-- Four sides and visible cut cardstock walls, with two uprights. -->
+    <path d="M-59-33v-92l13-10 14 8v91l-14 9Z" fill="url(#terraceTreeBark)" stroke="#75616e" stroke-width="5"/>
+    <path d="M50-32v-98l13-9 13 8v97l-13 8Z" fill="url(#terraceTreeBark)" stroke="#765f70" stroke-width="5"/>
+    <path d="m-51-120v78m111-79v78" fill="none" stroke="#fff2d0" stroke-width="3" opacity=".73"/>
+    <path d="M-89-116-17-165l62 4 43 34-17 21-49-29-58 13-40 22Z" fill="url(#terraceBookRoof)" stroke="#7e6171" stroke-width="6" stroke-linejoin="round"/>
+    <path d="m-85-110 69-43 61 3 36 29-12 9-47-27-58 13-40 24Z" fill="#f4deb9" stroke="#98767c" stroke-width="3.5"/>
+    <path d="m-75-99 39-24 56-12 48 26-4 12-44-17-54 11-36 24Z" fill="#6f5d70" opacity=".58"/>
+    <path d="m-79-112 64-39 56 0 34 27m-144 26 35-22 57-13 45 24" fill="none" stroke="#fff1ce" stroke-width="3" opacity=".8"/>
+    <path d="M-18-163 40-158l-8 12-49-3Z" fill="#d0a98f" stroke="#8a6f78" stroke-width="3"/>
+    <circle cx="-72" cy="-108" r="3.4" fill="#f6d8a9"/><circle cx="72" cy="-120" r="3.4" fill="#f6d8a9"/>
+  </g>
+  <!-- A real sculpted bell, with hollow lip and a separate suspended clapper. -->
+  <g id="terraceBellHanging" aria-hidden="true">
+    <path d="M0-147v37" fill="none" stroke="#856f73" stroke-width="7" stroke-linecap="round"/>
+    <path d="M0-144v31" stroke="#ffedc1" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M-10-111q0-21 11-19 11 2 8 20" fill="#e8bd8d" stroke="#806774" stroke-width="4"/>
+    <path d="M-18-108q22-13 36 1 23 16 24 45l11 9q-52 27-107 0l11-11q2-31 25-44Z"
+          fill="url(#terraceBellCopper)" stroke="#826771" stroke-width="5.6" stroke-linejoin="round"/>
+    <path d="M-29-102q-14 19-16 38m25-33q15-10 31-7" stroke="#fff0c7" stroke-width="3.6" opacity=".77" fill="none" stroke-linecap="round"/>
+    <path d="m-47  -56q41 15 95 1l6 10Q2-19-55-46Z" fill="url(#terraceBellHollow)" stroke="#796675" stroke-width="4.5"/>
+    <path d="m-42-54q39 11 84 0" stroke="#ffedbd" stroke-width="2.8" fill="none"/>
+    <path d="M0-44v14" stroke="#ae857b" stroke-width="6" stroke-linecap="round"/>
+    <path d="m-11-28 13-10 12 11-10 14Z" fill="#e9bb88" stroke="#816a73" stroke-width="3.1"/>
+    <path d="m-24-78 10-10 10 10-10 9Zm23-12 9-9 10 10-10 8Zm21 18 9-8 9 10-10 8Z" fill="#e8c79c" stroke="#987776" stroke-width="2.1"/>
+    <path d="m-23-77 7 2m19-11 7 1m18 15 6 1" stroke="#fff1ca" stroke-width="1.9" fill="none"/>
+  </g>
+</g>
           <g id="terraceLantern" transform="translate(371 615)" filter="url(#softShadow)" aria-label="A tall papercraft lantern">
             <ellipse cy="8" rx="67" ry="16" fill="#446868" opacity=".25"/>
             <path d="M-27 4 26 5l18-11-48-10Z" fill="#9c7f7b" stroke="#765a69" stroke-width="5"/>
@@ -4813,27 +4846,67 @@
             <circle cy="-45" r="6" fill="#e8c986" stroke="#9b7875" stroke-width="3"/>
             <g fill="#f3c792" stroke="#a37b7b" stroke-width="3"><circle cx="-25" cy="-138" r="4"/><circle cx="34" cy="-137" r="4"/></g>
           </g>
-          <g id="terraceKiosk" transform="translate(1022 660)" filter="url(#paperShadow)" aria-label="An empty pop-up memory kiosk">
-            <ellipse cy="12" rx="110" ry="19" fill="#375c5a" opacity=".28"/>
-            <path d="m-91-43 160-32 49 27-168 37Z" fill="#c79384" stroke="#7a626b" stroke-width="7"/>
-            <path d="M-50-11 116-47l-5 40-157 30Z" fill="#d4ae87" stroke="#946f6e" stroke-width="6"/>
-            <path d="m-52 12-3 28m142-48 5 29" stroke="#7f6467" stroke-width="13" stroke-linecap="round"/>
-            <path d="M-97-118q56-59 128-40 49-5 95 38l-30 22-83-35-79 30Z" fill="#a96f7c" stroke="#78586b" stroke-width="7"/>
-            <path d="M-91-119q62-49 123-34 47 0 89 35" stroke="#fbe3bb" stroke-width="4" stroke-dasharray="8 12" fill="none"/>
-            <path d="m-73-104 25-14 11 25-22 14Z" fill="#f2d19a" stroke="#927274" stroke-width="4"/>
-            <path d="m-25-133 26 0 3 29-27 0Z" fill="#a6c5ab" stroke="#6e8c89" stroke-width="4"/>
-            <path d="m34-130 30 7-8 28-26-4Z" fill="#e6b68c" stroke="#95726d" stroke-width="4"/>
-            <g fill="#f6dfae" stroke="#967577" stroke-width="3">
-              <path d="m-64-55 41-11 9 28-40 12Z"/><path d="m-14-67 46-8 5 32-47 7Z"/><path d="m46-76 41 4-8 27-41 1Z"/>
-            </g>
-            <g fill="none" stroke="#b98280" stroke-width="2.5" stroke-dasharray="5 6">
-              <path d="m-57-50 33-10m12-2 39-7m20 0 31 4"/>
-            </g>
-            <path d="M-81-2q95 19 182-15" fill="none" stroke="#fff0cc" stroke-width="4" stroke-dasharray="8 12"/>
-          </g>
+          
+<g id="terraceKiosk" transform="translate(1022 660)" filter="url(#paperShadow)" pointer-events="none"
+  aria-label="Folio memory kiosk constructed as a hand-bound three-panel pop-up book">
+  <g id="terraceFolioKioskBase" aria-hidden="true">
+    <ellipse cx="0" cy="14" rx="104" ry="18" fill="#365e5c" opacity=".28"/>
+    <path d="M-91-13 64-48 109-24-55 19Z" fill="url(#terraceBookLeaves)" stroke="#95737c" stroke-width="5.6"/>
+    <path d="m-91-13 36 32-2 20-39-35Z" fill="#b38d82" stroke="#775f70" stroke-width="4"/>
+    <path d="M-55 19 109-24l-2 19L-57 39Z" fill="#b78c83" stroke="#785f70" stroke-width="4.2"/>
+    <path d="m-82-12 146-28M-37 9 93-24" stroke="#fff2cd" stroke-width="2.7" fill="none"/>
+  </g>
+  <!-- Distinct left and right side profiles are real hinged boards. -->
+  <g id="terraceFolioKioskHinges" aria-hidden="true">
+    <path d="M-87-92-48-122-31-118-38-40-90-21Z" fill="url(#terraceBookSpine)" stroke="#745e70" stroke-width="5.6"/>
+    <path d="M-81-87-50-112-41-109-45-46-83-33Z" fill="#c2d3b9" stroke="#6c908a" stroke-width="3"/>
+    <path d="m-76-77 29-18m-29 33 26-16m-20 30 19-10" fill="none" stroke="#fff0c9" stroke-width="2.7"/>
+    <path d="M70-111 109-95 117-34 70-46Z" fill="#916f7e" stroke="#775d72" stroke-width="5.5"/>
+    <path d="m77-102 25 11 8 46-32-10Z" fill="#e8cba4" stroke="#a78180" stroke-width="3.2"/>
+    <path d="m79-91 23 9m-21 8 24 8m-24 9 26 7" stroke="#fff0cd" stroke-width="2.3"/>
+    <path d="M-41-118v80m117-76 2 68" stroke="#eac69b" stroke-width="6" opacity=".81"/>
+    <g fill="#fbe6b9" stroke="#856877" stroke-width="2"><circle cx="-40" cy="-91" r="3"/><circle cx="-40" cy="-54" r="3"/><circle cx="76" cy="-91" r="3"/><circle cx="77" cy="-60" r="3"/></g>
+  </g>
+  <!-- Open-book ridge roof; no repeated house silhouette. -->
+  <g id="terraceFolioKioskCanopy" aria-hidden="true">
+    <path d="M-102-105q34-54 91-58Q39-180 88-133l31 35-25 5-44-38Q6-151-47-125l-38 31Z"
+      fill="url(#terraceBookRoof)" stroke="#785e71" stroke-width="6.5" stroke-linejoin="round"/>
+    <path d="M-98-100q37-49 92-57Q42-168 87-129l23 25-15 5-39-34Q6-154-45-122Z"
+      fill="#f5dab3" stroke="#a07d7f" stroke-width="3.6"/>
+    <path d="M-92-98q44-47 96-51Q48-154 88-116l-9 11q-39-34-75-27-50 6-80 48Z" fill="#755e72" opacity=".46"/>
+    <path d="m-92-105q38-40 79-47 53-9 97 28" stroke="#fff3d1" stroke-width="3.4" fill="none"/>
+    <path d="m-81-100 26-20m18-11 19-10m23-4 17-1m33 7 17 10m15 11 13 10" fill="none" stroke="#fff1c8" stroke-width="2.4" opacity=".7"/>
+    <path d="m-9-157 11-11 15 12" stroke="#f2e1b8" stroke-width="4.2" fill="none"/>
+  </g>
+  <g id="terraceFolioKioskPages" aria-hidden="true">
+    <path d="M-59-82q32-17 62-12 40-7 67 1l4 64Q34-36 4-23q-36-16-68-7Z" fill="url(#terraceBookLeaves)" stroke="#866876" stroke-width="5"/>
+    <path d="M-53-78q30-14 55-9v52q-28-12-56-2Z" fill="#fff2d1" stroke="#b49185" stroke-width="2.8"/>
+    <path d="M8-87q31-6 55 0l5 47q-28 0-60 7Z" fill="#ddc6a7" stroke="#977b7c" stroke-width="2.8"/>
+    <path d="M4-93v63" stroke="url(#terraceBookSpine)" stroke-width="8.5" stroke-linecap="round"/>
+    <path d="m-42-68 31-6m-30 18 28-6m-27 16 26-5m27-21 40-2M17-59l35-2m-34 13 35 0" stroke="#9c817e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="m-36-79 10-12 13 10-12 12Z" fill="#a0bda8" stroke="#688f87" stroke-width="2.7"/>
+    <path d="m32-80 13-13 12 13-12 10Z" fill="#dfb594" stroke="#9b777a" stroke-width="2.7"/>
+    <path d="m-40-19 45 11 60-17-7 18L4 9-47 0Z" fill="#b58b81" stroke="#765f71" stroke-width="3.7"/>
+    <path d="m-32-12 37 9 50-15" stroke="#fff2c9" stroke-width="2.6" fill="none"/>
+    <g id="terraceKioskPaperTabs" aria-hidden="true">
+      <path d="m-47-91 11-17 13 3-3 17Z" fill="#d9b59a" stroke="#907477" stroke-width="2.7"/>
+      <path d="m24-90 4-17 18-1 7 18Z" fill="#a0baa4" stroke="#6e9489" stroke-width="2.7"/>
+      <path d="m54-86 8-14 15 8v17Z" fill="#e9c5a2" stroke="#9d7976" stroke-width="2.7"/>
+    </g>
+  </g>
+  <path d="M-79-3q75 15 159-14" stroke="#fff1cd" stroke-width="3.4" opacity=".77" fill="none" stroke-dasharray="8 11"/>
+</g>
           <g id="terraceRibbonTree" transform="translate(1177 591)" filter="url(#softShadow)" aria-label="A hand-sewn ribbon tree">
             <ellipse cy="6" rx="74" ry="19" fill="#3c6862" opacity=".27"/>
-            <path d="M-13 0q12-60-5-132l19-11 23 8q-21 67 5 134Z" fill="#a18572" stroke="#705e68" stroke-width="7"/>
+            
+            <g id="terraceTreeBranchConstruction" pointer-events="none" aria-hidden="true">
+              <path d="M-13 0q12-60-5-132l19-11 23 8q-21 67 5 134Z" fill="url(#terraceTreeBark)" stroke="#705e68" stroke-width="7"/>
+              <path d="M-18-121-41-156-36-168l29 24Z" fill="#b59286" stroke="#796470" stroke-width="4"/>
+              <path d="M12-108 44-142 53-137 22-93Z" fill="#af8c80" stroke="#74606f" stroke-width="4"/>
+              <path d="m-9-116 2 54-3 41m20-72 11 55m-31-94-16-20m45 42 19-22" stroke="#f9deb6" stroke-width="3.7" opacity=".73" fill="none" stroke-linecap="round"/>
+              <path d="m-5-84 10 10m-7 7 10 11m-6 12 8 9" stroke="#755e6d" stroke-width="2.3" fill="none"/>
+              <path d="M-20-16q11-4 23 1l23-7 7 15Q5 2-22 2Z" fill="#9a7d79" stroke="#746170" stroke-width="3"/>
+            </g>
             <path d="m-2-120 7 44m-10-23-17-16m29 39 24-27" stroke="#f0d0a1" stroke-width="5" fill="none" stroke-linecap="round"/>
             
             <g class="terrace-leaf-sway" transform="translate(-62 -38) scale(.78)">
