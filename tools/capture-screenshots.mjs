@@ -902,7 +902,16 @@ try {
     direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   await moving31.emulateMedia({reducedMotion:'no-preference'});
   await moving31.keyboard.down('ArrowRight');
-  await moving31.waitForTimeout(190);
+  // Capture only after the real paper-turn cels release their canvas.
+  // Slow/loaded browsers must never create an empty head screenshot.
+  await moving31.waitForFunction(()=>{
+    const actor=document.getElementById('tavi');
+    if(!actor.classList.contains('walking')||actor.classList.contains('turning'))return false;
+    const shown=[...actor.querySelectorAll('.tavi-stride-head-cel31')]
+      .filter(x=>getComputedStyle(x).display!=='none'&&
+        getComputedStyle(x.parentElement.parentElement).display!=='none');
+    return shown.length===1&&shown[0].dataset.headFrame===actor.dataset.stride;
+  },null,{timeout:3500});
   const walking31=await moving31.locator('#tavi').evaluate(actor=>{
     const shown=[...actor.querySelectorAll('.tavi-stride-head-cel31')]
       .filter(x=>getComputedStyle(x).display!=='none'&&
@@ -966,7 +975,17 @@ try {
     direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
   await moving32.emulateMedia({reducedMotion:'no-preference'});
   await moving32.keyboard.down('ArrowRight');
-  await moving32.waitForTimeout(200);
+  // Only a fully selected gait frame is a valid costume screenshot.
+  await moving32.waitForFunction(()=>{
+    const actor=document.getElementById('tavi');
+    if(!actor.classList.contains('walking')||actor.classList.contains('turning'))return false;
+    const shown=[...actor.querySelectorAll('.tavi-upper-cel')]
+      .filter(x=>getComputedStyle(x).display!=='none'&&
+        getComputedStyle(x.parentElement.parentElement).display!=='none');
+    const paint=shown[0]?.querySelector('.tavi-painted-costume32');
+    return shown.length===1&&shown[0].dataset.upperFrame===actor.dataset.stride&&
+      !!paint&&getComputedStyle(paint).pointerEvents==='none';
+  },null,{timeout:3500});
   const actualCoat32=await moving32.locator('#tavi').evaluate(actor=>{
     const visible=[...actor.querySelectorAll('.tavi-upper-cel')]
       .filter(el=>getComputedStyle(el).display!=='none'&&
