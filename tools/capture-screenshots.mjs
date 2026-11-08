@@ -385,7 +385,7 @@ try {
 
 
   const morrowActing=await openedAt({
-    started:true,area:'folio',x:370,y:620,facing:1,direction:'down',
+    started:true,area:'folio',x:365,y:560,facing:1,direction:'down',
     metMorrow:true,mended:false,letter:false,won:false
   });
   await morrowActing.emulateMedia({reducedMotion:'no-preference'});
