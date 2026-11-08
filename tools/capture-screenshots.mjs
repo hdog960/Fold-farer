@@ -385,12 +385,14 @@ try {
 
 
   const morrowActing=await openedAt({
-    started:true,area:'folio',x:628,y:705,facing:1,direction:'down',
+    started:true,area:'folio',x:350,y:700,facing:1,direction:'down',
     metMorrow:true,mended:false,letter:false,won:false
   });
   await morrowActing.emulateMedia({reducedMotion:'no-preference'});
   await morrowActing.locator('#interact').click();
   await morrowActing.locator('#dialogue').waitFor({state:'visible'});
+  if((await morrowActing.locator('#speaker').textContent())?.trim()!=='Morrow')
+    throw Error('Morrow interaction test selected a competing physical prop');
   const owl=await morrowActing.locator('#morrow').evaluate(el=>{
     const atlas=document.getElementById('morrowReactionAtlas');
     const visible=[...atlas.querySelectorAll('.morrow-reaction-cel')]
