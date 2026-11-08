@@ -1002,6 +1002,71 @@ try {
     animations:'allow'});
   await moving32.keyboard.up('ArrowRight');
   await moving32.close();
+
+  // 0.33: inspect the ORIGINAL physical actor's five facings across rest and
+  // eight walking cels. New hand contours must be part of the visible arm art.
+  const anatomy33=await terraceNear.locator('#tavi').evaluate(actor=>{
+    const views=[['front','taviFrontArt','dir-down'],['rear','taviBackArt','dir-up'],
+      ['side','taviSideArt','dir-side'],['quarter-front','taviFrontQuarterArt','dir-diag-down'],
+      ['quarter-rear','taviBackQuarterArt','dir-diag-up']];
+    const priorClass=actor.getAttribute('class'),priorStride=actor.dataset.stride;
+    const mistakes=[],summary=[];
+    try{
+      for(const [view,poseId,cls] of views){
+        actor.classList.remove('dir-up','dir-down','dir-side','dir-diag-up','dir-diag-down',
+          'walking','pivoting','turning');actor.classList.add(cls);
+        const pose=document.getElementById(poseId),rest=pose.querySelector('.tavi-rest-torso');
+        const hands=[...rest.querySelectorAll('.tavi-inked-hand33')];
+        if(hands.length!==2||hands.some(el=>el.getBBox().width<10||el.getBBox().height<9||
+          getComputedStyle(el).pointerEvents!=='none'))
+          mistakes.push('idle '+view+' hands missing');
+        if(['front','side','quarter-front'].includes(view)){
+          const face=pose.querySelector('.tavi-proportioned-head30 .tavi-sculpted-face33');
+          const box=face?.getBBox();
+          if(!face||!box||box.width<45||box.height<65)
+            mistakes.push('idle '+view+' face silhouette invalid');
+        }
+        for(let n=0;n<8;n++){
+          actor.classList.add('walking');actor.dataset.stride=String(n);
+          const showing=[...pose.querySelectorAll('.tavi-upper-cel')]
+            .filter(el=>getComputedStyle(el).display!=='none');
+          const arms=showing[0]?.querySelectorAll('.tavi-inked-hand33');
+          const head=[...pose.querySelectorAll('.tavi-stride-head-cel31')]
+            .filter(el=>getComputedStyle(el).display!=='none');
+          if(showing.length!==1||showing[0]?.dataset.upperFrame!==String(n)||
+             arms?.length!==2||
+             [...(arms||[])].some(x=>x.dataset.handFrame!==String(n)||
+                x.dataset.handView!==view||x.getBBox().width<10||
+                getComputedStyle(x).pointerEvents!=='none')||
+             head.length!==1||head[0]?.dataset.headFrame!==String(n))
+            mistakes.push('gait anatomy misaligned '+view+'/'+n);
+          actor.classList.remove('walking');
+        }
+        summary.push({view,idleHands:hands.length,walkingCels:pose.querySelectorAll('.tavi-upper-cel').length});
+      }
+    }finally{actor.setAttribute('class',priorClass);actor.dataset.stride=priorStride}
+    return {mistakes,summary,shapedHands:actor.querySelectorAll('.tavi-inked-hand33').length,
+      sculptedFaces:actor.querySelectorAll('.tavi-sculpted-face33').length};
+  });
+  if(anatomy33.mistakes.length||anatomy33.shapedHands!==102||
+     anatomy33.sculptedFaces!==27)
+    throw Error('0.33 real actor anatomy not fully integrated: '+JSON.stringify(anatomy33));
+  console.log('0.33 SCULPTED IN-GAME CHARACTER:',JSON.stringify(anatomy33));
+  const face33=await openedAt({started:true,area:'terrace',x:720,y:702,facing:1,direction:'down',
+    metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+  await face33.emulateMedia({reducedMotion:'reduce'});
+  const current=await face33.locator('#tavi').evaluate(actor=>{
+    const pose=document.getElementById('taviFrontArt');
+    return {direction:actor.classList.contains('dir-down'),
+      idleHands:pose.querySelectorAll('.tavi-rest-torso .tavi-inked-hand33').length,
+      face:!!pose.querySelector('.tavi-proportioned-head30 .tavi-sculpted-face33')};
+  });
+  if(!current.direction||current.idleHands!==2||!current.face)
+    throw Error('0.33 creator close-up must render actual front-view sculpted Tavi: '+
+      JSON.stringify(current));
+  await face33.screenshot({path:'screenshots/50-tavi-anatomy-in-real-terrace.png'});
+  await face33.locator('#tavi').screenshot({path:'screenshots/51-tavi-anatomy-original-actor-closeup.png'});
+  await face33.close();
   await terraceNear.emulateMedia({reducedMotion:'reduce'});
 
   await terraceNear.screenshot({path:'screenshots/46-tavi-proportion-audit.png'});
