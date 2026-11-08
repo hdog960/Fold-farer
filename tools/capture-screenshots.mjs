@@ -776,6 +776,32 @@ try {
   if(await terraceNear.locator('#tavi').getAttribute('transform')!==stablePlayer)
     throw Error('0.28 art displaced the playable hero');
   console.log('0.28 REAL BOTANICAL ILLUSTRATION:',JSON.stringify(botanicalQA));
+
+  // 0.29 original architectural geometry QA in the running game.
+  const relief29=await terraceNear.evaluate(()=>{
+    const ids=['terraceDyeTower','terraceConservatoryCupola','terraceBuiltRoofProfiles29',
+      'terraceDyerMultiPlyRoof29','terraceConservatoryCurledEaves29',
+      'taviRearIllustratedSilhouette29'];
+    const scene=document.getElementById('terraceScene'), actor=document.getElementById('tavi');
+    const root=document.getElementById('terracePaperArchitecture');
+    return ids.map(id=>{
+      const el=document.getElementById(id),bounds=el.getBBox();
+      return {id,w:bounds.width,h:bounds.height,events:getComputedStyle(el).pointerEvents,
+       inWorld:id.startsWith('tavi')?actor.contains(el):scene.contains(el),
+       structural:id==='terraceBuiltRoofProfiles29'?root.contains(el):true};
+    });
+  });
+  if(relief29.some(item=>!item.inWorld||!item.structural||item.events!=='none'||
+    item.w<35||item.h<19))
+    throw Error('0.29 structural art visibility/depth/touch check failed: '+JSON.stringify(relief29));
+  if(relief29[0].w<125||relief29[0].h<200||relief29[1].w<115||relief29[1].h<180||
+    relief29[2].w<1250||relief29[2].h<200)
+    throw Error('0.29 reconstructed architecture has collapsed or invisible size: '+JSON.stringify(relief29));
+  if(await terraceNear.locator('#tavi').getAttribute('transform')!==stablePlayer)
+    throw Error('0.29 art moved the player or broke ground anchoring');
+  console.log('0.29 ORIGINAL REBUILT PAPER ARCHITECTURE:',JSON.stringify(relief29));
+  await terraceNear.screenshot({path:'screenshots/45-terrace-constructed-roofs.png'});
+
   await terraceNear.screenshot({path:'screenshots/44-terrace-illustrated-botanicals.png'});
 
   await terraceNear.screenshot({path:'screenshots/43-terrace-archive-papercraft.png'});
