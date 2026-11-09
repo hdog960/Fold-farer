@@ -943,3 +943,27 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #terraceEscarpmentWildEdges37,
  #terraceHandcutOrchard36{filter:none}
 }
+
+/* First Fold 0.39.1 — hand-pressed herbarium card separation in the playable
+   North Terrace. Each independently illustrated botanical plate catches a
+   different edge light against the layered escarpment; no full-scene blur,
+   no character animation or geometry changes, and no touch interception. */
+#terraceWallHerbarium39,
+#terraceWallHerbarium39 *{pointer-events:none!important}
+#terraceWallHerbariumWest39{
+  filter:drop-shadow(-1px 2px 1px rgba(40,64,64,.28));
+}
+#terraceWallHerbariumCenter39{
+  filter:drop-shadow(1px 3px 1px rgba(48,62,63,.30));
+}
+#terraceWallHerbariumEast39{
+  filter:drop-shadow(2px 2px 1px rgba(45,67,62,.26));
+}
+#terraceWallHerbarium39 > g > path{
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  shape-rendering:geometricPrecision;
+}
+@media (prefers-contrast:more){
+  #terraceWallHerbarium39 > g{filter:none}
+}
