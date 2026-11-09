@@ -406,3 +406,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Added static art integration checks and Chromium tests for all seven live facial modes, 14 correct eye masks, preserved wing atlas and geometry, true touch transparency, and in-world placement of both orchard cards. Capture 56 is a complete real game screenshot, 57 is the physical actor close-up.
 - Package 0.36.0 / offline cache 0.49. No changing world transform, story, Morrow follower logic, save keys/schema, collision, original sprite atlas, Home Screen URL or paid dependencies.
 - Milestone A aesthetics remain in progress; full production-quality painted asset system, depth and physical iPhone QA are still outstanding. Milestone B is LOCKED. Keep end-of-loop controls: Play updated FoldFarer / Continue development.
+
+
+## First Fold 0.38 — terrace paper contact-light pass (2026-11-08)
+- **Actual source edit:** styles.css; added directional contact-shadow separation to the four existing SVG escarpment/woodland groups: terraceEscarpmentBase37, terraceEscarpmentPages37, terraceEscarpmentWildEdges37 and terraceHandcutOrchard36 foliage. Light treatment follows the physical cut-paper layers instead of adding a flat viewport overlay. High-contrast preference disables the new filters.
+- **Code commit:** 815de671bfab6c017e3a0ece368ac4a51d444b4c. CSS re-fetched from GitHub after write; four referenced SVG IDs verified in index.html before edit. Existing rules were preserved, and no game.js, collision, save, service worker or manifest changes were made.
+- **Not verified:** Node smoke/simulation tests, browser rendering/performance, actual GitHub Pages publishing, and iPhone installation. GitHub combined commit status returned no status checks. Avoid presenting this pass as visually approved or deployed.
+- **Next:** Run npm test and capture real village/terrace screenshots; inspect whether filter effects cost too much GPU time on iPhone, especially during scrolling. If costly, replace with authored SVG contact-ink strokes rather than piling on filters. Milestone A and its 90/100 creator art gate remain OPEN; Milestone B LOCKED.
