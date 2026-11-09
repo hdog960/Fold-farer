@@ -420,3 +420,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - **Code commit:** c7e831a3edebba80683dbf17fdd2d54f2f51b2fe. GitHub source was re-fetched and the exact new selectors and overrides checked after commit.
 - **Not verified:** browser frame timings, actual rendered screenshots, npm test, GitHub Pages publication, and physical iPhone performance. This is a code-level optimization hypothesis, not a measured FPS improvement.
 - **Next:** run Node smoke/simulation and browser screenshot comparison, then replace any visually heavy terrace shadows with hand-authored ink edges if needed. Milestone A art acceptance is still OPEN; Milestone B remains LOCKED.
+
+
+## First Fold 0.38.2 — ink-pressed terrace card edges (2026-11-08)
+- **Actual integrated art change:** `styles.css` adds subtle rounded ink-press outlines to the existing `terraceEscarpmentPages37` and `terraceEscarpmentWildEdges37` direct SVG paper paths. The existing watercolor fills remain foregrounded via `paint-order:stroke fill`; no new artwork overlays, world geometry, collisions, save state, input targets or animation cycles were added.
+- **Source commit:** f42f30c28fbceeba2f3fad5af82d68629d30394a. Re-fetched committed CSS SHA 958d8ef963a586cab7b8c1c0a049bcc164afab27 and verified both target SVG IDs and directly nested paths exist in the playable `index.html`. A deterministic in-memory patch assertion confirmed all previous CSS was preserved byte-for-byte.
+- **Not verified:** actual browser appearance, Node smoke/simulation results, physical iPhone performance, or GitHub Pages deployment. Do not claim the artwork is visually accepted based on this CSS source check.
+- **Next:** run `npm test`, capture and compare real North Terrace gameplay on desktop and mobile emulation, and review edge ink at different perspective depths. If acceptable, pursue a more substantial illustrated environment/character pass. Milestone A remains OPEN; creator's 90/100 art gate and Milestone B LOCK remain unchanged.
