@@ -996,3 +996,30 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 @media (prefers-contrast:more){
   #terraceWallHerbarium39 > g > path[fill]:not([fill="none"]){stroke:none}
 }
+
+
+/* First Fold 0.44 — the three original North Terrace hanging lanterns now
+   breathe with separate, restrained vellum-light rhythms. Only each inner
+   paper pane changes opacity: metal fixtures, outlines, depth sorting,
+   hit-testing and save-state remain fixed. No blur or GPU shadow filters. */
+#terraceFoldedLanterns43,
+#terraceFoldedLanterns43 *{pointer-events:none!important}
+#terraceLanternSpindle43 > path[fill="#f1d5a5"]{
+  animation:terraceLanternVellum44 6.3s ease-in-out infinite alternate;
+}
+#terraceLanternFolio43 > path[fill="#f4dfb9"]{
+  animation:terraceLanternVellum44 7.7s ease-in-out -2.1s infinite alternate;
+}
+#terraceLanternPetal43 > path[fill="#f5d7b7"]{
+  animation:terraceLanternVellum44 5.9s ease-in-out -3.4s infinite alternate;
+}
+@keyframes terraceLanternVellum44{
+  from{opacity:1}
+  to{opacity:.79}
+}
+@media(prefers-reduced-motion:reduce){
+  #terraceFoldedLanterns43 > g > path{
+    animation:none!important;
+    opacity:1!important;
+  }
+}
