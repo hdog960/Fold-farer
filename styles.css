@@ -1224,3 +1224,17 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
     stroke-dasharray:none;
   }
 }
+
+
+/* Milestone A — ink-bird's articulated flight bank follows real travel, not
+   the courier's facing direction. The separate paper-contact shadow remains
+   fixed to the floor and the SVG world/depth anchor is never rotated. The
+   existing wing-frame and gentle vertical hover animations are preserved. */
+#morrowSprite{
+  rotate:var(--morrow-flight-bank,0deg);
+  transform-origin:0px -65px;
+  transition:rotate 150ms ease-out;
+}
+@media(prefers-reduced-motion:reduce){
+  #morrowSprite{rotate:0deg!important;transition:none!important}
+}
