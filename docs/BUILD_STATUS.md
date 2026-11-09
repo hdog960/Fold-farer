@@ -485,3 +485,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Artwork commits: `409f0d798eae3476eaee993c96f71ed6f119e53c` and pivot correction `182c7a89d6e95c365f122f3c7e5ca184b65466f5`. Confirmed all three banner IDs in `index.html`, and read back the committed stylesheet. Motion is disabled with `prefers-reduced-motion: reduce`; decorative banner group remains pointer-events:none.
 - GitHub Actions check was queued at first inspection. **Still required:** run `npm test`/browser screenshot QA, visually inspect actual banner movement at mobile landscape size and reduced motion, check successful Pages deployment and perform physical iPhone QA. Source-level selector checks alone do not establish a passing build, visual quality, or measured performance.
 - Milestone A remains **OPEN**, 90/100 artwork rubric **NOT creator-approved**, Milestone B **LOCKED**. Next: verify current workflows and real browser screenshots, correct any clipping/unnatural movement, then prioritize larger environmental/character illustration improvements.
+
+
+## First Fold 0.46 — North Terrace tapestry cardstock finish (Milestone A)
+- Artwork commit `4f6455be38cdfd27f273eb2a4acdda932eeb03e0` updates `styles.css` only. Three existing river, orchard and moon hanging banners receive individually colored ink-cut edges beneath painted SVG fills, with no extra filters, collision surfaces or game-state changes.
+- Source check: fetched committed CSS; verified selectors and balanced braces. No Node suite, real browser screenshot comparison, physical iPhone check, or deployment verification was performed in this cycle. Visual benefit remains unverified.
+- Next: review actual screenshots for excessive dark edges, confirm Pages publication and run smoke/simulation checks; prioritize major character/environment illustration rather than repeated minor outlines. Art rubric 90/100 NOT established; creator approval outstanding; Milestone B LOCKED.
