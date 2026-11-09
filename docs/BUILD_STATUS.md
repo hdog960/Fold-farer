@@ -517,3 +517,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 ## Milestone A — compact dialogue scrollport correction (2026-11-09)
 - Gameplay stylesheet commit `849fa97a8dda5df8b7086c4fbc347365be9a69c5` corrects the <=430px landscape dialogue copy's flex-centering/clipping risk by making it a shrinkable block scrollport, retaining a visible portrait and continuation button. This targets long story conversations on small iPhone screens; no gameplay, saves, collision or art asset source changed.
 - GitHub source read-back confirmed CSS changes and balanced braces. Browser rendering, npm tests, CI/Pages deployment and physical iPhone QA remain unverified; no claim of visual acceptance. Next: inspect a long Morrow/Mila dialogue on landscape iPhone and capture actual game screenshots; continue substantial authored character/environment art. Milestone A OPEN; 90/100 rubric not approved; Milestone B LOCKED.
+
+
+## Milestone A — Threadfall light on painted water (2026-11-09)
+- Commit `15ab005c3bc5046ceb18bf141a1d2c648b2b1229` adds restrained opacity animation to the existing original North Terrace Threadfall water wash and highlight paths in `styles.css`; the cut-paper banks and valley anchor do not move. Reduced-motion users receive static art. No JavaScript, gameplay, collisions, saves, or asset geometry changed.
+- Verified stylesheet read-back blob `80188043663e5276ece28d64b78ea64c4055d180`, selectors, and balanced CSS braces before writing. Browser screenshots, Node tests, iPhone testing and Pages publication have NOT been verified.
+- Next: inspect real North Terrace screenshots for water visibility, clipping and excessive animation; run `npm test` and Pages workflow checks. Milestone A art rubric remains unapproved; Milestone B LOCKED.
