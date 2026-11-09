@@ -1068,3 +1068,29 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
     animation:none!important;transform:none!important;
   }
 }
+
+/* First Fold 0.46 — tactile cut-card finish for the three REAL North Terrace
+   illustrated banners. The restrained ink impression sits beneath each
+   painted face; stitched linework remains untouched. No screen-space filter,
+   extra geometry, pointer target or gameplay/save mutation. */
+#terraceWallStoryTapestries42 > g > path[fill]:not([fill="none"]){
+  paint-order:stroke fill;
+  stroke:rgba(69,61,76,.34);
+  stroke-width:1.05px;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#terraceBannerRiver42 > path[fill]:not([fill="none"]){
+  stroke:rgba(61,82,91,.32);
+}
+#terraceBannerOrchard42 > path[fill]:not([fill="none"]){
+  stroke:rgba(74,84,65,.34);
+}
+#terraceBannerMoon42 > path[fill]:not([fill="none"]){
+  stroke:rgba(77,68,99,.35);
+}
+@media(prefers-contrast:more){
+  #terraceWallStoryTapestries42 > g > path[fill]:not([fill="none"]){
+    stroke:none;
+  }
+}
