@@ -1168,6 +1168,10 @@ try {
     path:'screenshots/55-morrow-illustrated-companion-closeup.png'});
 
 
+  // Animated face states must be tested with animation enabled.
+  // 0.19 accessibility rules deliberately suppress open-beak frames for
+  // prefers-reduced-motion users; they are NOT missing from the game.
+  await face33.emulateMedia({reducedMotion:'no-preference'});
   // 0.36: test the ACTUAL animated bird face/crown, and the actual landscape
   // midground rather than counting unrendered mockup SVGs.
   const bird36=await face33.locator('#morrow').evaluate(actor=>{
@@ -1220,6 +1224,29 @@ try {
      throw Error('0.36 actual companion/woodland visual integration: '+
       JSON.stringify({bird36,grove36}));
   console.log('0.36 REAL LIVE ILLUSTRATION:',JSON.stringify({bird36,grove36}));
+
+  // Separately inspect the intended reduced-motion behavior instead of
+  // demanding an open beak that this mode correctly hides.
+  await face33.emulateMedia({reducedMotion:'reduce'});
+  const accessibleBird36=await face33.locator('#morrow').evaluate(actor=>{
+    const priorClass=actor.getAttribute('class');
+    const priorMood=actor.dataset.reaction,priorBeak=actor.dataset.beak;
+    try{
+      actor.classList.add('reacting');
+      actor.dataset.reaction='attentive';actor.dataset.beak='0';
+      const closed=actor.querySelector('.morrow-reaction-cel[data-reaction="attentive"][data-beak="0"]');
+      const open=actor.querySelector('.morrow-reaction-cel[data-reaction="attentive"][data-beak="1"]');
+      return {closedVisible:getComputedStyle(closed).display!=='none',
+        openHidden:getComputedStyle(open).display==='none'};
+    }finally{
+      actor.setAttribute('class',priorClass);actor.dataset.reaction=priorMood;
+      actor.dataset.beak=priorBeak;
+    }
+  });
+  if(!accessibleBird36.closedVisible||!accessibleBird36.openHidden)
+    throw Error('0.36 reduced-motion companion facial accessibility: '+
+      JSON.stringify(accessibleBird36));
+
   await face33.screenshot({path:'screenshots/56-terrace-organic-woodland-morrow.png'});
   await face33.locator('#morrow').screenshot({
     path:'screenshots/57-morrow-organic-feather-eye-closeup.png'});
