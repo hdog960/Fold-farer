@@ -122,6 +122,10 @@ function updateCompanion(dt=0){
  const [left,right,back,front]=boundsFor(state.area);
  const targetX=clamp(state.x-state.facing*67,left+6,right-6);
  const targetY=clamp(state.y-26,back+6,front-12);
+ // The drawn bird banks into actual horizontal flight. Track the prior
+ // position rather than the hero's facing, so a turn never snaps the artwork.
+ const previousX=companion.x;
+ const wasFollowing=companion.ready&&companion.area===state.area;
  if(!companion.ready||companion.area!==state.area){
    companion.x=targetX;companion.y=targetY;companion.area=state.area;companion.ready=true;
  }else if(dt>0){
@@ -129,6 +133,12 @@ function updateCompanion(dt=0){
    companion.x+=(targetX-companion.x)*easing;
    companion.y+=(targetY-companion.y)*easing;
  }
+ // Keep banking in the local paper-sprite, never on the ground shadow,
+ // world transform, dialogue portrait, or save state. Reduced motion is still.
+ const prefersStill=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ const horizontalSpeed=wasFollowing&&dt>0?(companion.x-previousX)/Math.max(dt,.016):0;
+ const bank=prefersStill?0:clamp(horizontalSpeed*.025,-6,6);
+ el.morrow.style.setProperty('--morrow-flight-bank',bank.toFixed(2)+'deg');
  const size=terrace?clamp(.61+(companion.y-400)*.00106,.61,1.01):clamp(.72+(companion.y-552)*.00075,.71,.89);
  el.morrow.setAttribute('transform','translate('+companion.x.toFixed(1)+' '+companion.y.toFixed(1)+') scale('+size.toFixed(3)+')');
  // The bird remains airborne: lighter bounce follows its *ground* projection.
