@@ -1197,3 +1197,30 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){
   #terraceThreadfall49 > path{animation:none!important}
 }
+
+
+/* Milestone A — Threadfall is a printed ribbon with moving ink, not a
+   static blue cutout. The existing two hand-drawn white-water strokes carry
+   small traveling flecks; the bank, silhouette and water wash stay fixed.
+   The effect is decorative, SVG-local and never intercepts input. */
+#terraceThreadfall49 > path:nth-child(4),
+#terraceThreadfall49 > path:nth-child(5){
+  stroke-dasharray:22 9 7 15;
+  animation:threadfallCurrent51 7.2s linear infinite;
+}
+#terraceThreadfall49 > path:nth-child(5){
+  stroke-dasharray:11 8 4 14;
+  animation-duration:5.9s;
+  animation-direction:reverse;
+}
+@keyframes threadfallCurrent51{
+  from{stroke-dashoffset:0;opacity:.82}
+  to{stroke-dashoffset:-106;opacity:.82}
+}
+@media(prefers-reduced-motion:reduce){
+  #terraceThreadfall49 > path:nth-child(4),
+  #terraceThreadfall49 > path:nth-child(5){
+    animation:none!important;
+    stroke-dasharray:none;
+  }
+}
