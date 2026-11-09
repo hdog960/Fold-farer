@@ -890,6 +890,29 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 }
 
 
+/* First Fold 0.38.2 — static ink-pressed contour on the genuine layered
+   terrace cards. These tiny SVG path edge treatments strengthen the visible
+   paper silhouette without adding a second full-scene filter or any DOM art.
+   Keep original watercolor fills and all hit-testing/animation untouched. */
+#terraceEscarpmentPages37 > path,
+#terraceEscarpmentWildEdges37 > path{
+  stroke-linejoin:round;
+  stroke-linecap:round;
+  paint-order:stroke fill;
+}
+#terraceEscarpmentPages37 > path{
+  stroke:rgba(82,69,81,.30);
+  stroke-width:.7px;
+}
+#terraceEscarpmentWildEdges37 > path{
+  stroke:rgba(56,76,73,.25);
+  stroke-width:.55px;
+}
+@media (prefers-contrast:more){
+ #terraceEscarpmentPages37 > path,
+ #terraceEscarpmentWildEdges37 > path{stroke:none}
+}
+
 /* First Fold 0.38 — directional light caught by the REAL layered terrace
    escarpment. The physical paper stock retains its native SVG gradients;
    only existing authored paper groups gain edge separation. No overlay
