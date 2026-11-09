@@ -413,3 +413,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - **Code commit:** 815de671bfab6c017e3a0ece368ac4a51d444b4c. CSS re-fetched from GitHub after write; four referenced SVG IDs verified in index.html before edit. Existing rules were preserved, and no game.js, collision, save, service worker or manifest changes were made.
 - **Not verified:** Node smoke/simulation tests, browser rendering/performance, actual GitHub Pages publishing, and iPhone installation. GitHub combined commit status returned no status checks. Avoid presenting this pass as visually approved or deployed.
 - **Next:** Run npm test and capture real village/terrace screenshots; inspect whether filter effects cost too much GPU time on iPhone, especially during scrolling. If costly, replace with authored SVG contact-ink strokes rather than piling on filters. Milestone A and its 90/100 creator art gate remain OPEN; Milestone B LOCKED.
+
+
+## First Fold 0.38.1 — orchard contact-ink animation performance safeguard (2026-11-08)
+- **Actual playable CSS edit:** moved the 0.38 drop-shadow filter from every animated terrace foliage element to its parent #terraceHandcutOrchard36 paper-card group. The original hinged-leaf keyframes remain intact, but the browser no longer has to apply the CSS drop-shadow to each animated leaf. Added a high-contrast override for the parent. No character, input, save, collision, or story logic changed.
+- **Code commit:** c7e831a3edebba80683dbf17fdd2d54f2f51b2fe. GitHub source was re-fetched and the exact new selectors and overrides checked after commit.
+- **Not verified:** browser frame timings, actual rendered screenshots, npm test, GitHub Pages publication, and physical iPhone performance. This is a code-level optimization hypothesis, not a measured FPS improvement.
+- **Next:** run Node smoke/simulation and browser screenshot comparison, then replace any visually heavy terrace shadows with hand-authored ink edges if needed. Milestone A art acceptance is still OPEN; Milestone B remains LOCKED.
