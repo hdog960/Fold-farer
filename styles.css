@@ -1147,3 +1147,19 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
     transition:none!important;
   }
 }
+
+/* Milestone A — compact landscape dialogue is a stitched paper folio, not a
+   full-height curtain. Keep text and the continuation action reachable on
+   short iPhone viewports while leaving the distant diorama visible above. */
+@media screen and (orientation:landscape) and (max-height:430px){
+  .dialogue{
+    bottom:1.5%;left:12%;width:76%;min-height:0;
+    max-height:46%;padding:1.1% 1.6%;gap:1.4%;
+    border-width:4px;box-shadow:0 0 0 2px #f6dbad,0 8px 22px #152a3b99;
+  }
+  .portrait-badge{flex-basis:12%;max-height:72px;border-width:3px}
+  .dialogue-copy{min-width:0;max-height:100%;overflow-y:auto;overscroll-behavior:contain}
+  .dialogue-copy b{font-size:clamp(13px,3.6vh,18px)}
+  .dialogue-copy p{font-size:clamp(12px,3.25vh,16px);line-height:1.25}
+  .continue-button{flex-shrink:0;align-self:flex-end;min-height:36px;padding:3px 6px}
+}
