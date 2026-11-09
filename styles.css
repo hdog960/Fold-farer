@@ -1180,3 +1180,20 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   .portrait-badge{align-self:center;flex-shrink:0}
   .continue-button{align-self:flex-end;white-space:normal;max-width:25%}
 }
+
+/* Milestone A — Threadfall's painted paper-water catches light without moving
+   its cut-card silhouette, bank edges, or depth anchor. Animate only the
+   translucent internal wash and inked water highlights. */
+#terraceThreadfall49{pointer-events:none}
+#terraceThreadfall49 > path:nth-child(3){
+  animation:threadfallWash50 6.8s ease-in-out infinite alternate;
+}
+#terraceThreadfall49 > path:nth-child(4),
+#terraceThreadfall49 > path:nth-child(5){
+  animation:threadfallInk50 5.6s ease-in-out -1.4s infinite alternate;
+}
+@keyframes threadfallWash50{from{opacity:.76}to{opacity:.58}}
+@keyframes threadfallInk50{from{opacity:.85}to{opacity:.63}}
+@media(prefers-reduced-motion:reduce){
+  #terraceThreadfall49 > path{animation:none!important}
+}
