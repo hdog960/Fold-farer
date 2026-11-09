@@ -442,3 +442,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - **CI/deployment:** Static preview, screenshot capture and Pages deployment for the artwork commit were QUEUED at inspection, not passed. The prior screenshot/documentation commit `d628536` had a failed Pages run; do not claim the new artwork is published until its own Pages run succeeds.
 - **Not verified:** npm test execution in this run, actual rendered browser comparison, iPhone Safari/Home Screen or GPU performance. CSS source inspection alone cannot establish visual acceptance.
 - **Next:** inspect the latest in-engine screenshots and Pages status, test desktop and iPhone-sized rendering, and replace these small GPU shadows with drawn ink contours if performance is poor. Milestone A OPEN; 90/100 creator visual gate unapproved; Milestone B LOCKED.
+
+
+## Milestone A herbarium ink-edge optimization (2026-11-09)
+- Replaced three GPU drop-shadow filters on the North Terrace herbarium groups with subtle original ink-printed outlines on filled paper shapes only. Existing authored stem strokes remain untouched by selecting paths with nonempty fills. High-contrast mode removes the extra outline.
+- Commits: 3778551962f1b7c55c9e5b586cdb20fa07f494c4 (initial change), 53a632ca04727d99caa09c383aadd87b1acb89ec (correctly scope outlines to filled paper paths).
+- Verified by reading real index.html markup for the three group IDs and comparing committed stylesheet source. No JS, saves, collision, story, or iPhone PWA files changed. Browser visual inspection, npm tests, physical iPhone performance and deployment still require independent verification. This is a potential rendering-cost improvement, not a measured FPS gain.
+- Next: capture actual North Terrace screenshot and run Node/browser QA, inspect paper contours at game scale; continue Milestone A illustration work. 90/100 creator approval NOT reached; Milestone B remains LOCKED.
