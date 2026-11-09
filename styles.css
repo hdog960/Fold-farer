@@ -1131,3 +1131,19 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   .dpad .move-key{width:36px;height:36px}
   .action-button{width:50px;height:50px}
 }
+
+/* Milestone A: consistent still-frame presentation for motion-sensitive readers.
+   Older scene animation rules and later terrace ornaments are all covered,
+   including newly authored SVG groups. This does not suppress JS-driven
+   walking frame selection, dialogue, battle state, or mending progression. */
+@media (prefers-reduced-motion: reduce){
+  #world *, .world-frame .craft-petal, .world-frame .craft-glint,
+  .battle-stage *, .hero-combat .battle-sprite,
+  .enemy-combat .battle-sprite, .prompt{
+    animation:none!important;
+    scroll-behavior:auto!important;
+  }
+  #world #bridgeFix, #world #brokenBridge{
+    transition:none!important;
+  }
+}
