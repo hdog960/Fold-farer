@@ -952,13 +952,13 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #terraceWallHerbarium39 *{pointer-events:none!important}
 /* Use ink-printed card edges rather than three separate GPU shadow filters.
    Keeps the botanical plates crisp while their surrounding parallax moves. */
-#terraceWallHerbariumWest39 > path{
+#terraceWallHerbariumWest39 > path[fill]:not([fill="none"]){
   stroke:rgba(39,70,64,.35);stroke-width:.85px;paint-order:stroke fill;
 }
-#terraceWallHerbariumCenter39 > path{
+#terraceWallHerbariumCenter39 > path[fill]:not([fill="none"]){
   stroke:rgba(52,64,78,.33);stroke-width:.9px;paint-order:stroke fill;
 }
-#terraceWallHerbariumEast39 > path{
+#terraceWallHerbariumEast39 > path[fill]:not([fill="none"]){
   stroke:rgba(56,76,59,.34);stroke-width:.8px;paint-order:stroke fill;
 }
 #terraceWallHerbarium39 > g > path{
@@ -967,5 +967,5 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   shape-rendering:geometricPrecision;
 }
 @media (prefers-contrast:more){
-  #terraceWallHerbarium39 > g > path{stroke:none}
+  #terraceWallHerbarium39 > g > path[fill]:not([fill="none"]){stroke:none}
 }
