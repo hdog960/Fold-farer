@@ -868,3 +868,23 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #morrowSprite #morrowSweptCrown36 path{
  shape-rendering:geometricPrecision
 }
+
+/* 0.37: original paper-landscape reconstruction; only leaf plies hinge. */
+#terraceEscarpmentBase37,#terraceEscarpmentBase37 *,
+#terraceEscarpmentPages37,#terraceEscarpmentPages37 *,
+#terraceEscarpmentWildEdges37,#terraceEscarpmentWildEdges37 *,
+#terraceHandcutOrchard36,#terraceHandcutOrchard36 *{pointer-events:none!important}
+#terraceHandcutOrchard36 .terrace-painted-foliage37{
+ transform-box:fill-box;transform-origin:50% 87%;
+ animation:terraceLeafHinge37 6.4s ease-in-out infinite alternate
+}
+#terraceHandcutOrchard36 .terrace-painted-foliage37.right{
+ animation-duration:7.9s;animation-delay:-1.7s;animation-direction:alternate-reverse
+}
+@keyframes terraceLeafHinge37{
+ 0%,100%{transform:translate(0,0) rotate(0deg)}
+ 50%{transform:translate(.8px,-1.2px) rotate(.36deg)}
+}
+@media(prefers-reduced-motion:reduce){
+ #terraceHandcutOrchard36 .terrace-painted-foliage37{animation:none!important;transform:none!important}
+}
