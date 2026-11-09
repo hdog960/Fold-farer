@@ -1206,16 +1206,19 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #terraceThreadfall49 > path:nth-child(4),
 #terraceThreadfall49 > path:nth-child(5){
   stroke-dasharray:22 9 7 15;
-  animation:threadfallCurrent51 7.2s linear infinite;
+  /* Combine current travel with the existing watercolor-light pulse instead
+     of replacing the earlier animation shorthand. Both act on SVG-local ink. */
+  animation:threadfallCurrent51 7.2s linear infinite,
+            threadfallInk50 5.6s ease-in-out -1.4s infinite alternate;
 }
 #terraceThreadfall49 > path:nth-child(5){
   stroke-dasharray:11 8 4 14;
-  animation-duration:5.9s;
-  animation-direction:reverse;
+  animation-duration:5.9s,6.3s;
+  animation-direction:reverse,alternate;
 }
 @keyframes threadfallCurrent51{
-  from{stroke-dashoffset:0;opacity:.82}
-  to{stroke-dashoffset:-106;opacity:.82}
+  from{stroke-dashoffset:0}
+  to{stroke-dashoffset:-106}
 }
 @media(prefers-reduced-motion:reduce){
   #terraceThreadfall49 > path:nth-child(4),
