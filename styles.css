@@ -950,14 +950,16 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
    no character animation or geometry changes, and no touch interception. */
 #terraceWallHerbarium39,
 #terraceWallHerbarium39 *{pointer-events:none!important}
-#terraceWallHerbariumWest39{
-  filter:drop-shadow(-1px 2px 1px rgba(40,64,64,.28));
+/* Use ink-printed card edges rather than three separate GPU shadow filters.
+   Keeps the botanical plates crisp while their surrounding parallax moves. */
+#terraceWallHerbariumWest39 > path{
+  stroke:rgba(39,70,64,.35);stroke-width:.85px;paint-order:stroke fill;
 }
-#terraceWallHerbariumCenter39{
-  filter:drop-shadow(1px 3px 1px rgba(48,62,63,.30));
+#terraceWallHerbariumCenter39 > path{
+  stroke:rgba(52,64,78,.33);stroke-width:.9px;paint-order:stroke fill;
 }
-#terraceWallHerbariumEast39{
-  filter:drop-shadow(2px 2px 1px rgba(45,67,62,.26));
+#terraceWallHerbariumEast39 > path{
+  stroke:rgba(56,76,59,.34);stroke-width:.8px;paint-order:stroke fill;
 }
 #terraceWallHerbarium39 > g > path{
   stroke-linecap:round;
@@ -965,5 +967,5 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   shape-rendering:geometricPrecision;
 }
 @media (prefers-contrast:more){
-  #terraceWallHerbarium39 > g{filter:none}
+  #terraceWallHerbarium39 > g > path{stroke:none}
 }
