@@ -944,6 +944,36 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
  #terraceHandcutOrchard36{filter:none}
 }
 
+/* First Fold 0.40 — letterpress silhouette finishing on the actual
+   North Terrace cut-paper architecture. The architectural faces keep their
+   hand-painted fills; the ink is pressed UNDER each face rather than adding
+   blurred screen-space shadow layers. Only authored static SVG paths receive
+   this treatment, so actors, animated foliage and hitboxes remain untouched. */
+#terraceCraftedShopfronts > path[fill]:not([fill="none"]),
+#terracePaperArchitecture > path[fill]:not([fill="none"]){
+  paint-order:stroke fill;
+  stroke-linejoin:round;
+  stroke-linecap:round;
+  stroke:rgba(66,65,76,.28);
+  stroke-width:.7px;
+}
+#terraceArchEdgeRelief > path[fill]:not([fill="none"]),
+#terraceTreeBranchConstruction > path[fill]:not([fill="none"]){
+  paint-order:stroke fill;
+  stroke-linejoin:round;
+  stroke-linecap:round;
+  stroke:rgba(62,76,66,.24);
+  stroke-width:.55px;
+}
+@media(prefers-contrast:more){
+ #terraceCraftedShopfronts > path[fill]:not([fill="none"]),
+ #terracePaperArchitecture > path[fill]:not([fill="none"]),
+ #terraceArchEdgeRelief > path[fill]:not([fill="none"]),
+ #terraceTreeBranchConstruction > path[fill]:not([fill="none"]){
+   stroke:none;
+ }
+}
+
 /* First Fold 0.39.1 — hand-pressed herbarium card separation in the playable
    North Terrace. Each independently illustrated botanical plate catches a
    different edge light against the layered escarpment; no full-scene blur,
