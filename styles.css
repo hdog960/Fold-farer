@@ -1048,7 +1048,7 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   animation:terraceBannerOrchardHinge45 11.2s ease-in-out -3.1s infinite alternate;
 }
 #terraceBannerMoon42{
-  transform-origin:1080px 371px;
+  transform-origin:1021px 369px;
   animation:terraceBannerMoonHinge45 10.4s ease-in-out -6.2s infinite alternate;
 }
 @keyframes terraceBannerRiverHinge45{
