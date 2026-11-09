@@ -905,13 +905,18 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   filter:drop-shadow(-1px -1px 1px rgba(255,238,191,.24))
          drop-shadow(1px 3px 2px rgba(49,69,72,.20));
 }
-#terraceHandcutOrchard36 .terrace-painted-foliage37{
+/* Keep the painted leaves free of per-frame GPU filters: the leaves
+   themselves hinge, while the static cut-card orchard carries the ink shadow. */
+#terraceHandcutOrchard36{
   filter:drop-shadow(1px 4px 2px rgba(44,74,67,.20));
+}
+#terraceHandcutOrchard36 .terrace-painted-foliage37{
+  filter:none;
 }
 /* Preserve legible contours for reduced-contrast and motion-sensitive
    visitors: no extra animation, blur, large glows or screen-space masks. */
 @media (prefers-contrast:more){
  #terraceEscarpmentBase37,#terraceEscarpmentPages37,
  #terraceEscarpmentWildEdges37,
- #terraceHandcutOrchard36 .terrace-painted-foliage37{filter:none}
+ #terraceHandcutOrchard36{filter:none}
 }
