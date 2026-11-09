@@ -888,3 +888,30 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){
  #terraceHandcutOrchard36 .terrace-painted-foliage37{animation:none!important;transform:none!important}
 }
+
+
+/* First Fold 0.38 — directional light caught by the REAL layered terrace
+   escarpment. The physical paper stock retains its native SVG gradients;
+   only existing authored paper groups gain edge separation. No overlay
+   captures touch or changes world collision, character depth or saves. */
+#terraceEscarpmentBase37{
+  filter:drop-shadow(0 8px 5px rgba(40,61,66,.20))
+         drop-shadow(0 2px 1px rgba(84,67,77,.25));
+}
+#terraceEscarpmentPages37{
+  filter:drop-shadow(1px 3px 1px rgba(68,64,74,.24));
+}
+#terraceEscarpmentWildEdges37{
+  filter:drop-shadow(-1px -1px 1px rgba(255,238,191,.24))
+         drop-shadow(1px 3px 2px rgba(49,69,72,.20));
+}
+#terraceHandcutOrchard36 .terrace-painted-foliage37{
+  filter:drop-shadow(1px 4px 2px rgba(44,74,67,.20));
+}
+/* Preserve legible contours for reduced-contrast and motion-sensitive
+   visitors: no extra animation, blur, large glows or screen-space masks. */
+@media (prefers-contrast:more){
+ #terraceEscarpmentBase37,#terraceEscarpmentPages37,
+ #terraceEscarpmentWildEdges37,
+ #terraceHandcutOrchard36 .terrace-painted-foliage37{filter:none}
+}
