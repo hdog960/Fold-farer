@@ -508,3 +508,8 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Commit `55a2fae4a9b4d8684f1ca0698b93ed4a460238a5` changes `styles.css`: reduced-motion users now receive a still-frame treatment across the actual SVG world and battle-stage descendants, including newer terrace paper foliage and hanging decorations. Bridge reveal transitions are also suppressed; JS story state, save format, controls, and directional frame selection were not edited.
 - Source-only review: no local Node suite, browser capture, physical iPhone test, or measured FPS was performed in this cycle. Verify reduced-motion gameplay and timed combat in browser, confirm Actions/Pages, then continue major authored scene and character-art composition work.
 - Milestone A aesthetic approval remains pending; 90/100 visual gate unverified, Milestone B LOCKED.
+
+## Milestone A — short landscape dialogue layout (2026-11-09)
+- Commit `aff34ce2c68ca5de24b2386d5a0bc4e36cace7a9` updates `styles.css`: at landscape heights <=430px the illustrated dialogue folio uses a capped 46% viewport height, compact portrait and border, internally scrollable copy, and a reachable continuation button. No game JS, save format, hitboxes or character art changed.
+- Source-only verification: CSS media rule written to main and readback pending; no browser render, Node test, GitHub Actions pass, Pages publication, or physical iPhone check is claimed.
+- Next: verify short-landscape dialogue with long lines and keyboard/touch, inspect actual screenshots, then prioritize substantial directional character/companion and environmental art. Milestone A visual score unverified; Milestone B locked until creator approval.
