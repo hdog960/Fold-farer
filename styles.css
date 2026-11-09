@@ -1163,3 +1163,20 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   .dialogue-copy p{font-size:clamp(12px,3.25vh,16px);line-height:1.25}
   .continue-button{flex-shrink:0;align-self:flex-end;min-height:36px;padding:3px 6px}
 }
+
+/* Milestone A — dialogue folio overflow safety on compact iPhone landscape.
+   The text pane is a true shrinkable scrollport: lengthy quest dialogue can
+   reach its first and last lines instead of being vertically centered into
+   a clipped flexbox. The portrait and ACT/continue affordance stay visible. */
+@media screen and (orientation:landscape) and (max-height:430px){
+  .dialogue{align-items:stretch;min-width:0}
+  .dialogue-copy{
+    flex:1 1 0;min-height:0;min-width:0;
+    display:block;overflow-x:hidden;overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  .dialogue-copy b{display:block}
+  .portrait-badge{align-self:center;flex-shrink:0}
+  .continue-button{align-self:flex-end;white-space:normal;max-width:25%}
+}
