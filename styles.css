@@ -853,3 +853,18 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 #morrowSprite .morrow-cut-face35{pointer-events:none!important}
 #morrowSprite .morrow-physical-wing-relief35 path,
 #morrowSprite .morrow-cut-face35{shape-rendering:geometricPrecision}
+
+
+/* 0.36: organic feather contours on the ACTUAL Morrow expressions and
+   true three-plane valley parallax. No new touch surfaces or false animation. */
+#morrowSprite #morrowSweptCrown36,
+#morrowSprite #morrowSweptCrown36 *,
+#morrowSprite .morrow-feather-eye36,
+#morrowSprite .morrow-feather-eye36 *,
+#terraceHandcutOrchard36,#terraceHandcutOrchard36 *{
+ pointer-events:none!important
+}
+#morrowSprite .morrow-feather-eye36 path,
+#morrowSprite #morrowSweptCrown36 path{
+ shape-rendering:geometricPrecision
+}

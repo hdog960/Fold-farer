@@ -1167,6 +1167,63 @@ try {
   await face33.locator('#morrow').screenshot({
     path:'screenshots/55-morrow-illustrated-companion-closeup.png'});
 
+
+  // 0.36: test the ACTUAL animated bird face/crown, and the actual landscape
+  // midground rather than counting unrendered mockup SVGs.
+  const bird36=await face33.locator('#morrow').evaluate(actor=>{
+    const initialClass=actor.getAttribute('class');
+    const initialReaction=actor.dataset.reaction;
+    const initialBeak=actor.dataset.beak;
+    const failures=[],states=[];
+    const crown=actor.querySelector('#morrowSweptCrown36');
+    const crownBox=crown?.getBBox();
+    if(!crownBox||crownBox.width<70||crownBox.height<45||
+       getComputedStyle(crown).pointerEvents!=='none')
+      failures.push('Missing touch-transparent sculpted crown');
+    try {
+      for(const [mood,beak] of [['rest','0'],['attentive','0'],['attentive','1'],
+        ['alarmed','0'],['alarmed','1'],['delighted','0'],['delighted','1']]){
+        actor.classList.toggle('reacting',mood!=='rest');
+        actor.dataset.reaction=mood;actor.dataset.beak=beak;
+        const visible=mood==='rest'?
+           actor.querySelector('.morrow-rest-face'):
+           [...actor.querySelectorAll('.morrow-reaction-cel')]
+             .find(e=>getComputedStyle(e).display!=='none');
+        const eyes=[...(visible?.querySelectorAll('.morrow-feather-eye36')||[])];
+        const sizes=eyes.map(e=>e.getBBox());
+        if(eyes.length!==2||sizes.some(b=>b.width<33||b.height<39)||
+           eyes.some(e=>getComputedStyle(e).pointerEvents!=='none'))
+          failures.push('Actual original reactive paper-eye rendering: '+mood+'/'+beak);
+        states.push({mood,beak,eyes:eyes.length});
+      }
+    }finally {
+      actor.setAttribute('class',initialClass);
+      actor.dataset.reaction=initialReaction;actor.dataset.beak=initialBeak;
+    }
+    return {failures,states,crown:{w:crownBox?.width,h:crownBox?.height},
+      wingFrames:actor.querySelectorAll('.morrow-wing-frame').length};
+  });
+  const grove36=await terraceNear.locator('#terraceScene').evaluate(scene=>{
+    const mid=document.getElementById('terraceMidgroundCards');
+    const orchard=document.getElementById('terraceHandcutOrchard36');
+    const left=document.getElementById('terraceOrchardLeft36');
+    const right=document.getElementById('terraceOrchardRight36');
+    const b=orchard?.getBBox();
+    return {inMidground:!!orchard&&mid.contains(orchard)&&scene.contains(orchard),
+      touch:getComputedStyle(orchard).pointerEvents,
+      width:b?.width,height:b?.height,
+      differentCards:!!left&&!!right&&left.getAttribute('id')!==right.getAttribute('id')};
+  });
+  if(bird36.failures.length||bird36.states.length!==7||bird36.wingFrames!==4||
+     !grove36.inMidground||!grove36.differentCards||
+     grove36.touch!=='none'||grove36.width<400||grove36.height<60)
+     throw Error('0.36 actual companion/woodland visual integration: '+
+      JSON.stringify({bird36,grove36}));
+  console.log('0.36 REAL LIVE ILLUSTRATION:',JSON.stringify({bird36,grove36}));
+  await face33.screenshot({path:'screenshots/56-terrace-organic-woodland-morrow.png'});
+  await face33.locator('#morrow').screenshot({
+    path:'screenshots/57-morrow-organic-feather-eye-closeup.png'});
+
   await face33.close();
   await terraceNear.emulateMedia({reducedMotion:'reduce'});
 

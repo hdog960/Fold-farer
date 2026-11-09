@@ -1,4 +1,4 @@
-/* FoldFarer: The Unfinished World. First Fold 0.35.0: hand-cut companion body, feathered crown, sculpted eyes and original wing relief.
+/* FoldFarer: The Unfinished World. First Fold 0.36.0: living feather masks, flowing crown and illustrated midground orchard.
    Real, deterministic interactive preview. Original inline SVG stage, no external game art.
    This build is an aesthetic checkpoint, NOT the completed Milestone A vertical slice. */
 (function(){
