@@ -1023,3 +1023,48 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
     opacity:1!important;
   }
 }
+
+
+/* First Fold 0.45 — each authored North Terrace story banner is a hinged
+   paper object rather than a rigid wall decal. The near-imperceptible sway
+   pivots at its stitched hanging pin, never its center. The entire illustration
+   (vellum, embroidered motifs and cut edge) moves together, keeping the
+   artwork registered and preserving depth sorting and world hit-testing.
+   No filter, JS timer or layout-affecting movement is used. */
+#terraceWallStoryTapestries42,
+#terraceWallStoryTapestries42 *{pointer-events:none!important}
+#terraceBannerRiver42,
+#terraceBannerOrchard42,
+#terraceBannerMoon42{
+  transform-box:view-box;
+  will-change:auto;
+}
+#terraceBannerRiver42{
+  transform-origin:346px 370px;
+  animation:terraceBannerRiverHinge45 9.6s ease-in-out infinite alternate;
+}
+#terraceBannerOrchard42{
+  transform-origin:707px 366px;
+  animation:terraceBannerOrchardHinge45 11.2s ease-in-out -3.1s infinite alternate;
+}
+#terraceBannerMoon42{
+  transform-origin:1080px 371px;
+  animation:terraceBannerMoonHinge45 10.4s ease-in-out -6.2s infinite alternate;
+}
+@keyframes terraceBannerRiverHinge45{
+  from{transform:rotate(-.55deg)}
+  to{transform:rotate(.65deg)}
+}
+@keyframes terraceBannerOrchardHinge45{
+  from{transform:rotate(.45deg)}
+  to{transform:rotate(-.6deg)}
+}
+@keyframes terraceBannerMoonHinge45{
+  from{transform:rotate(-.5deg)}
+  to{transform:rotate(.5deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  #terraceBannerRiver42,#terraceBannerOrchard42,#terraceBannerMoon42{
+    animation:none!important;transform:none!important;
+  }
+}
