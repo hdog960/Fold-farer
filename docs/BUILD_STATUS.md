@@ -502,3 +502,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Commit `f8a34295adb97be9b8e65616ddf50b01adac5e91` updates `styles.css`: the 0.46 paper-edge contour selectors now exclude SVG paths that already have an explicit `stroke` attribute, preserving hand-authored outlines and stitched marks instead of overriding them with uniform CSS ink. The existing banner sway, painted fills, hit-testing, gameplay and saves remain untouched.
 - Verified stylesheet read-back blob `8fee089dcf1eee45b77cbb9206661725c13a4a2d`, five updated selector occurrences and balanced CSS braces. No local Node tests, rendered screenshot review, Pages deployment verification or physical iPhone test performed; actual visual benefit is unverified.
 - Next: inspect newly captured North Terrace screenshots and verify CI/Pages. Prioritize larger original character/environment artwork and the 90/100 creator review. Milestone A OPEN; Milestone B LOCKED.
+
+
+### Milestone A motion accessibility sweep — 2026-11-09
+- Commit `55a2fae4a9b4d8684f1ca0698b93ed4a460238a5` changes `styles.css`: reduced-motion users now receive a still-frame treatment across the actual SVG world and battle-stage descendants, including newer terrace paper foliage and hanging decorations. Bridge reveal transitions are also suppressed; JS story state, save format, controls, and directional frame selection were not edited.
+- Source-only review: no local Node suite, browser capture, physical iPhone test, or measured FPS was performed in this cycle. Verify reduced-motion gameplay and timed combat in browser, confirm Actions/Pages, then continue major authored scene and character-art composition work.
+- Milestone A aesthetic approval remains pending; 90/100 visual gate unverified, Milestone B LOCKED.
