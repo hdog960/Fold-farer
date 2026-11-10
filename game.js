@@ -663,6 +663,10 @@ function updateTaviActing(now){
 
 function frame(now){
  const dt=Math.min(.05,(now-last)/1000||0);last=now;
+ // Turning into an obstacle must still update the illustrated directional pose.
+ // A collision can prevent translation without preventing the player's intent
+ // to look up, down, or sideways; keep that visual response independent of steps.
+ const priorArtFacing=state.direction+':'+state.facing;
  if(mendingUntil&&now>=mendingUntil){
    mendingUntil=0;el.tavi.classList.remove('mending');
  }
@@ -713,7 +717,7 @@ function frame(now){
  // Otherwise the flight-speed animation always reacts to the previous frame,
  // especially noticeable when the player suddenly reverses direction.
  if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}
- else if(modal==='field'&&fieldMotion)updateCharacter();
+ else if(modal==='field'&&(fieldMotion||priorArtFacing!==state.direction+':'+state.facing))updateCharacter();
  updateMorrowAnimation(now);
  if(modal==='timing'&&timingActive)el.timingMarker.style.left=progressAt(now)+'%';
  requestAnimationFrame(frame);
