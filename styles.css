@@ -1235,9 +1235,11 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
    existing wing-frame and gentle vertical hover animations are preserved. */
 #morrowSprite{
   rotate:var(--morrow-flight-bank,0deg);
+  translate:0 var(--morrow-flight-pitch,0px);
   transform-origin:0px -65px;
-  transition:rotate 150ms ease-out;
+  /* The frame loop smooths flight dynamics; CSS must not lag behind it. */
+  transition:none;
 }
 @media(prefers-reduced-motion:reduce){
-  #morrowSprite{rotate:0deg!important;transition:none!important}
+  #morrowSprite{rotate:0deg!important;translate:0 0!important;transition:none!important}
 }
