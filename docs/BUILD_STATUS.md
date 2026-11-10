@@ -624,3 +624,9 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Commit `c9ccf66`: preserved original painted Folio and Terrace depth layers while disabling their camera-follow parallax when the system requests reduced motion. Normal motion retains existing parallax; no changes to save format, quest or collision.
 - Source was re-read from main and parsed as JavaScript; full npm/Playwright and physical iPhone testing were not run in this session. Rendered aesthetics and Pages deployment require independent confirmation.
 - Next: inspect actual landscape captures and improve full-body actor artwork and authored environmental composition. Art rubric 90/100 NOT verified; creator approval pending; Milestone B LOCKED.
+
+
+## 2026-11-10 — Stabilize actual character-turn screenshot verification (Milestone A)
+- Commit `ca963f10f6dec92a82244bc2c22ff54ff08c0cde` changes only `tools/capture-screenshots.mjs`: instead of assuming the original three-frame turn is visible exactly 74 ms after an ArrowUp keydown, wait for the real `pivoting` and `turning` classes on an animation frame (1.5 s timeout). Preserve the existing strict checks that one matching pivot cel and one matching full-body turn cel are rendered with correct bounds and no pointer interception. This addresses the previously observed CI timing failure without weakening the artwork checks.
+- No playable-game artwork, controls, save schema, or PWA files changed in this run. Source write succeeded; screenshot workflow execution and real-browser behavior still require CI confirmation. Do not count this as a visual-quality improvement.
+- Next: inspect the new screenshot workflow outcome and captured turn frames. If stable, prioritize major original full-body directional art and 2.5D environmental composition. Milestone A 90/100 art gate NOT met; Milestone B LOCKED pending creator approval.
