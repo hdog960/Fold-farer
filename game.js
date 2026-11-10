@@ -676,6 +676,9 @@ function frame(now){
   let x=(held.right?1:0)-(held.left?1:0);
   let y=(held.down?1:0)-(held.up?1:0);
   let moving=x!==0||y!==0;
+  // Physical controls always take ownership away from tap-to-walk. Otherwise
+  // the stale target resumes after release and can cancel a deliberate turn.
+  if(moving&&moveTarget)cancelTap();
   if(!moving&&moveTarget){
    const dx=moveTarget.x-state.x,dy=moveTarget.y-state.y;
    if(Math.hypot(dx,dy*1.25)<6)cancelTap();
