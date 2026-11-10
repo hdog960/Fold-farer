@@ -438,6 +438,10 @@ try {
   await morrowActing.close();
 
   const terraceNear=await openedAt({started:true,area:'terrace',x:720,y:702,facing:1,direction:'up',metMorrow:true,mended:false,threadSample:false,letter:false,won:false});
+  // The screenshot suite inherits reduced motion from earlier accessibility QA.
+  // Explicitly restore normal motion before checking the independently moving
+  // distant and midground paper cards; reduced-motion correctly pins both at 0.
+  await terraceNear.emulateMedia({reducedMotion:'no-preference'});
   if(await terraceNear.locator('#terraceScene').evaluate(e=>getComputedStyle(e).display)==='none')throw Error('North Terrace is hidden after loading its save');
   if(await terraceNear.locator('#folioScene').evaluate(e=>getComputedStyle(e).display)!=='none')throw Error('Folio should hide while terrace loads');
   if(await terraceNear.locator('#tavi').evaluate(e=>e.parentNode?.id)!=='terraceDepthStage')throw Error('Tavi is not in a real depth-sorted terrace scene');
