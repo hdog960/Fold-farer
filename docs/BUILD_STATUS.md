@@ -600,3 +600,8 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Regression assertion commit `956d787a0c2844cf3ad6076e650ddb34a7c4ddb0` checks the new stall detection in `tests/smoke.mjs`.
 - Source change was committed; rendered browser behavior, CI result, latest Pages deployment and physical iPhone testing must be checked separately. No artwork acceptance is claimed. Next: confirm automated tests and screenshot workflow, then resume major original character/environment artwork work.
 - **Milestone A visual gate NOT MET; Milestone B LOCKED.**
+
+## 2026-11-10 — Manual control priority over tap-to-walk (Milestone A)
+- Playable `game.js` commit `81efb8bda382c4a569acfcdcf07a940fb08c19e7` cancels an outstanding tap destination immediately when physical D-pad/keyboard movement begins. Previously the stale target could resume walking on control release or interfere with deliberate directional turns. Existing collision, saved state, scenes, art and PWA path are unchanged.
+- `tests/smoke.mjs` regression assertion commit `e17f9ce87e2aaa7e23c89bfb9a73e3aaace90efe` requires this manual-input precedence. Source edits were committed through GitHub; full Node test execution, browser interaction, latest CI/Pages status and physical iPhone testing remain unverified until checked independently.
+- Next: confirm CI and actual tap-then-D-pad interaction in browser; prioritize major original multi-direction character artwork and environmental composition. Milestone A art target 90/100 NOT demonstrated; Milestone B LOCKED.
