@@ -26,6 +26,8 @@ assert(css.includes('farerFootForward')&&css.includes('farerShoulder'),'Missing 
 // broadens the condition without removing the original movement behavior.
 assert(/else if\s*\(modal==='field'\s*&&\s*\(fieldMotion\s*\|\|\s*priorArtFacing!==state\.direction\+'\:'\+state\.facing\)\)\s*updateCharacter\(\)/.test(game),
  'Field art must refresh on movement and blocked facing changes without a companion');
+assert(game.includes('tapStallFrames>=12') && game.includes('distanceAfter>=distanceBefore-.1'),
+ 'Tap-to-walk must stop sliding when a reachable-looking destination is blocked by scenery');
 assert.equal(manifest.display,'standalone');
 assert.equal(manifest.start_url,'./');
 for(const direction of ['up','down','left','right'])assert(html.includes('data-move="'+direction+'"'),'Missing '+direction+' touch button');
