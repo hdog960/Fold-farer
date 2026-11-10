@@ -20,7 +20,12 @@ assert(html.includes('id="paperBotanicalGarden"'),'Missing cut-paper garden');
 assert([...html.matchAll(/id="tree-[0-9]+"/g)].length===11,'Botanical count changed');
 for(let type=0;type<5;type++)assert(html.includes('tree-family-'+type),'Missing cut-paper silhouette family '+type);
 assert(css.includes('farerFootForward')&&css.includes('farerShoulder'),'Missing real gait motion');
-assert(game.includes('else if(modal===\'field\'&&fieldMotion)updateCharacter()'),'Tap-to-walk art must advance without a companion');
+// The art refresh must occur both after real translation (including tap-to-walk
+// before Morrow joins) and after a blocked directional turn. Do not freeze this
+// assertion to the older exact branch text: the facing correction intentionally
+// broadens the condition without removing the original movement behavior.
+assert(/else if\s*\(modal==='field'\s*&&\s*\(fieldMotion\s*\|\|\s*priorArtFacing!==state\.direction\+'\:'\+state\.facing\)\)\s*updateCharacter\(\)/.test(game),
+ 'Field art must refresh on movement and blocked facing changes without a companion');
 assert.equal(manifest.display,'standalone');
 assert.equal(manifest.start_url,'./');
 for(const direction of ['up','down','left','right'])assert(html.includes('data-move="'+direction+'"'),'Missing '+direction+' touch button');
