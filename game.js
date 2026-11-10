@@ -79,14 +79,17 @@ const backdrop={x:0,y:0};
 function updateBackdrop(dt){
  // Distant paper cards move more slowly than the physical walkable surface;
  // foreground props remain attached to their collision geometry.
- const tx=state.area==='folio'?clamp((720-state.x)*.014,-9,9):0;
- const ty=state.area==='folio'?clamp((654-state.y)*.018,-4,4):0;
- const alpha=1-Math.exp(-Math.min(Math.max(dt,0),.05)*3.5);
+ const tx=!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches&&state.area==='folio'?clamp((720-state.x)*.014,-9,9):0;
+ const ty=!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches&&state.area==='folio'?clamp((654-state.y)*.018,-4,4):0;
+ // Respect iOS Reduce Motion: retain all painted depth planes but stop camera-follow
+ // drift, which can otherwise make the distant paper scenery feel unstable.
+ const reducedMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ const alpha=reducedMotion?1:1-Math.exp(-Math.min(Math.max(dt,0),.05)*3.5);
  backdrop.x+=(tx-backdrop.x)*alpha;
  backdrop.y+=(ty-backdrop.y)*alpha;
  el.farRidges.setAttribute('transform','translate('+backdrop.x.toFixed(2)+' '+backdrop.y.toFixed(2)+')');
- const dx=state.area==='terrace'?clamp((720-state.x)*.043,-21,21):0;
- const dy=state.area==='terrace'?clamp((580-state.y)*.038,-10,10):0;
+ const dx=!reducedMotion&&state.area==='terrace'?clamp((720-state.x)*.043,-21,21):0;
+ const dy=!reducedMotion&&state.area==='terrace'?clamp((580-state.y)*.038,-10,10):0;
  backdrop.terraceX=(backdrop.terraceX||0)+(dx-(backdrop.terraceX||0))*alpha;
  backdrop.terraceY=(backdrop.terraceY||0)+(dy-(backdrop.terraceY||0))*alpha;
 
