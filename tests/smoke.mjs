@@ -543,3 +543,5 @@ assert(frameBody.includes("const priorArtFacing=state.direction+':'+state.facing
        frameBody.includes("fieldMotion||priorArtFacing!==state.direction+':'+state.facing"),
        'Tavi must turn toward blocked movement rather than freeze in the prior art view');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
+// Physical D-pad input must cancel any queued tap destination before movement.
+assert(game.includes('if(moving&&moveTarget)cancelTap();'),'Manual controls must override tap navigation');
