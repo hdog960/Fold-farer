@@ -365,7 +365,14 @@ try {
   await pivotPage.waitForTimeout(190);
   await pivotPage.keyboard.up('ArrowRight');
   await pivotPage.keyboard.down('ArrowUp');
-  await pivotPage.waitForTimeout(74);
+  // Observe the actual short-lived animation rather than sampling a fixed 74ms
+  // after keyboard input. CI frame scheduling varies and can miss the turn.
+  // Keep the full pose/visibility assertions below: this is synchronization,
+  // not a weakened visual acceptance check.
+  await pivotPage.waitForFunction(()=>{
+    const actor=document.getElementById('tavi');
+    return actor?.classList.contains('pivoting')&&actor.classList.contains('turning');
+  },null,{polling:'raf',timeout:1500});
   const turn=await pivotPage.locator('#tavi').evaluate(el=>{
     const art=document.getElementById('taviPivotArtwork');
     const shown=[...art.querySelectorAll('.tavi-pivot-cel')]
