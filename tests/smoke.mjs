@@ -545,3 +545,6 @@ assert(frameBody.includes("const priorArtFacing=state.direction+':'+state.facing
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
 // Physical D-pad input must cancel any queued tap destination before movement.
 assert(game.includes('if(moving&&moveTarget)cancelTap();'),'Manual controls must override tap navigation');
+
+// Even sub-second journeys must be saved on the first idle frame.
+assert(game.includes('unsavedWalk=true;') && game.includes('if(unsavedWalk&&!fieldMotion){save();lastSavedAt=now;unsavedWalk=false;}'), 'Short walks must persist when movement ends');
