@@ -98,7 +98,7 @@ function updateBackdrop(dt){
  // or the camera hit-test coordinate system.
  el.terraceLightShift.setAttribute('transform','translate('+(backdrop.terraceX*.28).toFixed(2)+' '+(backdrop.terraceY*.24).toFixed(2)+')');
 }
-const companion={x:474,y:620,area:'folio',ready:false,flightSpeed:0};
+const companion={x:474,y:620,area:'folio',ready:false,flightSpeed:0,bank:0,pitch:0};
 const morrowWingCycle=[0,1,2,3,2,1];
 // Advance wing artwork through a continuous phase: changing from idle to
 // following or dialogue never skips abruptly to an unrelated wing drawing.
@@ -124,7 +124,9 @@ function updateMorrowAnimation(now){
 }
 function updateCompanion(dt=0){
  if(!state.metMorrow){
-   companion.x=474;companion.y=620;companion.area='folio';companion.ready=false;companion.flightSpeed=0;
+   companion.x=474;companion.y=620;companion.area='folio';companion.ready=false;companion.flightSpeed=0;companion.bank=0;companion.pitch=0;
+   el.morrow.style.setProperty('--morrow-flight-bank','0deg');
+   el.morrow.style.setProperty('--morrow-flight-pitch','0px');
    el.morrow.setAttribute('transform','translate(474 610)');
    el.morrow.classList.remove('following');
    if(el.morrow.parentNode!==el.depthStage){el.depthStage.appendChild(el.morrow);lastDepthOrder='';}
@@ -153,8 +155,18 @@ function updateCompanion(dt=0){
  const horizontalSpeed=wasFollowing&&dt>0?(companion.x-previousX)/Math.max(dt,.016):0;
  companion.flightSpeed=wasFollowing&&dt>0?
    Math.hypot(companion.x-previousX,companion.y-previousY)/Math.max(dt,.016):0;
- const bank=prefersStill?0:clamp(horizontalSpeed*.025,-6,6);
- el.morrow.style.setProperty('--morrow-flight-bank',bank.toFixed(2)+'deg');
+ // Dampen bank and altitude response in world time, so abrupt hero turns
+ // never snap the hand-painted bird between extreme poses. The local SVG
+ // paper sprite banks; its ground shadow and world collision remain planted.
+ const verticalSpeed=wasFollowing&&dt>0?(companion.y-previousY)/Math.max(dt,.016):0;
+ const response=dt>0?1-Math.exp(-Math.min(dt,.05)*11):1;
+ const desiredBank=prefersStill?0:clamp(horizontalSpeed*.025,-6,6);
+ const desiredPitch=prefersStill?0:clamp(-verticalSpeed*.018,-3,3);
+ companion.bank+=(desiredBank-companion.bank)*response;
+ companion.pitch+=(desiredPitch-companion.pitch)*response;
+ if(!wasFollowing||prefersStill){companion.bank=0;companion.pitch=0;}
+ el.morrow.style.setProperty('--morrow-flight-bank',companion.bank.toFixed(2)+'deg');
+ el.morrow.style.setProperty('--morrow-flight-pitch',companion.pitch.toFixed(2)+'px');
  const size=terrace?clamp(.61+(companion.y-400)*.00106,.61,1.01):clamp(.72+(companion.y-552)*.00075,.71,.89);
  el.morrow.setAttribute('transform','translate('+companion.x.toFixed(1)+' '+companion.y.toFixed(1)+') scale('+size.toFixed(3)+')');
  // The bird remains airborne: lighter bounce follows its *ground* projection.
