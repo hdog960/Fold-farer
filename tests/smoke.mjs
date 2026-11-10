@@ -530,4 +530,9 @@ const frameBody=game.slice(game.indexOf('function frame(now){'),game.indexOf('\n
 assert(frameBody.indexOf('updateCompanion(dt)')>=0 &&
        frameBody.indexOf('updateCompanion(dt)')<frameBody.indexOf('updateMorrowAnimation(now)'),
        'Morrow wing cadence must sample the current companion motion frame');
+// A blocked step may change the intended facing even when collision prevents
+// world translation. Directional art must be redrawn on that frame.
+assert(frameBody.includes("const priorArtFacing=state.direction+':'+state.facing;") &&
+       frameBody.includes("fieldMotion||priorArtFacing!==state.direction+':'+state.facing"),
+       'Tavi must turn toward blocked movement rather than freeze in the prior art view');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
