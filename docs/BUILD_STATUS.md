@@ -662,3 +662,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Only `styles.css` changed for gameplay; no SVG geometry, actor art, collisions, movement, save keys, chapter state, controls, or PWA route changed. GitHub source read-back and automated CI/Pages status must be verified separately.
 - This is a modest lighting/paint behavior pass, **not** the major character illustration overhaul needed for art approval. Next: inspect latest real landscape screenshots for readability/overdraw, check CI and Pages for this commit, then prioritize substantial original character art and dimensional scene composition.
 - **Milestone A visual 90/100 NOT demonstrated or creator-approved; Milestone B LOCKED.** Physical iPhone testing remains outstanding.
+
+
+## 2026-11-10 — independent paper-wildflower movement (Milestone A)
+- Playable stylesheet commit `5ea8723d3be0fc9ab2d5c9623ac2009e428401ff` adds independent, staggered low-amplitude stem sway to the existing Threadfall wildflower scene group; this is in-world artwork animation, not a concept image. Reduced Motion and increased contrast disable it.
+- GitHub read-back confirmed new CSS selectors/keyframes in blob `5159441b427cb24e2c86fab5b7db36b3a8c32a9e`; braces balanced before commit. This is a limited animation pass, not a full character-art overhaul. No JavaScript, saved state, hitboxes, input or PWA route changed.
+- Rendering, actual stem shape selection, mobile motion/performance, latest screenshot suite and Pages deployment require independent verification; source checks are not a visual test. Current workflow observation: Capture actual FoldFarer gameplay screenshots 5ea8723d in_progress/null; Check FoldFarer static preview 5ea8723d in_progress/null; pages build and deployment 5ea8723d in_progress/null; pages build and deployment c1cf43db completed/success; Check FoldFarer static preview dd61e09a completed/success.
+- Next: inspect real North Terrace mobile frames to ensure flower motion reads as rooted paper and does not clip; then prioritize substantial original full-body character and environmental reconstruction. Milestone A 90/100 NOT approved; Milestone B LOCKED.
