@@ -1322,3 +1322,30 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
     animation:none!important;
   }
 }
+
+/* Milestone A — the two hand-cut Threadfall wildflowers move as individual
+   paper stems, not as a floating scenery sheet. Root/soil, camera parallax,
+   actor depth and collision remain stationary. */
+#terraceThreadfallWildflowers53 > path:nth-child(1),
+#terraceThreadfallWildflowers53 > path:nth-child(6){
+  transform-box:fill-box;
+  transform-origin:50% 100%;
+  animation:threadfallFlowerLean55 5.8s cubic-bezier(.45,0,.55,1) infinite alternate;
+}
+#terraceThreadfallWildflowers53 > path:nth-child(6){
+  animation-duration:7.1s;
+  animation-delay:-3.2s;
+  animation-direction:alternate-reverse;
+}
+@keyframes threadfallFlowerLean55{
+  0%{rotate:-1.2deg}
+  50%{rotate:.6deg}
+  100%{rotate:1.8deg}
+}
+@media(prefers-reduced-motion:reduce),(prefers-contrast:more){
+  #terraceThreadfallWildflowers53 > path:nth-child(1),
+  #terraceThreadfallWildflowers53 > path:nth-child(6){
+    animation:none!important;
+    rotate:0deg;
+  }
+}
