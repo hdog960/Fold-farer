@@ -213,7 +213,8 @@ function updateCharacter(){
  if(el.tavi.parentNode!==targetStage)targetStage.appendChild(el.tavi);
  if(lastDepthOrder!==signature){for(const id of sorted)targetStage.appendChild($(id));lastDepthOrder=signature;}
 }
-function cancelTap(){moveTarget=null;el.tapMarker.setAttribute('visibility','hidden');}
+let tapStallFrames=0;
+function cancelTap(){moveTarget=null;tapStallFrames=0;el.tapMarker.setAttribute('visibility','hidden');}
 function moveBy(dx,dy){
  const oldX=state.x,oldY=state.y;
  const [left,right,back,front]=boundsFor(state.area);
@@ -689,8 +690,15 @@ function frame(now){
    else if(ax>ay*1.65)state.direction='side';
    else state.direction=y<0?'diag-up':'diag-down';
    const oldX=state.x,oldY=state.y;
+   const distanceBefore=moveTarget?Math.hypot(moveTarget.x-oldX,(moveTarget.y-oldY)*1.25):0;
    const moved=moveBy(x/len*225*dt,y/len*165*dt);
-   if(!moved&&moveTarget)cancelTap();
+   // A valid tapped destination can still be unreachable behind an obstacle.
+   // Stop sliding along walls when each step fails to close the distance.
+   if(moveTarget){
+    const distanceAfter=Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25);
+    tapStallFrames=distanceAfter>=distanceBefore-.1?tapStallFrames+1:0;
+    if(!moved||tapStallFrames>=12)cancelTap();
+   }
    if(moveTarget&&Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25)<8)cancelTap();
    el.tavi.classList.toggle('walking',moved);
    if(moved){
