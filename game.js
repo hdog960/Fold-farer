@@ -214,6 +214,8 @@ function updateCharacter(){
  if(lastDepthOrder!==signature){for(const id of sorted)targetStage.appendChild($(id));lastDepthOrder=signature;}
 }
 let tapStallFrames=0;
+// A brief walk should persist even if it ends before the periodic save interval.
+let unsavedWalk=false;
 function cancelTap(){moveTarget=null;tapStallFrames=0;el.tapMarker.setAttribute('visibility','hidden');}
 function moveBy(dx,dy){
  const oldX=state.x,oldY=state.y;
@@ -709,8 +711,9 @@ function frame(now){
     walkDistance+=travelled;
     el.tavi.dataset.stride=String(Math.floor(walkDistance/15)%8);
     fieldMotion=true;
+    unsavedWalk=true;
     updatePrompt();
-    if(now-lastSavedAt>=1100){save();lastSavedAt=now;}
+    if(now-lastSavedAt>=1100){save();lastSavedAt=now;unsavedWalk=false;}
    }else{
     walkDistance=0;el.tavi.dataset.stride='0';
    }
@@ -722,6 +725,9 @@ function frame(now){
   walkDistance=0;el.tavi.dataset.stride='0';
   el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');
  }
+ // Commit the last few steps when movement ends, rather than losing a short
+ // walk if Safari suspends the Home Screen app before the next timed save.
+ if(unsavedWalk&&!fieldMotion){save();lastSavedAt=now;unsavedWalk=false;}
  updateTaviActing(now);
  updateBackdrop(dt);
  // Resolve the companion's actual new position before selecting a wing cel.
