@@ -98,20 +98,33 @@ function updateBackdrop(dt){
  // or the camera hit-test coordinate system.
  el.terraceLightShift.setAttribute('transform','translate('+(backdrop.terraceX*.28).toFixed(2)+' '+(backdrop.terraceY*.24).toFixed(2)+')');
 }
-const companion={x:474,y:620,area:'folio',ready:false};
+const companion={x:474,y:620,area:'folio',ready:false,flightSpeed:0};
 const morrowWingCycle=[0,1,2,3,2,1];
+// Advance wing artwork through a continuous phase: changing from idle to
+// following or dialogue never skips abruptly to an unrelated wing drawing.
+const morrowFlight={phase:0,lastAt:null};
 function updateMorrowAnimation(now){
  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
- el.morrow.dataset.beak=reduced?'0':
-   (el.morrow.classList.contains('talking')&&Math.floor(now/155)%3===1?'1':'0');
- if(reduced){el.morrow.dataset.flap='0';return;}
- const interval=el.morrow.classList.contains('talking')?105:
-   el.morrow.classList.contains('following')?145:240;
- el.morrow.dataset.flap=String(morrowWingCycle[Math.floor(now/interval)%morrowWingCycle.length]);
+ const talking=el.morrow.classList.contains('talking');
+ el.morrow.dataset.beak=reduced?'0':(talking&&Math.floor(now/155)%3===1?'1':'0');
+ if(reduced){
+   morrowFlight.lastAt=now;
+   el.morrow.dataset.flap='0';
+   return;
+ }
+ const elapsed=morrowFlight.lastAt===null?0:clamp(now-morrowFlight.lastAt,0,50);
+ morrowFlight.lastAt=now;
+ // Wingbeats accelerate gently as the bird catches up with Tavi. The same
+ // six original hand-illustrated cels remain in order, with no CSS scaling.
+ const following=el.morrow.classList.contains('following');
+ const speed=following?clamp(companion.flightSpeed/190,0,1):0;
+ const interval=talking?105:(following?175-55*speed:240);
+ morrowFlight.phase=(morrowFlight.phase+elapsed/interval)%morrowWingCycle.length;
+ el.morrow.dataset.flap=String(morrowWingCycle[Math.floor(morrowFlight.phase)]);
 }
 function updateCompanion(dt=0){
  if(!state.metMorrow){
-   companion.x=474;companion.y=620;companion.area='folio';companion.ready=false;
+   companion.x=474;companion.y=620;companion.area='folio';companion.ready=false;companion.flightSpeed=0;
    el.morrow.setAttribute('transform','translate(474 610)');
    el.morrow.classList.remove('following');
    if(el.morrow.parentNode!==el.depthStage){el.depthStage.appendChild(el.morrow);lastDepthOrder='';}
@@ -125,6 +138,7 @@ function updateCompanion(dt=0){
  // The drawn bird banks into actual horizontal flight. Track the prior
  // position rather than the hero's facing, so a turn never snaps the artwork.
  const previousX=companion.x;
+ const previousY=companion.y;
  const wasFollowing=companion.ready&&companion.area===state.area;
  if(!companion.ready||companion.area!==state.area){
    companion.x=targetX;companion.y=targetY;companion.area=state.area;companion.ready=true;
@@ -137,6 +151,8 @@ function updateCompanion(dt=0){
  // world transform, dialogue portrait, or save state. Reduced motion is still.
  const prefersStill=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
  const horizontalSpeed=wasFollowing&&dt>0?(companion.x-previousX)/Math.max(dt,.016):0;
+ companion.flightSpeed=wasFollowing&&dt>0?
+   Math.hypot(companion.x-previousX,companion.y-previousY)/Math.max(dt,.016):0;
  const bank=prefersStill?0:clamp(horizontalSpeed*.025,-6,6);
  el.morrow.style.setProperty('--morrow-flight-bank',bank.toFixed(2)+'deg');
  const size=terrace?clamp(.61+(companion.y-400)*.00106,.61,1.01):clamp(.72+(companion.y-552)*.00075,.71,.89);
