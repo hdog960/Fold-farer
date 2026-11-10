@@ -655,3 +655,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Root cause evidenced by screenshot workflow run 42850037128 (commit 245eeb3): test failed at line 551 with `far:[0,0],mid:[0,0]`. The real game's newer reduced-motion accessibility behavior correctly pins both cards to zero; the test was exercising the wrong motion preference. The test retains its original parallax geometry and ground-immobility assertions, and later reduced-motion QA still runs.
 - GitHub source read-back confirmed the correction. Node/Playwright screenshot suite and deployment for this new commit are not claimed passing until CI completes. No playable art, gameplay, saves, chapters, controls, or PWA files changed in this repair.
 - Next: check the screenshot workflow and examine actual North Terrace captures, then prioritize substantial original directional character and layered environment illustration. Milestone A art gate 90/100 NOT met; Milestone B LOCKED pending creator approval.
+
+
+## 2026-11-10 — Threadfall asynchronous pigment-light atmosphere (Milestone A)
+- Playable CSS commit `e8294368436ec7eadc827734b184333459d634dd` adjusts the existing waterfall wash and gives the existing Threadfall spray and ravine painted-card surfaces independent, very slow opacity changes. This is actual in-world scenery, not a mockup. Reduced Motion disables these effects; increased contrast keeps the original static ink surfaces.
+- Only `styles.css` changed for gameplay; no SVG geometry, actor art, collisions, movement, save keys, chapter state, controls, or PWA route changed. GitHub source read-back and automated CI/Pages status must be verified separately.
+- This is a modest lighting/paint behavior pass, **not** the major character illustration overhaul needed for art approval. Next: inspect latest real landscape screenshots for readability/overdraw, check CI and Pages for this commit, then prioritize substantial original character art and dimensional scene composition.
+- **Milestone A visual 90/100 NOT demonstrated or creator-approved; Milestone B LOCKED.** Physical iPhone testing remains outstanding.
