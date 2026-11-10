@@ -709,9 +709,12 @@ function frame(now){
  }
  updateTaviActing(now);
  updateBackdrop(dt);
- updateMorrowAnimation(now);
+ // Resolve the companion's actual new position before selecting a wing cel.
+ // Otherwise the flight-speed animation always reacts to the previous frame,
+ // especially noticeable when the player suddenly reverses direction.
  if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}
  else if(modal==='field'&&fieldMotion)updateCharacter();
+ updateMorrowAnimation(now);
  if(modal==='timing'&&timingActive)el.timingMarker.style.left=progressAt(now)+'%';
  requestAnimationFrame(frame);
 }
