@@ -1256,3 +1256,27 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
   #terraceThreadfallWildflowers53,
   #terraceRavineUndercut51 { filter: none; }
 }
+
+
+/* Milestone A — illustrated paper-layer relief for North Terrace's near/middle
+   stage. The exposed cardstock edge receives a short hard contact shadow;
+   farther scenery has a softer, cooler cast shadow. These layers are already
+   behind the actors in SVG paint order, so this does not create HUD overlays
+   or alter hit-testing, collision, camera movement, or saved state. */
+#terraceScene #terraceNearEdge {
+  filter: drop-shadow(0 3px 0 rgba(47,62,69,.35))
+          drop-shadow(0 9px 5px rgba(31,57,66,.23));
+}
+#terraceScene #terraceSideWalls {
+  filter: drop-shadow(2px 3px 0 rgba(53,69,72,.28))
+          drop-shadow(4px 9px 4px rgba(35,57,66,.20));
+}
+#terraceScene #terraceHangingPaper {
+  filter: drop-shadow(1px 2px 0 rgba(63,63,64,.28))
+          drop-shadow(3px 5px 3px rgba(35,55,62,.15));
+}
+@media (prefers-contrast: more) {
+  #terraceScene #terraceNearEdge,
+  #terraceScene #terraceSideWalls,
+  #terraceScene #terraceHangingPaper { filter: none; }
+}
