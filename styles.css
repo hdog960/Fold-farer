@@ -1199,33 +1199,25 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
 }
 
 
-/* Milestone A — Threadfall is a printed ribbon with moving ink, not a
-   static blue cutout. The existing two hand-drawn white-water strokes carry
-   small traveling flecks; the bank, silhouette and water wash stay fixed.
-   The effect is decorative, SVG-local and never intercepts input. */
+/* Milestone A — continuous watercolor water rather than dotted dash marks.
+   Preserve the original individually inked waterfall strokes and their
+   low-amplitude light changes. Animated dash patterns made the narrow
+   waterfall read as perforated stitching at phone landscape scale.
+   No geometry, hit targets, saved data or camera transforms change. */
 #terraceThreadfall49 > path:nth-child(4),
 #terraceThreadfall49 > path:nth-child(5){
-  stroke-dasharray:22 9 7 15;
-  /* Combine current travel with the existing watercolor-light pulse instead
-     of replacing the earlier animation shorthand. Both act on SVG-local ink. */
-  animation:threadfallCurrent51 7.2s linear infinite,
-            threadfallInk50 5.6s ease-in-out -1.4s infinite alternate;
+  stroke-dasharray:none;
+  stroke-dashoffset:0;
+  stroke-linecap:round;
+  animation:threadfallInk50 5.6s ease-in-out -1.4s infinite alternate;
 }
 #terraceThreadfall49 > path:nth-child(5){
-  stroke-dasharray:11 8 4 14;
-  animation-duration:5.9s,6.3s;
-  animation-direction:reverse,alternate;
-}
-@keyframes threadfallCurrent51{
-  from{stroke-dashoffset:0}
-  to{stroke-dashoffset:-106}
+  animation-duration:6.3s;
+  animation-delay:-3.2s;
 }
 @media(prefers-reduced-motion:reduce){
   #terraceThreadfall49 > path:nth-child(4),
-  #terraceThreadfall49 > path:nth-child(5){
-    animation:none!important;
-    stroke-dasharray:none;
-  }
+  #terraceThreadfall49 > path:nth-child(5){animation:none!important}
 }
 
 
