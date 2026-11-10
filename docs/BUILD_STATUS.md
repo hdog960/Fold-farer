@@ -619,3 +619,8 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Gameplay commit `7c62284b6c895689f386ef2064bd89adbbdee686`; test commit `e35cc8351c6b4dc4b74d334770a3bd3447c0ba79`.
 - Source read-back and CI/deployment status must be checked independently. No physical iPhone QA claimed. Visual acceptance remains **NOT APPROVED**; Milestone B locked.
 - Next: inspect latest screenshot captures for character scale, ravine clipping and perspective, then implement substantial original art improvements.
+
+## 2026-11-10 — Reduced-motion paper-camera comfort (Milestone A)
+- Commit `c9ccf66`: preserved original painted Folio and Terrace depth layers while disabling their camera-follow parallax when the system requests reduced motion. Normal motion retains existing parallax; no changes to save format, quest or collision.
+- Source was re-read from main and parsed as JavaScript; full npm/Playwright and physical iPhone testing were not run in this session. Rendered aesthetics and Pages deployment require independent confirmation.
+- Next: inspect actual landscape captures and improve full-body actor artwork and authored environmental composition. Art rubric 90/100 NOT verified; creator approval pending; Milestone B LOCKED.
