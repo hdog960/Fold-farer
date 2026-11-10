@@ -525,4 +525,9 @@ assert((art37.match(/class="terrace-painted-foliage37/g)||[]).length===2,'Both o
 assert(css.includes('@keyframes terraceLeafHinge37')&&css.includes('animation:none!important;transform:none!important'),
  'Leaf hinge must respect reduced-motion');
 assert(sw.includes('foldfarer-shell-0.50'),'Installed Home Screen cache not updated');
+// Wing cel selection must see current-frame follower velocity, not last frame's.
+const frameBody=game.slice(game.indexOf('function frame(now){'),game.indexOf('\nsync();',game.indexOf('function frame(now){')));
+assert(frameBody.indexOf('updateCompanion(dt)')>=0 &&
+       frameBody.indexOf('updateCompanion(dt)')<frameBody.indexOf('updateMorrowAnimation(now)'),
+       'Morrow wing cadence must sample the current companion motion frame');
 console.log('FoldFarer static smoke checks passed:',ids.length,'HTML element IDs; JS parsed; references verified.');
