@@ -611,3 +611,11 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Source validation: insertion marker located exactly once; all HTML IDs unique after insertion; source length increased by exactly 2,081 characters. No game JS, collision, saved progress, chapter logic or PWA paths altered.
 - Outstanding: Node smoke and browser screenshot execution, visual inspection of the new plants at mobile landscape scale, Pages deployment confirmation and physical iPhone QA. Do not claim the 90/100 aesthetic gate passed; creator approval is pending. Milestone B LOCKED.
 - Next: verify CI/Pages and inspect Threadfall composition, then prioritize larger illustrated character/scene improvements.
+
+
+### 2026-11-10 — Short-walk checkpoint persistence (Milestone A maintenance)
+- `game.js`: track unsaved movement and persist immediately on the first idle frame, including brief D-pad or tap journeys that end before the existing 1.1-second periodic checkpoint. Existing save key, schema, movement, collision, artwork and chapter progression are unchanged.
+- `tests/smoke.mjs`: source regression assertion for the idle-save condition.
+- Gameplay commit `7c62284b6c895689f386ef2064bd89adbbdee686`; test commit `e35cc8351c6b4dc4b74d334770a3bd3447c0ba79`.
+- Source read-back and CI/deployment status must be checked independently. No physical iPhone QA claimed. Visual acceptance remains **NOT APPROVED**; Milestone B locked.
+- Next: inspect latest screenshot captures for character scale, ravine clipping and perspective, then implement substantial original art improvements.
