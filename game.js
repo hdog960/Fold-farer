@@ -138,8 +138,18 @@ function updateCompanion(dt=0){
  const indoors=state.area==='atelier';
  const terrace=state.area==='terrace';
  const [left,right,back,front]=boundsFor(state.area);
- const targetX=clamp(state.x-state.facing*67,left+6,right-6);
- const targetY=clamp(state.y-26,back+6,front-12);
+ // Follow BEHIND Tavi on the actual two-dimensional foot plane. The old
+ // side-only offset placed Morrow beside/in front of Tavi when walking into
+ // or out of the page, flattening the illustrated scene's depth cues.
+ // Rear-view walking puts the bird toward the camera; front-view walking
+ // puts it farther into the scene. Three-quarter poses use both axes.
+ const vertical=state.direction==='up'||state.direction==='diag-up'?1:
+   state.direction==='down'||state.direction==='diag-down'?-1:0;
+ const diagonal=state.direction==='diag-up'||state.direction==='diag-down';
+ const offsetX=vertical===0?67:(diagonal?46:26);
+ const offsetY=vertical===0?-26:vertical*(diagonal?42:53);
+ const targetX=clamp(state.x-state.facing*offsetX,left+6,right-6);
+ const targetY=clamp(state.y+offsetY,back+6,front-12);
  // The drawn bird banks into actual horizontal flight. Track the prior
  // position rather than the hero's facing, so a turn never snaps the artwork.
  const previousX=companion.x;
