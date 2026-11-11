@@ -82,9 +82,9 @@ key('ArrowRight',true);
 click('interact');
 assert(!e('dialogue').classList.contains('hidden'),'Expected interaction dialogue');
 drainDialogue();
-const beforeModalRelease=/translate\\(([-.0-9]+) ([-.0-9]+)\\)/.exec(e('tavi').attrs.transform);
+const beforeModalRelease=/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(e('tavi').attrs.transform);
 step(8);
-const afterModalRelease=/translate\\(([-.0-9]+) ([-.0-9]+)\\)/.exec(e('tavi').attrs.transform);
+const afterModalRelease=/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(e('tavi').attrs.transform);
 assert(beforeModalRelease&&afterModalRelease&&beforeModalRelease[0]===afterModalRelease[0],
  'Held direction resumed after a dialogue modal closed');
 key('ArrowRight',false);
