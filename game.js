@@ -217,6 +217,7 @@ function updateCharacter(){
  if(lastDepthOrder!==signature){for(const id of sorted)targetStage.appendChild($(id));lastDepthOrder=signature;}
 }
 let tapStallFrames=0;
+let tapReplans=0;
 let tapRoute=[];
 // Route a tapped destination around physical paper props instead of walking
 // forever into the nearest edge. This uses the same canStand() as real movement.
@@ -308,7 +309,18 @@ function planTapRoute(goalX,goalY){
 }
 // A brief walk should persist even if it ends before the periodic save interval.
 let unsavedWalk=false;
-function cancelTap(){moveTarget=null;tapRoute=[];tapStallFrames=0;el.tapMarker.setAttribute('visibility','hidden');}
+function cancelTap(){moveTarget=null;tapRoute=[];tapStallFrames=0;tapReplans=0;el.tapMarker.setAttribute('visibility','hidden');}
+// Rebuild a route from the ACTUAL current foot position if a wall-slide or
+// coarse waypoint leaves the original plan unusable. Limit retries so a truly
+// inaccessible destination never traps Tavi in an endless navigation loop.
+function recoverTapRoute(){
+ if(!moveTarget||tapReplans>=2)return false;
+ tapReplans++;
+ const next=planTapRoute(moveTarget.x,moveTarget.y);
+ if(!next.length)return false;
+ tapRoute=next;tapStallFrames=0;
+ return true;
+}
 function moveBy(dx,dy){
  const oldX=state.x,oldY=state.y;
  const [left,right,back,front]=boundsFor(state.area);
@@ -711,6 +723,7 @@ el.world.addEventListener('pointerdown',event=>{
  const [left,right,back,front]=boundsFor(state.area);
  const x=clamp(loc.x,left,right),y=clamp(loc.y,back,front);
  if(!canStand(x,y,state.mended,state.area)){cancelTap();return;}
+ tapReplans=0;
  tapRoute=planTapRoute(x,y);
  if(!tapRoute.length){cancelTap();return;}
  moveTarget={x,y};
@@ -797,7 +810,7 @@ function frame(now){
     const next=tapRoute[0]||moveTarget;
     const distanceAfter=Math.hypot(next.x-state.x,(next.y-state.y)*1.25);
     tapStallFrames=distanceAfter>=distanceBefore-.1?tapStallFrames+1:0;
-    if(!moved||tapStallFrames>=12)cancelTap();
+    if(!moved||tapStallFrames>=12){if(!recoverTapRoute())cancelTap();}
    }
    if(moveTarget&&Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25)<8)cancelTap();
    el.tavi.classList.toggle('walking',moved);
