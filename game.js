@@ -227,24 +227,47 @@ function planTapRoute(goalX,goalY){
  const at=(ix,iy)=>({x:clamp(left+ix*step,left,right),y:clamp(back+iy*step,back,front)});
  const key=(ix,iy)=>iy*cols+ix;
  const nearest=(x,y)=>[clamp(Math.round((x-left)/step),0,cols-1),clamp(Math.round((y-back)/step),0,rows-1)];
- const [sx,sy]=nearest(state.x,state.y),[gx,gy]=nearest(goalX,goalY);
- const start=key(sx,sy),goal=key(gx,gy);
- const frontier=[start],cost=new Map([[start,0]]),parent=new Map();
- const heuristic=id=>{const p=at(id%cols,Math.floor(id/cols));return Math.hypot((p.x-goalX), (p.y-goalY)*1.25);};
+ const startPosition={x:state.x,y:state.y},destination={x:goalX,y:goalY};
+ const pass=(a,b)=>{for(let k=1;k<=8;k++){const t=k/8;if(!canStand(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,state.mended,state.area))return false;}return true;};
+ if(!canStand(goalX,goalY,state.mended,state.area))return [];
+ if(pass(startPosition,destination))return [destination];
+ // A real standing point can be valid even when its rounded grid cell is
+ // occupied (e.g. beside a thin planter). Choose a nearby visible FREE cell.
+ // Apply the same rule at the destination: a reachable tap beside a prop
+ // must not be discarded because its rounded cell falls inside that prop.
+ function connectors(point){
+   const [cx,cy]=nearest(point.x,point.y),options=[];
+   for(let radius=0;radius<=4;radius++){
+     for(let dy=-radius;dy<=radius;dy++)for(let dx=-radius;dx<=radius;dx++){
+       if(Math.max(Math.abs(dx),Math.abs(dy))!==radius)continue;
+       const ix=cx+dx,iy=cy+dy;
+       if(ix<0||ix>=cols||iy<0||iy>=rows)continue;
+       const p=at(ix,iy);
+       if(canStand(p.x,p.y,state.mended,state.area)&&pass(point,p))
+         options.push({id:key(ix,iy),p,distance:Math.hypot(p.x-point.x,(p.y-point.y)*1.25)});
+     }
+     if(options.length)break;
+   }
+   return options.sort((a,b)=>a.distance-b.distance).slice(0,8);
+ }
+ const starts=connectors(startPosition),ends=connectors(destination);
+ if(!starts.length||!ends.length)return [];
+ const endIds=new Set(ends.map(e=>e.id));
+ const frontier=[],cost=new Map(),parent=new Map();
+ for(const s of starts){frontier.push(s.id);cost.set(s.id,s.distance);}
+ const heuristic=id=>{const p=at(id%cols,Math.floor(id/cols));return Math.hypot(p.x-goalX,(p.y-goalY)*1.25);};
  const directions=[[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
- const pass=(a,b)=>{for(let k=1;k<=4;k++){const t=k/4;if(!canStand(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,state.mended,state.area))return false;}return true;};
- let iterations=0,found=false;
+ let iterations=0,found=null;
  while(frontier.length&&iterations++<cols*rows){
    let best=0,bestScore=Infinity;
    for(let i=0;i<frontier.length;i++){const id=frontier[i],score=cost.get(id)+heuristic(id);if(score<bestScore){bestScore=score;best=i;}}
    const current=frontier.splice(best,1)[0];
-   if(current===goal){found=true;break;}
+   if(endIds.has(current)){found=current;break;}
    const cx=current%cols,cy=Math.floor(current/cols),p=at(cx,cy);
    for(const [dx,dy] of directions){
      const nx=cx+dx,ny=cy+dy;if(nx<0||nx>=cols||ny<0||ny>=rows)continue;
      const next=key(nx,ny),q=at(nx,ny);
      if(!canStand(q.x,q.y,state.mended,state.area)||!pass(p,q))continue;
-     // Diagonal steps may not cut between two adjacent blocked squares.
      if(dx&&dy&&(!pass(p,at(nx,cy))||!pass(p,at(cx,ny))))continue;
      const nextCost=cost.get(current)+Math.hypot(dx*step,dy*step*1.25);
      if(nextCost>=(cost.get(next)??Infinity))continue;
@@ -252,13 +275,15 @@ function planTapRoute(goalX,goalY){
      if(!frontier.includes(next))frontier.push(next);
    }
  }
- if(!found)return [];
- const points=[];let node=goal;
- while(node!==start&&points.length<cols*rows){points.push(at(node%cols,Math.floor(node/cols)));node=parent.get(node);if(node===undefined)return [];}
+ if(found===null)return [];
+ const points=[];let node=found;
+ while(node!==undefined&&points.length<cols*rows){
+   points.push(at(node%cols,Math.floor(node/cols)));
+   node=parent.get(node);
+ }
  points.reverse();
- // The exact destination is important for approaching interactive props.
- const end=points.at(-1)||{x:state.x,y:state.y};
- if(pass(end,{x:goalX,y:goalY}))points.push({x:goalX,y:goalY});
+ // Every connector is line-of-sight checked, including the final approach.
+ points.push(destination);
  return points;
 }
 // A brief walk should persist even if it ends before the periodic save interval.
