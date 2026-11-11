@@ -128,6 +128,13 @@ for(let n=0;n<42;n++){step(2);wingFramesObserved.add(e('morrow').dataset.flap);}
 assert(wingFramesObserved.size===4,'Follower must show four distinct illustrated wing poses');
 assert(e('morrowGroundShadow'),'Missing ground-anchored bird shadow');
 assert(e('taviGroundShadow'),'Missing grounded hero shadow');
+// The bird is an actor in the paper world's depth plane, not a 2D
+// screen-space badge: it must trail behind both back and front walking poses.
+const birdY=()=>Number(/translate\\(([-.0-9]+) ([-.0-9]+)\\)/.exec(e('morrow').attrs.transform)?.[2]);
+key('ArrowUp',true);step(10);key('ArrowUp',false);step(65);
+assert(birdY()>pos().y+20,'Morrow should follow toward camera behind back-facing Tavi');
+key('ArrowDown',true);step(10);key('ArrowDown',false);step(65);
+assert(birdY()<pos().y-20,'Morrow should follow into scene behind front-facing Tavi');
 key('ArrowRight',true);step(6);key('ArrowRight',false);
 assert(e('morrow').attrs.transform!==morrowInitial,'Morrow failed to move in the same world as Tavi');
 key('ArrowLeft',true);step(6);key('ArrowLeft',false);
