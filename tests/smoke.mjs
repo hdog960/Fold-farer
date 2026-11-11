@@ -8,6 +8,13 @@ new Script(game,{filename:'game.js'});
 new Script(sw,{filename:'sw.js'});
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
 assert.equal(new Set(ids).size,ids.length,'Duplicate id attributes');
+for(const id of ['terraceBookbindersQuarter','terraceQuarterBackCard','terraceQuarterBindery','terraceQuarterScriptorium','terraceQuarterBellTower','terraceQuarterRibbonWalk'])
+  assert(ids.includes(id),'Missing authored North Terrace bookbinders quarter layer: '+id);
+const quarter=html.slice(html.indexOf('id="terraceBookbindersQuarter"'),html.indexOf('id="terraceQuarterRibbonWalk"'));
+assert((quarter.match(/<path /g)||[]).length>=38,'Terrace quarter lost its dimensional individual cardstock planes');
+assert(html.indexOf('id="terraceBookbindersQuarter"')>html.indexOf('id="terraceDistantCards"'),'Quarter must remain in distant parallax scenery');
+assert(html.indexOf('id="terraceBookbindersQuarter"')<html.indexOf('id="terraceDepthStage"'),'Quarter must not obscure traversing characters');
+
 for(const id of [...game.matchAll(/\$\('([^']+)'\)/g)].map(x=>x[1]))assert(ids.includes(id),'Referenced HTML id absent: '+id);
 for(const file of ['styles.css','game.js','manifest.webmanifest','icon.svg'])assert(html.includes('./'+file),'HTML missing '+file);
 for(const x of ['bridgeFix','brokenBridge','tavi','taviBackArt','taviSideArt','depthStage','paperPlanter','folioNotice','paperBench','courtyardDepth','folioScene','atelierScene','atelierDepthStage','atelierLoom','atelierSpoolCart','atelierDyeBench','tapMarker','morrow','mila','enemy','timing','battle','journal'])assert(ids.includes(x),'Missing interactive element '+x);
