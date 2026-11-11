@@ -160,6 +160,11 @@ const source=read('game.js');
 // jagged grid-by-grid walking when a direct safe segment is visible.
 assert(source.includes('Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/6)'),
  'Tap navigation must sample long line segments finely enough for thin obstacles');
+assert(source.includes('function recoverTapRoute()'), 'Stalled tap navigation must support route recovery');
+assert(source.includes('const next=planTapRoute(moveTarget.x,moveTarget.y)'), 'Tap recovery must replan from current foot position');
+assert(source.includes('tapReplans>=2'), 'Tap recovery must have a finite retry limit');
+assert(source.includes('if(!recoverTapRoute())cancelTap()'), 'Blocked tap motion must attempt recovery before giving up');
+assert(source.includes('tapReplans=0;\\n tapRoute=planTapRoute(x,y)') || source.includes('tapReplans=0;\n tapRoute=planTapRoute(x,y)'), 'A fresh destination must reset its recovery budget');
 assert(source.includes('if(pass(anchor,route[candidate]))furthest=candidate'),
  'Tap navigation must simplify visible grid corners into smooth waypoints');
 assert(source.includes('((x-502)/58)**2+((y-563)/19)**2<1'),"Dyer's bench collision footprint is missing");
