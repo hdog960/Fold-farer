@@ -18,6 +18,15 @@ assert((quarter.match(/<path /g)||[]).length>=38,'Terrace quarter lost its dimen
 assert(html.indexOf('id="terraceBookbindersQuarter"')>html.indexOf('id="terraceDistantCards"'),'Quarter must remain in distant parallax scenery');
 assert(html.indexOf('id="terraceBookbindersQuarter"')<html.indexOf('id="terraceDepthStage"'),'Quarter must not obscure traversing characters');
 
+// Suspended paper viaduct is an actual layered architectural landmark,
+// not a foreground decal that would cover player movement.
+assert(ids.includes('terraceQuarterThreadViaduct'),'Missing suspended North Terrace cardstock viaduct');
+const viaduct=html.slice(html.indexOf('id="terraceQuarterThreadViaduct"'),html.indexOf('id="terraceQuarterWorkshopRow"'));
+assert((viaduct.match(/<path /g)||[]).length>=20,'Viaduct lost its authored suspension, arches or deck faces');
+assert(html.indexOf('id="terraceQuarterBackCard"')<html.indexOf('id="terraceQuarterThreadViaduct"'),'Viaduct must sit in front of distant back card');
+assert(html.indexOf('id="terraceQuarterThreadViaduct"')<html.indexOf('id="terraceQuarterWorkshopRow"'),'Workshop facades must occlude distant viaduct');
+assert(html.indexOf('id="terraceQuarterThreadViaduct"')<html.indexOf('id="terraceDepthStage"'),'Viaduct must not cover traversing actors');
+
 // The new workshops are complete dimensional structures, not decorative strokes.
 for(const id of ['terraceQuarterWorkshopRow','terraceQuarterPaperMill','terraceQuarterInkHouse','terraceQuarterHangingSign'])
   assert(ids.includes(id),'Missing authored bookbinders workshop layer: '+id);
