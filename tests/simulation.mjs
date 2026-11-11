@@ -156,6 +156,12 @@ assert(e('terraceLightShift').attrs.transform?.startsWith('translate('),
 // Browser movement will verify real physical blocking; this VM covers the
 // published source footprint and the DOM-stage participation.
 const source=read('game.js');
+// Tap routes must not tunnel through thin physical paper props or force
+// jagged grid-by-grid walking when a direct safe segment is visible.
+assert(source.includes('Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/6)'),
+ 'Tap navigation must sample long line segments finely enough for thin obstacles');
+assert(source.includes('if(pass(anchor,route[candidate]))furthest=candidate'),
+ 'Tap navigation must simplify visible grid corners into smooth waypoints');
 assert(source.includes('((x-502)/58)**2+((y-563)/19)**2<1'),"Dyer's bench collision footprint is missing");
 assert(source.includes('((x-954)/65)**2+((y-555)/21)**2<1'),"Letter cabinet collision footprint is missing");
 
