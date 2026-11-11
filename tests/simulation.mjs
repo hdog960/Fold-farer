@@ -77,6 +77,17 @@ assert(e('morrow').classList.contains('reacting'),'Morrow should visibly react d
 assert(e('morrow').dataset.reaction==='alarmed','Morrow should use his alarmed art for a removed road');
 step(13);assert(['0','1'].includes(e('morrow').dataset.beak),'Morrow speech must select an authored beak cel');
 drainDialogue();assert(!e('tavi').classList.contains('speaking'),'Dialogue must restore neutral face');
+// Modal handoff: a held movement key must not resume when speech closes.
+key('ArrowRight',true);
+click('interact');
+assert(!e('dialogue').classList.contains('hidden'),'Expected interaction dialogue');
+drainDialogue();
+const beforeModalRelease=/translate\\(([-.0-9]+) ([-.0-9]+)\\)/.exec(e('tavi').attrs.transform);
+step(8);
+const afterModalRelease=/translate\\(([-.0-9]+) ([-.0-9]+)\\)/.exec(e('tavi').attrs.transform);
+assert(beforeModalRelease&&afterModalRelease&&beforeModalRelease[0]===afterModalRelease[0],
+ 'Held direction resumed after a dialogue modal closed');
+key('ArrowRight',false);
 assert(!e('morrow').classList.contains('reacting'),'Morrow should restore original face at end of dialogue');
 // Verify actual into-the-world movement, separate rear artwork, and retreat.
 const pos=()=>{const match=/translate\(([-.0-9]+) ([-.0-9]+)\)/.exec(e('tavi').attrs.transform);assert(match,'Missing transform');return {x:Number(match[1]),y:Number(match[2])};};
