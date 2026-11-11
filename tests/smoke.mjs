@@ -15,6 +15,13 @@ assert((quarter.match(/<path /g)||[]).length>=38,'Terrace quarter lost its dimen
 assert(html.indexOf('id="terraceBookbindersQuarter"')>html.indexOf('id="terraceDistantCards"'),'Quarter must remain in distant parallax scenery');
 assert(html.indexOf('id="terraceBookbindersQuarter"')<html.indexOf('id="terraceDepthStage"'),'Quarter must not obscure traversing characters');
 
+// The new workshops are complete dimensional structures, not decorative strokes.
+for(const id of ['terraceQuarterWorkshopRow','terraceQuarterPaperMill','terraceQuarterInkHouse','terraceQuarterHangingSign'])
+  assert(ids.includes(id),'Missing authored bookbinders workshop layer: '+id);
+const workshop=html.slice(html.indexOf('id="terraceQuarterWorkshopRow"'),html.indexOf('id="terraceQuarterBindery"'));
+assert((workshop.match(/<path /g)||[]).length>=28,'Bookbinders workshop row lost dimensional faces, roof planes or windows');
+assert(html.indexOf('id="terraceQuarterWorkshopRow"')>html.indexOf('id="terraceDistantCards"'),'Workshops must belong to the distant card');
+assert(html.indexOf('id="terraceQuarterWorkshopRow"')<html.indexOf('id="terraceDepthStage"'),'Workshops must stay behind traversing actors');
 for(const id of [...game.matchAll(/\$\('([^']+)'\)/g)].map(x=>x[1]))assert(ids.includes(id),'Referenced HTML id absent: '+id);
 for(const file of ['styles.css','game.js','manifest.webmanifest','icon.svg'])assert(html.includes('./'+file),'HTML missing '+file);
 for(const x of ['bridgeFix','brokenBridge','tavi','taviBackArt','taviSideArt','depthStage','paperPlanter','folioNotice','paperBench','courtyardDepth','folioScene','atelierScene','atelierDepthStage','atelierLoom','atelierSpoolCart','atelierDyeBench','tapMarker','morrow','mila','enemy','timing','battle','journal'])assert(ids.includes(x),'Missing interactive element '+x);
