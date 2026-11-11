@@ -5,6 +5,14 @@ import {Script,createContext} from 'node:vm';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const markup=read('index.html');
 const ids=[...markup.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+// Milestone A: Morrow's lower silhouette must be authored as physical folded
+// cardstock, not the old two-stroke wire feet and single flat tail polygon.
+const birdArt=markup.slice(markup.indexOf('id="morrowSprite"'),markup.indexOf('id="tavi"'));
+assert(birdArt.includes('id="morrowFoldedTalons"'),'Missing layered Morrow talon artwork');
+assert(birdArt.includes('id="morrowInkedTail35"'),'Missing layered Morrow tail');
+const tail=birdArt.slice(birdArt.indexOf('id="morrowInkedTail35"'),birdArt.indexOf('id="morrowOriginalCardBody35"'));
+assert((tail.match(/<path /g)||[]).length>=7,'Tail lost its individual feather planes and printed vanes');
+
 const elements=new Map();
 function element(id){
  const classes=new Set();
