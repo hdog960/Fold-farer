@@ -166,7 +166,8 @@ assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
-assert(sw.includes('foldfarer-shell-0.50'),'The existing Home Screen PWA must refresh 0.27 assets');
+assert(/const CACHE = 'foldfarer-shell-0\.(?:[5-9]\d|\d{3,})'/.test(sw),
+ 'The Home Screen service-worker cache must advance beyond 0.49 after new artwork');
 
 
 const backdropLayers=['terraceMountainCard','terraceShadowValley','terraceMidlandInk',
