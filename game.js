@@ -217,9 +217,53 @@ function updateCharacter(){
  if(lastDepthOrder!==signature){for(const id of sorted)targetStage.appendChild($(id));lastDepthOrder=signature;}
 }
 let tapStallFrames=0;
+let tapRoute=[];
+// Route a tapped destination around physical paper props instead of walking
+// forever into the nearest edge. This uses the same canStand() as real movement.
+// Each grid edge is sampled to avoid cutting diagonally through thin obstacles.
+function planTapRoute(goalX,goalY){
+ const [left,right,back,front]=boundsFor(state.area),step=22;
+ const cols=Math.floor((right-left)/step)+1,rows=Math.floor((front-back)/step)+1;
+ const at=(ix,iy)=>({x:clamp(left+ix*step,left,right),y:clamp(back+iy*step,back,front)});
+ const key=(ix,iy)=>iy*cols+ix;
+ const nearest=(x,y)=>[clamp(Math.round((x-left)/step),0,cols-1),clamp(Math.round((y-back)/step),0,rows-1)];
+ const [sx,sy]=nearest(state.x,state.y),[gx,gy]=nearest(goalX,goalY);
+ const start=key(sx,sy),goal=key(gx,gy);
+ const frontier=[start],cost=new Map([[start,0]]),parent=new Map();
+ const heuristic=id=>{const p=at(id%cols,Math.floor(id/cols));return Math.hypot((p.x-goalX), (p.y-goalY)*1.25);};
+ const directions=[[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
+ const pass=(a,b)=>{for(let k=1;k<=4;k++){const t=k/4;if(!canStand(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,state.mended,state.area))return false;}return true;};
+ let iterations=0,found=false;
+ while(frontier.length&&iterations++<cols*rows){
+   let best=0,bestScore=Infinity;
+   for(let i=0;i<frontier.length;i++){const id=frontier[i],score=cost.get(id)+heuristic(id);if(score<bestScore){bestScore=score;best=i;}}
+   const current=frontier.splice(best,1)[0];
+   if(current===goal){found=true;break;}
+   const cx=current%cols,cy=Math.floor(current/cols),p=at(cx,cy);
+   for(const [dx,dy] of directions){
+     const nx=cx+dx,ny=cy+dy;if(nx<0||nx>=cols||ny<0||ny>=rows)continue;
+     const next=key(nx,ny),q=at(nx,ny);
+     if(!canStand(q.x,q.y,state.mended,state.area)||!pass(p,q))continue;
+     // Diagonal steps may not cut between two adjacent blocked squares.
+     if(dx&&dy&&(!pass(p,at(nx,cy))||!pass(p,at(cx,ny))))continue;
+     const nextCost=cost.get(current)+Math.hypot(dx*step,dy*step*1.25);
+     if(nextCost>=(cost.get(next)??Infinity))continue;
+     cost.set(next,nextCost);parent.set(next,current);
+     if(!frontier.includes(next))frontier.push(next);
+   }
+ }
+ if(!found)return [];
+ const points=[];let node=goal;
+ while(node!==start&&points.length<cols*rows){points.push(at(node%cols,Math.floor(node/cols)));node=parent.get(node);if(node===undefined)return [];}
+ points.reverse();
+ // The exact destination is important for approaching interactive props.
+ const end=points.at(-1)||{x:state.x,y:state.y};
+ if(pass(end,{x:goalX,y:goalY}))points.push({x:goalX,y:goalY});
+ return points;
+}
 // A brief walk should persist even if it ends before the periodic save interval.
 let unsavedWalk=false;
-function cancelTap(){moveTarget=null;tapStallFrames=0;el.tapMarker.setAttribute('visibility','hidden');}
+function cancelTap(){moveTarget=null;tapRoute=[];tapStallFrames=0;el.tapMarker.setAttribute('visibility','hidden');}
 function moveBy(dx,dy){
  const oldX=state.x,oldY=state.y;
  const [left,right,back,front]=boundsFor(state.area);
@@ -622,6 +666,8 @@ el.world.addEventListener('pointerdown',event=>{
  const [left,right,back,front]=boundsFor(state.area);
  const x=clamp(loc.x,left,right),y=clamp(loc.y,back,front);
  if(!canStand(x,y,state.mended,state.area)){cancelTap();return;}
+ tapRoute=planTapRoute(x,y);
+ if(!tapRoute.length){cancelTap();return;}
  moveTarget={x,y};
  el.tapMarker.setAttribute('transform','translate('+x.toFixed(1)+' '+y.toFixed(1)+')');
  el.tapMarker.setAttribute('visibility','visible');
@@ -685,9 +731,9 @@ function frame(now){
   // the stale target resumes after release and can cancel a deliberate turn.
   if(moving&&moveTarget)cancelTap();
   if(!moving&&moveTarget){
-   const dx=moveTarget.x-state.x,dy=moveTarget.y-state.y;
-   if(Math.hypot(dx,dy*1.25)<6)cancelTap();
-   else{x=dx;y=dy;moving=true;}
+   while(tapRoute.length&&Math.hypot(tapRoute[0].x-state.x,(tapRoute[0].y-state.y)*1.25)<10)tapRoute.shift();
+   if(!tapRoute.length){cancelTap();}
+   else{const next=tapRoute[0];x=next.x-state.x;y=next.y-state.y;moving=true;}
   }
   if(moving){
    const len=Math.hypot(x,y)||1;
@@ -698,12 +744,13 @@ function frame(now){
    else if(ax>ay*1.65)state.direction='side';
    else state.direction=y<0?'diag-up':'diag-down';
    const oldX=state.x,oldY=state.y;
-   const distanceBefore=moveTarget?Math.hypot(moveTarget.x-oldX,(moveTarget.y-oldY)*1.25):0;
+   const distanceBefore=moveTarget&&tapRoute.length?Math.hypot(tapRoute[0].x-oldX,(tapRoute[0].y-oldY)*1.25):0;
    const moved=moveBy(x/len*225*dt,y/len*165*dt);
    // A valid tapped destination can still be unreachable behind an obstacle.
    // Stop sliding along walls when each step fails to close the distance.
    if(moveTarget){
-    const distanceAfter=Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25);
+    const next=tapRoute[0]||moveTarget;
+    const distanceAfter=Math.hypot(next.x-state.x,(next.y-state.y)*1.25);
     tapStallFrames=distanceAfter>=distanceBefore-.1?tapStallFrames+1:0;
     if(!moved||tapStallFrames>=12)cancelTap();
    }
