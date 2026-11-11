@@ -228,7 +228,16 @@ function planTapRoute(goalX,goalY){
  const key=(ix,iy)=>iy*cols+ix;
  const nearest=(x,y)=>[clamp(Math.round((x-left)/step),0,cols-1),clamp(Math.round((y-back)/step),0,rows-1)];
  const startPosition={x:state.x,y:state.y},destination={x:goalX,y:goalY};
- const pass=(a,b)=>{for(let k=1;k<=8;k++){const t=k/8;if(!canStand(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,state.mended,state.area))return false;}return true;};
+ // Sample at most six world units apart. A fixed eight samples could leap
+ // over thin cardstock collision footprints on long straight tap routes.
+ const pass=(a,b)=>{
+   const samples=Math.max(1,Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/6));
+   for(let k=1;k<=samples;k++){
+     const t=k/samples;
+     if(!canStand(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,state.mended,state.area))return false;
+   }
+   return true;
+ };
  if(!canStand(goalX,goalY,state.mended,state.area))return [];
  if(pass(startPosition,destination))return [destination];
  // A real standing point can be valid even when its rounded grid cell is
@@ -282,9 +291,20 @@ function planTapRoute(goalX,goalY){
    node=parent.get(node);
  }
  points.reverse();
- // Every connector is line-of-sight checked, including the final approach.
- points.push(destination);
- return points;
+ // Remove visible intermediate grid corners. Without this, the hero follows
+ // dozens of tiny 22-unit zigzags and repeatedly snaps between walk poses.
+ // The same sampled collision check protects shortcuts around props.
+ const route=[...points,destination],smooth=[];
+ let anchor=startPosition,index=0;
+ while(index<route.length){
+   let furthest=index;
+   for(let candidate=index+1;candidate<route.length;candidate++){
+     if(pass(anchor,route[candidate]))furthest=candidate;
+   }
+   const waypoint=route[furthest];
+   smooth.push(waypoint);anchor=waypoint;index=furthest+1;
+ }
+ return smooth;
 }
 // A brief walk should persist even if it ends before the periodic save interval.
 let unsavedWalk=false;
