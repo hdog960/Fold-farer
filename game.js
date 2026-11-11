@@ -391,6 +391,9 @@ function startGame(){
  }
 }
 function speak(lines,done){
+ // Dialogue takes ownership of the controls: a held direction or unfinished
+ // tap route must not resume after the last speech bubble closes.
+ cancelTap();clearHeld();
  pivotStart=0;pivotUntil=0;el.tavi.classList.remove('pivoting');el.tavi.classList.remove('turning');
  dialogue=lines.slice();afterDialogue=typeof done==='function'?done:null;modal='dialogue';el.dialog.classList.remove('hidden');nextLine();
 }
@@ -583,6 +586,7 @@ function interact(){
 }
 function openJournal(){
  if(modal==='battle'||modal==='timing'||modal==='dialogue')return;
+ cancelTap();clearHeld();
  modal='journal';el.journal.classList.remove('hidden');
  let notes=['<strong>First Fold — Aesthetic Review</strong>'];
  notes.push(state.metMorrow?'✓ Met Morrow, the ink-bird.':'○ Morrow waits near the Threads shop.');
@@ -611,6 +615,7 @@ function showBattleEffect(action,perfect=false){
  if(action)el.battle.classList.add('fx-'+action);
 }
 function openBattle(){
+ cancelTap();clearHeld();
  battle={hero:24,enemy:26,round:1,fold:0,morrowWeak:false,guard:false,busy:false,finished:false};
  modal='battle';el.battle.classList.remove('hidden');showBattleEffect(null);
  el.battleDone.classList.add('hidden');el.battleActions.classList.remove('hidden');el.timing.classList.add('hidden');
@@ -737,6 +742,7 @@ el.journalButton.addEventListener('click',()=>{if(modal==='journal')closeJournal
 el.resume.addEventListener('click',closeJournal);
 el.reset.addEventListener('click',()=>{
  if(!window.confirm('Restart this aesthetic preview and clear its local progress?'))return;
+ cancelTap();clearHeld();unsavedWalk=false;
  localStorage.removeItem(SAVE_KEY);state=initial();companion.ready=false;eventLocks={};dialogue=[];afterDialogue=null;closeJournal();showIntro();sync();
 });
 el.battleActions.addEventListener('click',e=>{const button=e.target.closest('[data-battle]');if(button)chooseBattle(button.dataset.battle);});
