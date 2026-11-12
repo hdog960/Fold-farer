@@ -31,6 +31,16 @@ This static preview has no mandatory runtime dependency or subscription:
 - Run npm test for source/structure smoke checks (Node 22).
 - On GitHub Pages, publish from the main branch root, using /Fold-farer/ as the repository base path.
 
+## Manual development and current roadmap
+
+**Development mode: manual, substantial continuation sessions.** The hourly automation is disabled. The current illustration style has positive creator feedback; maintain it while strengthening iPhone performance and completing the First Fold playable vertical slice.
+
+- [Project authority](docs/00-PROJECT-AUTHORITY.md) · [Playable scope](docs/01-PLAYABLE-SCOPE.md) · [Milestone roadmap](docs/02-MILESTONE-ROADMAP.md)
+- [Art approval and gates](docs/03-ART-DIRECTION-AND-GATES.md) · [Protected systems](docs/04-PROTECTED-SYSTEMS.md) · [QA/release rules](docs/05-VERIFICATION-AND-RELEASE.md)
+- [Manual development procedure](docs/06-MANUAL-DEVELOPMENT-PROTOCOL.md) · [Verified release ledger](docs/RELEASE_LEDGER.md) · [Next-session handoff](docs/CURRENT_HANDOFF.md)
+
+**Milestone A is still in progress, Milestone B locked** pending explicit approval. The creator liking the current art style is approval of the aesthetic direction, not certification of a complete playable vertical slice.
+
 ## Project status and audit trail
 See [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) for implemented, unverified, and missing features. Phase 00 and the larger Milestone A are incomplete. The full original narrative, approved sprite sheets, production art and all major RPG subsystems are yet to be built.
 
