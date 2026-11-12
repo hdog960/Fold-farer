@@ -13,11 +13,12 @@ const point=box=>({x:Math.round(box.x+box.width/2),y:Math.round(box.y+box.height
 const messages=[];
 try{
  for(const [width,height] of sizes){
-  const context=await browser.newContext({
+  const mobileOptions={
    viewport:{width,height},screen:{width,height},deviceScaleFactor:2,
    isMobile:true,hasTouch:true,reducedMotion:'reduce',
    serviceWorkers:'allow'
-  });
+  };
+  const context=await browser.newContext(mobileOptions);
   const page=await context.newPage();
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
@@ -68,9 +69,9 @@ try{
   assert(activeAfterTouch,'CDP touch did not activate on-screen movement button');
   assert.notEqual(after,before,'Held right thumb did not move Tavi');
   await emit('touchStart',[{id:1,...right},{id:2,...act}]);
-  await page.waitForTimeout(60);
-  await emit('touchEnd',[{id:1,...right}]);
+  // ACT fires on touch-down while the movement finger remains held.
   await page.locator('#dialogue').waitFor({state:'visible',timeout:5000});
+  await emit('touchEnd',[{id:1,...right}]);
   assert.equal(await page.locator('[data-move="right"]').evaluate(e=>e.classList.contains('active')),false,
    'Dialogue failed to release previously held movement');
   await emit('touchEnd',[]);
@@ -81,22 +82,33 @@ try{
   for(let i=0;i<8&&await page.locator('#dialogue').isVisible();i++)await page.locator('#nextLine').click();
   assert.equal(await page.locator('#dialogue').isVisible(),false,'Dialogue did not close');
   await page.screenshot({path:'qa-artifacts/mobile-'+width+'x'+height+'.png'});
-  // Close/reload and corrupt primary: the shadow checkpoint must preserve the
-  // same story flags and coordinates without changing old save key or schema.
-  await page.evaluate(key=>localStorage.setItem(key,'{damaged'),SAVE);
-  await page.reload({waitUntil:'networkidle'});
-  await page.locator('#start').click();
-  const recovered=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),SAVE);
+  // A separate context is essential: corrupting localStorage in the live
+  // game and reloading would trigger pagehide and restore the primary before
+  // the loader could exercise the recovery copy.
+  const storageState=await context.storageState();
+  const store=storageState.origins.find(origin=>origin.origin===new URL(URL).origin);
+  assert(store,'Missing browser origin storage state');
+  const primary=store.localStorage.find(item=>item.name===SAVE);
+  const backup=store.localStorage.find(item=>item.name===SAVE+'.backup');
+  assert(primary&&backup,'A browser checkpoint must have both save copies');
+  primary.value='{damaged';
+  const recoveryContext=await browser.newContext({...mobileOptions,storageState});
+  const recoveryPage=await recoveryContext.newPage();
+  recoveryPage.on('pageerror',err=>errors.push('recovery: '+err.message));
+  await recoveryPage.goto(URL,{waitUntil:'networkidle'});
+  await recoveryPage.locator('#start').click();
+  const recovered=await recoveryPage.evaluate(key=>JSON.parse(localStorage.getItem(key)),SAVE);
   assert(recovered.metMorrow===true&&recovered.area==='folio',
-   'Browser reload failed to recover the original story checkpoint');
-  // A real service worker must control this page before asserting offline mode.
-  await page.waitForFunction(()=>Boolean(navigator.serviceWorker?.controller),null,{timeout:12000});
-  await context.setOffline(true);
-  await page.reload({waitUntil:'domcontentloaded',timeout:16000});
-  assert(await page.locator('#world').count()===1,'Offline reload lost the game scene');
-  assert((await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),SAVE)).metMorrow,
-   'Offline reload lost saved companion progress');
-  await page.screenshot({path:'qa-artifacts/offline-'+width+'x'+height+'.png'});
+   'A corrupted primary did not recover from a new browser context');
+  await recoveryPage.waitForFunction(()=>Boolean(navigator.serviceWorker?.controller),null,
+   {timeout:12000});
+  await recoveryContext.setOffline(true);
+  await recoveryPage.reload({waitUntil:'domcontentloaded',timeout:16000});
+  assert(await recoveryPage.locator('#world').count()===1,'Offline reload lost the painted stage');
+  assert((await recoveryPage.evaluate(key=>JSON.parse(localStorage.getItem(key)),SAVE)).metMorrow,
+   'Offline reload lost the checkpointed companion');
+  await recoveryPage.screenshot({path:'qa-artifacts/offline-'+width+'x'+height+'.png'});
+  await recoveryContext.close();
   assert.equal(errors.length,0,'Chromium runtime errors: '+errors.join('; '));
   messages.push(width+'x'+height+': two-thumb movement+ACT, release, checkpoint recovery and offline reload PASS');
   await context.close();
