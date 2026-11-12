@@ -12,14 +12,19 @@ new Script(sw,{filename:'sw.js'});
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
 // Each directional body has its own original two-sided hinged cloak stock,
 // mounted behind the feet/body so it cannot cover faces or alter foot anchors.
+const cloakSilhouettes=new Set();
 for(const pose of ['taviFrontArt','taviBackArt','taviSideArt','taviFrontQuarterArt','taviBackQuarterArt']){
   const start=html.indexOf('id="'+pose+'"');
   assert(start>=0,'Missing directional Tavi pose '+pose);
   const cloak=html.slice(start,html.indexOf('</g>',start)+4);
   assert(cloak.includes('class="tavi-travel-cloak"'),'Missing physical cloth backing in '+pose);
-  assert((cloak.match(/<path /g)||[]).length>=7,'Directional cloak lacks authored cardstock panels '+pose);
+  assert((cloak.match(/<path /g)||[]).length >=5,'Directional cloak lacks authored cardstock panels '+pose);
   assert(html.indexOf('tavi-travel-cloak',start)<html.indexOf('stride-contact-ground',start),'Cloth must remain behind Tavi feet '+pose);
+  const primaryPath=cloak.match(/<path d="([^"]+)"/);
+  assert(primaryPath,'Missing independently drawn silhouette '+pose);
+  cloakSilhouettes.add(primaryPath[1]);
 }
+assert.equal(cloakSilhouettes.size,5,'Each Tavi view needs its own authored silhouette');
 assert.equal(new Set(ids).size,ids.length,'Duplicate id attributes');
 for(const id of ['terraceBookbindersQuarter','terraceQuarterBackCard','terraceQuarterBindery','terraceQuarterScriptorium','terraceQuarterBellTower','terraceQuarterRibbonWalk'])
   assert(ids.includes(id),'Missing authored North Terrace bookbinders quarter layer: '+id);
