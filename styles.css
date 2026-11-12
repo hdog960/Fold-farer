@@ -1408,3 +1408,6 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
    filter:none!important;
  }
 }
+
+/* Keep movement and action buttons responsive during a simultaneous touch. */
+.move-key,#interact{touch-action:none;-webkit-user-select:none;user-select:none}

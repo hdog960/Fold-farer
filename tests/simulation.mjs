@@ -171,6 +171,17 @@ assert(!rightPad.classList.contains('active'),'Stale capture release reactivated
 const checkpointName='foldfarer.firstfold.0.1.backup';
 assert(storage.has(checkpointName),'Quest checkpoint recovery slot was not created');
 
+// Holding a direction while pressing ACT with the second thumb must start
+// dialogue immediately and swallow the subsequent synthesized click.
+touch(rightPad,'pointerdown',51);
+e('interact').fire('pointerdown',{pointerType:'touch',preventDefault(){}});
+assert(!e('dialogue').classList.contains('hidden'),'Second thumb could not ACT while holding movement');
+assert(!rightPad.classList.contains('active'),'Dialogue did not clear the held thumb');
+e('interact').fire('click',{detail:1});
+assert(!e('dialogue').classList.contains('hidden'),'Touch generated a duplicate ACT and skipped dialogue');
+drainDialogue();
+touch(rightPad,'lostpointercapture',51);
+assert(!rightPad.classList.contains('active'),'Stale capture reactivated movement');
 // Modal handoff: a held movement key must not resume when speech closes.
 key('ArrowRight',true);
 click('interact');

@@ -858,7 +858,19 @@ el.world.addEventListener('pointerdown',event=>{
  el.tapMarker.setAttribute('visibility','visible');
 });
 el.start.addEventListener('click',startGame);
-el.interact.addEventListener('click',interact);
+// Multi-touch iOS may suppress a synthesized click for the second thumb while
+// the first thumb holds movement. Act on touch-down and suppress its later click.
+let lastTouchActAt=-Infinity;
+el.interact.addEventListener('pointerdown',event=>{
+ if(event.pointerType!=='touch'&&event.pointerType!=='pen')return;
+ event.preventDefault();
+ lastTouchActAt=performance.now();
+ interact();
+});
+el.interact.addEventListener('click',event=>{
+ if(event.detail>0&&performance.now()-lastTouchActAt<650)return;
+ interact();
+});
 el.nextLine.addEventListener('click',nextLine);
 el.journalButton.addEventListener('click',()=>{if(modal==='journal')closeJournal();else openJournal();});
 el.resume.addEventListener('click',closeJournal);

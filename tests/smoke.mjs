@@ -9,6 +9,11 @@ const shellVersion=sw.match(/const CACHE = 'foldfarer-shell-0\.(\d+)'/);
 assert(shellVersion && Number(shellVersion[1])>=50,'Installed Home Screen cache must be at least 0.50');
 new Script(game,{filename:'game.js'});
 new Script(sw,{filename:'sw.js'});
+assert(game.includes("el.interact.addEventListener('pointerdown',event=>")&&
+       game.includes("performance.now()-lastTouchActAt<650"),
+       'Second-thumb ACT must fire before synthesized touch clicks');
+assert(css.includes('.move-key,#interact{touch-action:none;'),
+       'Multi-touch buttons must not initiate browser panning');
 assert(game.includes("const BACKUP_KEY=SAVE_KEY+'.backup';")&&
        game.includes("return read(SAVE_KEY)||read(BACKUP_KEY)||initial();"),
        'Corrupt primary save must recover compatible checkpoint');
