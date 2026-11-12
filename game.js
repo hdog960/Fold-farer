@@ -85,6 +85,27 @@ function setSceneryTransform(node,key,value){
  node.setAttribute('transform',value);
  lastBackdropTransforms[key]=value;
 }
+const lastPaintProperties=new WeakMap();
+function setPaintProperty(node,key,value){
+ let last=lastPaintProperties.get(node);
+ if(!last){last=Object.create(null);lastPaintProperties.set(node,last);}
+ if(last[key]===value)return;
+ node.style.setProperty(key,value);
+ last[key]=value;
+}
+const lastOpacity=new WeakMap();
+function setPaintOpacity(node,value){
+ if(lastOpacity.get(node)===value)return;
+ node.setAttribute('opacity',value);
+ lastOpacity.set(node,value);
+}
+const lastDirection=new WeakMap();
+function setDirectionClass(node,direction){
+ if(lastDirection.get(node)===direction)return;
+ for(const dir of ['up','down','side','diag-up','diag-down'])
+  node.classList.toggle('dir-'+dir,direction===dir);
+ lastDirection.set(node,direction);
+}
 function setVisualDataset(node,key,value){
  if(node.dataset[key]!==value)node.dataset[key]=value;
 }
@@ -144,9 +165,9 @@ function updateMorrowAnimation(now){
 function updateCompanion(dt=0){
  if(!state.metMorrow){
    companion.x=474;companion.y=620;companion.area='folio';companion.ready=false;companion.flightSpeed=0;companion.bank=0;companion.pitch=0;
-   el.morrow.style.setProperty('--morrow-flight-bank','0deg');
-   el.morrow.style.setProperty('--morrow-flight-pitch','0px');
-   el.morrow.setAttribute('transform','translate(474 610)');
+   setPaintProperty(el.morrow,'--morrow-flight-bank','0deg');
+   setPaintProperty(el.morrow,'--morrow-flight-pitch','0px');
+   setActorTransform(el.morrow,'translate(474 610)');
    el.morrow.classList.remove('following');
    if(el.morrow.parentNode!==el.depthStage){el.depthStage.appendChild(el.morrow);lastDepthOrder='';}
    return;
@@ -194,18 +215,18 @@ function updateCompanion(dt=0){
  companion.bank+=(desiredBank-companion.bank)*response;
  companion.pitch+=(desiredPitch-companion.pitch)*response;
  if(!wasFollowing||prefersStill){companion.bank=0;companion.pitch=0;}
- el.morrow.style.setProperty('--morrow-flight-bank',companion.bank.toFixed(2)+'deg');
- el.morrow.style.setProperty('--morrow-flight-pitch',companion.pitch.toFixed(2)+'px');
+ setPaintProperty(el.morrow,'--morrow-flight-bank',companion.bank.toFixed(2)+'deg');
+ setPaintProperty(el.morrow,'--morrow-flight-pitch',companion.pitch.toFixed(2)+'px');
  const size=terrace?clamp(.61+(companion.y-400)*.00106,.61,1.01):clamp(.72+(companion.y-552)*.00075,.71,.89);
  setActorTransform(el.morrow,'translate('+companion.x.toFixed(1)+' '+companion.y.toFixed(1)+') scale('+size.toFixed(3)+')');
  // The bird remains airborne: lighter bounce follows its *ground* projection.
  const birdLantern=Math.hypot(companion.x-371,(companion.y-615)*1.1);
  const birdBounce=terrace?.11+.24*Math.max(0,1-birdLantern/460):(indoors?.07:.10);
- el.morrowContactBounce.setAttribute('opacity',birdBounce.toFixed(3));
+ setPaintOpacity(el.morrowContactBounce,birdBounce.toFixed(3));
  // Cardstock feather highlights catch the SAME nearby warm light as the
  // walking world; this changes only paint values, not bird movement.
  const birdReflect=terrace?.56+.27*Math.max(0,1-birdLantern/460):(indoors?.48:.54);
- el.morrow.style.setProperty('--paper-rim-strength',birdReflect.toFixed(2));
+ setPaintProperty(el.morrow,'--paper-rim-strength',birdReflect.toFixed(2));
  el.morrow.classList.add('following');
  const targetStage=indoors?el.atelierDepthStage:(terrace?el.terraceDepthStage:el.depthStage);
  if(el.morrow.parentNode!==targetStage){targetStage.appendChild(el.morrow);lastDepthOrder='';}
@@ -225,18 +246,20 @@ function updateCharacter(){
  const distanceToLantern=Math.hypot(state.x-371,(state.y-615)*1.1);
  const proximity=terrace?Math.max(0,1-distanceToLantern/460):0;
  const footBounce=terrace?.20+.45*proximity:(state.area==='atelier'?.10:.14);
- el.taviContactBounce.setAttribute('opacity',footBounce.toFixed(3));
+ setPaintOpacity(el.taviContactBounce,footBounce.toFixed(3));
  // Only the actual painted coat edge responds to the light. No portrait HUD,
  // fake sprite halo or area-wide flat rectangle is used.
  const coatReflect=terrace?.56+.32*proximity:(state.area==='atelier'?.50:.61);
- el.tavi.style.setProperty('--paper-rim-strength',coatReflect.toFixed(2));
- el.taviFlip.setAttribute('transform','scale('+state.facing+' 1)');
- for(const dir of ['up','down','side','diag-up','diag-down'])el.tavi.classList.toggle('dir-'+dir,state.direction===dir);
+ setPaintProperty(el.tavi,'--paper-rim-strength',coatReflect.toFixed(2));
+ setActorTransform(el.taviFlip,'scale('+state.facing+' 1)');
+ setDirectionClass(el.tavi,state.direction);
  const inside=state.area==='atelier';
  const targetStage=inside?el.atelierDepthStage:(terrace?el.terraceDepthStage:el.depthStage);
  const items=inside?{...atelierDepth,...(state.metMorrow?{morrow:companion.y}:{})}:
    terrace?{...terraceDepth,...(state.metMorrow?{morrow:companion.y}:{})}:
    {...actorDepth,morrow:state.metMorrow?companion.y:620};
+ // Depth sorting is needed only when actors cross another object's foot Y.
+ // The resulting signature still determines the actual DOM order.
  const sorted=Object.entries({...items,tavi:state.y}).sort((a,b)=>a[1]-b[1]).map(v=>v[0]);
  const signature=state.area+':'+sorted.join(':');
  if(el.tavi.parentNode!==targetStage)targetStage.appendChild(el.tavi);
@@ -873,7 +896,12 @@ function frame(now){
  // Resolve the companion's actual new position before selecting a wing cel.
  // Otherwise the flight-speed animation always reacts to the previous frame,
  // especially noticeable when the player suddenly reverses direction.
- if(modal==='field'&&state.metMorrow){updateCompanion(dt);updateCharacter();}
+ if(modal==='field'&&state.metMorrow){
+  updateCompanion(dt);
+  // The follower may continue easing after Tavi stops; its physical depth
+  // ordering must still be resolved. Cached paint properties make this cheap.
+  updateCharacter();
+ }
  else if(modal==='field'&&(fieldMotion||priorArtFacing!==state.direction+':'+state.facing))updateCharacter();
  updateMorrowAnimation(now);
  if(modal==='timing'&&timingActive)el.timingMarker.style.left=progressAt(now)+'%';

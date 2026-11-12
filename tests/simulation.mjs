@@ -59,6 +59,27 @@ const context=createContext({
 });
 new Script(read('game.js'),{filename:'game.js'}).runInContext(context);
 const e=id=>elements.get(id);
+// The renderer may call updateCharacter every frame while Morrow follows.
+// Verify unchanged SVG light properties, flip and direction don't repaint.
+const taviFoot=e('taviContactBounce');
+const taviFlip=e('taviFlip');
+const bird=e('morrow');
+let duplicateTaviLight=0,duplicateFlip=0,duplicateBirdBank=0;
+const footWrite=taviFoot.setAttribute;
+taviFoot.setAttribute=function(name,value){
+ if(name==='opacity'&&this.attrs.opacity===value)duplicateTaviLight++;
+ return footWrite.call(this,name,value);
+};
+const flipWrite=taviFlip.setAttribute;
+taviFlip.setAttribute=function(name,value){
+ if(name==='transform'&&this.attrs.transform===value)duplicateFlip++;
+ return flipWrite.call(this,name,value);
+};
+const birdSetProperty=bird.style.setProperty;
+bird.style.setProperty=function(name,value){
+ if(name==='--morrow-flight-bank'&&this[name]===value)duplicateBirdBank++;
+ return birdSetProperty.call(this,name,value);
+};
 const click=id=>e(id).fire();
 function step(count){
  for(let i=0;i<count;i++){now+=1000/60;const cb=raf;assert(cb,'animation callback missing');raf=null;cb(now);}
@@ -266,4 +287,7 @@ assert(pos().x<=1360,'Hero exceeded authored scene bounds');
 assert(!e('tavi').classList.contains('walking'),'Hero must not moonwalk against a map edge');
 assert(e('tavi').dataset.stride==='0','Feet must rest at contact after hitting a wall');
 assert(e('tavi').classList.contains('walking')===false,'Idle Tavi must clear walking state for base costume and portrait');
+assert.equal(duplicateTaviLight,0,'Unchanged Tavi light repeatedly repainted');
+assert.equal(duplicateFlip,0,'Unchanged facing repeatedly repainted');
+assert.equal(duplicateBirdBank,0,'Unchanged Morrow banking repeatedly repainted');
 console.log('Gameplay simulation passed: 2D movement, depth poses, river collision, Morrow -> Mend -> Mila -> timed battle -> victory -> journal/save.');

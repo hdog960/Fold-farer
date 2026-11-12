@@ -9,6 +9,14 @@ const shellVersion=sw.match(/const CACHE = 'foldfarer-shell-0\.(\d+)'/);
 assert(shellVersion && Number(shellVersion[1])>=50,'Installed Home Screen cache must be at least 0.50');
 new Script(game,{filename:'game.js'});
 new Script(sw,{filename:'sw.js'});
+// Mobile perf: avoid invalidating detailed actor SVGs for identical paint
+// values, unchanged directional pose and stationary ground-contact shadows.
+for(const name of ['setPaintProperty','setPaintOpacity','setDirectionClass'])
+ assert(game.includes('function '+name+'('),'Missing cached actor rendering: '+name);
+assert(game.includes("setPaintProperty(el.morrow,'--morrow-flight-bank'") &&
+       game.includes("setPaintOpacity(el.taviContactBounce") &&
+       game.includes("setDirectionClass(el.tavi,state.direction)"),
+       'The character frame loop must not issue unchanged SVG paint writes');
 assert(game.includes("const touchScenery=!!window.matchMedia?.('(pointer: coarse)').matches;"),'Touch devices must not pan giant scenic cards per frame');
 assert(game.includes('lastBackdropTransforms')&&game.includes('setSceneryTransform'),'SVG scenery updates must be cached');
 assert(css.includes('@media (pointer: coarse)')&&css.includes('#world { filter:none!important; }'),'Handheld rendering budget missing');
