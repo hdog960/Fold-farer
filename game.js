@@ -998,7 +998,10 @@ function frame(now){
 sync();
 if(state.started){el.start.firstChild.textContent='Continue Adventure ';}else{el.start.firstChild.textContent='Open the Book ';}
 requestAnimationFrame(frame);
-if('serviceWorker' in navigator && location.protocol==='https:'){
+// Secure localhost is a browser-trusted origin: allow genuine local PWA
+// installation/offline QA as well as the normal production HTTPS route.
+if('serviceWorker' in navigator &&
+   (location.protocol==='https:'||location.hostname==='localhost'||location.hostname==='127.0.0.1')){
   window.addEventListener('load',async()=>{
     try{
       // Same installed Home Screen icon, always the same address. Updates are

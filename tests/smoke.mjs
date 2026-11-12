@@ -9,6 +9,8 @@ const shellVersion=sw.match(/const CACHE = 'foldfarer-shell-0\.(\d+)'/);
 assert(shellVersion && Number(shellVersion[1])>=50,'Installed Home Screen cache must be at least 0.50');
 new Script(game,{filename:'game.js'});
 new Script(sw,{filename:'sw.js'});
+assert(game.includes("location.hostname==='127.0.0.1'")&&game.includes("location.protocol==='https:'"),
+ 'Real offline integration must work on trusted localhost and HTTPS Pages');
 assert(game.includes("el.interact.addEventListener('pointerdown',event=>")&&
        game.includes("performance.now()-lastTouchActAt<650"),
        'Second-thumb ACT must fire before synthesized touch clicks');
