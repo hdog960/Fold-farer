@@ -21,14 +21,24 @@ try{
   const page=await context.newPage();
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(URL,{waitUntil:'networkidle'});
-  await page.evaluate(key=>localStorage.setItem(key,JSON.stringify({
+  // Seed BEFORE game.js starts. Mutating localStorage in a running game and
+  // reloading lets its pagehide handler overwrite the injected checkpoint.
+  await page.addInitScript(({key,snapshot})=>{
+   if(!sessionStorage.getItem('foldfarer-qa-seeded')){
+    localStorage.setItem(key,JSON.stringify(snapshot));
+    sessionStorage.setItem('foldfarer-qa-seeded','1');
+   }
+  },{key:SAVE,snapshot:{
    started:true,x:355,y:654,facing:1,direction:'down',area:'folio',
    threadSample:false,metMorrow:true,mended:false,letter:false,won:false
-  })),SAVE);
-  await page.reload({waitUntil:'networkidle'});
+  }});
+  await page.goto(URL,{waitUntil:'networkidle'});
   await page.locator('#start').click();
   assert.equal(await page.locator('#intro').isVisible(),false,'Intro did not close');
+  assert.equal(await page.locator('#dialogue').isVisible(),false,
+   'Preloaded checkpoint unexpectedly played opening dialogue');
+  assert((await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),SAVE)).metMorrow,
+   'Browser did not seed the current companion checkpoint');
   const keys=['[data-move="left"]','[data-move="right"]',
               '[data-move="up"]','[data-move="down"]','#interact'];
   for(const selector of keys){
@@ -46,28 +56,15 @@ try{
   const emit=(type,contacts)=>dev.send('Input.dispatchTouchEvent',{
    type,touchPoints:contacts.map(({id,x,y})=>({id,x,y,radiusX:4,radiusY:4,force:1}))
   });
-  const probe=await page.evaluate(({x,y})=>{
-   const hit=document.elementFromPoint(x,y);
-   const b=document.querySelector('[data-move="right"]');
-   return {hit:hit?.tagName+':'+(hit?.getAttribute('class')||''),
-    stack:document.elementsFromPoint(x,y).slice(0,8).map(el=>el.tagName+':'+(el.id||el.className?.baseVal||el.className||'')),
-    buttonRect:b.getBoundingClientRect().toJSON(),
-    moveStyle:{display:getComputedStyle(b).display,visibility:getComputedStyle(b).visibility,
-      pointerEvents:getComputedStyle(b).pointerEvents,zIndex:getComputedStyle(b).zIndex},
-    railStyle:{display:getComputedStyle(b.parentElement).display,
-      pointerEvents:getComputedStyle(b.parentElement).pointerEvents,zIndex:getComputedStyle(b.parentElement).zIndex},
-    sameButton:hit===b,buttonActive:b.classList.contains('active'),
-    started:!document.querySelector('#intro').offsetParent,
-    transform:document.querySelector('#tavi').getAttribute('transform'),
-    view:{w:innerWidth,h:innerHeight,scale:visualViewport?.scale,scrollX,scrollY}}
-  },right);
-  console.log('MOBILE TOUCH HIT PROBE',width+'x'+height,JSON.stringify(probe));
+  // The D-pad must be above the SVG even when the character and scenery
+  // are actively painted. Dialogue is intentionally hidden for this check.
+  const hit=await page.evaluate(({x,y})=>document.elementFromPoint(x,y)===
+    document.querySelector('[data-move="right"]'),right);
+  assert(hit,'Landscape D-pad is not the topmost touch target');
   await emit('touchStart',[{id:1,...right}]);
   await page.waitForTimeout(230);
   const activeAfterTouch=await page.locator('[data-move="right"]').evaluate(e=>e.classList.contains('active'));
   const after=await page.locator('#tavi').getAttribute('transform');
-  console.log('MOBILE TOUCH MOTION PROBE',width+'x'+height,
-   JSON.stringify({activeAfterTouch,before,after,errors}));
   assert(activeAfterTouch,'CDP touch did not activate on-screen movement button');
   assert.notEqual(after,before,'Held right thumb did not move Tavi');
   await emit('touchStart',[{id:1,...right},{id:2,...act}]);
