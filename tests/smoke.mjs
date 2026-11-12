@@ -18,6 +18,14 @@ assert((quarter.match(/<path /g)||[]).length>=38,'Terrace quarter lost its dimen
 assert(html.indexOf('id="terraceBookbindersQuarter"')>html.indexOf('id="terraceDistantCards"'),'Quarter must remain in distant parallax scenery');
 assert(html.indexOf('id="terraceBookbindersQuarter"')<html.indexOf('id="terraceDepthStage"'),'Quarter must not obscure traversing characters');
 
+// The ink orchard must be constructed from four separate, multi-plane tree
+// illustrations in the parallax midground, not overlaid on the player stage.
+for(const id of ['terraceInkOrchard','terraceInkTree1','terraceInkTree2','terraceInkTree3','terraceInkTree4'])
+  assert(ids.includes(id),'Missing authored North Terrace ink orchard element: '+id);
+const orchard=html.slice(html.indexOf('id="terraceInkOrchard"'),html.indexOf('id="terraceLandscapeRetainingWall"'));
+assert((orchard.match(/<path /g)||[]).length>=40,'Ink orchard lost its distinct canopy, trunk, branch and stitching planes');
+assert(html.indexOf('id="terraceMidgroundCards"')<html.indexOf('id="terraceInkOrchard"') && html.indexOf('id="terraceInkOrchard"')<html.indexOf('id="terraceDepthStage"'),'Ink orchard must remain in background parallax behind playable actors');
+
 // Suspended paper viaduct is an actual layered architectural landmark,
 // not a foreground decal that would cover player movement.
 assert(ids.includes('terraceQuarterThreadViaduct'),'Missing suspended North Terrace cardstock viaduct');
