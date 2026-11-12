@@ -89,7 +89,7 @@ for(const id of ['folioNorthGate','terraceScene','terraceDistantCards','terraceG
 assert(game.includes("terrace:[155,1280,400,770]"),'Terrace must have a distinct deep walkable footprint');
 assert(game.includes("state.area==='terrace'"),'Terrace actor depth sorting and scene switching are missing');
 assert(ids.includes('taviFlip'),'Separate hero mirroring group missing');
-assert(game.includes("el.taviFlip.setAttribute('transform'"),'Mirror must affect only local hero art');
+assert(game.includes("setActorTransform(el.taviFlip,'scale('"),'Mirror must affect only local hero art');
 assert(game.includes("state.facing+' 1)'"),'Hero mirroring must be horizontal only, never invert Y');
 assert(css.includes('prompt.terrace-prompt'),'Terrace-specific HUD position not implemented');
 assert(css.includes('#tavi{transform-box:view-box;transform-origin:0 0}'),'SVG hero scale anchor must remain at actor feet');
@@ -199,8 +199,8 @@ assert(html.indexOf('id="terraceSideWalls"')<html.indexOf('id="terracePaperArchi
 assert(css.includes('#terraceNaturalMarginalia *{pointer-events:none!important}'),
  'Plant decoration must never consume touch input');
 assert(game.includes('distanceToLantern=Math.hypot(state.x-371')&&
-       game.includes("el.taviContactBounce.setAttribute('opacity'")&&
-       game.includes("el.morrowContactBounce.setAttribute('opacity'"),
+       game.includes("setPaintOpacity(el.taviContactBounce")&&
+       game.includes("setPaintOpacity(el.morrowContactBounce"),
  'New lighting must respond to physical world position in real gameplay');
 assert(html.includes('id="taviGroundShadow"')&&html.includes('id="morrowGroundShadow"'),
  'World-space contact lighting must preserve both original foot anchors');
@@ -292,8 +292,8 @@ assert(css.includes('#tavi.walking{animation:none!important;translate:0 0!import
 assert(html.indexOf('id="taviGroundShadow"')<html.indexOf('id="taviFlip"') &&
  html.indexOf('id="morrowGroundShadow"')<html.indexOf('id="morrowSprite"'),
  'Stationary ground shadow must be sibling before animated sprite, not its child');
-assert(game.includes("el.tavi.style.setProperty('--paper-rim-strength'") &&
- game.includes("el.morrow.style.setProperty('--paper-rim-strength'"),
+assert(game.includes("setPaintProperty(el.tavi,'--paper-rim-strength'") &&
+ game.includes("setPaintProperty(el.morrow,'--paper-rim-strength'"),
  'Actor fabric reflections must change with physical scene lighting');
 assert((shellVersion && Number(shellVersion[1])>=50),'PWA must refresh the 0.25 art assets');
 
