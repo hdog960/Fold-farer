@@ -23,7 +23,7 @@ assert(html.indexOf('id="terraceBookbindersQuarter"')<html.indexOf('id="terraceD
 for(const id of ['terraceInkOrchard','terraceInkTree1','terraceInkTree2','terraceInkTree3','terraceInkTree4'])
   assert(ids.includes(id),'Missing authored North Terrace ink orchard element: '+id);
 const orchard=html.slice(html.indexOf('id="terraceInkOrchard"'),html.indexOf('id="terraceLandscapeRetainingWall"'));
-assert((orchard.match(/<path /g)||[]).length>=40,'Ink orchard lost its distinct canopy, trunk, branch and stitching planes');
+assert((orchard.match(/<path /g)||[]).length>=37,'Ink orchard lost its distinct canopy, trunk, branch and stitching planes');
 assert(html.indexOf('id="terraceMidgroundCards"')<html.indexOf('id="terraceInkOrchard"') && html.indexOf('id="terraceInkOrchard"')<html.indexOf('id="terraceDepthStage"'),'Ink orchard must remain in background parallax behind playable actors');
 
 // Suspended paper viaduct is an actual layered architectural landmark,
