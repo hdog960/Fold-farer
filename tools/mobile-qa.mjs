@@ -50,10 +50,16 @@ try{
    const hit=document.elementFromPoint(x,y);
    const b=document.querySelector('[data-move="right"]');
    return {hit:hit?.tagName+':'+(hit?.getAttribute('class')||''),
+    stack:document.elementsFromPoint(x,y).slice(0,8).map(el=>el.tagName+':'+(el.id||el.className?.baseVal||el.className||'')),
+    buttonRect:b.getBoundingClientRect().toJSON(),
+    moveStyle:{display:getComputedStyle(b).display,visibility:getComputedStyle(b).visibility,
+      pointerEvents:getComputedStyle(b).pointerEvents,zIndex:getComputedStyle(b).zIndex},
+    railStyle:{display:getComputedStyle(b.parentElement).display,
+      pointerEvents:getComputedStyle(b.parentElement).pointerEvents,zIndex:getComputedStyle(b.parentElement).zIndex},
     sameButton:hit===b,buttonActive:b.classList.contains('active'),
     started:!document.querySelector('#intro').offsetParent,
     transform:document.querySelector('#tavi').getAttribute('transform'),
-    view:{w:innerWidth,h:innerHeight,scale:visualViewport?.scale}}
+    view:{w:innerWidth,h:innerHeight,scale:visualViewport?.scale,scrollX,scrollY}}
   },right);
   console.log('MOBILE TOUCH HIT PROBE',width+'x'+height,JSON.stringify(probe));
   await emit('touchStart',[{id:1,...right}]);
