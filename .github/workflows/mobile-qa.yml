@@ -1,0 +1,41 @@
+name: FoldFarer real Chromium mobile and offline QA
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "screenshots/**"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mobile-chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Node syntax and gameplay regression suite
+        run: npm test
+      - name: Install Chromium for actual game emulation
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Test actual landscape iPhone layouts, touch and offline gameplay
+        run: |
+          python3 -m http.server 8000 >/tmp/foldfarer-qa-server.log 2>&1 &
+          sleep 2
+          node tools/mobile-qa.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: foldfarer-mobile-qa-${{ github.run_id }}
+          path: qa-artifacts/*.png
+          if-no-files-found: ignore
+          retention-days: 7

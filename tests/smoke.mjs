@@ -9,6 +9,19 @@ const shellVersion=sw.match(/const CACHE = 'foldfarer-shell-0\.(\d+)'/);
 assert(shellVersion && Number(shellVersion[1])>=50,'Installed Home Screen cache must be at least 0.50');
 new Script(game,{filename:'game.js'});
 new Script(sw,{filename:'sw.js'});
+assert(game.includes("location.hostname==='127.0.0.1'")&&game.includes("location.protocol==='https:'"),
+ 'Real offline integration must work on trusted localhost and HTTPS Pages');
+assert(game.includes("el.interact.addEventListener('pointerdown',event=>")&&
+       game.includes("performance.now()-lastTouchActAt<650"),
+       'Second-thumb ACT must fire before synthesized touch clicks');
+assert(css.includes('.move-key,#interact{touch-action:none;'),
+       'Multi-touch buttons must not initiate browser panning');
+assert(game.includes("const BACKUP_KEY=SAVE_KEY+'.backup';")&&
+       game.includes("return read(SAVE_KEY)||read(BACKUP_KEY)||initial();"),
+       'Corrupt primary save must recover compatible checkpoint');
+assert(game.includes("localStorage.removeItem(BACKUP_KEY)")&&
+       game.includes("function refreshMovementDirection(direction)"),
+       'Explicit restart must clear recovery slot; touch owners must aggregate');
 assert(game.includes('function depthOrderStillValid(stage,depths)'),'Follower depth sorting must validate existing paint order before allocating a sort');
 assert(game.includes('if(depthOrderStillValid(targetStage,depths))return;'),'Stable companion depth must skip unnecessary per-frame sort');
 assert(game.includes("if(!el.morrow.classList.contains('following'))"),'Following state should not be written on every animation frame');
