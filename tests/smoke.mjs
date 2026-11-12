@@ -9,6 +9,9 @@ const shellVersion=sw.match(/const CACHE = 'foldfarer-shell-0\.(\d+)'/);
 assert(shellVersion && Number(shellVersion[1])>=50,'Installed Home Screen cache must be at least 0.50');
 new Script(game,{filename:'game.js'});
 new Script(sw,{filename:'sw.js'});
+assert(game.includes("const touchScenery=!!window.matchMedia?.('(pointer: coarse)').matches;"),'Touch devices must not pan giant scenic cards per frame');
+assert(game.includes('lastBackdropTransforms')&&game.includes('setSceneryTransform'),'SVG scenery updates must be cached');
+assert(css.includes('@media (pointer: coarse)')&&css.includes('#world { filter:none!important; }'),'Handheld rendering budget missing');
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
 assert.equal(new Set(ids).size,ids.length,'Duplicate id attributes');
 for(const id of ['terraceBookbindersQuarter','terraceQuarterBackCard','terraceQuarterBindery','terraceQuarterScriptorium','terraceQuarterBellTower','terraceQuarterRibbonWalk'])

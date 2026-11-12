@@ -76,30 +76,46 @@ const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceR
  terraceDyersBench:563,terraceLetterCabinet:555};
 let lastDepthOrder='';
 const backdrop={x:0,y:0};
+// Mobile SVG scenery preserves its painted depth planes without continuous
+// full-card translation and rasterization on touch hardware.
+const touchScenery=!!window.matchMedia?.('(pointer: coarse)').matches;
+const lastBackdropTransforms=Object.create(null);
+function setSceneryTransform(node,key,value){
+ if(lastBackdropTransforms[key]===value)return;
+ node.setAttribute('transform',value);
+ lastBackdropTransforms[key]=value;
+}
+function setVisualDataset(node,key,value){
+ if(node.dataset[key]!==value)node.dataset[key]=value;
+}
+const lastActorTransforms=new WeakMap();
+function setActorTransform(node,value){
+ if(lastActorTransforms.get(node)===value)return;
+ node.setAttribute('transform',value);
+ lastActorTransforms.set(node,value);
+}
 function updateBackdrop(dt){
- // Distant paper cards move more slowly than the physical walkable surface;
- // foreground props remain attached to their collision geometry.
- const tx=!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches&&state.area==='folio'?clamp((720-state.x)*.014,-9,9):0;
- const ty=!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches&&state.area==='folio'?clamp((654-state.y)*.018,-4,4):0;
- // Respect iOS Reduce Motion: retain all painted depth planes but stop camera-follow
- // drift, which can otherwise make the distant paper scenery feel unstable.
- const reducedMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
- const alpha=reducedMotion?1:1-Math.exp(-Math.min(Math.max(dt,0),.05)*3.5);
+ // Keep 2.5D paper planes but stop moving thousands of decorative SVG shapes
+ // on touch devices. Character movement and physical occlusion are unchanged.
+ const reducedMotion=!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ const sceneryStill=reducedMotion||touchScenery;
+ const tx=!sceneryStill&&state.area==='folio'?clamp((720-state.x)*.014,-9,9):0;
+ const ty=!sceneryStill&&state.area==='folio'?clamp((654-state.y)*.018,-4,4):0;
+ const alpha=sceneryStill?1:1-Math.exp(-Math.min(Math.max(dt,0),.05)*3.5);
  backdrop.x+=(tx-backdrop.x)*alpha;
  backdrop.y+=(ty-backdrop.y)*alpha;
- el.farRidges.setAttribute('transform','translate('+backdrop.x.toFixed(2)+' '+backdrop.y.toFixed(2)+')');
- const dx=!reducedMotion&&state.area==='terrace'?clamp((720-state.x)*.043,-21,21):0;
- const dy=!reducedMotion&&state.area==='terrace'?clamp((580-state.y)*.038,-10,10):0;
+ setSceneryTransform(el.farRidges,'folio','translate('+backdrop.x.toFixed(2)+' '+backdrop.y.toFixed(2)+')');
+ const dx=!sceneryStill&&state.area==='terrace'?clamp((720-state.x)*.043,-21,21):0;
+ const dy=!sceneryStill&&state.area==='terrace'?clamp((580-state.y)*.038,-10,10):0;
  backdrop.terraceX=(backdrop.terraceX||0)+(dx-(backdrop.terraceX||0))*alpha;
  backdrop.terraceY=(backdrop.terraceY||0)+(dy-(backdrop.terraceY||0))*alpha;
-
- el.terraceRidges.setAttribute('transform','translate('+backdrop.terraceX.toFixed(2)+' '+backdrop.terraceY.toFixed(2)+')');
- // A nearer paper card glides much less than the furthest card, while the
- // walk plane, collision geometry, physical props and player stay fixed.
- el.terraceMidRidges.setAttribute('transform','translate('+(backdrop.terraceX*.43).toFixed(2)+' '+(backdrop.terraceY*.55).toFixed(2)+')');
- // Light drifts slightly with distant cards but never moves physical actors
- // or the camera hit-test coordinate system.
- el.terraceLightShift.setAttribute('transform','translate('+(backdrop.terraceX*.28).toFixed(2)+' '+(backdrop.terraceY*.24).toFixed(2)+')');
+ setSceneryTransform(el.terraceRidges,'terraceFar','translate('+backdrop.terraceX.toFixed(2)+' '+backdrop.terraceY.toFixed(2)+')');
+ setSceneryTransform(el.terraceMidRidges,'terraceMiddle','translate('+(backdrop.terraceX*.43).toFixed(2)+' '+(backdrop.terraceY*.55).toFixed(2)+')');
+ const lightTransform='translate('+(backdrop.terraceX*.28).toFixed(2)+' '+(backdrop.terraceY*.24).toFixed(2)+')';
+ if(lastBackdropTransforms.terraceLight!==lightTransform){
+  el.terraceLightShift.setAttribute('transform',lightTransform);
+  lastBackdropTransforms.terraceLight=lightTransform;
+ }
 }
 const companion={x:474,y:620,area:'folio',ready:false,flightSpeed:0,bank:0,pitch:0};
 const morrowWingCycle=[0,1,2,3,2,1];
@@ -109,10 +125,10 @@ const morrowFlight={phase:0,lastAt:null};
 function updateMorrowAnimation(now){
  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
  const talking=el.morrow.classList.contains('talking');
- el.morrow.dataset.beak=reduced?'0':(talking&&Math.floor(now/155)%3===1?'1':'0');
+ setVisualDataset(el.morrow,'beak',reduced?'0':(talking&&Math.floor(now/155)%3===1?'1':'0'));
  if(reduced){
    morrowFlight.lastAt=now;
-   el.morrow.dataset.flap='0';
+   setVisualDataset(el.morrow,'flap','0');
    return;
  }
  const elapsed=morrowFlight.lastAt===null?0:clamp(now-morrowFlight.lastAt,0,50);
@@ -123,7 +139,7 @@ function updateMorrowAnimation(now){
  const speed=following?clamp(companion.flightSpeed/190,0,1):0;
  const interval=talking?105:(following?175-55*speed:240);
  morrowFlight.phase=(morrowFlight.phase+elapsed/interval)%morrowWingCycle.length;
- el.morrow.dataset.flap=String(morrowWingCycle[Math.floor(morrowFlight.phase)]);
+ setVisualDataset(el.morrow,'flap',String(morrowWingCycle[Math.floor(morrowFlight.phase)]));
 }
 function updateCompanion(dt=0){
  if(!state.metMorrow){
@@ -181,7 +197,7 @@ function updateCompanion(dt=0){
  el.morrow.style.setProperty('--morrow-flight-bank',companion.bank.toFixed(2)+'deg');
  el.morrow.style.setProperty('--morrow-flight-pitch',companion.pitch.toFixed(2)+'px');
  const size=terrace?clamp(.61+(companion.y-400)*.00106,.61,1.01):clamp(.72+(companion.y-552)*.00075,.71,.89);
- el.morrow.setAttribute('transform','translate('+companion.x.toFixed(1)+' '+companion.y.toFixed(1)+') scale('+size.toFixed(3)+')');
+ setActorTransform(el.morrow,'translate('+companion.x.toFixed(1)+' '+companion.y.toFixed(1)+') scale('+size.toFixed(3)+')');
  // The bird remains airborne: lighter bounce follows its *ground* projection.
  const birdLantern=Math.hypot(companion.x-371,(companion.y-615)*1.1);
  const birdBounce=terrace?.11+.24*Math.max(0,1-birdLantern/460):(indoors?.07:.10);
@@ -202,7 +218,7 @@ function updateCharacter(){
  // The playfield actor always has a positive (non-mirrored) spatial transform.
  // Mirroring is confined to the local paper-sprite group, keeping the
  // hero's world position, occlusion and UI sprite references independent.
- el.tavi.setAttribute('transform','translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+z.toFixed(3)+')');
+ setActorTransform(el.tavi,'translate('+state.x.toFixed(1)+' '+state.y.toFixed(1)+') scale('+z.toFixed(3)+')');
  // Warm light lies ON the physical floor, not on a portrait or fixed HUD layer.
  // Only the intensity changes with position. The ellipse stays at the exact
  // existing SVG foot anchor and inherits the same perspective scaling.
@@ -376,7 +392,7 @@ function travelTo(area,x,y,direction){
  pivotFacing=direction+':'+state.facing;lastVerticalTurnView=direction.includes('up')?'rear':'front';
  clearHeld();
  walkDistance=0;mendingUntil=0;
- el.tavi.dataset.stride='0';
+ setVisualDataset(el.tavi,'stride','0');
  el.tavi.classList.remove('walking');
  el.tavi.classList.remove('mending');
  state.area=area;state.x=x;state.y=y;state.direction=direction;
@@ -565,7 +581,7 @@ function interact(){
        // Saved immediately, including across Home Screen suspension.
        state.mended=true;save();sync();
        cancelTap();clearHeld();walkDistance=0;
-       el.tavi.dataset.stride='0';el.tavi.classList.remove('walking');
+       setVisualDataset(el.tavi,'stride','0');el.tavi.classList.remove('walking');
        const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
        mendingUntil=performance.now()+(reduced?0:900);
        if(!reduced)el.tavi.classList.add('mending');
@@ -762,8 +778,8 @@ el.battleDone.addEventListener('click',endBattle);
 function updateTaviActing(now){
  const reduced=!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
  if(el.tavi.classList.contains('speaking')){
-   el.tavi.dataset.speech=reduced?'closed':Math.floor(now/190)%3===0?'open':'closed';
- }else el.tavi.dataset.speech='closed';
+   setVisualDataset(el.tavi,'speech',reduced?'closed':Math.floor(now/190)%3===0?'open':'closed');
+ }else setVisualDataset(el.tavi,'speech','closed');
  if(modal!=='field'||mendingUntil){
    pivotUntil=0;el.tavi.classList.remove('pivoting');el.tavi.classList.remove('turning');
    return;
@@ -833,20 +849,20 @@ function frame(now){
    if(moved){
     const travelled=Math.hypot(state.x-oldX,(state.y-oldY)*1.35);
     walkDistance+=travelled;
-    el.tavi.dataset.stride=String(Math.floor(walkDistance/15)%8);
+    setVisualDataset(el.tavi,'stride',String(Math.floor(walkDistance/15)%8));
     fieldMotion=true;
     unsavedWalk=true;
     updatePrompt();
     if(now-lastSavedAt>=1100){save();lastSavedAt=now;unsavedWalk=false;}
    }else{
-    walkDistance=0;el.tavi.dataset.stride='0';
+    walkDistance=0;setVisualDataset(el.tavi,'stride','0');
    }
   }else{
-    walkDistance=0;el.tavi.dataset.stride='0';
+    walkDistance=0;setVisualDataset(el.tavi,'stride','0');
     el.tavi.classList.remove('walking');updatePrompt();
   }
  }else{
-  walkDistance=0;el.tavi.dataset.stride='0';
+  walkDistance=0;setVisualDataset(el.tavi,'stride','0');
   el.tavi.classList.remove('walking');el.prompt.classList.add('hidden');
  }
  // Commit the last few steps when movement ends, rather than losing a short

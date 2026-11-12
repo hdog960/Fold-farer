@@ -1349,3 +1349,37 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
     rotate:0deg;
   }
 }
+
+/* Touch-device rendering budget. Keep original paper art, all movement,
+   character wing/gait animations, hitboxes and depth; stop only expensive
+   scenery animation, full-screen filters and backdrop blur on handhelds. */
+@media (pointer: coarse) {
+  #world { filter:none!important; }
+  #terraceScene #terraceDistantCards,
+  #terraceScene #terraceMidgroundCards,
+  #terraceScene #terraceLightShift,
+  #terraceScene #terraceNearEdge,
+  #terraceScene #terraceSideWalls,
+  #terraceScene #terraceHangingPaper,
+  #terraceScene #terraceGateBack,
+  #terraceScene #terraceBell,
+  #terraceScene #terraceKiosk,
+  #terraceScene #terraceLantern,
+  #terraceDistantCards *,
+  #terraceMidgroundCards *,
+  #terraceLightShift * {
+    filter:none!important;
+    mix-blend-mode:normal!important;
+  }
+  #terraceDistantCards *, #terraceMidgroundCards *, #terraceLightShift *,
+  #terraceHangingPaper *, #terraceRibbonTree .terrace-leaf-sway,
+  #terraceThreadfallWildflowers53 > path, #terraceThreadfallSpray52 > path,
+  #terraceThreadfall49 > path, #terraceThreadfallRavine50 > path,
+  .clouds-a, .clouds-b, .bunting, .craft-petal, .craft-glint,
+  #riverHighlights {
+    animation:none!important;
+  }
+  .intro, .sheet, .logo-mini, .battle-stage .fold-node {
+    backdrop-filter:none!important;
+  }
+}

@@ -681,3 +681,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Source-side prewrite checks confirmed unique new ID, placement before hamlet, and a 3,239-character source increase. No JavaScript, saves, collision, player controls, or iPhone PWA paths were changed.
 - Verification pending: inspect GitHub Actions static checks, gameplay screenshot workflow, final Pages deployment and actual mobile landscape composition; no physical iPhone QA or creator art approval claimed. The new flags may overlap distant scenery and should be reviewed at 844x390.
 - Next: review near/far/mobile screenshots for clipping and visual density; adjust if needed, then prioritize substantial original character/scene art rather than minor decorative effects. **Milestone A remains OPEN; visual 90/100 gate unapproved; Milestone B LOCKED.**
+
+
+## 2026-11-12 — User-reported severe iPhone lag: handheld rendering mitigation
+- User reported severe lag; source inspection identified four scenery SVG transforms written every animation frame (even when unchanged), 5,278 playable SVG paths, 110 CSS animation declarations, and costly full-SVG/shadow filters. These are credible rendering costs, **not measured iPhone FPS or an established sole cause**.
+- Cache unchanged large scenery transforms, pin decorative parallax to its authored depth layers on coarse-pointer devices, avoid redundant per-frame actor transforms and wing/speech/stride dataset writes, disable nonessential scenic animation and costly SVG/backdrop filters on touch devices. Preserve Tavi/Morrow active sprite animation, controls, dialogue, combat, saves, collision, original art, and PWA route.
+- Advance offline shell cache from 0.54 to 0.56 and add simulation/smoke guards against redundant scenery repaints and missing handheld performance settings.
+- Must verify exact-head Node/Chromium tests, actual landscape screenshots, Pages deployment, and user-reported physical iPhone responsiveness. Do **not** claim lag is fixed until tested on device. Open PR #21 must be reconciled with new main/cache before merge. Milestone A art gate still pending; Milestone B LOCKED.

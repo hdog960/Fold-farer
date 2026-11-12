@@ -75,6 +75,21 @@ function drainDialogue(){
  throw Error('Dialogue did not close');
 }
 const save=()=>JSON.parse(storage.get('foldfarer.firstfold.0.1')||'null');
+// Regression: an idle Folio frame must not repaint offscreen North Terrace
+// parallax cards. Prior to the fix the SVG transform was written every frame.
+const staticTerrace=e('terraceDistantCards');
+const terrainSetter=staticTerrace.setAttribute;
+let redundantSceneryWrites=0;
+staticTerrace.setAttribute=function(name,value){
+ if(name==='transform')redundantSceneryWrites++;
+ return terrainSetter.call(this,name,value);
+};
+step(1);
+const originalTerrainTransform=staticTerrace.attrs.transform;
+redundantSceneryWrites=0;
+step(48);
+assert.equal(staticTerrace.attrs.transform,originalTerrainTransform,'Offscreen Terrace moved during Folio play');
+assert.equal(redundantSceneryWrites,0,'Idle frame loop needlessly repainted unchanged Terrace SVG');
 assert(e('intro').classList.contains('hidden')===false,'Intro missing');
 click('start');assert(e('portraitUse').attrs.href==='#taviSprite','Tavi dialogue sprite must not depend on field position');
 assert(e('tavi').classList.contains('speaking'),'The live hero must animate facial acting during his lines');
