@@ -142,6 +142,35 @@ assert(e('morrow').classList.contains('reacting'),'Morrow should visibly react d
 assert(e('morrow').dataset.reaction==='alarmed','Morrow should use his alarmed art for a removed road');
 step(13);assert(['0','1'].includes(e('morrow').dataset.beak),'Morrow speech must select an authored beak cel');
 drainDialogue();assert(!e('tavi').classList.contains('speaking'),'Dialogue must restore neutral face');
+// Multi-pointer ownership: releasing one of two fingers cannot release the
+// other; a pointer release cannot cancel an independent keyboard press.
+const rightPad=moveButtons.right;
+const downPad=moveButtons.down;
+const touch=(button,type,id)=>button.fire(type,{pointerId:id,preventDefault(){}});
+touch(rightPad,'pointerdown',41);
+touch(rightPad,'pointerdown',42);
+assert(rightPad.classList.contains('active'),'Touch D-pad failed to acquire input');
+touch(downPad,'pointerdown',43);
+touch(rightPad,'pointerup',41);
+assert(rightPad.classList.contains('active'),'First released touch cancelled second touch');
+assert(downPad.classList.contains('active'),'Diagonal touch lost its other direction');
+touch(rightPad,'pointercancel',42);
+touch(downPad,'pointerup',43);
+assert(!rightPad.classList.contains('active')&&!downPad.classList.contains('active'),'Touch pointers stayed latched');
+touch(rightPad,'pointerdown',44);
+key('ArrowRight',true);
+touch(rightPad,'pointerup',44);
+assert(rightPad.classList.contains('active'),'Finger release incorrectly cancelled held keyboard direction');
+key('ArrowRight',false);
+assert(!rightPad.classList.contains('active'),'Keyboard release left D-pad pressed');
+touch(rightPad,'pointerdown',45);
+winEvents.get('blur')();
+assert(!rightPad.classList.contains('active'),'Background suspend left D-pad visually held');
+touch(rightPad,'lostpointercapture',45);
+assert(!rightPad.classList.contains('active'),'Stale capture release reactivated movement');
+const checkpointName='foldfarer.firstfold.0.1.backup';
+assert(storage.has(checkpointName),'Quest checkpoint recovery slot was not created');
+
 // Modal handoff: a held movement key must not resume when speech closes.
 key('ArrowRight',true);
 click('interact');
@@ -315,4 +344,22 @@ assert.equal(idlePromptWrites,0,'Idle field frame loop repeatedly rewrote prompt
 assert.equal(duplicateTaviLight,0,'Unchanged Tavi light repeatedly repainted');
 assert.equal(duplicateFlip,0,'Unchanged facing repeatedly repainted');
 assert.equal(duplicateBirdBank,0,'Unchanged Morrow banking repeatedly repainted');
-console.log('Gameplay simulation passed: 2D movement, depth poses, river collision, Morrow -> Mend -> Mila -> timed battle -> victory -> journal/save.');
+// The last milestone checkpoint is mirrored and can restore a corrupted
+// primary without changing the original save key or resetting quest flags.
+assert(JSON.parse(storage.get(checkpointName)).won===true,'Victory was not secured in recovery slot');
+storage.set('foldfarer.firstfold.0.1','{corrupt');
+const recoveryProgram=read('game.js');
+const recoveryPreamble=recoveryProgram.slice(0,recoveryProgram.indexOf('let state=load();'));
+const recoveryContext=createContext({
+ localStorage:{getItem:key=>storage.get(key)??null},
+ console:{warn:()=>{}}
+});
+new Script(recoveryPreamble+'\\n globalThis.restored=load();',{filename:'checkpoint-recovery.js'}).runInContext(recoveryContext);
+assert(recoveryContext.restored.won===true&&recoveryContext.restored.area==='folio',
+ 'A damaged primary must recover the most recent valid quest checkpoint');
+storage.set('foldfarer.firstfold.0.1',storage.get(checkpointName));
+// Explicit restart must discard both copies rather than resurrect old progress.
+click('reset');
+assert(!storage.has(checkpointName)&&!storage.has('foldfarer.firstfold.0.1'),
+ 'Restart must not restore a previously saved quest from the recovery slot');
+console.log('Gameplay simulation passed: 2D movement, depth poses, river collision, Morrow -> Mend -> Mila -> timed battle -> victory -> journal/save; touch ownership and checkpoint recovery.');

@@ -4,6 +4,9 @@
 (function(){
 'use strict';
 const SAVE_KEY='foldfarer.firstfold.0.1';
+// Keep the original save key and schema. The additional checkpoint is only a
+// recovery copy for corrupted or interrupted primary localStorage writes.
+const BACKUP_KEY=SAVE_KEY+'.backup';
 const initial=()=>({started:false,x:355,y:654,facing:1,direction:'down',area:'folio',threadSample:false,metMorrow:false,mended:false,letter:false,won:false});
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const solids=[[64,333,548,576],[378,626,548,573],[885,1180,548,579],[1284,1436,548,577]];
@@ -58,18 +61,38 @@ function restorePosition(d){
  return d;
 }
 function load(){
- try {
-   const data=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');
-   if(data&&typeof data==='object'&&Number.isFinite(data.x)&&Number.isFinite(data.y)){
-     return restorePosition({...initial(),...data});
+ // Existing saves remain the source of truth; recovery is attempted only if
+ // the primary checkpoint is missing, corrupt, or lacks valid coordinates.
+ const read=key=>{
+  try{
+   const raw=localStorage.getItem(key);
+   if(!raw)return null;
+   const data=JSON.parse(raw);
+   if(data&&typeof data==='object'&&!Array.isArray(data)&&
+      Number.isFinite(data.x)&&Number.isFinite(data.y)){
+    return restorePosition({...initial(),...data});
    }
- }catch(e){console.warn('Preview save was not readable; starting new.',e)}
- return initial();
+  }catch(e){console.warn('Unreadable FoldFarer checkpoint:',key,e)}
+  return null;
+ };
+ return read(SAVE_KEY)||read(BACKUP_KEY)||initial();
 }
 let state=load();
 const $=id=>document.getElementById(id);
 const el={world:$('world'),farRidges:$('paintedPaperRidges'),terraceRidges:$('terraceDistantCards'),terraceMidRidges:$('terraceMidgroundCards'),terraceLightShift:$('terraceLightShift'),folioScene:$('folioScene'),terraceScene:$('terraceScene'),terraceDepthStage:$('terraceDepthStage'),atelierScene:$('atelierScene'),atelierDepthStage:$('atelierDepthStage'),depthStage:$('depthStage'),tapMarker:$('tapMarker'),taviFlip:$('taviFlip'),morrow:$('morrow'),morrowContactBounce:$('morrowContactBounce'),portraitBadge:$('portraitBadge'),portraitSvg:$('portraitSvg'),portraitUse:$('portraitUse'),tavi:$('tavi'),taviContactBounce:$('taviContactBounce'),enemy:$('enemy'),bridge:$('bridgeFix'),broken:$('brokenBridge'),seam:$('seamLight'),objective:$('objective'),prompt:$('prompt'),promptText:$('promptText'),intro:$('intro'),start:$('start'),dialog:$('dialogue'),speaker:$('speaker'),speakerMark:$('speakerMark'),line:$('line'),nextLine:$('nextLine'),journal:$('journal'),journalButton:$('journalButton'),journalText:$('journalText'),resume:$('resume'),reset:$('reset'),interact:$('interact'),battle:$('battle'),battleTitle:$('battleTitle'),battleIntent:$('battleIntent'),battleLog:$('battleLog'),battleActions:$('battleActions'),timing:$('timing'),timingMarker:$('timingMarker'),timingTap:$('timingTap'),heroHp:$('heroHp'),heroBar:$('heroBar'),enemyHp:$('enemyHp'),enemyBar:$('enemyBar'),foldNode:$('foldNode'),battleDone:$('battleDone')};
 let held={left:false,right:false,up:false,down:false}, dialogue=[],afterDialogue=null,battle=null,timingStart=0,timingActive=false,modal='intro',last=0,lastPrompt='',eventLocks={},moveTarget=null,lastSavedAt=0,walkDistance=0,mendingUntil=0,pivotStart=0,pivotUntil=0,pivotFacing=state.direction+':'+state.facing,lastVerticalTurnView=state.direction.includes('up')?'rear':'front';
+// Keyboard and simultaneous touch pointers own their directions separately.
+// Releasing one finger must not cancel another held finger or a pressed key.
+const keyboardHeld={left:false,right:false,up:false,down:false};
+const pointerHeld=Object.fromEntries(Object.keys(held).map(d=>[d,new Set()]));
+const moveControlByDirection=Object.fromEntries(
+ [...document.querySelectorAll('[data-move]')].map(key=>[key.dataset.move,key])
+);
+function refreshMovementDirection(direction){
+ const active=keyboardHeld[direction]||pointerHeld[direction].size>0;
+ held[direction]=active;
+ moveControlByDirection[direction]?.classList.toggle('active',active);
+}
 const actorDepth={paperPlanter:725,folioNotice:728,paperBench:735,morrow:620,mila:643,enemy:652};
 const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
 const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceRibbonTree:591,
@@ -404,7 +427,23 @@ function moveBy(dx,dy){
  }
  return Math.hypot(state.x-oldX,state.y-oldY)>.01;
 }
-function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));}catch(e){console.warn('Could not persist preview progress',e)}}
+// Backups are written when quest/area progress changes, on suspend, or once
+// per ~20 seconds; ordinary walking still performs only one small save write.
+let lastBackupSignature='',lastBackupAt=-Infinity;
+function save(forceBackup=false){
+ const payload=JSON.stringify(state);
+ try{localStorage.setItem(SAVE_KEY,payload);}
+ catch(e){console.warn('Could not persist preview progress',e);}
+ const progress=[state.started,state.metMorrow,state.mended,state.letter,
+                 state.threadSample,state.won,state.area].join(':');
+ const now=performance.now();
+ if(forceBackup||progress!==lastBackupSignature||now-lastBackupAt>=20000){
+  try{
+   localStorage.setItem(BACKUP_KEY,payload);
+   lastBackupSignature=progress;lastBackupAt=now;
+  }catch(e){console.warn('Could not write recovery checkpoint',e);}
+ }
+}
 function objective(){
  if(state.area==='terrace')return 'Explore the North Terrace.';
  if(state.area==='atelier')return state.threadSample?'Leave the Threads workshop and return to the Folio.':'Explore the workshop and inspect the Mender’s Loom.';
@@ -763,7 +802,7 @@ function endBattle(){
 function keyMove(key,value){
  const dirs={ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right',ArrowUp:'up',KeyW:'up',ArrowDown:'down',KeyS:'down'};
  const d=dirs[key];
- if(d){held[d]=value;if(value)cancelTap();return true;}
+ if(d){keyboardHeld[d]=value;refreshMovementDirection(d);if(value)cancelTap();return true;}
  return false;
 }
 document.addEventListener('keydown',e=>{
@@ -780,15 +819,28 @@ document.addEventListener('keydown',e=>{
  }
 });
 document.addEventListener('keyup',e=>keyMove(e.code,false));
-function clearHeld(){for(const d of Object.keys(held))held[d]=false;}
-window.addEventListener('blur',()=>{clearHeld();cancelTap();save();});
+function clearHeld(){for(const d of Object.keys(held)){keyboardHeld[d]=false;pointerHeld[d].clear();refreshMovementDirection(d);}}
+window.addEventListener('blur',()=>{clearHeld();cancelTap();save(true);});
 window.addEventListener('pagehide',save);
-document.addEventListener('visibilitychange',()=>{if(document.hidden){clearHeld();cancelTap();save();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){clearHeld();cancelTap();save(true);}});
 for(const key of document.querySelectorAll('[data-move]')){
  const direction=key.dataset.move;
- const stop=()=>{held[direction]=false;key.classList.remove('active');};
- key.addEventListener('pointerdown',e=>{e.preventDefault();key.setPointerCapture(e.pointerId);held[direction]=true;cancelTap();key.classList.add('active');});
- key.addEventListener('pointerup',stop);key.addEventListener('pointercancel',stop);key.addEventListener('lostpointercapture',stop);
+ const stop=e=>{
+  if(e&&Number.isInteger(e.pointerId))pointerHeld[direction].delete(e.pointerId);
+  else pointerHeld[direction].clear();
+  refreshMovementDirection(direction);
+ };
+ key.addEventListener('pointerdown',e=>{
+  if(modal!=='field')return;
+  e.preventDefault();
+  key.setPointerCapture(e.pointerId);
+  pointerHeld[direction].add(e.pointerId);
+  refreshMovementDirection(direction);
+  cancelTap();
+ });
+ key.addEventListener('pointerup',stop);
+ key.addEventListener('pointercancel',stop);
+ key.addEventListener('lostpointercapture',stop);
 }
 el.world.addEventListener('pointerdown',event=>{
  if(modal!=='field'||!el.world.createSVGPoint||!el.world.getScreenCTM)return;
@@ -813,7 +865,7 @@ el.resume.addEventListener('click',closeJournal);
 el.reset.addEventListener('click',()=>{
  if(!window.confirm('Restart this aesthetic preview and clear its local progress?'))return;
  cancelTap();clearHeld();unsavedWalk=false;
- localStorage.removeItem(SAVE_KEY);state=initial();companion.ready=false;eventLocks={};dialogue=[];afterDialogue=null;closeJournal();showIntro();sync();
+ localStorage.removeItem(SAVE_KEY);localStorage.removeItem(BACKUP_KEY);lastBackupSignature='';lastBackupAt=-Infinity;state=initial();companion.ready=false;eventLocks={};dialogue=[];afterDialogue=null;closeJournal();showIntro();sync();
 });
 el.battleActions.addEventListener('click',e=>{const button=e.target.closest('[data-battle]');if(button)chooseBattle(button.dataset.battle);});
 el.timingTap.addEventListener('click',strike);
