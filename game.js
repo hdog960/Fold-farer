@@ -75,6 +75,20 @@ const atelierDepth={atelierSpoolCart:656,atelierLoom:631,atelierDyeBench:664};
 const terraceDepth={terraceBell:484,terraceLantern:615,terraceKiosk:660,terraceRibbonTree:591,
  terraceDyersBench:563,terraceLetterCabinet:555};
 let lastDepthOrder='';
+let lastDepthIds=null;
+let lastDepthStage=null;
+// The follower eases every frame; most frames do not cross any cardstock
+// prop's foot depth. Validate the current paint order before sorting or
+// allocating an entirely new ordered actor list.
+function depthOrderStillValid(stage,depths){
+ if(stage!==lastDepthStage||!lastDepthIds)return false;
+ for(let i=0;i<lastDepthIds.length;i++){
+  const id=lastDepthIds[i];
+  if(!(id in depths))return false;
+  if(i>0&&depths[lastDepthIds[i-1]]>depths[id])return false;
+ }
+ return Object.keys(depths).length===lastDepthIds.length;
+}
 const backdrop={x:0,y:0};
 // Mobile SVG scenery preserves its painted depth planes without continuous
 // full-card translation and rasterization on touch hardware.
@@ -168,7 +182,7 @@ function updateCompanion(dt=0){
    setPaintProperty(el.morrow,'--morrow-flight-bank','0deg');
    setPaintProperty(el.morrow,'--morrow-flight-pitch','0px');
    setActorTransform(el.morrow,'translate(474 610)');
-   el.morrow.classList.remove('following');
+   if(el.morrow.classList.contains('following'))el.morrow.classList.remove('following');
    if(el.morrow.parentNode!==el.depthStage){el.depthStage.appendChild(el.morrow);lastDepthOrder='';}
    return;
  }
@@ -227,7 +241,7 @@ function updateCompanion(dt=0){
  // walking world; this changes only paint values, not bird movement.
  const birdReflect=terrace?.56+.27*Math.max(0,1-birdLantern/460):(indoors?.48:.54);
  setPaintProperty(el.morrow,'--paper-rim-strength',birdReflect.toFixed(2));
- el.morrow.classList.add('following');
+ if(!el.morrow.classList.contains('following'))el.morrow.classList.add('following');
  const targetStage=indoors?el.atelierDepthStage:(terrace?el.terraceDepthStage:el.depthStage);
  if(el.morrow.parentNode!==targetStage){targetStage.appendChild(el.morrow);lastDepthOrder='';}
 }
@@ -260,10 +274,17 @@ function updateCharacter(){
    {...actorDepth,morrow:state.metMorrow?companion.y:620};
  // Depth sorting is needed only when actors cross another object's foot Y.
  // The resulting signature still determines the actual DOM order.
- const sorted=Object.entries({...items,tavi:state.y}).sort((a,b)=>a[1]-b[1]).map(v=>v[0]);
- const signature=state.area+':'+sorted.join(':');
+ const depths={...items,tavi:state.y};
  if(el.tavi.parentNode!==targetStage)targetStage.appendChild(el.tavi);
- if(lastDepthOrder!==signature){for(const id of sorted)targetStage.appendChild($(id));lastDepthOrder=signature;}
+ if(depthOrderStillValid(targetStage,depths))return;
+ const sorted=Object.entries(depths).sort((a,b)=>a[1]-b[1]).map(v=>v[0]);
+ const signature=state.area+':'+sorted.join(':');
+ if(lastDepthOrder!==signature||lastDepthStage!==targetStage){
+  for(const id of sorted)targetStage.appendChild($(id));
+  lastDepthOrder=signature;
+ }
+ lastDepthIds=sorted;
+ lastDepthStage=targetStage;
 }
 let tapStallFrames=0;
 let tapReplans=0;
@@ -868,7 +889,7 @@ function frame(now){
     if(!moved||tapStallFrames>=12){if(!recoverTapRoute())cancelTap();}
    }
    if(moveTarget&&Math.hypot(moveTarget.x-state.x,(moveTarget.y-state.y)*1.25)<8)cancelTap();
-   el.tavi.classList.toggle('walking',moved);
+   if(el.tavi.classList.contains('walking')!==moved)el.tavi.classList.toggle('walking',moved);
    if(moved){
     const travelled=Math.hypot(state.x-oldX,(state.y-oldY)*1.35);
     walkDistance+=travelled;

@@ -96,6 +96,17 @@ function drainDialogue(){
  throw Error('Dialogue did not close');
 }
 const save=()=>JSON.parse(storage.get('foldfarer.firstfold.0.1')||'null');
+// Render-budget regression: unchanged depth ordering should not repeatedly
+// reparent the player or companion during stationary frames.
+const stage=e('depthStage');
+const oldAppend=stage.appendChild;
+let idleReparents=0;
+stage.appendChild=function(child){idleReparents++;return oldAppend.call(this,child);};
+step(45);
+idleReparents=0;
+step(90);
+assert.equal(idleReparents,0,'Stationary depth actors were needlessly reparented');
+
 // Regression: an idle Folio frame must not repaint offscreen North Terrace
 // parallax cards. Prior to the fix the SVG transform was written every frame.
 const staticTerrace=e('terraceDistantCards');
