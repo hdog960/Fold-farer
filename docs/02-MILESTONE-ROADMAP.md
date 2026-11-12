@@ -9,7 +9,7 @@ Every session selects the highest-priority incomplete slice, investigates blocke
 | ID | Slice | Current reality | Required completion evidence |
 | --- | --- | --- | --- |
 | A-01 | **Handheld performance and update reliability** | Source mitigation 0.56–0.59 deployed; creator says lag is better; device FPS unmeasured | iPhone playtest across Folio, workshop, terrace, dialogue and battle; no severe stalls; screenshot/perf budget regressions; no loss of art direction |
-| A-02 | **Core loop durability / touchscreen QA** | Quest chain and local save work in Node simulation; physical QA remains limited | Two-thumb landscape navigation and ACT while moving; no overlap; save reload, offline installed route, reduced motion, collision and area transitions validated at realistic mobile sizes |
+| A-02 | **Core loop durability / touchscreen QA** | Multi-pointer movement, second-thumb ACT, recoverable checkpoints and authenticated Chromium/offline emulation **merged and green** at `d2726e6`; physical Safari acceptance outstanding | Two-thumb landscape navigation and ACT while moving; no overlap; save reload, offline installed route, reduced motion, collision and area transitions validated at realistic mobile sizes |
 | A-03 | **Complete First Fold vertical-slice exploration** | Three short connected scenes and a few interactions | Expand the meaningful playable sequence toward the existing 30–60-minute Milestone A goal with story-consistent puzzles, traversal discoveries, NPC reactions and consequences; do not fabricate creator-held canonical story |
 | A-04 | **Distinct encounter depth and memorable climax** | One fixed Paper Scrapper battle | Several tested purposeful encounters, meaningful ability variety and at least one original boss/climax; preserve established action timing, readable battle panels, responsive controls and balance |
 | A-05 | **Integrated completion/polish pass** | Functional short preview but no full slice acceptance | First-to-last real gameplay regression, clear objective flow, no blockers or major lag, readable acting and effects, no broken save, annotated real-game screenshots and offline load |
@@ -24,10 +24,10 @@ Every session selects the highest-priority incomplete slice, investigates blocke
 - A-06 requires a *specific approval*, not a subjective assistant score.
 - **Milestone B** will be scoped from the actual approved First Fold and story bible, then can cover larger world/chapter, party, progression, item/economy and extended combat systems. Do NOT implement Milestone B now.
 
-## Next manual development session (A-01 → A-02)
+## Next manual development session (A-02 integration → A-03)
 1. Independently verify latest main, open PRs, test/screenshot/Pages workflows, runtime and save baseline; inspect PR #21 without merging it.
-2. Deep-test landscape touch controls, scene movement/frames and renderer on a realistic mobile viewport, and record honest performance evidence; fix any identifiable regressions.
-3. Build an integrated functional improvement that advances A-02 **without increasing rendering cost** (e.g. touch/offline/save reliability where evidence exposes a defect). Add Node + browser regressions, inspect screenshots.
+2. Request creator physical iPhone input on real two-thumb ACT, suspend/resume, performance, offline Home Screen and save recovery; green Chromium 667×375/844×390/932×430 does not substitute for the iPhone. Repair reported defects immediately.
+3. Where iPhone issues do not block safe work, build a cohesive **Milestone A-03** addition to the playable First Fold, leveraging verified existing plot and artwork. Add substantive encounters/puzzle exploration and Node+browser regression; avoid extra expensive SVG scenery. Keep the separate, unseen design bible canonical details unguessed.
 4. Guarded merge only after exact-head green checks; verify main/Pages and update ledger/handoff. If checks are pending, leave the candidate isolated and state exact next action.
 
 Never count documentation entries as gameplay progress.

@@ -6,6 +6,7 @@ Updated 2026-11-12. Mode: **manual gated development**.
 - `npm test` in Node 22: `node --check game.js`, `node --check sw.js`, `tests/smoke.mjs`, `tests/simulation.mjs`.
 - GitHub `Check FoldFarer static preview`: runs on push to main and on PR; checks `npm test`.
 - GitHub `Capture actual FoldFarer gameplay screenshots`: Chromium via Playwright, currently configured for **main pushes / workflow_dispatch**, NOT automatically for PR checks. Do not claim it proves a PR candidate before merge.
+- **New** `FoldFarer real Chromium mobile and offline QA` (`.github/workflows/mobile-qa.yml`): PR-head and main-push Node+real Chromium runs `tools/mobile-qa.mjs`, genuine two-pointer CDP touch with ACT and dialogue handoff, 667×375/844×390/932×430 hit-target checks, primary/backup checkpoint recovery in a distinct browser context, real service-worker offline reload and six PNG artifacts. Run 43309944103 passed on merged main. Device is Chromium emulation, not iOS Safari.
 - GitHub Pages deployment: must be checked on exact deployed main, separately from gameplay tests.
 
 ## Required manual development loop
