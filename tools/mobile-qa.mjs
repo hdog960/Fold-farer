@@ -86,7 +86,7 @@ try{
   // game and reloading would trigger pagehide and restore the primary before
   // the loader could exercise the recovery copy.
   const storageState=await context.storageState();
-  const store=storageState.origins.find(origin=>origin.origin===new URL(URL).origin);
+  const store=storageState.origins.find(origin=>origin.origin===new globalThis.URL(URL).origin);
   assert(store,'Missing browser origin storage state');
   const primary=store.localStorage.find(item=>item.name===SAVE);
   const backup=store.localStorage.find(item=>item.name===SAVE+'.backup');
