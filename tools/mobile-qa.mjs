@@ -46,12 +46,24 @@ try{
   const emit=(type,contacts)=>dev.send('Input.dispatchTouchEvent',{
    type,touchPoints:contacts.map(({id,x,y})=>({id,x,y,radiusX:4,radiusY:4,force:1}))
   });
+  const probe=await page.evaluate(({x,y})=>{
+   const hit=document.elementFromPoint(x,y);
+   const b=document.querySelector('[data-move="right"]');
+   return {hit:hit?.tagName+':'+(hit?.getAttribute('class')||''),
+    sameButton:hit===b,buttonActive:b.classList.contains('active'),
+    started:!document.querySelector('#intro').offsetParent,
+    transform:document.querySelector('#tavi').getAttribute('transform'),
+    view:{w:innerWidth,h:innerHeight,scale:visualViewport?.scale}}
+  },right);
+  console.log('MOBILE TOUCH HIT PROBE',width+'x'+height,JSON.stringify(probe));
   await emit('touchStart',[{id:1,...right}]);
   await page.waitForTimeout(230);
+  const activeAfterTouch=await page.locator('[data-move="right"]').evaluate(e=>e.classList.contains('active'));
   const after=await page.locator('#tavi').getAttribute('transform');
+  console.log('MOBILE TOUCH MOTION PROBE',width+'x'+height,
+   JSON.stringify({activeAfterTouch,before,after,errors}));
+  assert(activeAfterTouch,'CDP touch did not activate on-screen movement button');
   assert.notEqual(after,before,'Held right thumb did not move Tavi');
-  assert(await page.locator('[data-move="right"]').evaluate(e=>e.classList.contains('active')),
-   'Held movement finger has no active state');
   await emit('touchStart',[{id:1,...right},{id:2,...act}]);
   await page.waitForTimeout(60);
   await emit('touchEnd',[{id:1,...right}]);
