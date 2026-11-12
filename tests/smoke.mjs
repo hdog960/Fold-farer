@@ -10,6 +10,16 @@ assert(shellVersion && Number(shellVersion[1])>=50,'Installed Home Screen cache 
 new Script(game,{filename:'game.js'});
 new Script(sw,{filename:'sw.js'});
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
+// Each directional body has its own original two-sided hinged cloak stock,
+// mounted behind the feet/body so it cannot cover faces or alter foot anchors.
+for(const pose of ['taviFrontArt','taviBackArt','taviSideArt','taviFrontQuarterArt','taviBackQuarterArt']){
+  const start=html.indexOf('id="'+pose+'"');
+  assert(start>=0,'Missing directional Tavi pose '+pose);
+  const cloak=html.slice(start,html.indexOf('</g>',start)+4);
+  assert(cloak.includes('class="tavi-travel-cloak"'),'Missing physical cloth backing in '+pose);
+  assert((cloak.match(/<path /g)||[]).length>=7,'Directional cloak lacks authored cardstock panels '+pose);
+  assert(cloak.indexOf('tavi-travel-cloak')<cloak.indexOf('stride-contact-ground'),'Cloth must remain behind Tavi feet '+pose);
+}
 assert.equal(new Set(ids).size,ids.length,'Duplicate id attributes');
 for(const id of ['terraceBookbindersQuarter','terraceQuarterBackCard','terraceQuarterBindery','terraceQuarterScriptorium','terraceQuarterBellTower','terraceQuarterRibbonWalk'])
   assert(ids.includes(id),'Missing authored North Terrace bookbinders quarter layer: '+id);
