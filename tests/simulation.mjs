@@ -354,7 +354,7 @@ const recoveryContext=createContext({
  localStorage:{getItem:key=>storage.get(key)??null},
  console:{warn:()=>{}}
 });
-new Script(recoveryPreamble+'\\n globalThis.restored=load();',{filename:'checkpoint-recovery.js'}).runInContext(recoveryContext);
+new Script(recoveryPreamble+'\n globalThis.restored=load();',{filename:'checkpoint-recovery.js'}).runInContext(recoveryContext);
 assert(recoveryContext.restored.won===true&&recoveryContext.restored.area==='folio',
  'A damaged primary must recover the most recent valid quest checkpoint');
 storage.set('foldfarer.firstfold.0.1',storage.get(checkpointName));
