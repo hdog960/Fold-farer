@@ -1383,3 +1383,28 @@ button:focus-visible{outline:3px solid #f8d18e;outline-offset:3px}
     backdrop-filter:none!important;
   }
 }
+
+/* Handheld P0: stop every *decorative* scene animation and raster-heavy
+   SVG filter, including future additions, while excluding the actor/depth
+   stages. Character gait, dialogue, combat and companion wing cels stay live.
+   Static authored gradients, painted shapes, physical occlusion and hitboxes
+   are unaffected. The earlier narrow rules missed dozens of animated props. */
+@media (pointer: coarse) {
+ #folioScene > :not(#depthStage),
+ #folioScene > :not(#depthStage) *,
+ #terraceScene > :not(#terraceDepthStage),
+ #terraceScene > :not(#terraceDepthStage) *,
+ #atelierScene > :not(#atelierDepthStage),
+ #atelierScene > :not(#atelierDepthStage) * {
+   animation:none!important;
+   filter:none!important;
+   backdrop-filter:none!important;
+ }
+ /* Static props inside the depth stage still need no costly SVG filters.
+    Do not select Tavi or Morrow, whose sprite cels must remain expressive. */
+ #depthStage > :not(#tavi):not(#morrow),
+ #terraceDepthStage > :not(#tavi):not(#morrow),
+ #atelierDepthStage > :not(#tavi):not(#morrow) {
+   filter:none!important;
+ }
+}

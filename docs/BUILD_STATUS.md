@@ -688,3 +688,10 @@ Milestone B remains LOCKED. The creator must personally assess the aesthetic of 
 - Cache unchanged large scenery transforms, pin decorative parallax to its authored depth layers on coarse-pointer devices, avoid redundant per-frame actor transforms and wing/speech/stride dataset writes, disable nonessential scenic animation and costly SVG/backdrop filters on touch devices. Preserve Tavi/Morrow active sprite animation, controls, dialogue, combat, saves, collision, original art, and PWA route.
 - Advance offline shell cache from 0.54 to 0.56 and add simulation/smoke guards against redundant scenery repaints and missing handheld performance settings.
 - Must verify exact-head Node/Chromium tests, actual landscape screenshots, Pages deployment, and user-reported physical iPhone responsiveness. Do **not** claim lag is fixed until tested on device. Open PR #21 must be reconciled with new main/cache before merge. Milestone A art gate still pending; Milestone B LOCKED.
+
+
+## 2026-11-12 — Handheld P0 follow-up: scene-wide static-art budget
+- Continued the creator-reported severe iPhone lag gate after the 0.57 source, Chromium screenshot and Pages workflows all passed. No physical iPhone FPS measurement or creator speed approval yet.
+- Removed an idle-frame updatePrompt() call that needlessly queried nearby interactables and mutated HUD classes every requestAnimationFrame even when Tavi stood still. Movement and sync() still refresh the interaction prompt.
+- Broadened coarse-pointer CSS to suspend *all* decorative animations and SVG filters on the three scene's non-actor/depth branches, not just a few previously named Terrace groups. Tavi, Morrow and their original animated sprite cels are explicitly excluded; gameplay geometry, depth, interactions, and saves remain unchanged. Static props in depth stages lose expensive shadow filters on handhelds.
+- Added regression coverage for idle prompt churn and the three protected scene branches. Advanced Home Screen shell cache to 0.58. Verify exact-head Node/Chromium screenshots and Pages; do not claim iPhone lag is fixed without creator testing. PR #21 remains unmerged; Milestone B locked.

@@ -882,7 +882,10 @@ function frame(now){
    }
   }else{
     walkDistance=0;setVisualDataset(el.tavi,'stride','0');
-    el.tavi.classList.remove('walking');updatePrompt();
+    el.tavi.classList.remove('walking');
+    // A stationary actor cannot change the nearest interaction. sync(),
+    // travelTo(), and actual movement refresh the prompt when necessary.
+    // Avoid touching the prompt's CSS classes every animation frame.
   }
  }else{
   walkDistance=0;setVisualDataset(el.tavi,'stride','0');

@@ -111,8 +111,18 @@ redundantSceneryWrites=0;
 step(48);
 assert.equal(staticTerrace.attrs.transform,originalTerrainTransform,'Offscreen Terrace moved during Folio play');
 assert.equal(redundantSceneryWrites,0,'Idle frame loop needlessly repainted unchanged Terrace SVG');
+// Idle-field performance: once the actor is stationary, the nearest
+// interaction cannot change, so no repeated prompt class mutation is needed.
+const prompt=e('prompt');
+let idlePromptWrites=0;
+const promptRemove=prompt.classList.remove;
+prompt.classList.remove=function(name){
+ if(name==='hidden')idlePromptWrites++;
+ return promptRemove(name);
+};
 assert(e('intro').classList.contains('hidden')===false,'Intro missing');
-click('start');assert(e('portraitUse').attrs.href==='#taviSprite','Tavi dialogue sprite must not depend on field position');
+click('start');
+// Initial dialogue is advanced below. Count only stationary field frames.assert(e('portraitUse').attrs.href==='#taviSprite','Tavi dialogue sprite must not depend on field position');
 assert(e('tavi').classList.contains('speaking'),'The live hero must animate facial acting during his lines');
 assert(e('tavi').dataset.mood==='determined','Opening line must use original determined expression artwork');
 step(18);assert(['open','closed'].includes(e('tavi').dataset.speech),'Dialogue mouth must have an actual state');
@@ -287,6 +297,10 @@ assert(pos().x<=1360,'Hero exceeded authored scene bounds');
 assert(!e('tavi').classList.contains('walking'),'Hero must not moonwalk against a map edge');
 assert(e('tavi').dataset.stride==='0','Feet must rest at contact after hitting a wall');
 assert(e('tavi').classList.contains('walking')===false,'Idle Tavi must clear walking state for base costume and portrait');
+// Final idle frames should not churn interaction HUD classes.
+idlePromptWrites=0;
+step(90);
+assert.equal(idlePromptWrites,0,'Idle field frame loop repeatedly rewrote prompt classes');
 assert.equal(duplicateTaviLight,0,'Unchanged Tavi light repeatedly repainted');
 assert.equal(duplicateFlip,0,'Unchanged facing repeatedly repainted');
 assert.equal(duplicateBirdBank,0,'Unchanged Morrow banking repeatedly repainted');

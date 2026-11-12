@@ -9,6 +9,12 @@ const shellVersion=sw.match(/const CACHE = 'foldfarer-shell-0\.(\d+)'/);
 assert(shellVersion && Number(shellVersion[1])>=50,'Installed Home Screen cache must be at least 0.50');
 new Script(game,{filename:'game.js'});
 new Script(sw,{filename:'sw.js'});
+assert(css.includes('#folioScene > :not(#depthStage) *')&&
+       css.includes('#terraceScene > :not(#terraceDepthStage) *')&&
+       css.includes('#atelierScene > :not(#atelierDepthStage) *'),
+       'Touch-mode static scenery must stop animating without freezing actors');
+assert(game.includes('A stationary actor cannot change the nearest interaction'),
+       'Idle field loop must not churn the prompt every frame');
 // Mobile perf: avoid invalidating detailed actor SVGs for identical paint
 // values, unchanged directional pose and stationary ground-contact shadows.
 for(const name of ['setPaintProperty','setPaintOpacity','setDirectionClass'])
