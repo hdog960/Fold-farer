@@ -18,7 +18,7 @@ for(const pose of ['taviFrontArt','taviBackArt','taviSideArt','taviFrontQuarterA
   const cloak=html.slice(start,html.indexOf('</g>',start)+4);
   assert(cloak.includes('class="tavi-travel-cloak"'),'Missing physical cloth backing in '+pose);
   assert((cloak.match(/<path /g)||[]).length>=7,'Directional cloak lacks authored cardstock panels '+pose);
-  assert(cloak.indexOf('tavi-travel-cloak')<cloak.indexOf('stride-contact-ground'),'Cloth must remain behind Tavi feet '+pose);
+  assert(html.indexOf('tavi-travel-cloak',start)<html.indexOf('stride-contact-ground',start),'Cloth must remain behind Tavi feet '+pose);
 }
 assert.equal(new Set(ids).size,ids.length,'Duplicate id attributes');
 for(const id of ['terraceBookbindersQuarter','terraceQuarterBackCard','terraceQuarterBindery','terraceQuarterScriptorium','terraceQuarterBellTower','terraceQuarterRibbonWalk'])
